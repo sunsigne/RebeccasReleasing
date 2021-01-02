@@ -1,0 +1,9 @@
+https://fontmeme.com/fr/polices-cursives/
+
+title 1 : Cartoon, 300, Style-RobT, FFF300 (3 lines thus 1 spaces)
+title 2 : Pacifico, 300, Style-RobT, FFF300 (3 lines thus 1 spaces)
+
+
+https://fontmeme.com/polices/police-dogica/
+
+buttons : Dogicabold, 60, Ombre-S, FEFF41, EFCA33

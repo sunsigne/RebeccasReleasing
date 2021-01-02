@@ -1,0 +1,15 @@
+quelque chose à racompter : show, don't tell
+game design = nouvelle mécanique, twist de la mécanique, test final (boss)
+
+un personnage comme flowey : qui ne peut accepter que le jeu se termine et fait tout
+pour que l'utilisateur reste. Jouer avec les fichier du pc
+
+
+pour un mini-jeu il faut répondre à 3 questions : 
+	- sur quoi le joueur a le contrôle (la souris) ?
+	- qu'est-ce qu'il doit faire à partir de ce controle ?
+	- sur quoi le joueur agit dans le monde ?
+	le joueur DOIT avoir le CONTROLE !! s'il est passif, il ne s'amuse pas
+	
+
+	
