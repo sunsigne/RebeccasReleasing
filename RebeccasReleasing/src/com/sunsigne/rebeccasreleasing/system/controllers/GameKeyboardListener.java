@@ -7,8 +7,6 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -24,18 +22,14 @@ public class GameKeyboardListener extends KeyAdapter {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			if (Conductor.state != STATE.TITLE)
-			{
+			if (Conductor.getState() != STATE.TITLE) {
 				World.world.close();
-				AudioTask.playMusic(0.5, AudioBank.soundtrack_3);
 				new Title();
-			}
-			else
+			} else
 				Conductor.stop();
 		}
 
-		if (key == KeyEvent.VK_R)
-		{
+		if (key == KeyEvent.VK_R) {
 			World.world.restart();
 		}
 
@@ -76,7 +70,7 @@ public class GameKeyboardListener extends KeyAdapter {
 
 	private boolean playerismovable() {
 
-		if (HandlerObject.getInstance().isPlayerExisting && Conductor.state == STATE.LEVEL)
+		if (HandlerObject.getInstance().isPlayerExisting && Conductor.getState() == STATE.LEVEL)
 			return true;
 		else
 			return false;

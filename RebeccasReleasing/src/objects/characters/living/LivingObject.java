@@ -40,7 +40,7 @@ public abstract class LivingObject extends AnimatedObject {
 
 	public boolean isPlayerActive() {
 
-		if (Conductor.state == STATE.LEVEL || Conductor.state == STATE.CHATTING)
+		if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.CHATTING)
 			return true;
 		else {
 			setMotionless();

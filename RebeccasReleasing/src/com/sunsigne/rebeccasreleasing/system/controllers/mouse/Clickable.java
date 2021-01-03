@@ -6,11 +6,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.system.conductor.IClose;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 
-public abstract class Clickable extends GameMouseListener implements IClick, IClose {
+public abstract class Clickable extends GameMouseListener implements IClick {
 
 	public Clickable(STATE state) {
 		super(state);

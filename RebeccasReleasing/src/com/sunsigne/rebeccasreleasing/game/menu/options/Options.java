@@ -88,7 +88,6 @@ public class Options extends Clickable {
 
 	}
 
-	@Override
 	public void close() {
 		GameMouseListener.getInstance().clearClickable();
 		HandlerObject.getInstance().clearAll();

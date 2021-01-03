@@ -90,7 +90,6 @@ public abstract class Puzzle extends Clickable {
 			isDualFight = true;
 	}
 
-	@Override
 	public void close() {
 		
 		GameMouseListener.getInstance().clearClickable();
@@ -104,7 +103,7 @@ public abstract class Puzzle extends Clickable {
 			((FoeObject) dualfoe).setSolved(winning);
 
 		World.stunAllFoes();
-		Conductor.state = STATE.LEVEL;
+		Conductor.setState(STATE.LEVEL);
 		HandlerObject.getInstance().player.loadBasicState();
 
 		if (!winning) {

@@ -10,7 +10,6 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.system.conductor.IClose;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -22,7 +21,7 @@ import objects.OBJECTID;
 import objects.characters.displayer.GUI;
 import objects.characters.living.FoeObject;
 
-public class World implements IRender, IClose {
+public class World implements IRender {
 
 	private ILvl ilvl;
 	private IEvent ievent;
@@ -74,7 +73,7 @@ public class World implements IRender, IClose {
 
 		MapBuilder.createLevel(ilvl.getLvlImage());
 		startGUI(flag);
-		Conductor.state = STATE.LEVEL;
+		Conductor.setState(STATE.LEVEL);
 //		event.start();
 	}
 
@@ -102,7 +101,6 @@ public class World implements IRender, IClose {
 		world = new World(world.getILvl());
 	}
 
-	@Override
 	public void close() {
 
 		GameMouseListener.getInstance().clearClickable();

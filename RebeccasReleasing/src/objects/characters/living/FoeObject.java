@@ -57,7 +57,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 
 		getAnimation().runAnimation();
 		updateWatchingDirection();
-		if (isPlayerActive() && Conductor.state != STATE.CHATTING)
+		if (isPlayerActive() && Conductor.getState() != STATE.CHATTING)
 			velocity();
 		collisionDetector.update();
 
@@ -97,7 +97,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	}
 
 	private void verify() {
-		if (Conductor.state == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
+		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
 			HandlerObject.getInstance().player.loadBasicState();
 	}
 
@@ -119,7 +119,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 			}
 
 			if (!HandlerObject.getInstance().player.isTasking() && living.isPlayerActive()
-					&& Conductor.state != STATE.CHATTING) {
+					&& Conductor.getState() != STATE.CHATTING) {
 				HandlerObject.getInstance().player.setTasking(true);
 				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualfoe);
 			} else

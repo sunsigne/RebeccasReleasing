@@ -37,9 +37,9 @@ public class Game extends Canvas implements Runnable {
 
 	public static final String NAME = "Rebecca's Releasing";
 	public static final boolean visibleHitbox = false;
-	
+
 	public static Game game;
-	
+
 	private Thread thread;
 	private boolean running;
 
@@ -50,10 +50,8 @@ public class Game extends Canvas implements Runnable {
 
 	public Game() {
 
-		
-		
 		game = this;
-		Conductor.state = STATE.LOADING;
+		Conductor.setState(STATE.LOADING);
 		Options.loadLanguage();
 		new ImageBank().loadRessources();
 		new AudioBank().loadRessources();
@@ -77,7 +75,7 @@ public class Game extends Canvas implements Runnable {
 
 		running = true;
 		thread = new Thread(this, NAME + "_main");
-		thread.start();		
+		thread.start();
 	}
 
 	/**
@@ -127,6 +125,7 @@ public class Game extends Canvas implements Runnable {
 //				ticks++;
 				try {
 					tick();
+
 				} catch (Exception e) {
 					// some commun lags may cause desynchronisation with some lists.
 					// This throws ask for the code to just ignore them.
@@ -153,6 +152,14 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 		stop();
+	}
+
+	public void forceLoop() {
+		try {
+			tick();
+			render();
+		} catch (Exception e) {
+		}
 	}
 
 	private void tick() {
