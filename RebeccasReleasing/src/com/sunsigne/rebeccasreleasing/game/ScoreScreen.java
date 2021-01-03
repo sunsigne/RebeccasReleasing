@@ -33,10 +33,5 @@ public class ScoreScreen extends Clickable {
 
 	}
 
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

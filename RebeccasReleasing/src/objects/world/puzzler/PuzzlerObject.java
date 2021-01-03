@@ -40,7 +40,7 @@ public abstract class PuzzlerObject extends GameObject implements ICollision {
 	protected abstract Puzzle getPuzzle();
 
 	private void verify() {
-		if (Conductor.state == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
+		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
 			HandlerObject.getInstance().player.loadBasicState();
 	}
 

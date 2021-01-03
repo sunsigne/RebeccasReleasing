@@ -22,7 +22,7 @@ public class GameMouseListener extends MouseAdapter {
 	}
 
 	public GameMouseListener(STATE state) {
-		Conductor.state = state;
+		Conductor.setState(state);
 	}
 		
 	public static GameMouseListener getInstance() {

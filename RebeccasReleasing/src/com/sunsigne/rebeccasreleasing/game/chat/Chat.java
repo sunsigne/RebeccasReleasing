@@ -139,13 +139,12 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 
 	}
 
-	@Override
 	public void close() {
 		ichat = null;
 		GameMouseListener.getInstance().clearClickable();
 		HandlerObject.getInstance().addObject(World.gui);
 		World.stunAllFoes();
-		Conductor.state = STATE.LEVEL;
+		Conductor.setState(STATE.LEVEL);
 		HandlerObject.getInstance().player.loadBasicState();
 		AudioTask.changeMusicVol(0.5);
 	}

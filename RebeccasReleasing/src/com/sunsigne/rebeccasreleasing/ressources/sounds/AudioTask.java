@@ -18,6 +18,7 @@ public class AudioTask {
 	// WARNING !!! All paths in this method must have their / replaced by double \\
 	public static void playMusic(double volume, String AudioBank) {
 
+		stopMusic();
 		try {
 			String path = "\\ressources\\audio\\" + AudioBank;
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
