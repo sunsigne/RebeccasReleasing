@@ -26,6 +26,13 @@ public class Title extends Clickable {
 
 		playMusic();
 		HandlerObject.getInstance().addObject(new TitleObject());
+		System.out.println("title created");
+	}
+
+	private void playMusic() {
+		STATE state = Conductor.getPreviousState();
+		if (state != STATE.TITLE && state != STATE.OPTION)
+			AudioTask.playMusic(0.5, AudioBank.soundtrack_3);
 	}
 
 	private void playMusic() {
