@@ -35,12 +35,6 @@ public class Title extends Clickable {
 			AudioTask.playMusic(0.5, AudioBank.soundtrack_3);
 	}
 
-	private void playMusic() {
-		STATE state = Conductor.getPreviousState();
-		if (state != STATE.TITLE && state != STATE.OPTION)
-			AudioTask.playMusic(0.5, AudioBank.soundtrack_3);
-	}
-
 	@Todo("passer a un système intelligent qui determine le lvl avec la sauvegarde (dans une autre classe bien sûr)")
 	@Override
 	public void mousePressed(int mx, int my) {
