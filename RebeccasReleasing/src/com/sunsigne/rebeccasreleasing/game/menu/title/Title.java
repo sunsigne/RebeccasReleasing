@@ -26,7 +26,6 @@ public class Title extends Clickable {
 
 		playMusic();
 		HandlerObject.getInstance().addObject(new TitleObject());
-		System.out.println("title created");
 	}
 
 	private void playMusic() {
