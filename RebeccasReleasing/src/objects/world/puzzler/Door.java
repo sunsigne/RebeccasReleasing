@@ -1,10 +1,12 @@
 package objects.world.puzzler;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -18,7 +20,11 @@ public class Door extends PuzzlerObject {
 	private boolean horizontal;
 
 	public Door(int x, int y, boolean horizontal) {
-		super(x, y, OBJECTID.DOOR);
+		this(x, y, horizontal, DIFFICULTY.GREEN);
+	}
+	
+	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
+		super(x, y, OBJECTID.DOOR, difficulty);
 
 		w = Size.TILE;
 		h = Size.TILE;
@@ -50,6 +56,7 @@ public class Door extends PuzzlerObject {
 
 		BufferedImage img = paintingDoor();
 		g.drawImage(img, x, y, w, h, null);
+		drawDifficulty(g);
 		drawHitbox(g);
 	}
 
@@ -84,7 +91,7 @@ public class Door extends PuzzlerObject {
 
 	@Override
 	protected Puzzle getPuzzle() {
-		return new PuzzleKey(this);
+		return new PuzzleKey(this, getDifficulty());
 	}
 
 }

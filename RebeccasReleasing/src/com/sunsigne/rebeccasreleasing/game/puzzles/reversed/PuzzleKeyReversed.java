@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
@@ -23,8 +24,8 @@ public class PuzzleKeyReversed extends Puzzle {
 	private static Lock lock;
 	private static KeyReversed key;
 
-	public PuzzleKeyReversed(PuzzlerObject puzzler) {
-		super(STATE.PUZZLEKEY, puzzler, true);
+	public PuzzleKeyReversed(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLEKEY, puzzler, difficulty, true);
 		GameCursor.hideCursor(true);
 	}
 

@@ -3,6 +3,7 @@ package objects.world.puzzler;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleBomb;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -12,8 +13,12 @@ import objects.characters.living.LivingObject;
 
 public class WallCracked extends PuzzlerObject {
 
-	public WallCracked(int x, int y) {
-		super(x, y, OBJECTID.WALLCRACKED);
+	public  WallCracked(int x, int y) {
+		this(x, y, DIFFICULTY.GREEN);
+	}	
+	
+	public WallCracked(int x, int y, DIFFICULTY difficulty) {
+		super(x, y, OBJECTID.WALLCRACKED, difficulty);
 
 		w = Size.TILE;
 		h = Size.TILE;
@@ -31,6 +36,8 @@ public class WallCracked extends PuzzlerObject {
 
 		if (!isSolved())
 			g.drawImage(texture.item[31], x, y, w, h, null);
+		
+		drawDifficulty(g);
 		drawHitbox(g);
 	}
 	
@@ -49,7 +56,7 @@ public class WallCracked extends PuzzlerObject {
 
 	@Override
 	protected Puzzle getPuzzle() {
-		return new PuzzleBomb(this);
+		return new PuzzleBomb(this, getDifficulty());
 	}
 
 	

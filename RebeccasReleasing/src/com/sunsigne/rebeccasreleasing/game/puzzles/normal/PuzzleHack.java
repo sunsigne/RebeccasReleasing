@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
@@ -37,8 +38,8 @@ public class PuzzleHack extends Puzzle {
 	private static ProcessorTrash trash;
 	private static ProcessorDesktop desktop;
 
-	public PuzzleHack(PuzzlerObject puzzler) {
-		super(STATE.PUZZLEHACK, puzzler);
+	public PuzzleHack(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLEHACK, puzzler, difficulty);
 		GameCursor.hideCursor(true);
 	}
 

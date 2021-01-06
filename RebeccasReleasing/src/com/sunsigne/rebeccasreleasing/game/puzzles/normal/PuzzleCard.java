@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -24,8 +25,8 @@ public class PuzzleCard extends Puzzle {
 
 	private static Card[] card = new Card[5];
 
-	public PuzzleCard(FoeObject foe, GameObject dualfoe) {
-		super(STATE.PUZZLECARD, foe, dualfoe);
+	public PuzzleCard(FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, foe, dualfoe, difficulty);
 	}
 
 	@Override

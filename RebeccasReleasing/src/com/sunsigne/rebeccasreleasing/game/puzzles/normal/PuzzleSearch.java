@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
@@ -21,8 +22,8 @@ public class PuzzleSearch extends Puzzle {
 	private static SearchWord[] word = new SearchWord[6];
 	private static SearchFolder searchfolder;
 
-	public PuzzleSearch(PuzzlerObject puzzler) {
-		super(STATE.PUZZLESEARCH, puzzler);
+	public PuzzleSearch(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLESEARCH, puzzler, difficulty);
 	}
 
 	@Override

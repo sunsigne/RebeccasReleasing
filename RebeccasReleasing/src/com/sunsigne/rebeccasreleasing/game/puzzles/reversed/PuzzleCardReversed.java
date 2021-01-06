@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.reversed;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
@@ -24,8 +25,8 @@ public class PuzzleCardReversed extends Puzzle {
 
 	private static CardFolderReversed folderattack, folderdefense, folderreversed;
 
-	public PuzzleCardReversed(FoeObject foe, GameObject dualfoe) {
-		super(STATE.PUZZLECARD, foe, dualfoe, true);
+	public PuzzleCardReversed(FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, foe, dualfoe, difficulty, true);
 	}
 
 	@Override

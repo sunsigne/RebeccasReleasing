@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
@@ -23,8 +24,8 @@ public class PuzzleBomb extends Puzzle {
 
 	private static Bomb[] bomb = new Bomb[4];
 
-	public PuzzleBomb(PuzzlerObject puzzler) {
-		super(STATE.PUZZLEBOMB, puzzler);
+	public PuzzleBomb(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLEBOMB, puzzler, difficulty);
 	}
 
 	@Override

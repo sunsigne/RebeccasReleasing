@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleSearch;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -13,8 +14,13 @@ import objects.OBJECTID;
 @Todo("à redesinger absoluement")
 public class Case extends PuzzlerObject {
 
+
 	public Case(int x, int y) {
-		super(x, y, OBJECTID.CASE);
+		this(x, y, DIFFICULTY.GREEN);
+	}	
+	
+	public Case(int x, int y, DIFFICULTY difficulty) {
+		super(x, y, OBJECTID.CASE, difficulty);
 
 		w = Size.TILE;
 		h = Size.TILE * 2;
@@ -37,6 +43,7 @@ public class Case extends PuzzlerObject {
 			g.drawImage(texture.item[24], x, y + Size.TILE, Size.TILE, Size.TILE, null);
 		}
 
+		drawDifficulty(g);
 		drawHitbox(g);
 	}
 
@@ -50,7 +57,7 @@ public class Case extends PuzzlerObject {
 	@Override
 	protected Puzzle getPuzzle() {
 		if (!isSolved())
-			return new PuzzleSearch(this);
+			return new PuzzleSearch(this, getDifficulty());
 		else
 			return null;
 	}

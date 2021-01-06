@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -26,8 +27,8 @@ public class PuzzleKey extends Puzzle {
 	private static Key key;
 //	public static boolean tuto;
 
-	public PuzzleKey(PuzzlerObject puzzler) {
-		super(STATE.PUZZLEKEY, puzzler);
+	public PuzzleKey(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLEKEY, puzzler, difficulty);
 		GameCursor.hideCursor(true);
 	}
 
@@ -56,7 +57,7 @@ public class PuzzleKey extends Puzzle {
 	@Override
 	public void randomGeneration() {
 		int j = 1;
-//		if(difficulty == DIFFICULTY.MEDIUM) j = 5;
+//		if(getDifficulty().getNum() == 2) j = 5;
 
 		for (int i = 0; i < j; i++) {
 			int r0 = 2 + new Random().nextInt(10);

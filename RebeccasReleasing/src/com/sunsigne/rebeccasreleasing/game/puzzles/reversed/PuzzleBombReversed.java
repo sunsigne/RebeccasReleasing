@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
@@ -21,8 +22,8 @@ public class PuzzleBombReversed extends Puzzle {
 
 	private static BombReversed[] bomb = new BombReversed[4];
 
-	public PuzzleBombReversed(PuzzlerObject puzzler) {
-		super(STATE.PUZZLEBOMB, puzzler, true);
+	public PuzzleBombReversed(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		super(STATE.PUZZLEBOMB, puzzler, difficulty, true);
 	}
 
 	@Override

@@ -1,9 +1,12 @@
 package objects.characters.living;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -27,11 +30,16 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	public static final int foedualrange = 200 * Size.TILE / 64;
 
 	private boolean solved;
+	private DIFFICULTY difficulty;
 
 	public boolean stunned;
 	private int stuntime;
 
 	public FoeObject(int x, int y) {
+		this(x, y, DIFFICULTY.GREEN);
+	}
+	
+	public FoeObject(int x, int y, DIFFICULTY diffitculty) {
 		super(x, y, OBJECTID.FOE, FOE);
 
 		collisionDetector = new CollisionDetector(false, this);
@@ -76,8 +84,23 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	public void render(Graphics g) {
 
 		getAnimation().drawAnimation(g, x, y, w, h);
+		
+		drawDifficulty(g);
 		drawHitbox(g);
 	}
+	
+	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
+	private void drawDifficulty(Graphics g) {
+		
+		Color color = new Color(0,0,0,0);
+		if(difficulty.getNum() == 1) color = new Color(0, 255, 0, 100);
+		if(difficulty.getNum() == 2) color = new Color(255, 255, 0, 100);
+		if(difficulty.getNum() == 3) color = new Color(255, 115, 0, 100);
+		if(difficulty.getNum() == 4) color = new Color(255, 0, 0, 100);
+		g.setColor(color);
+		g.fillRect(x,  y,  w,  h);
+	}
+	
 
 	@Override
 	public void collision(LivingObject living) {
@@ -121,7 +144,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 			if (!HandlerObject.getInstance().player.isTasking() && living.isPlayerActive()
 					&& Conductor.getState() != STATE.CHATTING) {
 				HandlerObject.getInstance().player.setTasking(true);
-				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualfoe);
+				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualfoe, difficulty);
 			} else
 				verify();
 		}

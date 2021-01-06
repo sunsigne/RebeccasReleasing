@@ -19,6 +19,7 @@ import objects.world.puzzler.PuzzlerObject;
 public abstract class Puzzle extends Clickable {
 
 	private PuzzlerObject puzzler;
+	private DIFFICULTY difficulty;
 
 	private FoeObject foe;
 	private GameObject dualfoe;
@@ -26,30 +27,35 @@ public abstract class Puzzle extends Clickable {
 
 	private boolean reversed, winning;
 
-	public Puzzle(STATE state, PuzzlerObject puzzler, boolean reversed) {
+	public Puzzle(STATE state, PuzzlerObject puzzler, DIFFICULTY difficulty, boolean reversed) {
 		super(state);
 		this.puzzler = puzzler;
+		this.difficulty = difficulty;
 		this.reversed = reversed;
 		open();
 	}
 
-	public Puzzle(STATE state, PuzzlerObject puzzler) {
-		this(state, puzzler, false);
+	public Puzzle(STATE state, PuzzlerObject puzzler, DIFFICULTY difficulty) {
+		this(state, puzzler, difficulty, false);
 	}
 
-	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe, boolean reversed) {
+	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty, boolean reversed) {
 		super(state);
 		this.foe = foe;
 		this.dualfoe = dualfoe;
+		this.difficulty = difficulty;
 		this.reversed = reversed;
 		dualChecker(dualfoe);
 		open();
 	}	
 
-	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe) {
-		this(state, foe, dualfoe, false);
+	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
+		this(state, foe, dualfoe, difficulty, false);
 	}
 
+	public DIFFICULTY getDifficulty() {
+		return difficulty;
+	}
 
 	public void setWinning(boolean winning) {
 		this.winning = winning;
