@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -109,6 +111,18 @@ public class GUI extends GameObject {
 		HandlerObject.getInstance().addObject(new BonusText(object, "-" + amount + " pts"));
 		points = points - amount;
 	}
+	
+	// item gestion
+	
+	public void upgradeKey()
+	{
+		int current_key = characteristics.getKey().getNum();
+		if(current_key < DIFFICULTY.TOTALNUM)
+		{
+			DIFFICULTY better_key = DIFFICULTY.getDifficulty(current_key + 1);
+			characteristics.setKey(better_key);
+		}			
+	}
 
 	@Override
 	public boolean isCameraDependant() {
@@ -127,6 +141,7 @@ public class GUI extends GameObject {
 
 		drawHearts(g);
 		drawPoints(g);
+		drawKey(g);
 	}
 
 	private void drawHearts(Graphics g) {
@@ -150,12 +165,32 @@ public class GUI extends GameObject {
 		}
 	}
 
+
 	private void drawPoints(Graphics g) {
 
 		Font font = new Font("arial", 1, 75);
 		g.setFont(font);
 		g.setColor(Color.white);
 		g.drawString("" + points, x + Size.WIDHT / 2 - 50, y + 90);
+	}
+		
+	private void drawKey(Graphics g) {
+		
+		g.drawImage(texture.item[0], x + 20, y + 200, w, h, null);
+		drawDifficulty(g);
+	}
+	
+	
+	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
+	protected void drawDifficulty(Graphics g) {
+		
+		Color color = new Color(0,0,0,0);
+		if(characteristics.getKey().getNum() == 1) color = new Color(0, 255, 0, 100);
+		if(characteristics.getKey().getNum() == 2) color = new Color(255, 255, 0, 100);
+		if(characteristics.getKey().getNum() == 3) color = new Color(255, 115, 0, 100);
+		if(characteristics.getKey().getNum() == 4) color = new Color(255, 0, 0, 100);
+		g.setColor(color);
+		g.fillRect(x + 20,  y + 200,  w,  h);
 	}
 
 	@Override

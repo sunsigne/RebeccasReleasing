@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl01;
+import com.sunsigne.rebeccasreleasing.game.world.WorldLvl03;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
@@ -40,7 +40,7 @@ public class Title extends Clickable {
 		if (GameMouseListener.mouseOver(mx, my, playRect)) {
 			close();
 			AudioTask.stopMusic();
-			ILvl level = new WorldLvl01();
+			ILvl level = new WorldLvl03();
 			World.world = new World(level);
 		}
 

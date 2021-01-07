@@ -1,6 +1,5 @@
 package objects.world.puzzler;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -9,6 +8,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
+import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 
 import objects.OBJECTID;
@@ -22,7 +22,7 @@ public class Door extends PuzzlerObject {
 	public Door(int x, int y, boolean horizontal) {
 		this(x, y, horizontal, DIFFICULTY.GREEN);
 	}
-	
+
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.DOOR, difficulty);
 
@@ -78,8 +78,13 @@ public class Door extends PuzzlerObject {
 	@Override
 	public void collision(LivingObject living) {
 
-		if (!isSolved())
-			living.collisionDetector.collidingBehavior(true, this, () -> updatePuzzler(living, this));
+		if (!isSolved()) {
+			int current_key = World.gui.getCharacteristics().getKey().getNum();
+			if (current_key >= getDifficulty().getNum())
+				living.collisionDetector.collidingBehavior(true, this, () -> updatePuzzler(living, this));
+			else 
+				living.collisionDetector.collidingBehavior(true, this, null);
+		}
 	}
 
 	@Override

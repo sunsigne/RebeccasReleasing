@@ -25,6 +25,8 @@ public class ImageBank {
 	public static BufferedImage lvl01_cutout;
 	public static BufferedImage lvl02;
 	public static BufferedImage lvl02_cutout;
+	public static BufferedImage lvl03;
+	public static BufferedImage lvl03_cutout;
 
 	// sheet
 	public static BufferedImage desk_sheet;
@@ -78,6 +80,8 @@ public class ImageBank {
 		lvl01_cutout = ImageTask.loadImage("lvl01_cutout.png");
 		lvl02 = ImageTask.loadImage("lvl02.png");
 		lvl02_cutout = ImageTask.loadImage("lvl02_cutout.png");
+		lvl03 = ImageTask.loadImage("lvl03.png");
+		lvl03_cutout = ImageTask.loadImage("lvl03_cutout.png");
 
 		// sheet
 		desk_sheet = ImageTask.loadImage("desk_sheet.png");

@@ -54,6 +54,8 @@ public class Loot extends GameObject implements ICollision {
 			g.drawImage(ImageBank.card_frame, x, y, Size.TILE * 2 / 3, Size.TILE, null);
 			g.drawImage(ImageBank.card_critical, x, y, Size.TILE * 2 / 3, Size.TILE, null);
 		}
+		if(lootId == LOOTID.KEY)
+			g.drawImage(texture.item[0], x, y, w, h, null);
 		drawHitbox(g);
 	}
 	
@@ -78,6 +80,9 @@ public class Loot extends GameObject implements ICollision {
 		switch (lootId) {
 		case CRITCARD:
 			doActionCritCard();
+			break;
+		case KEY:
+			World.gui.upgradeKey();
 			break;
 		default:
 			break;

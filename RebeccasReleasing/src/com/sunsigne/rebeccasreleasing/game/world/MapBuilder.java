@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.game.world;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -21,6 +22,8 @@ import objects.world.puzzler.Case;
 import objects.world.puzzler.Computer;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.WallCracked;
+import objects.world.storing.LOOTID;
+import objects.world.storing.Loot;
 
 @Todo("find the key to open the exit door / pour la déco : tapis, parquet, distributeur de café, de bouffe, poubelle,"
 		+ " boites en cartons ou en bois, cuisines & salle de repos, toilettes, labo-chimique, débaras, vestiaires?")
@@ -58,6 +61,15 @@ public class MapBuilder {
 					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true));
 				if (red == 127 && green == 127 && blue == 127)
 					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false));
+				if (red == 126 && green == 126 && blue == 126)
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true, DIFFICULTY.YELLOW));
+				if (red == 125 && green == 125 && blue == 125)
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false, DIFFICULTY.YELLOW));
+				
+				//key
+				if (red == 126 && green == 126 && blue == 125)
+					handler_object.addObject(new Loot(xx * Size.TILE, yy * Size.TILE, LOOTID.KEY));
+				
 				// couch
 				if (red == 64 && green == 0 && blue == 0)
 					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, true, 1)); // single

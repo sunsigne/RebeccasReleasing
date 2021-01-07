@@ -57,7 +57,7 @@ public class PuzzleKey extends Puzzle {
 	@Override
 	public void randomGeneration() {
 		int j = 1;
-//		if(getDifficulty().getNum() == 2) j = 5;
+		if(getDifficulty().getNum() >= 2) j = 5;
 
 		for (int i = 0; i < j; i++) {
 			int r0 = 2 + new Random().nextInt(10);
