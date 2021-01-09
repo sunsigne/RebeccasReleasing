@@ -54,22 +54,22 @@ public class Door extends PuzzlerObject {
 
 		BufferedImage img = paintingDoor();
 		g.drawImage(img, x, y, w, h, null);
-		drawDifficulty(g);
 		drawHitbox(g);
 	}
 
 	private BufferedImage paintingDoor() {
 
 		BufferedImage img = null;
+		int difficulty = getDifficulty().getNum();
 
 		if (horizontal && !isSolved())
-			img = texture.door[2];
+			img = texture.door[difficulty][2];
 		if (horizontal && isSolved())
-			img = texture.door[3];
+			img = texture.door[difficulty][3];
 		if (!horizontal && !isSolved())
-			img = texture.door[0];
+			img = texture.door[difficulty][0];
 		if (!horizontal && isSolved())
-			img = texture.door[1];
+			img = texture.door[difficulty][1];
 		return img;
 	}
 

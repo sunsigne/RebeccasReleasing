@@ -19,7 +19,7 @@ public class TextureBank {
 	public BufferedImage[] desk = new BufferedImage[24];
 	public BufferedImage[] dispenser = new BufferedImage[2];
 	public BufferedImage[] lamp = new BufferedImage[1];
-	public BufferedImage[] door = new BufferedImage[4];
+	public BufferedImage[][] door = new BufferedImage[6][4];
 	public BufferedImage[] plant = new BufferedImage[4];
 	public BufferedImage[] couch = new BufferedImage[10];
 	
@@ -90,10 +90,13 @@ public class TextureBank {
 		dispenser[1] = desk_sheet.grabImage(5, 6, 32, 64); // coffe
 		lamp[0] = desk_sheet.grabImage(5, 9, 32, 32); // lamp
 
-		door[0] = door_sheet.grabImage(1, 1, 32, 64); // vertical close
-		door[1] = door_sheet.grabImage(2, 1, 32, 64); // vertical open
-		door[2] = door_sheet.grabImage(2, 1, 64, 32); // horizontal close
-		door[3] = door_sheet.grabImage(2, 2, 64, 32); // horizontal open
+		for(int i = 1; i < 5; i++)
+		{
+		door[i][0] = door_sheet.grabImage(1, i, 32, 64); // vertical close
+		door[i][1] = door_sheet.grabImage(2, i, 32, 64); // vertical open
+		door[i][2] = door_sheet.grabImage(2, i, 64, 32); // horizontal close
+		door[i][3] = door_sheet.grabImage(2, i+1, 64, 32); // horizontal open
+		}
 
 		plant[0] = desk_sheet.grabImage(3, 3, 64, 32);
 		plant[1] = desk_sheet.grabImage(3, 4, 64, 32);
