@@ -4,7 +4,7 @@ public class ChatLvl02 extends Chat {
 
 	private static final String lvlFrTxt = "/dialogues/french/lvl02";
 	private static final String lvlEngTxt = "/dialogues/english/lvl02";
-
+	
 	public ChatLvl02(int number) {
 		super(number, lvlFrTxt, lvlEngTxt);
 	}

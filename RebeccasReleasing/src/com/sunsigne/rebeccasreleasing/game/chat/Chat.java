@@ -21,11 +21,7 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 	private static IChat ichat;
 
 	protected static String frTxt, engTxt;
-
-	protected static final String lvl02_fr = "/dialogues/french/lvl02";
-
-	protected static final String lvl02_eng = "/dialogues/english/lvl02";
-
+	
 	protected ChatObject chatObject;
 
 	protected int number, count;
@@ -48,13 +44,13 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 	public boolean isCameraDependant() {
 		return false;
 	}
-
+	
 	private void loadingTxt(String lvlFrTxt, String lvlEngTxt) {
 		frTxt = lvlFrTxt;
 		engTxt = lvlEngTxt;
 	}
 
-	protected String read(int line) {
+	private String read(int line) {
 		switch (Options.getLanguage()) {
 		case FRENCH:
 			return FileTask.read(frTxt, line);
@@ -76,10 +72,27 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 	public void mouseReleased(int mx, int my) {
 	}
 
-	protected void chat(CHARA chara, String line, String secondline) {
+	protected void chat(int lineID, int secondLine) {
+		
+		lineID = lineID + 1;
+		secondLine = secondLine + 1;
+		
+		String dataline = read(lineID);
+		String [] data = dataline.split(";");
+		CHARA chara = CHARA.getChara(Integer.valueOf(data[1]));
+		String line = data[3].replace("\"", "");
+		String secondline = null;
+		
+		if(secondLine == lineID + 1)
+		{
+			String seconddataline = read(secondLine);
+			String [] seconddata = seconddataline.split(";");	
+			secondline = seconddata[3].replace("\"", "");;
+		}
+		
 		chatObject = new ChatObject(chara, line, secondline);
 		HandlerObject.getInstance().addObject(chatObject);
-	}
+	}	
 
 	protected void chat(int number) {
 		HandlerObject.getInstance().clearFront();

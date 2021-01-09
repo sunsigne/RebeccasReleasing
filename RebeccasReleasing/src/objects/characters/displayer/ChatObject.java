@@ -118,7 +118,7 @@ public class ChatObject extends GameObject {
 			if (count == i) {
 				newchar = letter[line][i];
 				newletter = String.valueOf(newchar);
-				boolean isPauseChar = ":;,.!?".contains(Character.toString(letter[line][i]));
+				boolean isPauseChar = ":,.!?…".contains(Character.toString(letter[line][i]));
 				if (isPauseChar)
 					pause = true;
 				currentText[line] = currentText[line] + newletter;

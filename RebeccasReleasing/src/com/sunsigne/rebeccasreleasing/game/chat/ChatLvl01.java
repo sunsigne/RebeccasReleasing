@@ -2,13 +2,11 @@ package com.sunsigne.rebeccasreleasing.game.chat;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
 
-import objects.characters.CHARA;
-
 public class ChatLvl01 extends Chat {
 
 	private static final String lvlFrTxt = "/dialogues/french/lvl01";
 	private static final String lvlEngTxt = "/dialogues/english/lvl01";
-
+	
 	public ChatLvl01(int number) {
 		super(number, lvlFrTxt, lvlEngTxt);
 	}
@@ -21,19 +19,19 @@ public class ChatLvl01 extends Chat {
 	public void chat01(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Rebecca, read(2), null);
+			chat(1, 0);
 			break;
 		case 2:
-			chat(CHARA.Sarah, read(4), read(5));
+			chat(2, 3);
 			break;
 		case 3:
-			chat(CHARA.Rebecca, read(7), null);
+			chat(4, 0);
 			break;
 		case 4:
-			chat(CHARA.Sarah, read(9), read(10));
+			chat(5, 6);
 			break;
 		case 5:
-			chat(CHARA.Sarah, read(11), read(12));
+			chat(7, 8);
 			break;
 		case 6:
 			close();
@@ -45,10 +43,10 @@ public class ChatLvl01 extends Chat {
 	public void chat02(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Rebecca, read(15), read(16));
+			chat(9, 10);
 			break;
 		case 2:
-			chat(CHARA.Sarah, read(18), read(19));
+			chat(11, 12);
 			break;
 		case 3:
 			close();
@@ -60,7 +58,7 @@ public class ChatLvl01 extends Chat {
 	public void chat03(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Sarah, read(22), read(23));
+			chat(13, 14);
 			break;
 		case 2:
 			close();
@@ -72,7 +70,7 @@ public class ChatLvl01 extends Chat {
 	public void chat04(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Sarah, read(25), null);
+			chat(15, 0);
 			break;
 		case 2:
 			close();
@@ -84,23 +82,23 @@ public class ChatLvl01 extends Chat {
 	public void chat05(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Rebecca, read(28), null);
+			chat(16, 0);
 			break;
 		case 2:
-			chat(CHARA.Sarah, read(30), read(31));
+			chat(17, 18);
 			break;
 		case 3:
-			chat(CHARA.Sarah, read(32), read(33));
+			chat(19, 20);
 			World.world.getIEvent().setMustoccur(true, 6);
 			break;
 		case 4:
-			chat(CHARA.Sarah, read(34), null);
+			chat(21, 0);
 			break;
 		case 5:
-			chat(CHARA.Rebecca, read(36), null);
+			chat(22, 0);
 			break;
 		case 6:
-			chat(CHARA.Sarah, read(38), read(39));
+			chat(23, 24);
 			break;
 		case 7:
 			close();
@@ -116,10 +114,10 @@ public class ChatLvl01 extends Chat {
 	public void chat07(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Rebecca, read(42), null);
+			chat(25, 0);
 			break;
 		case 2:
-			chat(CHARA.Sarah, read(44), read(45));
+			chat(26, 27);
 			break;
 		case 3:
 			close();
@@ -131,10 +129,10 @@ public class ChatLvl01 extends Chat {
 	public void chat08(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Rebecca, read(48), null);
+			chat(28, 0);
 			break;
 		case 2:
-			chat(CHARA.Sarah, read(50), read(51));
+			chat(29, 30);
 			break;
 		case 3:
 			close();
@@ -146,19 +144,19 @@ public class ChatLvl01 extends Chat {
 	public void chat09(int count) {
 		switch (count) {
 		case 1:
-			chat(CHARA.Sarah, read(54), read(55));
+			chat(31, 33);
 			break;
 		case 2:
-			chat(CHARA.Rebecca, read(57), null);
+			chat(33, 0);
 			break;
 		case 3:
-			chat(CHARA.Sarah, read(59), read(60));
+			chat(34, 35);
 			break;
 		case 4:
-			chat(CHARA.Rebecca, read(62), null);
+			chat(36, 0);
 			break;
 		case 5:
-			chat(CHARA.Rebecca, read(64), read(65));
+			chat(37, 38);
 			break;
 		case 6:
 			close();

@@ -74,7 +74,7 @@ public class World implements IRender {
 		MapBuilder.createLevel(ilvl.getLvlImage());
 		startGUI(flag);
 		Conductor.setState(STATE.LEVEL);
-//		event.start();
+		event.start();
 	}
 
 	// level maker
