@@ -13,7 +13,7 @@ import objects.OBJECTID;
 public class Computer extends PuzzlerObject {
 
 	public  Computer(int x, int y) {
-		this(x, y, DIFFICULTY.GREEN);
+		this(x, y, DIFFICULTY.CYAN);
 	}
 	
 	public Computer(int x, int y, DIFFICULTY difficulty) {

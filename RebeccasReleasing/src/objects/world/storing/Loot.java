@@ -2,6 +2,7 @@ package objects.world.storing;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.stream.Collector.Characteristics;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
@@ -82,7 +83,7 @@ public class Loot extends GameObject implements ICollision {
 			doActionCritCard();
 			break;
 		case KEY:
-			World.gui.upgradeKey();
+			World.gui.getCharacteristics().upgradeTool(0);
 			break;
 		default:
 			break;

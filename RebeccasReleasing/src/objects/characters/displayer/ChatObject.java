@@ -183,7 +183,6 @@ public class ChatObject extends GameObject {
 		Font font = new Font("arial", 1, 55);
 		g.setColor(Color.white);
 		g.setFont(font);
-		g.setColor(Color.yellow);
 
 		int x0 = 440;
 

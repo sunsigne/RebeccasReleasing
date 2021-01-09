@@ -20,7 +20,7 @@ public class Door extends PuzzlerObject {
 	private boolean horizontal;
 
 	public Door(int x, int y, boolean horizontal) {
-		this(x, y, horizontal, DIFFICULTY.GREEN);
+		this(x, y, horizontal, DIFFICULTY.CYAN);
 	}
 
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
@@ -79,7 +79,7 @@ public class Door extends PuzzlerObject {
 	public void collision(LivingObject living) {
 
 		if (!isSolved()) {
-			int current_key = World.gui.getCharacteristics().getKey().getNum();
+			int current_key = World.gui.getCharacteristics().getTool(0).getNum();
 			if (current_key >= getDifficulty().getNum())
 				living.collisionDetector.collidingBehavior(true, this, () -> updatePuzzler(living, this));
 			else 

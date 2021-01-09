@@ -36,7 +36,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	private int stuntime;
 
 	public FoeObject(int x, int y) {
-		this(x, y, DIFFICULTY.GREEN);
+		this(x, y, DIFFICULTY.CYAN);
 	}
 	
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
@@ -94,10 +94,11 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	private void drawDifficulty(Graphics g) {
 		
 		Color color = new Color(0,0,0,0);
-		if(difficulty.getNum() == 1) color = new Color(0, 255, 0, 100);
-		if(difficulty.getNum() == 2) color = new Color(255, 255, 0, 100);
-		if(difficulty.getNum() == 3) color = new Color(255, 115, 0, 100);
-		if(difficulty.getNum() == 4) color = new Color(255, 0, 0, 100);
+		if(difficulty.getNum() == 1) color = new Color(0, 255, 255, 100);
+		if(difficulty.getNum() == 2) color = new Color(0, 255, 0, 100);
+		if(difficulty.getNum() == 3) color = new Color(255, 255, 0, 100);
+		if(difficulty.getNum() == 4) color = new Color(255, 128, 0, 100);
+		if(difficulty.getNum() == 5) color = new Color(255, 0, 0, 100);
 		g.setColor(color);
 		g.fillRect(x,  y,  w,  h);
 	}

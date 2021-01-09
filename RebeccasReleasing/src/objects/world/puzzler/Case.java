@@ -16,7 +16,7 @@ public class Case extends PuzzlerObject {
 
 
 	public Case(int x, int y) {
-		this(x, y, DIFFICULTY.GREEN);
+		this(x, y, DIFFICULTY.CYAN);
 	}	
 	
 	public Case(int x, int y, DIFFICULTY difficulty) {

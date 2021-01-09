@@ -2,12 +2,13 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 public enum DIFFICULTY {
 
-	GREEN(1),
-	YELLOW(2),
-	ORANGE(3),
-	RED(4);
+	CYAN(1),
+	GREEN(2),
+	YELLOW(3),
+	ORANGE(4),
+	RED(5);
+
 	
-	public static final int TOTALNUM = 4;
 	private int num;
 
 	DIFFICULTY(int num) {

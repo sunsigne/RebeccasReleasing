@@ -11,7 +11,7 @@ public class TextureBank {
 
 	private static TextureBank instance = null;
 	
-	private SpriteSheet rebecca_sheet, desk_sheet, door_sheet, couch_sheet, bomb_sheet, item_sheet, hack_sheet,
+	private SpriteSheet rebecca_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet, item_sheet, hack_sheet,
 			virus_sheet;
 
 	public BufferedImage[] rebecca_walking = new BufferedImage[12];
@@ -22,6 +22,8 @@ public class TextureBank {
 	public BufferedImage[] door = new BufferedImage[4];
 	public BufferedImage[] plant = new BufferedImage[4];
 	public BufferedImage[] couch = new BufferedImage[10];
+	
+	public BufferedImage[][] battery = new BufferedImage[6][6];
 
 	public BufferedImage[] bomb = new BufferedImage[10];
 	public BufferedImage[] item = new BufferedImage[38];
@@ -42,6 +44,7 @@ public class TextureBank {
 		desk_sheet = new SpriteSheet(ImageBank.desk_sheet);
 		door_sheet = new SpriteSheet(ImageBank.door_sheet);
 		couch_sheet = new SpriteSheet(ImageBank.couch_sheet);
+		battery_sheet = new SpriteSheet(ImageBank.battery_sheet);
 
 		bomb_sheet = new SpriteSheet(ImageBank.bomb_sheet);
 		item_sheet = new SpriteSheet(ImageBank.item_sheet);
@@ -96,6 +99,21 @@ public class TextureBank {
 		plant[1] = desk_sheet.grabImage(3, 4, 64, 32);
 		plant[2] = desk_sheet.grabImage(3, 5, 64, 32);
 		plant[3] = desk_sheet.grabImage(3, 6, 64, 32);
+		
+		battery[1][2] = battery_sheet.grabImage(1, 1, 32, 32);
+		battery[2][2] = battery_sheet.grabImage(2, 1, 32, 32);
+		battery[1][3] = battery_sheet.grabImage(1, 2, 32, 32);
+		battery[2][3] = battery_sheet.grabImage(2, 2, 32, 32);
+		battery[3][3] = battery_sheet.grabImage(3, 2, 32, 32);
+		battery[1][4] = battery_sheet.grabImage(1, 3, 32, 32);
+		battery[2][4] = battery_sheet.grabImage(2, 3, 32, 32);
+		battery[3][4] = battery_sheet.grabImage(3, 3, 32, 32);
+		battery[4][4] = battery_sheet.grabImage(4, 3, 32, 32);
+		battery[1][5] = battery_sheet.grabImage(1, 4, 32, 32);
+		battery[2][5] = battery_sheet.grabImage(2, 4, 32, 32);
+		battery[3][5] = battery_sheet.grabImage(3, 4, 32, 32);
+		battery[4][5] = battery_sheet.grabImage(4, 4, 32, 32);
+		battery[5][5] = battery_sheet.grabImage(5, 4, 32, 32);
 
 		couch[0] = couch_sheet.grabImage(1, 1, 96, 32); // horizontal trio
 		couch[1] = couch_sheet.grabImage(1, 2, 96, 32); // horizontal trio back

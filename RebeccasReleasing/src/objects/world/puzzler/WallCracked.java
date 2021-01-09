@@ -14,7 +14,7 @@ import objects.characters.living.LivingObject;
 public class WallCracked extends PuzzlerObject {
 
 	public  WallCracked(int x, int y) {
-		this(x, y, DIFFICULTY.GREEN);
+		this(x, y, DIFFICULTY.CYAN);
 	}	
 	
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {

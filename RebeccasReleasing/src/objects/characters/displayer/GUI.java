@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -16,16 +15,16 @@ import objects.OBJECTID;
 
 public class GUI extends GameObject {
 
-	private Characteristics characteristics;
-	
+	private CharacteristicsTemp characteristics;
+
 	private int fullhp, hp;
 	private int points;
 	private boolean infiniteHp;
 
 	public GUI() {
 		super(0, 0, OBJECTID.DISPLAYER);
-		
-		characteristics = new Characteristics();		
+
+		characteristics = new CharacteristicsTemp();
 		fullhp = 3;
 		setHp(fullhp);
 	}
@@ -33,16 +32,16 @@ public class GUI extends GameObject {
 	public GUI(boolean infiniteHp) {
 		super(0, 0, OBJECTID.DISPLAYER);
 		this.infiniteHp = infiniteHp;
-		
-		characteristics = new Characteristics();
+
+		characteristics = new CharacteristicsTemp();
 		fullhp = 3;
 		setHp(fullhp);
 	}
-	
-	public Characteristics getCharacteristics() {
+
+	public CharacteristicsTemp getCharacteristics() {
 		return characteristics;
 	}
-	
+
 	// hp gestion
 
 	public int getHp() {
@@ -54,13 +53,14 @@ public class GUI extends GameObject {
 	}
 
 	/**
-	 *  Add one hp to the GUI
+	 * Add one hp to the GUI
 	 */
 	public void addHp() {
 		hp = hp + 1;
 	}
 
-	/** Add hp to the GUI. Set no parameter to add only one.
+	/**
+	 * Add hp to the GUI. Set no parameter to add only one.
 	 * 
 	 * @param amount of hp to add
 	 */
@@ -69,14 +69,15 @@ public class GUI extends GameObject {
 	}
 
 	/**
-	 *  Remove one hp to the GUI
+	 * Remove one hp to the GUI
 	 */
 	public void removeHp() {
 		if (!infiniteHp)
 			hp = hp - 1;
 	}
 
-	/** Remove hp to the GUI. Set no parameter to remove only one.
+	/**
+	 * Remove hp to the GUI. Set no parameter to remove only one.
 	 * 
 	 * @param amount
 	 */
@@ -111,18 +112,6 @@ public class GUI extends GameObject {
 		HandlerObject.getInstance().addObject(new BonusText(object, "-" + amount + " pts"));
 		points = points - amount;
 	}
-	
-	// item gestion
-	
-	public void upgradeKey()
-	{
-		int current_key = characteristics.getKey().getNum();
-		if(current_key < DIFFICULTY.TOTALNUM)
-		{
-			DIFFICULTY better_key = DIFFICULTY.getDifficulty(current_key + 1);
-			characteristics.setKey(better_key);
-		}			
-	}
 
 	@Override
 	public boolean isCameraDependant() {
@@ -141,11 +130,11 @@ public class GUI extends GameObject {
 
 		drawHearts(g);
 		drawPoints(g);
-		drawKey(g);
+		drawTools(g);
 	}
 
 	private void drawHearts(Graphics g) {
-		
+
 		int heart3 = 13;
 		int heart2 = 13;
 		int heart1 = 13;
@@ -158,13 +147,13 @@ public class GUI extends GameObject {
 			heart1 = 14;
 
 		if (!infiniteHp) {
-			g.drawImage(texture.item[heart3], x + (Size.TILE_PUZZLE + Size.TILE_PUZZLE / 2), y, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
-			g.drawImage(texture.item[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y, Size.TILE_PUZZLE, Size.TILE_PUZZLE,
-					null);
+			g.drawImage(texture.item[heart3], x + (Size.TILE_PUZZLE + Size.TILE_PUZZLE / 2), y, Size.TILE_PUZZLE,
+					Size.TILE_PUZZLE, null);
+			g.drawImage(texture.item[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y, Size.TILE_PUZZLE,
+					Size.TILE_PUZZLE, null);
 			g.drawImage(texture.item[heart1], x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 		}
 	}
-
 
 	private void drawPoints(Graphics g) {
 
@@ -173,24 +162,23 @@ public class GUI extends GameObject {
 		g.setColor(Color.white);
 		g.drawString("" + points, x + Size.WIDHT / 2 - 50, y + 90);
 	}
-		
-	private void drawKey(Graphics g) {
-		
-		g.drawImage(texture.item[0], x + 20, y + 200, w, h, null);
-		drawDifficulty(g);
-	}
-	
-	
-	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
-	protected void drawDifficulty(Graphics g) {
-		
-		Color color = new Color(0,0,0,0);
-		if(characteristics.getKey().getNum() == 1) color = new Color(0, 255, 0, 100);
-		if(characteristics.getKey().getNum() == 2) color = new Color(255, 255, 0, 100);
-		if(characteristics.getKey().getNum() == 3) color = new Color(255, 115, 0, 100);
-		if(characteristics.getKey().getNum() == 4) color = new Color(255, 0, 0, 100);
-		g.setColor(color);
-		g.fillRect(x + 20,  y + 200,  w,  h);
+
+	private void drawTools(Graphics g) {
+
+		int numberofTools = CharacteristicsSaved.batterySize.length;
+		int currentToolLvl = 0;
+		int savedBatterySize = 0;
+
+		g.drawImage(texture.item[3], x + 20, Size.HEIGHT - Size.TILE - 20, w, h, null);
+		g.drawImage(texture.item[25], x + 20 + 2*Size.TILE, Size.HEIGHT - Size.TILE - 20, w, h, null);
+
+		for (int i = 0; i < numberofTools; i++) {
+			currentToolLvl = characteristics.getTool(i).getNum();
+			savedBatterySize = CharacteristicsSaved.batterySize[i];
+
+			g.drawImage(texture.battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE * (2*i + 1),
+					Size.HEIGHT - Size.TILE - 20, w, h, null);
+		}
 	}
 
 	@Override
@@ -202,6 +190,5 @@ public class GUI extends GameObject {
 
 		World.world.restart();
 	}
-
 
 }

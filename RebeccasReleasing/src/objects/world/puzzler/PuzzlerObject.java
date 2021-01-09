@@ -53,10 +53,11 @@ public abstract class PuzzlerObject extends GameObject implements ICollision {
 	protected void drawDifficulty(Graphics g) {
 		
 		Color color = new Color(0,0,0,0);
-		if(getDifficulty().getNum() == 1) color = new Color(0, 255, 0, 100);
-		if(getDifficulty().getNum() == 2) color = new Color(255, 255, 0, 100);
-		if(getDifficulty().getNum() == 3) color = new Color(255, 115, 0, 100);
-		if(getDifficulty().getNum() == 4) color = new Color(255, 0, 0, 100);
+		if(getDifficulty().getNum() == 1) color = new Color(0, 255, 255, 100);
+		if(getDifficulty().getNum() == 2) color = new Color(0, 255, 0, 100);
+		if(getDifficulty().getNum() == 3) color = new Color(255, 255, 0, 100);
+		if(getDifficulty().getNum() == 4) color = new Color(255, 128, 0, 100);
+		if(getDifficulty().getNum() == 5) color = new Color(255, 0, 0, 100);
 		g.setColor(color);
 		g.fillRect(x,  y,  w,  h);
 	}

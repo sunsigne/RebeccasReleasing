@@ -29,6 +29,7 @@ public class ImageBank {
 	public static BufferedImage lvl03_cutout;
 
 	// sheet
+	public static BufferedImage battery_sheet;
 	public static BufferedImage desk_sheet;
 	public static BufferedImage door_sheet;
 	public static BufferedImage couch_sheet;
@@ -84,6 +85,7 @@ public class ImageBank {
 		lvl03_cutout = ImageTask.loadImage("lvl03_cutout.png");
 
 		// sheet
+		battery_sheet = ImageTask.loadImage("battery_sheet.png");
 		desk_sheet = ImageTask.loadImage("desk_sheet.png");
 		door_sheet = ImageTask.loadImage("door_sheet.png");
 		couch_sheet = ImageTask.loadImage("couch_sheet.png");
