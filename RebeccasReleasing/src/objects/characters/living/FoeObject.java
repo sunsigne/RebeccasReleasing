@@ -189,10 +189,10 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 
 	private void checkEvent(int number) {
 		if (World.levelnum == 1) {
-			if (number == 1 && !World.world.getIEvent().hasOccured(9))
-				World.world.getIEvent().setMustoccur(true, 8);
+			if (number == 1 && !World.world.getIEvent().hasOccured(11))
+				World.world.getIEvent().setMustoccur(true, 10);
 			if (number == 2)
-				World.world.getIEvent().setMustoccur(true, 9);
+				World.world.getIEvent().setMustoccur(true, 11);
 		}
 
 	}

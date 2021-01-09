@@ -11,8 +11,8 @@ public class TextureBank {
 
 	private static TextureBank instance = null;
 	
-	private SpriteSheet rebecca_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet, item_sheet, hack_sheet,
-			virus_sheet;
+	private SpriteSheet rebecca_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet, item_sheet, 
+		tool_sheet, hack_sheet,	virus_sheet;
 
 	public BufferedImage[] rebecca_walking = new BufferedImage[12];
 
@@ -27,6 +27,7 @@ public class TextureBank {
 
 	public BufferedImage[] bomb = new BufferedImage[10];
 	public BufferedImage[] item = new BufferedImage[38];
+	public BufferedImage[] tool = new BufferedImage[2];
 
 	public BufferedImage[] hack = new BufferedImage[15];
 	public BufferedImage[] virus = new BufferedImage[2];
@@ -48,6 +49,7 @@ public class TextureBank {
 
 		bomb_sheet = new SpriteSheet(ImageBank.bomb_sheet);
 		item_sheet = new SpriteSheet(ImageBank.item_sheet);
+		tool_sheet = new SpriteSheet(ImageBank.tool_sheet);
 
 		virus_sheet = new SpriteSheet(ImageBank.virus_sheet);
 		hack_sheet = new SpriteSheet(ImageBank.hack_sheet);
@@ -167,6 +169,10 @@ public class TextureBank {
 		item[35] = item_sheet.grabImage(6, 4, 32, 32); // wall top
 		item[36] = item_sheet.grabImage(7, 4, 32, 32); // wc
 		item[37] = item_sheet.grabImage(8, 4, 32, 32); // wc watching left
+		
+		tool[0] = tool_sheet.grabImage(1, 1, 32, 32); // key
+		tool[1] = tool_sheet.grabImage(2, 1, 32, 32); // foe
+		
 
 		for (int i = 0; i < 5; i++) {
 			hack[i] = hack_sheet.grabImage(i + 1, 1, 48, 48);

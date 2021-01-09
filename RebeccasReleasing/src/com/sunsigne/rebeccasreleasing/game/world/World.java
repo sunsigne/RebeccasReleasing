@@ -56,23 +56,15 @@ public class World implements IRender {
 		return ievent;
 	}
 
-	public static void startGUI() {
-		startGUI(false);
-	}
-
-	private static void startGUI(boolean hpless) {
-		gui = new GUI(hpless);
-		gui.setPoints(0);
+	private static void startGUI() {
+		gui = new GUI();
 		HandlerObject.getInstance().addObject(gui);
 	}
 
 	private void loadLevel() {
-		boolean flag = false;
-		if (levelnum == 1)
-			flag = true;
 
 		MapBuilder.createLevel(ilvl.getLvlImage());
-		startGUI(flag);
+		startGUI();
 		Conductor.setState(STATE.LEVEL);
 		event.start();
 	}

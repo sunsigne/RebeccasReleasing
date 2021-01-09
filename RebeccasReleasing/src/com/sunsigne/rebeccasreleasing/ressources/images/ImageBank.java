@@ -35,6 +35,7 @@ public class ImageBank {
 	public static BufferedImage couch_sheet;
 	public static BufferedImage bomb_sheet;
 	public static BufferedImage item_sheet;
+	public static BufferedImage tool_sheet;
 
 	// chara
 	public static BufferedImage chatbox;
@@ -91,6 +92,7 @@ public class ImageBank {
 		couch_sheet = ImageTask.loadImage("couch_sheet.png");
 		bomb_sheet = ImageTask.loadImage("bomb_sheet.png");
 		item_sheet = ImageTask.loadImage("item_sheet.png");
+		tool_sheet = ImageTask.loadImage("tool_sheet.png");
 		hack_sheet = ImageTask.loadImage("hack_sheet.png");
 		virus_sheet = ImageTask.loadImage("virus_sheet.png");
 

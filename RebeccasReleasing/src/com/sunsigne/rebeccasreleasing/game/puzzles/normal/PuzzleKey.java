@@ -51,10 +51,10 @@ public class PuzzleKey extends Puzzle {
 
 		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> {
 			close();
-			if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5)) {
+			if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5) && !World.world.getIEvent().hasOccured(6)) {
 				int playerPosX = HandlerObject.getInstance().player.getX();
 				HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
-				World.world.getIEvent().setMustoccur(true, 3);
+				World.world.getIEvent().setMustoccur(true, 4);
 			}
 		}));
 	}

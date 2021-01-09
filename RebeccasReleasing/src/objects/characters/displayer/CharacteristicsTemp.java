@@ -10,7 +10,7 @@ public class CharacteristicsTemp {
 	 * 0 - key
 	 * 1 - foe
 	 */
-	private DIFFICULTY[] tools = {DIFFICULTY.CYAN, DIFFICULTY.CYAN};
+	private DIFFICULTY[] tools = {DIFFICULTY.NONE, DIFFICULTY.NONE};
 
 	
 	public boolean isSureCrit() {
@@ -22,6 +22,9 @@ public class CharacteristicsTemp {
 	}
 
 
+	/*
+	 * prefer #upgradeTool() when possible
+	 */
 	public void setTool(DIFFICULTY lvl, int num) {
 		this.tools[num] = lvl;
 	}	

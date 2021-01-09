@@ -6,7 +6,7 @@ public class ChatLvl01 extends Chat {
 
 	private static final String lvlFrTxt = "/dialogues/french/lvl01";
 	private static final String lvlEngTxt = "/dialogues/english/lvl01";
-	
+
 	public ChatLvl01(int number) {
 		super(number, lvlFrTxt, lvlEngTxt);
 	}
@@ -47,6 +47,7 @@ public class ChatLvl01 extends Chat {
 			break;
 		case 2:
 			chat(11, 12);
+			World.world.getIEvent().setMustoccur(true, 3);
 			break;
 		case 3:
 			close();
@@ -56,6 +57,10 @@ public class ChatLvl01 extends Chat {
 
 	@Override
 	public void chat03(int count) {
+	}
+
+	@Override
+	public void chat04(int count) {
 		switch (count) {
 		case 1:
 			chat(13, 14);
@@ -67,7 +72,7 @@ public class ChatLvl01 extends Chat {
 	}
 
 	@Override
-	public void chat04(int count) {
+	public void chat05(int count) {
 		switch (count) {
 		case 1:
 			chat(15, 0);
@@ -79,7 +84,7 @@ public class ChatLvl01 extends Chat {
 	}
 
 	@Override
-	public void chat05(int count) {
+	public void chat06(int count) {
 		switch (count) {
 		case 1:
 			chat(16, 0);
@@ -89,7 +94,7 @@ public class ChatLvl01 extends Chat {
 			break;
 		case 3:
 			chat(19, 20);
-			World.world.getIEvent().setMustoccur(true, 6);
+			World.world.getIEvent().setMustoccur(true, 7);
 			break;
 		case 4:
 			chat(21, 0);
@@ -107,17 +112,18 @@ public class ChatLvl01 extends Chat {
 	}
 
 	@Override
-	public void chat06(int count) {
+	public void chat07(int count) {
 	}
 
 	@Override
-	public void chat07(int count) {
+	public void chat08(int count) {
 		switch (count) {
 		case 1:
 			chat(25, 0);
 			break;
 		case 2:
 			chat(26, 27);
+			World.world.getIEvent().setMustoccur(true, 9);
 			break;
 		case 3:
 			close();
@@ -126,7 +132,11 @@ public class ChatLvl01 extends Chat {
 	}
 
 	@Override
-	public void chat08(int count) {
+	public void chat09(int count) {
+	}
+
+	@Override
+	public void chat10(int count) {
 		switch (count) {
 		case 1:
 			chat(28, 0);
@@ -141,7 +151,7 @@ public class ChatLvl01 extends Chat {
 	}
 
 	@Override
-	public void chat09(int count) {
+	public void chat11(int count) {
 		switch (count) {
 		case 1:
 			chat(31, 33);
@@ -162,14 +172,6 @@ public class ChatLvl01 extends Chat {
 			close();
 			break;
 		}
-	}
-
-	@Override
-	public void chat10(int count) {
-	}
-
-	@Override
-	public void chat11(int count) {
 	}
 
 	@Override

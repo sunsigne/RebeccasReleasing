@@ -7,11 +7,11 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class EventLvl01 extends EventBuilder {
 
-	
 	@Override
 	public void event00() {
 		if (HandlerObject.getInstance().isPlayerExisting) {
 			event(0);
+			World.gui.setInfinitHp(true);
 			HandlerObject.getInstance().player.setVelY(0);
 			HandlerObject.getInstance().player.setVelX(Size.TILE / 16);
 		}
@@ -39,7 +39,7 @@ public class EventLvl01 extends EventBuilder {
 		if (getMustoccur(3)) {
 			event(3);
 			setMustoccur(false, 3);
-			new ChatLvl01(3);
+			World.gui.getCharacteristics().upgradeTool(0);
 		}
 	}
 
@@ -54,38 +54,36 @@ public class EventLvl01 extends EventBuilder {
 
 	@Override
 	public void event05() {
-		if (HandlerObject.getInstance().player.getX() > 4530) {
+		if (getMustoccur(5)) {
 			event(5);
-			setMustoccur(false, 3);
-			setMustoccur(false, 4);
+			setMustoccur(false, 5);
 			new ChatLvl01(5);
 		}
 	}
 
 	@Override
 	public void event06() {
-		if (getMustoccur(6)) {
+		if (HandlerObject.getInstance().player.getX() > 4530) {
 			event(6);
-			setMustoccur(false, 6);
-			int points = World.gui.getPoints();
-			World.startGUI();
-			World.gui.setPoints(points);
+			setMustoccur(false, 4);
+			setMustoccur(false, 5);
+			new ChatLvl01(6);
 		}
 	}
 
 	@Override
 	public void event07() {
-		if (HandlerObject.getInstance().player.getX() > 5720) {
+		if (getMustoccur(7)) {
 			event(7);
-			new ChatLvl01(7);
+			setMustoccur(false, 7);
+			World.gui.setInfinitHp(false);
 		}
 	}
 
 	@Override
 	public void event08() {
-		if (getMustoccur(8)) {
+		if (HandlerObject.getInstance().player.getX() > 5720) {
 			event(8);
-			setMustoccur(false, 8);
 			new ChatLvl01(8);
 		}
 	}
@@ -94,18 +92,28 @@ public class EventLvl01 extends EventBuilder {
 	public void event09() {
 		if (getMustoccur(9)) {
 			event(9);
-			setMustoccur(false, 8);
 			setMustoccur(false, 9);
-			new ChatLvl01(9);
+			World.gui.getCharacteristics().upgradeTool(1);
 		}
 	}
 
 	@Override
 	public void event10() {
+		if (getMustoccur(10)) {
+			event(10);
+			setMustoccur(false, 10);
+			new ChatLvl01(10);
+		}
 	}
 
 	@Override
 	public void event11() {
+		if (getMustoccur(11)) {
+			event(11);
+			setMustoccur(false, 10);
+			setMustoccur(false, 11);
+			new ChatLvl01(11);
+		}
 	}
 
 	@Override
@@ -123,6 +131,5 @@ public class EventLvl01 extends EventBuilder {
 	@Override
 	public void event15() {
 	}
-
 
 }

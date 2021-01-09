@@ -83,11 +83,11 @@ public class Key extends PuzzleObject {
 				HandlerObject.getInstance().player.puzzle.close();
 			}
 			if (tempObject.getId() == OBJECTID.WALL && getBounds().intersects(tempObject.getBounds())) {
-				if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5))
+				if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5) && !World.world.getIEvent().hasOccured(6))
 				{
 					int playerPosX = HandlerObject.getInstance().player.getX();
 					HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
-					World.world.getIEvent().setMustoccur(true, 4);
+					World.world.getIEvent().setMustoccur(true, 5);
 				}
 				HandlerObject.getInstance().player.puzzle.close();
 			}

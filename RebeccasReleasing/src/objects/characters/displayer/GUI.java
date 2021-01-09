@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -29,20 +28,17 @@ public class GUI extends GameObject {
 		setHp(fullhp);
 	}
 
-	public GUI(boolean infiniteHp) {
-		super(0, 0, OBJECTID.DISPLAYER);
-		this.infiniteHp = infiniteHp;
-
-		characteristics = new CharacteristicsTemp();
-		fullhp = 3;
-		setHp(fullhp);
-	}
-
 	public CharacteristicsTemp getCharacteristics() {
 		return characteristics;
 	}
 
 	// hp gestion
+
+	public void setInfinitHp(boolean infiniteHp) {
+		if (infiniteHp)
+			setHp(fullhp);
+		this.infiniteHp = infiniteHp;
+	}
 
 	public int getHp() {
 		return hp;
@@ -169,15 +165,18 @@ public class GUI extends GameObject {
 		int currentToolLvl = 0;
 		int savedBatterySize = 0;
 
-		g.drawImage(texture.item[3], x + 20, Size.HEIGHT - Size.TILE - 20, w, h, null);
-		g.drawImage(texture.item[25], x + 20 + 2*Size.TILE, Size.HEIGHT - Size.TILE - 20, w, h, null);
-
 		for (int i = 0; i < numberofTools; i++) {
 			currentToolLvl = characteristics.getTool(i).getNum();
 			savedBatterySize = CharacteristicsSaved.batterySize[i];
 
-			g.drawImage(texture.battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE * (2*i + 1),
-					Size.HEIGHT - Size.TILE - 20, w, h, null);
+			if (currentToolLvl != 0) {
+				g.drawImage(texture.tool[i],
+						x + 20 + i*(2*Size.TILE_PUZZLE + 10), Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				g.drawImage(texture.battery[currentToolLvl][savedBatterySize],
+						x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
+						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+			}
+
 		}
 	}
 

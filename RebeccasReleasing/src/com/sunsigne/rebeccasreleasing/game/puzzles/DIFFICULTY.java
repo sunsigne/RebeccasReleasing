@@ -2,6 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 public enum DIFFICULTY {
 
+	NONE(0),
 	CYAN(1),
 	GREEN(2),
 	YELLOW(3),
