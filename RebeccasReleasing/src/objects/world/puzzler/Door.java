@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
@@ -14,7 +13,6 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import objects.OBJECTID;
 import objects.characters.living.LivingObject;
 
-@Todo("pour tuto : le joueur ne devrait pas se retrouver au pied de la porte en cas d'echec (risque de ne pas comprendre)")
 public class Door extends PuzzlerObject {
 
 	private boolean horizontal;

@@ -84,7 +84,11 @@ public class Key extends PuzzleObject {
 			}
 			if (tempObject.getId() == OBJECTID.WALL && getBounds().intersects(tempObject.getBounds())) {
 				if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5))
+				{
+					int playerPosX = HandlerObject.getInstance().player.getX();
+					HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
 					World.world.getIEvent().setMustoccur(true, 4);
+				}
 				HandlerObject.getInstance().player.puzzle.close();
 			}
 		}

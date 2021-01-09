@@ -42,7 +42,7 @@ public class Title extends Clickable {
 		if (GameMouseListener.mouseOver(mx, my, playRect)) {
 			close();
 			AudioTask.stopMusic();
-			ILvl level = new WorldLvl03();
+			ILvl level = new WorldLvl01();
 			World.world = new World(level);
 		}
 

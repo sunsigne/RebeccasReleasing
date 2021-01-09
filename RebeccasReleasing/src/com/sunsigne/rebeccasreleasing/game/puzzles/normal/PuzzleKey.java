@@ -21,7 +21,7 @@ import objects.puzzle.key.Lock;
 import objects.world.Wall;
 import objects.world.puzzler.PuzzlerObject;
 
-@Todo("pour tuto : immobiliser la clef loin du cadenas" )
+@Todo("pour tuto : immobiliser la clef loin du cadenas")
 public class PuzzleKey extends Puzzle {
 
 	private static Key key;
@@ -38,32 +38,39 @@ public class PuzzleKey extends Puzzle {
 			HandlerObject.getInstance().addObject(new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, Wall.WALLTYPE.KEY));
 		}
 		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+			HandlerObject.getInstance().addObject(
+					new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
 		}
 		for (int i = 0; i < 8; i++) {
 			HandlerObject.getInstance().addObject(new Wall(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
 		}
 		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+			HandlerObject.getInstance().addObject(
+					new Wall(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
 		}
 
 		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> {
 			close();
-			if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5))
+			if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5)) {
+				int playerPosX = HandlerObject.getInstance().player.getX();
+				HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
 				World.world.getIEvent().setMustoccur(true, 3);
+			}
 		}));
 	}
 
 	@Override
 	public void randomGeneration() {
 		int j = 1;
-		if(getDifficulty().getNum() >= 2) j = 5;
+		if (getDifficulty().getNum() >= 2)
+			j = 5;
 
 		for (int i = 0; i < j; i++) {
 			int r0 = 2 + new Random().nextInt(10);
 			int r1 = 1 + new Random().nextInt(5);
 
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + r0 * Size.TILE_PUZZLE, Size.Y0 + r1 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+			HandlerObject.getInstance().addObject(
+					new Wall(Size.X0 + r0 * Size.TILE_PUZZLE, Size.Y0 + r1 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
 		}
 	}
 
