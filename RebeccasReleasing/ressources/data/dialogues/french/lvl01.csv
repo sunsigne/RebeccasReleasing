@@ -1,4 +1,4 @@
-"LINE ID";"CHARA ID";"CHARA NAME";TEXT
+line_id;chara_id;chara_name;text
 1;1;Rebecca;"Ok, je suis entrée."
 2;2;Sarah;"Génial ! N'oublie pas ton objectif :"
 3;2;Sarah;"voler leur casque de déblocage."
