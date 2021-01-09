@@ -39,9 +39,10 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 		this(x, y, DIFFICULTY.GREEN);
 	}
 	
-	public FoeObject(int x, int y, DIFFICULTY diffitculty) {
+	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE, FOE);
 
+		this.difficulty = difficulty;
 		collisionDetector = new CollisionDetector(false, this);
 	}
 
