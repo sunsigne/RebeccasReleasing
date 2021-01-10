@@ -10,11 +10,12 @@ import com.sunsigne.rebeccasreleasing.ressources.images.SpriteSheet;
 public class TextureBank {
 
 	private static TextureBank instance = null;
-	
-	private SpriteSheet rebecca_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet, item_sheet, 
-		tool_sheet, hack_sheet,	virus_sheet;
+
+	private SpriteSheet rebecca_sheet, foe_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet,
+			item_sheet, tool_sheet, hack_sheet, virus_sheet;
 
 	public BufferedImage[] rebecca_walking = new BufferedImage[12];
+	public BufferedImage[][] foe_walking = new BufferedImage[6][12];
 
 	public BufferedImage[] desk = new BufferedImage[24];
 	public BufferedImage[] dispenser = new BufferedImage[2];
@@ -22,7 +23,7 @@ public class TextureBank {
 	public BufferedImage[][] door = new BufferedImage[6][4];
 	public BufferedImage[] plant = new BufferedImage[4];
 	public BufferedImage[] couch = new BufferedImage[10];
-	
+
 	public BufferedImage[][] battery = new BufferedImage[6][6];
 
 	public BufferedImage[] bomb = new BufferedImage[10];
@@ -38,10 +39,11 @@ public class TextureBank {
 			instance = new TextureBank();
 		return instance;
 	}
-	
+
 	public void loadRessources() {
 
 		rebecca_sheet = new SpriteSheet(ImageBank.rebecca_walking);
+		foe_sheet = new SpriteSheet(ImageBank.foe_walking);
 
 		desk_sheet = new SpriteSheet(ImageBank.desk_sheet);
 		door_sheet = new SpriteSheet(ImageBank.door_sheet);
@@ -58,8 +60,8 @@ public class TextureBank {
 		getTextures();
 	}
 
-	@Todo("le design de la clef et du cadena font vieux, alors que celui de la porte est très moderne ..."
-			+ " " + "Le desing du canapé est trop simpliste")
+	@Todo("le design de la clef et du cadena font vieux, alors que celui de la porte est très moderne ..." + " "
+			+ "Le desing du canapé est trop simpliste")
 	private void getTextures() {
 
 		rebecca_walking[0] = rebecca_sheet.grabImage(1, 1, 48, 48); // up
@@ -74,6 +76,21 @@ public class TextureBank {
 		rebecca_walking[9] = rebecca_sheet.grabImage(1, 4, 48, 48); // right
 		rebecca_walking[10] = rebecca_sheet.grabImage(2, 4, 48, 48);
 		rebecca_walking[11] = rebecca_sheet.grabImage(3, 4, 48, 48);
+
+		for (int i = 1; i < 6; i++) {
+			foe_walking[i][0] = foe_sheet.grabImage(1, 4*i-3, 48, 48); // up
+			foe_walking[i][1] = foe_sheet.grabImage(2, 4*i-3, 48, 48);
+			foe_walking[i][2] = foe_sheet.grabImage(3, 4*i-3, 48, 48);
+			foe_walking[i][3] = foe_sheet.grabImage(1, 4*i-2, 48, 48); // down
+			foe_walking[i][4] = foe_sheet.grabImage(2, 4*i-2, 48, 48);
+			foe_walking[i][5] = foe_sheet.grabImage(3, 4*i-2, 48, 48);
+			foe_walking[i][6] = foe_sheet.grabImage(1, 4*i-1, 48, 48); // left
+			foe_walking[i][7] = foe_sheet.grabImage(2, 4*i-1, 48, 48);
+			foe_walking[i][8] = foe_sheet.grabImage(3, 4*i-1, 48, 48);
+			foe_walking[i][9] = foe_sheet.grabImage(1, 4*i, 48, 48); // right
+			foe_walking[i][10] = foe_sheet.grabImage(2, 4*i, 48, 48);
+			foe_walking[i][11] = foe_sheet.grabImage(3, 4*i, 48, 48);
+		}
 
 		for (int i = 0; i < 10; i++) {
 			bomb[i] = bomb_sheet.grabImage(i + 1, 1, 64, 64);
@@ -93,19 +110,18 @@ public class TextureBank {
 		dispenser[1] = desk_sheet.grabImage(5, 6, 32, 64); // coffe
 		lamp[0] = desk_sheet.grabImage(5, 9, 32, 32); // lamp
 
-		for(int i = 1; i < 5; i++)
-		{
-		door[i][0] = door_sheet.grabImage(1, i, 32, 64); // vertical close
-		door[i][1] = door_sheet.grabImage(2, i, 32, 64); // vertical open
-		door[i][2] = door_sheet.grabImage(2, i, 64, 32); // horizontal close
-		door[i][3] = door_sheet.grabImage(2, i+1, 64, 32); // horizontal open
+		for (int i = 1; i < 6; i++) {
+			door[i][0] = door_sheet.grabImage(1, i, 32, 64); // vertical close
+			door[i][1] = door_sheet.grabImage(2, i, 32, 64); // vertical open
+			door[i][2] = door_sheet.grabImage(2, i, 64, 32); // horizontal close
+			door[i][3] = door_sheet.grabImage(2, i + 1, 64, 32); // horizontal open
 		}
 
 		plant[0] = desk_sheet.grabImage(3, 3, 64, 32);
 		plant[1] = desk_sheet.grabImage(3, 4, 64, 32);
 		plant[2] = desk_sheet.grabImage(3, 5, 64, 32);
 		plant[3] = desk_sheet.grabImage(3, 6, 64, 32);
-		
+
 		battery[1][2] = battery_sheet.grabImage(1, 1, 32, 32);
 		battery[2][2] = battery_sheet.grabImage(2, 1, 32, 32);
 		battery[1][3] = battery_sheet.grabImage(1, 2, 32, 32);
@@ -170,12 +186,11 @@ public class TextureBank {
 		item[35] = item_sheet.grabImage(6, 4, 32, 32); // wall top
 		item[36] = item_sheet.grabImage(7, 4, 32, 32); // wc
 		item[37] = item_sheet.grabImage(8, 4, 32, 32); // wc watching left
-		
+
 		tool[0] = tool_sheet.grabImage(1, 1, 32, 32); // key
 		tool[1] = tool_sheet.grabImage(2, 1, 32, 32); // foe
 		tool_cutout[0] = tool_sheet.grabImage(1, 2, 32, 32); // key
 		tool_cutout[1] = tool_sheet.grabImage(2, 2, 32, 32); // foe
-		
 
 		for (int i = 0; i < 5; i++) {
 			hack[i] = hack_sheet.grabImage(i + 1, 1, 48, 48);

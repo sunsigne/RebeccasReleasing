@@ -14,6 +14,7 @@ public abstract class AnimatedObject extends FacingObject {
 	protected static final int BOMB = 10, REVERSED_BOMB = -10;
 
 	private Animation[] move_animation = new Animation[4];
+	private Animation[][] foe_move_animation = new Animation[6][4];
 	private Animation animation;
 
 	public AnimatedObject(int x, int y, boolean facingLeft, boolean horizontal, OBJECTID id, int animation) {
@@ -39,12 +40,20 @@ public abstract class AnimatedObject extends FacingObject {
 	public Animation getAnimation(int facing) {
 		return move_animation[facing];
 	}
+	
+	public Animation getAnimation(int difficulty, int facing) {
+		return foe_move_animation[difficulty][facing];
+	}
 
 	protected void loadAnimation(int animation) {
 		
 		switch (animation) {
 		case PLAYER:
 			loadPlayerAnimation();
+			break;
+			
+		case FOE:
+			loadFoeAnimation();
 			break;
 
 		case VIRUS:
@@ -134,6 +143,24 @@ public abstract class AnimatedObject extends FacingObject {
 
 		move_animation[Size.DIRECTION_RIGHT] = new Animation(10, texture.rebecca_walking[9], texture.rebecca_walking[10],
 				texture.rebecca_walking[11], texture.rebecca_walking[10]);
+	}
+	
+	private void loadFoeAnimation() {
+		
+		for (int i = 1; i < 6; i++)
+		{
+		foe_move_animation[i][Size.DIRECTION_UP] = new Animation(10, texture.foe_walking[i][0], texture.foe_walking[i][1],
+				texture.foe_walking[i][2], texture.foe_walking[i][1]);
+
+		foe_move_animation[i][Size.DIRECTION_DOWN] = new Animation(10, texture.foe_walking[i][3], texture.foe_walking[i][4],
+				texture.foe_walking[i][5], texture.foe_walking[i][4]);
+
+		foe_move_animation[i][Size.DIRECTION_LEFT] = new Animation(10, texture.foe_walking[i][6], texture.foe_walking[i][7],
+				texture.foe_walking[i][8], texture.foe_walking[i][7]);
+
+		foe_move_animation[i][Size.DIRECTION_RIGHT] = new Animation(10, texture.foe_walking[i][9], texture.foe_walking[i][10],
+				texture.foe_walking[i][11], texture.foe_walking[i][10]);
+		}
 	}
 
 }

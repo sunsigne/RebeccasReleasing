@@ -44,6 +44,7 @@ public class ImageBank {
 	public static BufferedImage sarah;
 	public static BufferedImage stephan;
 	public static BufferedImage rebecca_walking;
+	public static BufferedImage foe_walking;
 
 	public static BufferedImage hack_sheet;
 	public static BufferedImage virus_sheet;
@@ -103,6 +104,7 @@ public class ImageBank {
 		sarah = ImageTask.loadImage("portrait\\sarah.png");
 		stephan = ImageTask.loadImage("portrait\\stephan.png");
 		rebecca_walking = ImageTask.loadImage("rebecca_walking.png");
+		foe_walking = ImageTask.loadImage("foe_walking.png");
 
 		// cards
 		card_frame = ImageTask.loadImage("card_frame.png");

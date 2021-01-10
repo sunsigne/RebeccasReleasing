@@ -1,11 +1,9 @@
 package objects.characters.living;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.game.world.World;
@@ -27,10 +25,13 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 
 	public static final int foespeed = 4 * Size.TILE / 64;
 	public static final int foesight = 400 * Size.TILE / 64;
+
 	public static final int foedualrange = 200 * Size.TILE / 64;
+	private GameObject dualObject = new NullObject();
 
 	private boolean solved;
 	private DIFFICULTY difficulty;
+	private DIFFICULTY currentDifficulty;
 
 	public boolean stunned;
 	private int stuntime;
@@ -38,7 +39,7 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	public FoeObject(int x, int y) {
 		this(x, y, DIFFICULTY.CYAN);
 	}
-	
+
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE, FOE);
 
@@ -64,11 +65,12 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 	@Override
 	public void tick() {
 
-		getAnimation().runAnimation();
+		runAnimations();
 		updateWatchingDirection();
 		if (isPlayerActive() && Conductor.getState() != STATE.CHATTING)
 			velocity();
 		collisionDetector.update();
+		updateDual();
 
 		if (isPlayerInSight() && !stunned)
 			movingtoPlayer();
@@ -81,28 +83,70 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 		}
 	}
 
+	private void updateDual() {
+		dualObject = new NullObject();
+		currentDifficulty = difficulty;
+
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		for (GameObject tempObject2 : list) {
+			if (tempObject2.getId() == OBJECTID.FOE) {
+				FoeObject foe2 = (FoeObject) tempObject2;
+				if (foe2 != this) {
+					float distance = (float) Math
+							.sqrt(Math.pow(getX() - foe2.getX(), 2) + Math.pow(getY() - foe2.getY(), 2));
+					if (distance < FoeObject.foedualrange) {
+						dualObject = tempObject2;
+						currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getNum() + 1);
+					}
+
+				}
+			}
+		}
+	}
+
+	private void runAnimations() {
+		for (int i = 1; i < 6; i++) {
+			getAnimation(i, Size.DIRECTION_UP).runAnimation();
+			getAnimation(i, Size.DIRECTION_DOWN).runAnimation();
+			getAnimation(i, Size.DIRECTION_LEFT).runAnimation();
+			getAnimation(i, Size.DIRECTION_RIGHT).runAnimation();
+		}
+	}
+
 	@Override
 	public void render(Graphics g) {
 
-		getAnimation().drawAnimation(g, x, y, w, h);
-		
-		drawDifficulty(g);
+		renderingFoe(g);
 		drawHitbox(g);
 	}
-	
-	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
-	private void drawDifficulty(Graphics g) {
-		
-		Color color = new Color(0,0,0,0);
-		if(difficulty.getNum() == 1) color = new Color(0, 255, 255, 100);
-		if(difficulty.getNum() == 2) color = new Color(0, 255, 0, 100);
-		if(difficulty.getNum() == 3) color = new Color(255, 255, 0, 100);
-		if(difficulty.getNum() == 4) color = new Color(255, 128, 0, 100);
-		if(difficulty.getNum() == 5) color = new Color(255, 0, 0, 100);
-		g.setColor(color);
-		g.fillRect(x,  y,  w,  h);
+
+	private void renderingFoe(Graphics g) {
+
+		int difficulty = this.currentDifficulty.getNum();
+
+		if (isMotionless()) {
+			if (watching[Size.DIRECTION_UP])
+				g.drawImage(texture.foe_walking[difficulty][1], x, y, w, h, null);
+			if (watching[Size.DIRECTION_DOWN])
+				g.drawImage(texture.foe_walking[difficulty][4], x, y, w, h, null);
+			if (watching[Size.DIRECTION_LEFT])
+				g.drawImage(texture.foe_walking[difficulty][7], x, y, w, h, null);
+			if (watching[Size.DIRECTION_RIGHT])
+				g.drawImage(texture.foe_walking[difficulty][10], x, y, w, h, null);
+		}
+
+		else {
+			if (watching[Size.DIRECTION_UP])
+				getAnimation(difficulty, Size.DIRECTION_UP).drawAnimation(g, x, y, w, h);
+			if (watching[Size.DIRECTION_DOWN])
+				getAnimation(difficulty, Size.DIRECTION_DOWN).drawAnimation(g, x, y, w, h);
+			if (watching[Size.DIRECTION_LEFT])
+				getAnimation(difficulty, Size.DIRECTION_LEFT).drawAnimation(g, x, y, w, h);
+			if (watching[Size.DIRECTION_RIGHT])
+				getAnimation(difficulty, Size.DIRECTION_RIGHT).drawAnimation(g, x, y, w, h);
+		}
+
 	}
-	
 
 	@Override
 	public void collision(LivingObject living) {
@@ -128,25 +172,12 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 
 	private void updateFoe(LivingObject living) {
 		if (living.collisionDetector.isPlayer) {
-			GameObject dualfoe = new NullObject();
 
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
-			for (GameObject tempObject2 : list) {
-				if (tempObject2.getId() == OBJECTID.FOE) {
-					FoeObject foe2 = (FoeObject) tempObject2;
-					if (foe2 != this) {
-						float distance = (float) Math
-								.sqrt(Math.pow(getX() - foe2.getX(), 2) + Math.pow(getY() - foe2.getY(), 2));
-						if (distance < FoeObject.foedualrange)
-							dualfoe = tempObject2;
-					}
-				}
-			}
-
+			World.stunAllFoes();
 			if (!HandlerObject.getInstance().player.isTasking() && living.isPlayerActive()
 					&& Conductor.getState() != STATE.CHATTING) {
 				HandlerObject.getInstance().player.setTasking(true);
-				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualfoe, difficulty);
+				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualObject, difficulty);
 			} else
 				verify();
 		}
