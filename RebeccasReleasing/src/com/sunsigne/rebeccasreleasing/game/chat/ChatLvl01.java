@@ -47,9 +47,9 @@ public class ChatLvl01 extends Chat {
 			break;
 		case 2:
 			chat(11, 12);
-			World.world.getIEvent().setMustoccur(true, 3);
 			break;
 		case 3:
+			World.world.getIEvent().setMustoccur(true, 3);
 			close();
 			break;
 		}
@@ -123,9 +123,9 @@ public class ChatLvl01 extends Chat {
 			break;
 		case 2:
 			chat(26, 27);
-			World.world.getIEvent().setMustoccur(true, 9);
 			break;
 		case 3:
+			World.world.getIEvent().setMustoccur(true, 9);
 			close();
 			break;
 		}

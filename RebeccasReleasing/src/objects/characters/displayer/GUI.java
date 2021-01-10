@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -12,6 +13,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.GameObject;
 import objects.OBJECTID;
 
+@Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\"")
 public class GUI extends GameObject {
 
 	private CharacteristicsTemp characteristics;
@@ -19,6 +21,10 @@ public class GUI extends GameObject {
 	private int fullhp, hp;
 	private int points;
 	private boolean infiniteHp;
+
+	private boolean[] redtool = new boolean[2];
+	private boolean[] redMoment = new boolean[2];
+	private int redTime, redNum;
 
 	public GUI() {
 		super(0, 0, OBJECTID.DISPLAYER);
@@ -114,11 +120,42 @@ public class GUI extends GameObject {
 		return false;
 	}
 
+	public void setRedtool(boolean beRed, int toolnum) {
+		this.redtool[toolnum] = beRed;
+		if (beRed) {
+			redNum = 20;
+			redTime = 10;
+		}
+	}
+
 	@Override
 	public void tick() {
 
 		if (hp == 0)
 			killPlayer();
+
+		tickRedTool();
+	}
+
+	private void tickRedTool() {
+
+		int size = redtool.length;
+		for (int i = 0; i < size; i++) {
+
+			if (redtool[i]) {
+				if (redTime > 0) {
+					boolean flag = true;
+					if (redNum % 2 == 0)
+						flag = false;
+					redTime--;
+					redMoment[i] = flag;
+				} else if (redNum > 0) {
+					redNum--;
+					redTime = 10;
+				} else
+					setRedtool(false, i);
+			}
+		}
 	}
 
 	@Override
@@ -170,10 +207,12 @@ public class GUI extends GameObject {
 			savedBatterySize = CharacteristicsSaved.batterySize[i];
 
 			if (currentToolLvl != 0) {
-				g.drawImage(texture.tool[i],
-						x + 20 + i*(2*Size.TILE_PUZZLE + 10), Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
-				g.drawImage(texture.battery[currentToolLvl][savedBatterySize],
-						x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
+				g.drawImage(texture.tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
+						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				if (redMoment[i])
+					g.drawImage(texture.tool_cutout[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
+							Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				g.drawImage(texture.battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
 						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 			}
 

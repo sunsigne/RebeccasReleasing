@@ -1,8 +1,13 @@
 package com.sunsigne.rebeccasreleasing.game.event;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatLvl01;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
+import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class EventLvl01 extends EventBuilder {
@@ -34,12 +39,16 @@ public class EventLvl01 extends EventBuilder {
 		}
 	}
 
+	@Todo("rendre l'apparition de l'outils + évidente ! (nouveau dessin de cutout ?)")
 	@Override
 	public void event03() {
 		if (getMustoccur(3)) {
 			event(3);
 			setMustoccur(false, 3);
 			World.gui.getCharacteristics().upgradeTool(0);
+			World.gui.setRedtool(true, 0);
+			AudioTask.playSound(AudioBank.popup);
+			Conductor.setState(STATE.LEVEL);
 		}
 	}
 
@@ -94,6 +103,9 @@ public class EventLvl01 extends EventBuilder {
 			event(9);
 			setMustoccur(false, 9);
 			World.gui.getCharacteristics().upgradeTool(1);
+			World.gui.setRedtool(true, 1);
+			AudioTask.playSound(AudioBank.popup);
+			Conductor.setState(STATE.LEVEL);
 		}
 	}
 

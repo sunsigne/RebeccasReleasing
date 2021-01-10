@@ -28,6 +28,7 @@ public class TextureBank {
 	public BufferedImage[] bomb = new BufferedImage[10];
 	public BufferedImage[] item = new BufferedImage[38];
 	public BufferedImage[] tool = new BufferedImage[2];
+	public BufferedImage[] tool_cutout = new BufferedImage[2];
 
 	public BufferedImage[] hack = new BufferedImage[15];
 	public BufferedImage[] virus = new BufferedImage[2];
@@ -172,6 +173,8 @@ public class TextureBank {
 		
 		tool[0] = tool_sheet.grabImage(1, 1, 32, 32); // key
 		tool[1] = tool_sheet.grabImage(2, 1, 32, 32); // foe
+		tool_cutout[0] = tool_sheet.grabImage(1, 2, 32, 32); // key
+		tool_cutout[1] = tool_sheet.grabImage(2, 2, 32, 32); // foe
 		
 
 		for (int i = 0; i < 5; i++) {

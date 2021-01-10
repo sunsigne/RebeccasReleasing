@@ -11,6 +11,9 @@ public class AudioBank {
 	public static String soundtrack_2;
 	public static String soundtrack_3;
 
+	//other
+	public static String popup;
+	
 	// talking
 	public static String talking_rebecca;
 	public static String talking_sarah;
@@ -69,9 +72,12 @@ public class AudioBank {
 		soundtrack_2 = "music\\soundtrack_2.wav";
 		soundtrack_3 = "music\\soundtrack_3.wav";
 
+		// other
+		popup = "sound\\other\\popup.wav";
+		
 		// talking
-		talking_rebecca = "sound\\talking\\rebecca.wav";
-		talking_sarah = "sound\\talking\\sarah.wav";
+		talking_rebecca = "sound\\other\\talking\\rebecca.wav";
+		talking_sarah = "sound\\other\\talking\\sarah.wav";
 
 		// sound normal
 		// bomb
