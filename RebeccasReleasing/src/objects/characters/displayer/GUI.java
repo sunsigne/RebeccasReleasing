@@ -13,7 +13,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.GameObject;
 import objects.OBJECTID;
 
-@Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\"")
+@Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\" & quand la clef apparait, on a envie de la prendre ...")
 public class GUI extends GameObject {
 
 	private CharacteristicsTemp characteristics;

@@ -3,12 +3,14 @@ package objects.puzzle.key;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 
 import objects.OBJECTID;
 import objects.puzzle.PuzzleObject;
 
+@Todo("make more obvious the lock can be controlled by tyhe mouse at the start of the game")
 public class Lock extends PuzzleObject {
 
 	int ymin = 32 + Size.TILE_PUZZLE;
