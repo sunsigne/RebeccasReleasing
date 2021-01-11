@@ -10,6 +10,8 @@ import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
+import objects.characters.displayer.Tool;
+
 public class EventLvl01 extends EventBuilder {
 
 	@Override
@@ -45,7 +47,7 @@ public class EventLvl01 extends EventBuilder {
 		if (getMustoccur(3)) {
 			event(3);
 			setMustoccur(false, 3);
-			World.gui.getCharacteristics().upgradeTool(0);
+			World.gui.getCharacteristics().getTool(Tool.KEY).upgradeTool();
 			World.gui.setRedtool(true, 0);
 			AudioTask.playSound(AudioBank.popup);
 			Conductor.setState(STATE.LEVEL);
@@ -102,7 +104,7 @@ public class EventLvl01 extends EventBuilder {
 		if (getMustoccur(9)) {
 			event(9);
 			setMustoccur(false, 9);
-			World.gui.getCharacteristics().upgradeTool(1);
+			World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeTool();
 			World.gui.setRedtool(true, 1);
 			AudioTask.playSound(AudioBank.popup);
 			Conductor.setState(STATE.LEVEL);

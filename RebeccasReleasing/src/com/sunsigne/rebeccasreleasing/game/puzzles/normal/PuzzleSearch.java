@@ -15,14 +15,14 @@ import objects.puzzle.GameTimer;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.search.SearchFolder;
 import objects.puzzle.search.SearchWord;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 public class PuzzleSearch extends Puzzle {
 
 	private static SearchWord[] word = new SearchWord[6];
 	private static SearchFolder searchfolder;
 
-	public PuzzleSearch(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleSearch(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLESEARCH, puzzler, difficulty);
 	}
 

@@ -2,6 +2,7 @@ package objects.world.destroyable;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.AnimatedObject;
 import objects.GameObject;
@@ -21,9 +22,11 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 		super(x, y, facingLeft, horizontal, OBJECTID.DESTROYABLE, animation);
 		this.destroyableId = destroyableId;
 	}
-	
+
 	public abstract int givePts();
+
 	public abstract String makeMainSound();
+
 	public abstract String makeSideSound();
 
 	// identity
@@ -58,10 +61,9 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 	public boolean isCameraDependant() {
 		return true;
 	}
-	
+
 	@Override
-	public void collision(LivingObject living)
-	{
+	public void collision(LivingObject living) {
 		if (living.getBounds().intersects(getBounds()))
 			updateDestroyable(living, this, false);
 		if (living.getBoundsTop().intersects(getBounds()))
@@ -71,7 +73,7 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 		if (living.getBoundsRight().intersects(getBounds()))
 			updateDestroyable(living, this, false);
 	}
-	
+
 	public void updateDestroyable(LivingObject living, GameObject tempObject, boolean facingLeft) {
 
 		if (living.collisionDetector.isPlayer)
@@ -85,9 +87,12 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 			String mainSound = makeMainSound();
 			String sideSound = makeSideSound();
 
-			if (living.collisionDetector.isPlayer)
-				World.gui.addPoints(this, points);
-			else
+			if (living.collisionDetector.isPlayer) {
+				if (HandlerObject.getInstance().player.isPushed())
+					World.gui.addPoints(this, 10 * points);
+				else
+					World.gui.addPoints(this, points);
+			} else
 				World.gui.addPoints(this, 2 * points);
 
 			AudioTask.playSound(1.0, mainSound);
@@ -97,6 +102,5 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 			setFalling(true);
 		}
 	}
-
 
 }

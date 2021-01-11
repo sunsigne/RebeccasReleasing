@@ -7,13 +7,17 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
-import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 
+import objects.GameObject;
 import objects.OBJECTID;
+import objects.characters.displayer.Tool;
 import objects.characters.living.LivingObject;
 
-public class Door extends PuzzlerObject {
+public class Door extends GameObject implements IPuzzler {
+
+	private boolean solved;
+	private DIFFICULTY difficulty;
 
 	private boolean horizontal;
 
@@ -22,7 +26,9 @@ public class Door extends PuzzlerObject {
 	}
 
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.DOOR, difficulty);
+		super(x, y, OBJECTID.DOOR);
+
+		this.difficulty = difficulty;
 
 		w = Size.TILE;
 		h = Size.TILE;
@@ -32,6 +38,31 @@ public class Door extends PuzzlerObject {
 	}
 
 	// state
+
+	@Override
+	public boolean isCameraDependant() {
+		return true;
+	}
+
+	@Override
+	public boolean isSolved() {
+		return solved;
+	}
+
+	@Override
+	public void setSolved(boolean solved) {
+		this.solved = solved;
+	}
+
+	@Override
+	public DIFFICULTY getDifficulty() {
+		return difficulty;
+	}
+
+	@Override
+	public void setDifficulty(DIFFICULTY difficulty) {
+		this.difficulty = difficulty;
+	}
 
 	public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
@@ -74,26 +105,24 @@ public class Door extends PuzzlerObject {
 	}
 
 	@Override
-	public void collision(LivingObject living) {
-
-		if (!isSolved()) {
-			int current_key = World.gui.getCharacteristics().getTool(0).getNum();
-			if (current_key >= getDifficulty().getNum())
-				living.collisionDetector.collidingBehavior(true, this, () -> updatePuzzler(living, this));
-			else 
-				living.collisionDetector.collidingBehavior(true, this, null);
-		}
-	}
-
-	@Override
 	public Rectangle getBounds() {
 
 		return new Rectangle(x, y, w, h);
-
 	}
 
 	@Override
-	protected Puzzle getPuzzle() {
+	public void collision(LivingObject living) {
+
+		if (!isSolved()) {
+
+			if (hasToolLvl(Tool.KEY))
+				openPuzzle(living, this);
+			else
+				blockPass(living, this);
+		}
+	}
+	@Override
+	public Puzzle getPuzzle() {
 		return new PuzzleKey(this, getDifficulty());
 	}
 

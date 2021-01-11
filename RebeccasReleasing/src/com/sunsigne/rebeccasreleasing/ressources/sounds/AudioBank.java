@@ -39,6 +39,7 @@ public class AudioBank {
 	public static String fail;
 	public static String looting;
 	public static String poterie;
+	public static String push;
 
 	// sound reversed
 	// bomb
@@ -61,6 +62,7 @@ public class AudioBank {
 	public static String r_fail;
 	public static String r_looting;
 	public static String r_poterie;
+	public static String r_push;
 
 	@Todo("les bruits d'attaques et de defense ne conviennent pas bien")
 	public void loadRessources() {
@@ -100,6 +102,7 @@ public class AudioBank {
 		fail = "sound\\normal\\world\\fail.wav";
 		looting = "sound\\normal\\world\\looting.wav";
 		poterie = "sound\\normal\\world\\poterie.wav";
+		push = "sound\\normal\\world\\push.wav";
 
 		// sound normal
 		// bomb
@@ -122,6 +125,7 @@ public class AudioBank {
 		r_fail = "sound\\reversed\\world\\fail.wav";
 		r_looting = "sound\\reversed\\world\\looting.wav";
 		r_poterie = "sound\\reversed\\world\\poterie.wav";
+		r_push = "sound\\reversed\\world\\push.wav";
 	}
 
 }

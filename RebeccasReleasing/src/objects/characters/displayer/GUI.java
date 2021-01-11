@@ -203,7 +203,7 @@ public class GUI extends GameObject {
 		int savedBatterySize = 0;
 
 		for (int i = 0; i < numberofTools; i++) {
-			currentToolLvl = characteristics.getTool(i).getNum();
+			currentToolLvl = characteristics.getTool(i).getLvl();
 			savedBatterySize = CharacteristicsSaved.batterySize[i];
 
 			if (currentToolLvl != 0) {

@@ -22,7 +22,7 @@ import objects.puzzle.hack.ProcessorFolder;
 import objects.puzzle.hack.ProcessorLocker;
 import objects.puzzle.hack.ProcessorTrash;
 import objects.puzzle.hack.Virus;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : carrement trop complexe, rendre la navigation et le lien cause-conséquence plus compréhensible +"
 		+ "/ difficulty : hack : processors to destroy : timer (+3sec), glue, hidder, defender (+3 clicks), antivirus (mine but deadly)")
@@ -38,7 +38,7 @@ public class PuzzleHack extends Puzzle {
 	private static ProcessorTrash trash;
 	private static ProcessorDesktop desktop;
 
-	public PuzzleHack(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleHack(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEHACK, puzzler, difficulty);
 		GameCursor.hideCursor(true);
 	}

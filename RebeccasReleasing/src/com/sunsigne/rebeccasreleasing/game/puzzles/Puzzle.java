@@ -13,12 +13,12 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.living.FoeObject;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public abstract class Puzzle extends Clickable {
 
-	private PuzzlerObject puzzler;
+	private IPuzzler puzzler;
 	private DIFFICULTY difficulty;
 
 	private FoeObject foe;
@@ -27,7 +27,7 @@ public abstract class Puzzle extends Clickable {
 
 	private boolean reversed, winning;
 
-	public Puzzle(STATE state, PuzzlerObject puzzler, DIFFICULTY difficulty, boolean reversed) {
+	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
 		super(state);
 		this.puzzler = puzzler;
 		this.difficulty = difficulty;
@@ -35,7 +35,7 @@ public abstract class Puzzle extends Clickable {
 		open();
 	}
 
-	public Puzzle(STATE state, PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty) {
 		this(state, puzzler, difficulty, false);
 	}
 

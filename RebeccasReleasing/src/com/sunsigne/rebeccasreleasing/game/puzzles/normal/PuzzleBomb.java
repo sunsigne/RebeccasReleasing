@@ -17,14 +17,14 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.puzzle.GameTimer;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.Bomb;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public class PuzzleBomb extends Puzzle {
 
 	private static Bomb[] bomb = new Bomb[4];
 
-	public PuzzleBomb(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleBomb(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEBOMB, puzzler, difficulty);
 	}
 

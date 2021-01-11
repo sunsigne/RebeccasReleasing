@@ -17,14 +17,14 @@ import objects.puzzle.GameTimerReversed;
 import objects.puzzle.key.KeyReversed;
 import objects.puzzle.key.Lock;
 import objects.world.Wall;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 public class PuzzleKeyReversed extends Puzzle {
 
 	private static Lock lock;
 	private static KeyReversed key;
 
-	public PuzzleKeyReversed(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleKeyReversed(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEKEY, puzzler, difficulty, true);
 		GameCursor.hideCursor(true);
 	}

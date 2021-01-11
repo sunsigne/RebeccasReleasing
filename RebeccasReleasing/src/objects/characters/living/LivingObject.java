@@ -6,8 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 
@@ -22,6 +25,9 @@ public abstract class LivingObject extends AnimatedObject {
 
 	protected boolean[] watching = new boolean[4];
 	private boolean flagX, flagY;
+	
+	protected boolean isPushed;
+	protected int pushTime = 10;
 
 	public LivingObject(int x, int y, OBJECTID objectid, int animation) {
 		super(x, y, objectid, animation);
@@ -38,6 +44,10 @@ public abstract class LivingObject extends AnimatedObject {
 		return true;
 	}
 
+	public boolean isPushed() {
+		return isPushed;
+	}
+	
 	public boolean isPlayerActive() {
 
 		if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.CHATTING)
@@ -51,10 +61,25 @@ public abstract class LivingObject extends AnimatedObject {
 	@Override
 	public void tick() {
 
-		updateWatchingDirection();
+		if(!isPushed) updateWatchingDirection();
 		if (isPlayerActive())
+		{
 			velocity();
+			pushTimer();
+		}
 		collisionDetector.update();
+	}
+
+	private void pushTimer() {
+		if (isPushed && pushTime > 0)
+			pushTime --;
+		else if (isPushed)
+		{
+			isPushed = false;
+			pushTime = 10;
+			setMotionless();
+		}
+		
 	}
 
 	protected void updateWatchingDirection() {
@@ -92,6 +117,17 @@ public abstract class LivingObject extends AnimatedObject {
 			flagX = true;
 		}
 	}
+	
+	public void pushed(int direction)
+	{
+		isPushed = true;
+		AudioTask.playSound(AudioBank.push);
+		World.gui.removeHp();
+		if(direction == Size.DIRECTION_UP) velY = -Size.TILE / 5;
+		if(direction == Size.DIRECTION_DOWN) velY = Size.TILE / 5;
+		if(direction == Size.DIRECTION_LEFT) velX = -Size.TILE / 5;
+		if(direction == Size.DIRECTION_RIGHT) velX = Size.TILE / 5;
+	}
 
 	@Override
 	public void render(Graphics g) {
@@ -127,5 +163,4 @@ public abstract class LivingObject extends AnimatedObject {
 	public Rectangle getBoundsRight() {
 		return new Rectangle(x + 5 * w / 6, y + h / 8, w / 6, 6 * w / 8);
 	}
-
 }

@@ -28,11 +28,26 @@ public class PlayerObject extends LivingObject {
 
 	@Override
 	public void tick() {
-		updateWatchingDirection();
+		if(!isPushed) updateWatchingDirection();
 		runAnimations();
 		if (isPlayerActive())
+		{
 			velocity();
+			pushTimer();
+		}
 		collisionDetector.update();
+	}
+
+	private void pushTimer() {
+		if (isPushed && pushTime > 0)
+			pushTime --;
+		else if (isPushed)
+		{
+			isPushed = false;
+			pushTime = 10;
+			setMotionless();
+		}
+		
 	}
 
 	private void runAnimations() {

@@ -16,13 +16,13 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.puzzle.GameTimerReversed;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.BombReversed;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 public class PuzzleBombReversed extends Puzzle {
 
 	private static BombReversed[] bomb = new BombReversed[4];
 
-	public PuzzleBombReversed(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleBombReversed(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEBOMB, puzzler, difficulty, true);
 	}
 

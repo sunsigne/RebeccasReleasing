@@ -70,7 +70,7 @@ public class GameKeyboardListener extends KeyAdapter {
 
 	private boolean playerismovable() {
 
-		if (HandlerObject.getInstance().isPlayerExisting && Conductor.getState() == STATE.LEVEL)
+		if (HandlerObject.getInstance().isPlayerExisting && Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isPushed())
 			return true;
 		else
 			return false;

@@ -1,18 +1,16 @@
 package objects.characters.displayer;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-
 public class CharacteristicsTemp {
 
 	private boolean sureCrit;
-	
-	/*
-	 * 0 - key
-	 * 1 - foe
-	 */
-	private DIFFICULTY[] tools = {DIFFICULTY.NONE, DIFFICULTY.NONE};
 
-	
+	private Tool[] tools = new Tool[6];
+
+	public CharacteristicsTemp() {
+		tools[Tool.KEY] = new Tool(Tool.KEY, 1);
+		tools[Tool.SWORD] = new Tool(Tool.SWORD, 0);
+	}
+
 	public boolean isSureCrit() {
 		return sureCrit;
 	}
@@ -21,26 +19,8 @@ public class CharacteristicsTemp {
 		this.sureCrit = sureCrit;
 	}
 
-
-	/*
-	 * prefer #upgradeTool() when possible
-	 */
-	public void setTool(DIFFICULTY lvl, int num) {
-		this.tools[num] = lvl;
-	}	
-
-	public DIFFICULTY getTool(int num) {
+	public Tool getTool(int num) {
 		return tools[num];
-	}
-	
-	public void upgradeTool(int toolnum) {
-
-		int tool_lvl = tools[toolnum].getNum();
-		if(tool_lvl < CharacteristicsSaved.batterySize[toolnum])
-		{
-			DIFFICULTY better_lvl = DIFFICULTY.getDifficulty(tool_lvl + 1);
-			setTool(better_lvl, toolnum);
-		}			
 	}
 
 }

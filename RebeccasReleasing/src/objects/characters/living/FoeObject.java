@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -16,12 +17,13 @@ import objects.GameObject;
 import objects.NullObject;
 import objects.OBJECTID;
 import objects.characters.collision.CollisionDetector;
-import objects.characters.collision.ICollision;
+import objects.characters.displayer.Tool;
+import objects.world.puzzler.IPuzzler;
 import objects.world.storing.LOOTID;
 import objects.world.storing.Loot;
 import objects.world.storing.Looting;
 
-public class FoeObject extends LivingObject implements Looting, ICollision {
+public class FoeObject extends LivingObject implements Looting, IPuzzler {
 
 	public static final int foespeed = 4 * Size.TILE / 64;
 	public static final int foesight = 400 * Size.TILE / 64;
@@ -44,11 +46,14 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 		super(x, y, OBJECTID.FOE, FOE);
 
 		this.difficulty = difficulty;
+		this.currentDifficulty = difficulty;
+		
 		collisionDetector = new CollisionDetector(false, this);
 	}
 
 	// state
 
+	@Override
 	public boolean isSolved() {
 		return solved;
 	}
@@ -60,6 +65,16 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 			checkEvent(2);
 		} else
 			checkEvent(1);
+	}
+
+	@Override
+	public DIFFICULTY getDifficulty() {
+		return difficulty;
+	}
+
+	@Override
+	public void setDifficulty(DIFFICULTY difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	@Override
@@ -147,45 +162,50 @@ public class FoeObject extends LivingObject implements Looting, ICollision {
 		}
 
 	}
+	
+	public Rectangle getBigBounds() {
+		return new Rectangle(x, y, Size.TILE, Size.TILE);
+	}
+
 
 	@Override
 	public void collision(LivingObject living) {
 
 		if (living.collisionDetector.isPlayer) {
 			if (!stunned) {
-				if (living.getBounds().intersects(getBigBounds()))
-					updateFoe(living);
-				if (living.getBoundsTop().intersects(getBigBounds()))
-					updateFoe(living);
-				if (living.getBoundsLeft().intersects(getBigBounds()))
-					updateFoe(living);
-				if (living.getBoundsRight().intersects(getBigBounds()))
-					updateFoe(living);
+				if(touchingPlayer(living, this))
+				{
+					if (hasToolLvl(currentDifficulty, Tool.SWORD))
+						updatePuzzler(living, this);
+					else pushPlayer();
+				}
 			}
 		}
 	}
-
-	private void verify() {
-		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
-			HandlerObject.getInstance().player.loadBasicState();
+	
+	private boolean touchingPlayer(LivingObject living, GameObject currentObject) {
+		if (living.getBounds().intersects(getBigBounds())) return true;
+		if (living.getBoundsTop().intersects(getBigBounds())) return true;
+		if (living.getBoundsLeft().intersects(getBigBounds())) return true;
+		if (living.getBoundsRight().intersects(getBigBounds())) return true;
+		return false;
 	}
 
-	private void updateFoe(LivingObject living) {
-		if (living.collisionDetector.isPlayer) {
-
-			World.stunAllFoes();
-			if (!HandlerObject.getInstance().player.isTasking() && living.isPlayerActive()
-					&& Conductor.getState() != STATE.CHATTING) {
-				HandlerObject.getInstance().player.setTasking(true);
-				HandlerObject.getInstance().player.puzzle = new PuzzleCard(this, dualObject, difficulty);
-			} else
-				verify();
+	
+	private void pushPlayer() {
+		stun();
+		for (int direction = 0; direction < 4; direction++)
+		{
+			if (watching[direction]) HandlerObject.getInstance().player.pushed(direction);	
 		}
 	}
 
-	public Rectangle getBigBounds() {
-		return new Rectangle(x, y, Size.TILE, Size.TILE);
+	@Override
+	public Puzzle getPuzzle() {
+		return new PuzzleCard(this, dualObject, currentDifficulty);
 	}
+
+
 
 	private boolean isPlayerInSight() {
 		float distance = (float) Math.sqrt(Math.pow(x - HandlerObject.getInstance().player.getX(), 2)

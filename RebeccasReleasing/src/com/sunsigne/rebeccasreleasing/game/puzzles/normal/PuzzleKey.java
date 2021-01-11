@@ -19,15 +19,14 @@ import objects.puzzle.GameTimer;
 import objects.puzzle.key.Key;
 import objects.puzzle.key.Lock;
 import objects.world.Wall;
-import objects.world.puzzler.PuzzlerObject;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : immobiliser la clef loin du cadenas")
 public class PuzzleKey extends Puzzle {
 
 	private static Key key;
-//	public static boolean tuto;
 
-	public PuzzleKey(PuzzlerObject puzzler, DIFFICULTY difficulty) {
+	public PuzzleKey(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEKEY, puzzler, difficulty);
 		GameCursor.hideCursor(true);
 	}
