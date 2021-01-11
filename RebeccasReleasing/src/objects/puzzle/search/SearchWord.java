@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -204,7 +204,7 @@ public class SearchWord extends PuzzleObject {
 			setExist(false);
 			setStable(true);
 			HandlerObject.getInstance().removeObject(this);
-			AudioTask.playSound(0.6, AudioBank.place_word);
+			SoundTask.playSound(0.6, SoundBank.place_word);
 		} else
 			HandlerObject.getInstance().player.puzzle.close();
 	}

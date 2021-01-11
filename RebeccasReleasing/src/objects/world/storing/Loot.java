@@ -8,8 +8,8 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
@@ -94,7 +94,7 @@ public class Loot extends GameObject implements ICollision {
 	private void doActionCritCard() {
 
 		HandlerObject.getInstance().addObject(new BonusText(this, "100% crit"));
-		AudioTask.playSound(AudioBank.looting);
+		SoundTask.playSound(SoundBank.looting);
 		World.gui.getCharacteristics().setSureCrit(true);
 	}
 }

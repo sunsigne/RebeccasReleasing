@@ -4,8 +4,8 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatLvl01;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -49,7 +49,7 @@ public class EventLvl01 extends EventBuilder {
 			setMustoccur(false, 3);
 			World.gui.getCharacteristics().getTool(Tool.KEY).upgradeTool();
 			World.gui.setRedtool(true, 0);
-			AudioTask.playSound(AudioBank.popup);
+			SoundTask.playSound(SoundBank.popup);
 			Conductor.setState(STATE.LEVEL);
 		}
 	}
@@ -106,7 +106,7 @@ public class EventLvl01 extends EventBuilder {
 			setMustoccur(false, 9);
 			World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeTool();
 			World.gui.setRedtool(true, 1);
-			AudioTask.playSound(AudioBank.popup);
+			SoundTask.playSound(SoundBank.popup);
 			Conductor.setState(STATE.LEVEL);
 		}
 	}

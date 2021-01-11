@@ -8,8 +8,8 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -138,11 +138,11 @@ public class Card extends CardObject {
 		setExist(false);
 
 		if (getCardtype() == CardType.attack)
-			AudioTask.playSound(AudioBank.hit_attack);
+			SoundTask.playSound(SoundBank.hit_attack);
 		if (getCardtype() == CardType.defense)
-			AudioTask.playSound(AudioBank.hit_defense);
+			SoundTask.playSound(SoundBank.hit_defense);
 		if (getCardtype() == CardType.critical) {
-			AudioTask.playSound(AudioBank.hit_critical);
+			SoundTask.playSound(SoundBank.hit_critical);
 			{
 			HandlerObject.getInstance().player.puzzle.setWinning(true);
 			HandlerObject.getInstance().player.puzzle.close();

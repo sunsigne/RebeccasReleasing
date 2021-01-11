@@ -9,8 +9,8 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 
@@ -121,7 +121,7 @@ public abstract class LivingObject extends AnimatedObject {
 	public void pushed(int direction)
 	{
 		isPushed = true;
-		AudioTask.playSound(AudioBank.push);
+		SoundTask.playSound(SoundBank.push);
 		World.gui.removeHp();
 		if(direction == Size.DIRECTION_UP) velY = -Size.TILE / 5;
 		if(direction == Size.DIRECTION_DOWN) velY = Size.TILE / 5;

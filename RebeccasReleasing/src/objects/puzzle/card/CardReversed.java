@@ -8,8 +8,8 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -137,11 +137,11 @@ public class CardReversed extends CardObject {
 		setDragged(true);
 
 		if (getCardtype() == CardType.attack)
-			AudioTask.playSound(AudioBank.r_hit_attack);
+			SoundTask.playSound(SoundBank.r_hit_attack);
 		if (getCardtype() == CardType.defense)
-			AudioTask.playSound(AudioBank.r_hit_defense);
+			SoundTask.playSound(SoundBank.r_hit_defense);
 		if (getCardtype() == CardType.critical)
-			AudioTask.playSound(AudioBank.r_hit_critical);
+			SoundTask.playSound(SoundBank.r_hit_critical);
 	}
 
 	public void resetPos() {

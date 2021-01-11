@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
@@ -35,7 +35,7 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 		super(STATE.CHATTING);
 		ichat = this;
 		this.number = number;
-		AudioTask.changeMusicVol(0.2);
+		SoundTask.changeMusicVol(0.2);
 		loadingTxt(lvlFrTxt, lvlEngTxt);
 		chat(number);
 	}
@@ -159,7 +159,7 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 		World.stunAllFoes();
 		Conductor.setState(STATE.LEVEL);
 		HandlerObject.getInstance().player.loadBasicState();
-		AudioTask.changeMusicVol(0.5);
+		SoundTask.changeMusicVol(0.5);
 	}
 
 	@Override

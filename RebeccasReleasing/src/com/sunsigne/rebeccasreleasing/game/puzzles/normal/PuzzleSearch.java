@@ -16,6 +16,7 @@ import objects.puzzle.WallPuzzle;
 import objects.puzzle.search.SearchFolder;
 import objects.puzzle.search.SearchWord;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 public class PuzzleSearch extends Puzzle {
 
@@ -138,7 +139,7 @@ public class PuzzleSearch extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 		return null;
 	}
 

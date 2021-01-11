@@ -19,6 +19,7 @@ import objects.puzzle.WallPuzzle;
 import objects.puzzle.card.Card;
 import objects.puzzle.card.CardFolder;
 import objects.puzzle.card.CardType;
+import tofinish.AudioBank;
 
 @Todo("pour tuto : simplifier le jeu ? Il doit être plus instinctif")
 public class PuzzleCard extends Puzzle {
@@ -184,7 +185,7 @@ public class PuzzleCard extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 		return null;
 	}
 

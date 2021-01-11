@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import com.sunsigne.rebeccasreleasing.game.event.EventLoader;
 import com.sunsigne.rebeccasreleasing.game.event.IEvent;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
@@ -39,7 +39,7 @@ public class World implements IRender {
 		HandlerRender.getInstance().addObject(this);
 		World.levelnum = ilvl.getLvlNumber();
 
-		AudioTask.playMusic(0.5, AudioBank.soundtrack_3);
+		SoundTask.playMusic(0.5, SoundBank.soundtrack_3);
 		loadLevel();
 	}
 
@@ -100,7 +100,7 @@ public class World implements IRender {
 		HandlerObject.getInstance().isPlayerExisting = false;
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);
-		AudioTask.stopMusic();
+		SoundTask.stopMusic();
 	}
 
 }

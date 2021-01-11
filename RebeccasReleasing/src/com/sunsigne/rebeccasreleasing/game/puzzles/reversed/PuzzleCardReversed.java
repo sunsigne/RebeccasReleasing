@@ -17,6 +17,7 @@ import objects.puzzle.WallPuzzle;
 import objects.puzzle.card.CardFolderReversed;
 import objects.puzzle.card.CardReversed;
 import objects.puzzle.card.CardType;
+import tofinish.AudioBank;
 
 public class PuzzleCardReversed extends Puzzle {
 
@@ -171,7 +172,7 @@ public class PuzzleCardReversed extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 		return null;
 	}
 }

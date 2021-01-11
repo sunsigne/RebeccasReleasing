@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 
 import objects.OBJECTID;
 
@@ -47,10 +47,10 @@ public class BombReversed extends BombObject {
 				setFullcount(true);
 
 			if (count == 1) {
-				AudioTask.playSound(AudioBank.r_explosion_medium);
+				SoundTask.playSound(SoundBank.r_explosion_medium);
 				setExploding(true);
 			} else {
-				AudioTask.playSound(AudioBank.r_explosion_little);
+				SoundTask.playSound(SoundBank.r_explosion_little);
 			}
 
 		}

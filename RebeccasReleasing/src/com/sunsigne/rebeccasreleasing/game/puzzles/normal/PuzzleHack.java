@@ -9,7 +9,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -23,6 +23,7 @@ import objects.puzzle.hack.ProcessorLocker;
 import objects.puzzle.hack.ProcessorTrash;
 import objects.puzzle.hack.Virus;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 @Todo("pour tuto : carrement trop complexe, rendre la navigation et le lien cause-conséquence plus compréhensible +"
 		+ "/ difficulty : hack : processors to destroy : timer (+3sec), glue, hidder, defender (+3 clicks), antivirus (mine but deadly)")
@@ -124,8 +125,8 @@ public class PuzzleHack extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
-		return AudioBank.computer;
+	public AudioBank getSuccessSound() {
+		return SoundBank.computer;
 	}
 
 }

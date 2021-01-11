@@ -10,17 +10,19 @@ import javax.sound.sampled.FloatControl;
 
 import com.sunsigne.rebeccasreleasing.main.Game;
 
-public class AudioTask {
+import tofinish.AudioBank;
+
+public class SoundTask {
 
 	private static URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
 	private static Clip musicclip, soundclip;
 
 	// WARNING !!! All paths in this method must have their / replaced by double \\
-	public static void playMusic(double volume, String AudioBank) {
+	public static void playMusic(double volume, AudioBank sound) {
 
 		stopMusic();
 		try {
-			String path = "\\ressources\\audio\\" + AudioBank;
+			String path = "\\ressources\\audio\\" + sound.getSound();
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 
 			AudioInputStream music = AudioSystem.getAudioInputStream(url);
@@ -35,20 +37,20 @@ public class AudioTask {
 	}
 
 	// WARNING !!! All paths in this method must have their / replaced by double \\
-	public static void playSound(String AudioBank) {
-		playSound(1d, AudioBank);
+	public static void playSound(AudioBank sound) {
+		playSound(1d, sound);
 	}
 
-	public static void playSound(double volume, String AudioBank) {
+	public static void playSound(double volume, AudioBank sound) {
 
-		if (AudioBank != null) {
+		if (sound != null) {
 			try {
-				String path = "\\ressources\\audio\\" + AudioBank;
+				String path = "\\ressources\\audio\\" + sound.getSound();
 				URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 
-				AudioInputStream sound = AudioSystem.getAudioInputStream(url);
+				AudioInputStream clip = AudioSystem.getAudioInputStream(url);
 				soundclip = AudioSystem.getClip();
-				soundclip.open(sound);
+				soundclip.open(clip);
 				setVol(volume, soundclip);
 				soundclip.start();
 			} catch (Exception e) {

@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -20,6 +20,7 @@ import objects.puzzle.key.Key;
 import objects.puzzle.key.Lock;
 import objects.world.Wall;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 @Todo("pour tuto : immobiliser la clef loin du cadenas")
 public class PuzzleKey extends Puzzle {
@@ -96,8 +97,8 @@ public class PuzzleKey extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
-		return AudioBank.opening_door;
+	public AudioBank getSuccessSound() {
+		return SoundBank.opening_door;
 	}
 
 }

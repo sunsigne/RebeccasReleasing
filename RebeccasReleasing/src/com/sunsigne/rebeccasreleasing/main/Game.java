@@ -10,7 +10,7 @@ import java.awt.image.BufferStrategy;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleHack;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.Camera;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
 		Conductor.setState(STATE.LOADING);
 		Options.loadLanguage();
 		new ImageBank().loadRessources();
-		new AudioBank().loadRessources();
+		new SoundBank().loadRessources();
 		TextureBank.getInstance().loadRessources();
 
 		this.addKeyListener(new GameKeyboardListener());

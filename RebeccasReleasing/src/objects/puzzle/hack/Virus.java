@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -116,12 +116,12 @@ public class Virus extends AnimatedObject {
 		if (!isClicking() && getBounds().intersects(tempObject.getBounds())) {
 			if (processorObject.isLocked()) {
 				setClicking(true);
-				AudioTask.playSound(AudioBank.fail);
+				SoundTask.playSound(SoundBank.fail);
 				updateLocker(processorObject);
 			} else {
 				processorObject.delete();
 				setClicking(true);
-				AudioTask.playSound(AudioBank.virus_bite);
+				SoundTask.playSound(SoundBank.virus_bite);
 				updateLocker(processorObject);
 			}
 
@@ -135,10 +135,10 @@ public class Virus extends AnimatedObject {
 			if (!processorObject.isLocked()) {
 				processorObject.open();
 				setClicking(true);
-				AudioTask.playSound(AudioBank.virus_explore);
+				SoundTask.playSound(SoundBank.virus_explore);
 			} else {
 				setClicking(true);
-				AudioTask.playSound(AudioBank.fail);
+				SoundTask.playSound(SoundBank.fail);
 			}
 		}
 	}
@@ -150,12 +150,12 @@ public class Virus extends AnimatedObject {
 			if (trash.isEmpty()) {
 				trash.delete();
 				setClicking(true);
-				AudioTask.playSound(AudioBank.virus_bite);
+				SoundTask.playSound(SoundBank.virus_bite);
 			}
 			if (!trash.isEmpty()) {
 				trash.setEmpty(true);
 				setClicking(true);
-				AudioTask.playSound(AudioBank.virus_bite);
+				SoundTask.playSound(SoundBank.virus_bite);
 			}
 		}
 	}

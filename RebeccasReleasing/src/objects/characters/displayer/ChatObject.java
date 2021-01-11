@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 
 import objects.GameObject;
 import objects.OBJECTID;
@@ -140,10 +140,10 @@ public class ChatObject extends GameObject {
 	private void playTalkingSound() {
 		switch (chara) {
 		case Rebecca:
-			AudioTask.playSound(0.2, AudioBank.talking_rebecca);
+			SoundTask.playSound(0.2, SoundBank.talking_rebecca);
 			break;
 		case Sarah:
-			AudioTask.playSound(0.2, AudioBank.talking_sarah);
+			SoundTask.playSound(0.2, SoundBank.talking_sarah);
 			break;
 		default:
 			break;

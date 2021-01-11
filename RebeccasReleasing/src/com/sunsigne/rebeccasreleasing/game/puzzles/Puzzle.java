@@ -2,8 +2,8 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
@@ -14,6 +14,7 @@ import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public abstract class Puzzle extends Clickable {
@@ -80,7 +81,7 @@ public abstract class Puzzle extends Clickable {
 	protected abstract void createPuzzle();
 
 	@Todo("tous les puzzle n'ont accuellement pas de son de victoire")
-	protected abstract String getSuccessSound();
+	protected abstract AudioBank getSuccessSound();
 
 	public void open() {
 
@@ -114,12 +115,12 @@ public abstract class Puzzle extends Clickable {
 
 		if (!winning) {
 			if (!reversed)
-				AudioTask.playSound(AudioBank.fail);
+				SoundTask.playSound(SoundBank.fail);
 			else
-				AudioTask.playSound(AudioBank.r_fail);
+				SoundTask.playSound(SoundBank.r_fail);
 			World.gui.removeHp();
 		} else if (winning)
-			AudioTask.playSound(getSuccessSound());
+			SoundTask.playSound(getSuccessSound());
 	}
 
 }

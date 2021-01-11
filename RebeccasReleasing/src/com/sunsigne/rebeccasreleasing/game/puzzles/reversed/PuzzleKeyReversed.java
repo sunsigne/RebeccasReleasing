@@ -8,7 +8,7 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -18,6 +18,7 @@ import objects.puzzle.key.KeyReversed;
 import objects.puzzle.key.Lock;
 import objects.world.Wall;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 public class PuzzleKeyReversed extends Puzzle {
 
@@ -84,9 +85,9 @@ public class PuzzleKeyReversed extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 
-		return AudioBank.r_opening_door;
+		return SoundBank.r_opening_door;
 	}
 
 }

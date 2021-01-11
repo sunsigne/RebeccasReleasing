@@ -9,7 +9,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -18,6 +18,7 @@ import objects.puzzle.GameTimer;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.Bomb;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public class PuzzleBomb extends Puzzle {
@@ -101,9 +102,9 @@ public class PuzzleBomb extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 
-		return AudioBank.explosion_big;
+		return SoundBank.explosion_big;
 	}
 
 }

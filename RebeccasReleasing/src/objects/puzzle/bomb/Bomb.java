@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.OBJECTID;
@@ -33,7 +33,7 @@ public class Bomb extends BombObject {
 	}
 
 	public void removeCount() {
-		AudioTask.playSound(AudioBank.explosion_little);
+		SoundTask.playSound(SoundBank.explosion_little);
 		count = count - 1;
 	}
 
@@ -43,7 +43,7 @@ public class Bomb extends BombObject {
 			count--;
 			setExploding(true);
 			if (!isLastbomb())
-				AudioTask.playSound(AudioBank.explosion_medium);
+				SoundTask.playSound(SoundBank.explosion_medium);
 		}
 
 		if (isExploding()) {

@@ -1,7 +1,7 @@
 package objects.world.destroyable;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.AnimatedObject;
@@ -10,6 +10,7 @@ import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 import objects.world.storing.Looting;
+import tofinish.AudioBank;
 
 public abstract class DestroyableObject extends AnimatedObject implements Looting, ICollision {
 
@@ -25,9 +26,9 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 
 	public abstract int givePts();
 
-	public abstract String makeMainSound();
+	public abstract AudioBank makeMainSound();
 
-	public abstract String makeSideSound();
+	public abstract AudioBank makeSideSound();
 
 	// identity
 
@@ -84,19 +85,19 @@ public abstract class DestroyableObject extends AnimatedObject implements Lootin
 				setFacingLeft(facingLeft);
 
 			int points = givePts();
-			String mainSound = makeMainSound();
-			String sideSound = makeSideSound();
+			AudioBank mainSound = makeMainSound();
+			AudioBank sideSound = makeSideSound();
 
 			if (living.collisionDetector.isPlayer) {
 				if (HandlerObject.getInstance().player.isPushed())
-					World.gui.addPoints(this, 10 * points);
+					World.gui.addPoints(this, 8 * points);
 				else
 					World.gui.addPoints(this, points);
 			} else
 				World.gui.addPoints(this, 2 * points);
 
-			AudioTask.playSound(1.0, mainSound);
-			AudioTask.playSound(0.5, sideSound);
+			SoundTask.playSound(1.0, mainSound);
+			SoundTask.playSound(0.5, sideSound);
 
 			setDestroyed(true);
 			setFalling(true);

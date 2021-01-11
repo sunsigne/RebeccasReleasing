@@ -3,8 +3,8 @@ package com.sunsigne.rebeccasreleasing.main;
 import javax.swing.JOptionPane;
 
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioTask;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
@@ -25,7 +25,7 @@ public class DualChecker implements ITick {
 				boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 				if (!dualcheckerboolean) {
 					FileTask.write(dualcheck, "true");
-					AudioTask.playSound(AudioBank.error);
+					SoundTask.playSound(SoundBank.error);
 					JOptionPane.showMessageDialog(null, "An error has occured. Please try again");
 					Conductor.stop();
 				}

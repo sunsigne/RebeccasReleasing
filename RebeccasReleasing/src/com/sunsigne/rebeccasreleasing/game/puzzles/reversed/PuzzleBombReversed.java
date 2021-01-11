@@ -8,7 +8,7 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -17,6 +17,7 @@ import objects.puzzle.GameTimerReversed;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.BombReversed;
 import objects.world.puzzler.IPuzzler;
+import tofinish.AudioBank;
 
 public class PuzzleBombReversed extends Puzzle {
 
@@ -77,9 +78,9 @@ public class PuzzleBombReversed extends Puzzle {
 	}
 
 	@Override
-	public String getSuccessSound() {
+	public AudioBank getSuccessSound() {
 
-		return AudioBank.r_explosion_big;
+		return SoundBank.r_explosion_big;
 
 	}
 }
