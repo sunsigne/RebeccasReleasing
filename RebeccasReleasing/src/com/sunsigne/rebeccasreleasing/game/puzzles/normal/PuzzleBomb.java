@@ -9,6 +9,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
@@ -18,7 +19,6 @@ import objects.puzzle.GameTimer;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.Bomb;
 import objects.world.puzzler.IPuzzler;
-import tofinish.AudioBank;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public class PuzzleBomb extends Puzzle {
@@ -76,15 +76,6 @@ public class PuzzleBomb extends Puzzle {
 	public void mouseReleased(int mx, int my) {
 
 		boolean winning = true;
-
-		if (bomb[0].isExploding() && bomb[1].isExploding() && bomb[2].isExploding())
-			bomb[3].setLastbomb(true);
-		if (bomb[1].isExploding() && bomb[2].isExploding() && bomb[3].isExploding())
-			bomb[0].setLastbomb(true);
-		if (bomb[2].isExploding() && bomb[3].isExploding() && bomb[0].isExploding())
-			bomb[1].setLastbomb(true);
-		if (bomb[3].isExploding() && bomb[0].isExploding() && bomb[1].isExploding())
-			bomb[2].setLastbomb(true);
 
 		for (int i = 0; i <= 3; i++) {
 			if (!bomb[i].isExploding())

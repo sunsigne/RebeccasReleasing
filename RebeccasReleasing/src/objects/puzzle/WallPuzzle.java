@@ -67,7 +67,7 @@ public class WallPuzzle extends PuzzleObject {
 			img = texture.item[30];
 			break;
 		default:
-			img = ImageTask.drawEmptyTexture();
+			img = ImageTask.drawMissingTexture();
 			break;
 		}
 		return img;

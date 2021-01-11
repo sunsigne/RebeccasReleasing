@@ -7,6 +7,7 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -16,7 +17,6 @@ import objects.puzzle.WallPuzzle;
 import objects.puzzle.search.SearchFolder;
 import objects.puzzle.search.SearchWord;
 import objects.world.puzzler.IPuzzler;
-import tofinish.AudioBank;
 
 public class PuzzleSearch extends Puzzle {
 

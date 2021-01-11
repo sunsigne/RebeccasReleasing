@@ -17,16 +17,11 @@ public class BonusText extends GameObject {
 	private String text;
 
 	public BonusText(GameObject object, String text) {
-		super(object.getX(), object.getY(), OBJECTID.DISPLAYER);
+		super(object.getX(), object.getY(), OBJECTID.DISPLAYER, true);
 
 		this.text = text;
 		time = 40;
 		velY = -1;
-	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
 	}
 
 	@Override

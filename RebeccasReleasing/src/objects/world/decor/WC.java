@@ -13,15 +13,10 @@ import objects.characters.living.LivingObject;
 public class WC extends GameObject implements ICollision  {
 
 	public WC(int x, int y) {
-		super(x, y, OBJECTID.DECOR);
+		super(x, y, OBJECTID.DECOR, true);
 
 	}
 
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
-	
 	@Override
 	public void tick() {
 

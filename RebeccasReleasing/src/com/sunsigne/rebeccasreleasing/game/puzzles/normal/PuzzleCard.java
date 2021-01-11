@@ -8,6 +8,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -19,7 +20,6 @@ import objects.puzzle.WallPuzzle;
 import objects.puzzle.card.Card;
 import objects.puzzle.card.CardFolder;
 import objects.puzzle.card.CardType;
-import tofinish.AudioBank;
 
 @Todo("pour tuto : simplifier le jeu ? Il doit être plus instinctif")
 public class PuzzleCard extends Puzzle {

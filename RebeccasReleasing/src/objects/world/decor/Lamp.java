@@ -13,17 +13,12 @@ import objects.characters.living.LivingObject;
 public class Lamp extends GameObject implements ICollision  {
 
 	public Lamp(int x, int y) {
-		super(x, y, OBJECTID.DECOR);
+		super(x, y, OBJECTID.DECOR, true);
 
 		w = Size.TILE;
 		h = Size.TILE;
 	}
 
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
-	
 	@Override
 	public void tick() {
 

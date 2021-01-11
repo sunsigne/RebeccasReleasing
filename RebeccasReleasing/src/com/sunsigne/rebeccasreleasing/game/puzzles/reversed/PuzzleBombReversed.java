@@ -8,16 +8,17 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
+import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.bomb.BombReversed;
 import objects.world.puzzler.IPuzzler;
-import tofinish.AudioBank;
 
 public class PuzzleBombReversed extends Puzzle {
 
@@ -30,7 +31,7 @@ public class PuzzleBombReversed extends Puzzle {
 	@Override
 	public void createFrame() {
 		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.BOMB));
-		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimerReversed.R_TIME, () -> close()));
+		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimer.TIME, () -> close()));
 	}
 
 	@Override
@@ -57,6 +58,9 @@ public class PuzzleBombReversed extends Puzzle {
 
 	@Override
 	public void mouseReleased(int mx, int my) {
+		
+		boolean winning = true;
+		
 		if (GameMouseListener.mouseOver(mx, my, bomb[0].getX(), bomb[0].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
 			bomb[0].addCount();
 		if (GameMouseListener.mouseOver(mx, my, bomb[1].getX(), bomb[1].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
@@ -66,10 +70,14 @@ public class PuzzleBombReversed extends Puzzle {
 		if (GameMouseListener.mouseOver(mx, my, bomb[3].getX(), bomb[3].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
 			bomb[3].addCount();
 
-		if (bomb[0].isFullcount() && bomb[1].isFullcount() && bomb[2].isFullcount() && bomb[3].isFullcount()) {
-			setWinning(true);
+		for (int i = 0; i <= 3; i++) {
+			if (!bomb[i].isWinning())
+				winning = false;
 		}
+		setWinning(winning);
+
 	}
+
 
 	@Override
 	public void render(Graphics g) {

@@ -27,7 +27,7 @@ public class GUI extends GameObject {
 	private int redTime, redNum;
 
 	public GUI() {
-		super(0, 0, OBJECTID.DISPLAYER);
+		super(0, 0, OBJECTID.DISPLAYER, false);
 
 		characteristics = new CharacteristicsTemp();
 		fullhp = 3;
@@ -113,11 +113,6 @@ public class GUI extends GameObject {
 	public void removePoints(GameObject object, int amount) {
 		HandlerObject.getInstance().addObject(new BonusText(object, "-" + amount + " pts"));
 		points = points - amount;
-	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return false;
 	}
 
 	public void setRedtool(boolean beRed, int toolnum) {

@@ -1,14 +1,12 @@
 package objects.world.puzzler;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleBomb;
-import com.sunsigne.rebeccasreleasing.main.Size;
 
 import objects.GameObject;
 import objects.OBJECTID;
@@ -19,26 +17,14 @@ public class WallCracked extends GameObject implements IPuzzler {
 
 	private boolean solved;
 	private DIFFICULTY difficulty;
-	
-	public  WallCracked(int x, int y) {
-		this(x, y, DIFFICULTY.CYAN);
-	}	
-	
+
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.WALLCRACKED);
+		super(x, y, OBJECTID.WALLCRACKED, true);
 
 		this.difficulty = difficulty;
-		
-		w = Size.TILE;
-		h = Size.TILE;
 	}
 
 	// state
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	@Override
 	public boolean isSolved() {
@@ -60,7 +46,6 @@ public class WallCracked extends GameObject implements IPuzzler {
 		this.difficulty = difficulty;
 	}
 
-
 	@Override
 	public void tick() {
 
@@ -69,31 +54,11 @@ public class WallCracked extends GameObject implements IPuzzler {
 	@Override
 	public void render(Graphics g) {
 
+		BufferedImage img = texture.wallcracked[difficulty.getNum()];
 		if (!isSolved())
-			g.drawImage(texture.item[31], x, y, w, h, null);
-		
-		drawDifficulty(g);
+			g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
-	
-
-	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
-	protected void drawDifficulty(Graphics g) {
-
-		Color color = new Color(0, 0, 0, 0);
-		if (getDifficulty().getNum() == 1)
-			color = new Color(0, 255, 255, 100);
-		if (getDifficulty().getNum() == 2)
-			color = new Color(0, 255, 0, 100);
-		if (getDifficulty().getNum() == 3)
-			color = new Color(255, 255, 0, 100);
-		if (getDifficulty().getNum() == 4)
-			color = new Color(255, 128, 0, 100);
-		if (getDifficulty().getNum() == 5)
-			color = new Color(255, 0, 0, 100);
-		g.setColor(color);
-		g.fillRect(x, y, w, h);
-	}	
 
 	@Override
 	public Rectangle getBounds() {
@@ -101,7 +66,6 @@ public class WallCracked extends GameObject implements IPuzzler {
 		return new Rectangle(x, y, w, h);
 	}
 
-	
 	@Override
 	public void collision(LivingObject living) {
 
@@ -119,5 +83,4 @@ public class WallCracked extends GameObject implements IPuzzler {
 		return new PuzzleBomb(this, getDifficulty());
 	}
 
-	
 }

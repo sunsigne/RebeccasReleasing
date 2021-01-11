@@ -6,13 +6,8 @@ import java.awt.Rectangle;
 public class NullObject extends GameObject {
 
 	public NullObject() {
-		super(0, 0, OBJECTID.NULL);
+		super(0, 0, OBJECTID.NULL, false);
 
-	}
-	
-	@Override
-	public boolean isCameraDependant() {
-		return false;
 	}
 
 	@Override

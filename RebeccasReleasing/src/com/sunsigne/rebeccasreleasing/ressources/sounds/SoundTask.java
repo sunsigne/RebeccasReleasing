@@ -10,8 +10,6 @@ import javax.sound.sampled.FloatControl;
 
 import com.sunsigne.rebeccasreleasing.main.Game;
 
-import tofinish.AudioBank;
-
 public class SoundTask {
 
 	private static URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();

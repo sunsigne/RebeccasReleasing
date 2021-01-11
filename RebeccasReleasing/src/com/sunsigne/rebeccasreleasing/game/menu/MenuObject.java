@@ -9,14 +9,8 @@ import objects.OBJECTID;
 public abstract class MenuObject extends GameObject {
 
 	public MenuObject() {
-		super(0, 0, OBJECTID.MENU);
+		super(0, 0, OBJECTID.MENU, false);
 	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return false;
-	}
-	
 
 	@Override
 	public Rectangle getBounds() {

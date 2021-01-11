@@ -17,7 +17,7 @@ public class Wall extends GameObject implements ICollision {
 	private WALLTYPE type;
 
 	public Wall(int x, int y, WALLTYPE type) {
-		super(x, y, OBJECTID.WALL);
+		super(x, y, OBJECTID.WALL, true);
 		this.type = type;
 
 		if (type == WALLTYPE.WALL) {
@@ -67,7 +67,7 @@ public class Wall extends GameObject implements ICollision {
 			img = texture.item[2];
 			break;
 		default:
-			img = ImageTask.drawEmptyTexture();
+			img = ImageTask.drawMissingTexture();
 			break;
 		}
 		return img;

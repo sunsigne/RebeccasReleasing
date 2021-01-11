@@ -10,6 +10,7 @@ import java.awt.image.BufferStrategy;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleHack;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.Camera;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
@@ -19,8 +20,6 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
-
-import tofinish.TextureBank;
 
 /**
  * Supervise the global running of the application. This class is the one that :

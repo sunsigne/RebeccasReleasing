@@ -17,7 +17,7 @@ public class Flag extends GameObject implements ICollision {
 	private boolean reached;
 
 	public Flag(int x, int y) {
-		super(x, y, OBJECTID.FLAG);
+		super(x, y, OBJECTID.FLAG, true);
 
 	}
 
@@ -30,11 +30,6 @@ public class Flag extends GameObject implements ICollision {
 	public boolean isReached() {
 		return reached;
 	}	
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	@Override
 	public void tick() {

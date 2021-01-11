@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 
@@ -12,60 +13,59 @@ import objects.OBJECTID;
 
 public class BombReversed extends BombObject {
 
-	private boolean stable, fullcount;
-
+	private boolean winning;
+	
 	public BombReversed(int x, int y) {
-		super(x, y, OBJECTID.HEAD, REVERSED_BOMB);
+		super(x, y, OBJECTID.HEAD);
 
 		totalcount = 1 + new Random().nextInt(3);
+		setExploding(true);
 
+		animation = createAnimation();
+	}
+
+	private Animation createAnimation() {
+		Animation anim = new Animation(2, texture.bomb[9], texture.bomb[8], texture.bomb[7], texture.bomb[6],
+				texture.bomb[5], texture.bomb[4], texture.bomb[3], texture.bomb[2], texture.bomb[1],
+				texture.bomb[1]);
+		return anim;
 	}
 
 	// state
-
-	public void setStable(boolean stable) {
-		this.stable = stable;
-	}
-
-	public void setFullcount(boolean fullcount) {
-		this.fullcount = fullcount;
-	}
-
-	public boolean isStable() {
-		return stable;
-	}
-
-	public boolean isFullcount() {
-		return fullcount;
+	
+	public boolean isWinning() {
+		return winning;
 	}
 
 	public void addCount() {
 
-		if (!isExploding() && count < totalcount) {
+		if(isExploding() && boomtime == 30)
+		{
+			count = 1;
+			boomtime--;
+			SoundTask.playSound(SoundBank.r_explosion_medium);
+			setExploding(false);
+		}
+		
+		else if (boomtime < 0)
+		{
+			if (count < totalcount)
+			{
 			count = count + 1;
-			if (count == totalcount)
-				setFullcount(true);
-
-			if (count == 1) {
-				SoundTask.playSound(SoundBank.r_explosion_medium);
-				setExploding(true);
-			} else {
-				SoundTask.playSound(SoundBank.r_explosion_little);
+			SoundTask.playSound(SoundBank.r_explosion_little);
 			}
-
 		}
 	}
 
 	@Override
 	public void tick() {
-		if (isExploding()) {
-			getAnimation().runAnimation();
+		if (boomtime < 30) {
+			animation.runAnimation();
 			boomtime--;
-			if (boomtime <= 0) {
-				setExploding(false);
-				setStable(true);
-			}
 		}
+		
+		if (boomtime < 0 && count == totalcount)
+			winning = true;
 	}
 
 	@Override
@@ -79,13 +79,18 @@ public class BombReversed extends BombObject {
 		else
 			g.setColor(Color.yellow);
 
-		if (!isExploding() && isStable()) {
-			g.drawImage(texture.bomb[0], x, y, w, h, null);
-			g.drawString("" + count, x + 88, y + 187);
-		} else if (isExploding()) {
-			getAnimation().drawAnimation(g, x, y, w, h);
+		if(isExploding() && boomtime == 30)
+			g.drawImage(texture.bomb[9], x, y, w, h, null);
+		else if(!isExploding())
+		{
+			if (boomtime > 0)
+				animation.drawAnimation(g, x, y, w, h);
+			else 
+				{
+				g.drawImage(texture.bomb[0], x, y, w, h, null);
+				g.drawString("" + count, x + 88, y + 187);
+				}
 		}
 		drawHitbox(g);
 	}
-
 }

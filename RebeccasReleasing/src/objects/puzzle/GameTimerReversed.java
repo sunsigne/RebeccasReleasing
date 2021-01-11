@@ -11,7 +11,6 @@ import objects.OBJECTID;
 
 public class GameTimerReversed extends PuzzleObject {
 
-	public static final int R_TIME = 9;
 	private TimerListener listener;
 	private int count = 1;
 	private int timeinSec;

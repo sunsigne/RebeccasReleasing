@@ -6,14 +6,8 @@ import objects.OBJECTID;
 public abstract class PuzzleObject extends GameObject {
 
 	public PuzzleObject(int x, int y, OBJECTID id) {
-		super(x, y, id);
+		super(x, y, id, false);
 
 	}	
-
-	@Override
-	public boolean isCameraDependant() {
-		return false;
-	}
-	
 
 }

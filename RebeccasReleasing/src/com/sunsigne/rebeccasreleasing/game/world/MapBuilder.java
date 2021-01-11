@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
+import objects.IFacing.FACING;
 import objects.characters.living.FoeObject;
 import objects.characters.living.PlayerObject;
 import objects.world.Flag;
@@ -72,25 +73,25 @@ public class MapBuilder {
 				
 				// couch
 				if (red == 64 && green == 0 && blue == 0)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, true, 1)); // single
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.UP, 1)); // single up
 				if (red == 64 && green == 0 && blue == 1)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, true, false, 2)); // vertical dual left
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.UP, 2)); // dual up
 				if (red == 64 && green == 0 && blue == 2)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, true, false, 3)); // vertical trio left
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.UP, 3)); // trial up
 				if (red == 64 && green == 0 && blue == 3)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, true, true, 1)); // single reversed
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.DOWN, 1)); // single down
 				if (red == 64 && green == 0 && blue == 4)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, true, true, 2)); // horizontal dual reversed
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.DOWN, 2)); // dual down
 				if (red == 64 && green == 0 && blue == 5)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, true, true, 3)); // horizontal trio reversed
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.DOWN, 3)); // trial down
 				if (red == 64 && green == 0 && blue == 6)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, false, 2)); // vertical dual right
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 2)); // dual left
 				if (red == 64 && green == 0 && blue == 7)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, false, 3)); // vertical trio right
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 3)); // trial left
 				if (red == 64 && green == 0 && blue == 8)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, true, 2)); // horizontal dual
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 2)); // dual right
 				if (red == 64 && green == 0 && blue == 9)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, false, true, 3)); // horizontal trio
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 3)); // trial right
 				// other
 				if (red == 0 && green == 64 && blue == 64)
 					handler_object.addObject(new Water(xx * Size.TILE, yy * Size.TILE));
@@ -102,7 +103,7 @@ public class MapBuilder {
 					handler_object.addObject(new Lamp(xx * Size.TILE, yy * Size.TILE));
 
 				if (red == 64 && green == 64 && blue == 64)
-					handler_object.addObject(new WallCracked(xx * Size.TILE, yy * Size.TILE));
+					handler_object.addObject(new WallCracked(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.CYAN));
 				if (red == 0 && green == 0 && blue == 255)
 					handler_object.addObject(new FoeObject(xx * Size.TILE, yy * Size.TILE));
 				if (red == 0 && green == 255 && blue == 0)

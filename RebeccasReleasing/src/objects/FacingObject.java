@@ -9,13 +9,13 @@ public abstract class FacingObject extends GameObject implements Looting {
 	protected boolean updatableFacing;
 
 	public FacingObject(int x, int y, boolean facingLeft, boolean horizontal, OBJECTID id) {
-		super(x, y, id);
+		super(x, y, id, true);
 		this.facingLeft = facingLeft;
 		this.horizontal = horizontal;
 	}
 
 	public FacingObject(int x, int y, OBJECTID id) {
-		super(x, y, id);
+		super(x, y, id, true);
 	}
 
 	// state

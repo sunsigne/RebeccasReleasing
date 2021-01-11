@@ -36,7 +36,7 @@ public class ChatObject extends GameObject {
 	private boolean[] stop = new boolean[2];
 
 	public ChatObject(CHARA chara, String text0, String text1) {
-		super(Size.X0, 750, OBJECTID.DISPLAYER);
+		super(Size.X0, 750, OBJECTID.DISPLAYER, false);
 
 		this.chara = chara;
 		this.text[0] = text0;
@@ -76,11 +76,6 @@ public class ChatObject extends GameObject {
 
 	public void resetPauseTime() {
 		pausetime = maxpausetime;
-	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return false;
 	}
 
 	@Override
@@ -173,7 +168,7 @@ public class ChatObject extends GameObject {
 			img = ImageBank.sarah;
 			break;
 		default:
-			img = ImageTask.drawEmptyTexture();
+			img = ImageTask.drawMissingTexture();
 			break;
 		}
 		return img;

@@ -31,7 +31,7 @@ public class Animation {
 
 			currentImg = images[0];
 		} else
-			currentImg = ImageTask.drawEmptyTexture();
+			currentImg = ImageTask.drawMissingTexture();
 	}
 
 	public void runAnimation() {

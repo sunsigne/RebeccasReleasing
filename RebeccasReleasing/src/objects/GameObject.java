@@ -7,10 +7,9 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-
-import tofinish.TextureBank;
 
 public abstract class GameObject implements ITick, IRender {
 
@@ -19,11 +18,13 @@ public abstract class GameObject implements ITick, IRender {
 	protected int w, h;
 	protected OBJECTID id;
 	protected int velX, velY;
+	private boolean cameraDependant;
 
-	public GameObject(int x, int y, OBJECTID id) {
+	public GameObject(int x, int y, OBJECTID id, boolean cameraDependant) {
 		setX(x);
 		setY(y);
 		setID(id);
+		this.cameraDependant = cameraDependant;
 
 		w = Size.TILE;
 		h = Size.TILE;
@@ -35,7 +36,13 @@ public abstract class GameObject implements ITick, IRender {
 	}
 
 	// identity
-
+	
+	@Override
+	public boolean isCameraDependant()
+	{
+		return cameraDependant;
+	}
+	
 	public void setID(OBJECTID id) {
 		this.id = id;
 	}

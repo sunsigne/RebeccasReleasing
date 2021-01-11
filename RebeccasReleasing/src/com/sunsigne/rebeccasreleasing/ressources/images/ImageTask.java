@@ -25,13 +25,13 @@ public class ImageTask {
 			image = ImageIO.read(url);
 		} catch (Exception e) {
 			System.err.println("an image's path isn't corret");
-			image = drawEmptyTexture();
+			image = drawMissingTexture();
 		}
 
 		return image;
 	}
 
-	public static BufferedImage drawEmptyTexture() {
+	public static BufferedImage drawMissingTexture() {
 		int width = 64;
 		int height = 64;
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

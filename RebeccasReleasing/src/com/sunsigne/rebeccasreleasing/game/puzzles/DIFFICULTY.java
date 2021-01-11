@@ -1,7 +1,7 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 public enum DIFFICULTY {
-
+	
 	NONE(0),
 	CYAN(1),
 	GREEN(2),
@@ -9,6 +9,8 @@ public enum DIFFICULTY {
 	ORANGE(4),
 	RED(5);
 
+	public static final int MIN = 1;
+	public static final int MAX = 5;
 	
 	private int num;
 

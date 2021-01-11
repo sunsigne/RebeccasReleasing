@@ -5,11 +5,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
-
-import tofinish.AudioBank;
 
 public class Desk extends DestroyableObject {
 

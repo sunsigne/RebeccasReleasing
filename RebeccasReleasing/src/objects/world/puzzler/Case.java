@@ -26,7 +26,7 @@ public class Case extends GameObject implements IPuzzler {
 	}
 
 	public Case(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.CASE);
+		super(x, y, OBJECTID.CASE, true);
 
 		this.difficulty = difficulty;
 
@@ -35,11 +35,6 @@ public class Case extends GameObject implements IPuzzler {
 	}
 
 	// state
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	@Override
 	public boolean isSolved() {

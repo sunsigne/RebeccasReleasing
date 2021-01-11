@@ -6,18 +6,19 @@ import java.awt.Graphics;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
 import objects.characters.living.FoeObject;
+import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.card.CardFolderReversed;
 import objects.puzzle.card.CardReversed;
 import objects.puzzle.card.CardType;
-import tofinish.AudioBank;
 
 public class PuzzleCardReversed extends Puzzle {
 
@@ -33,7 +34,7 @@ public class PuzzleCardReversed extends Puzzle {
 	@Override
 	public void createFrame() {
 		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.CARD));
-		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimerReversed.R_TIME, () -> close()));
+		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimer.TIME, () -> close()));
 	}
 
 	@Override

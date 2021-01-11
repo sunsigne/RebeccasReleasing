@@ -2,6 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
@@ -14,7 +15,6 @@ import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
-import tofinish.AudioBank;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public abstract class Puzzle extends Clickable {

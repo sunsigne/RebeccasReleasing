@@ -1,5 +1,6 @@
 package objects;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 
@@ -110,18 +111,6 @@ public abstract class AnimatedObject extends FacingObject {
 					texture.plant[0]));
 			break;
 
-		case BOMB:
-			setAnimation(new Animation(2, texture.bomb[1], texture.bomb[2], texture.bomb[3], texture.bomb[4],
-					texture.bomb[5], texture.bomb[6], texture.bomb[7], texture.bomb[8], texture.bomb[9],
-					texture.bomb[9]));
-			break;
-
-		case REVERSED_BOMB:
-			setAnimation(new Animation(2, texture.bomb[8], texture.bomb[7], texture.bomb[6], texture.bomb[5],
-					texture.bomb[4], texture.bomb[3], texture.bomb[2], texture.bomb[1], texture.bomb[9],
-					texture.bomb[9]));
-			break;
-
 		case NULL:
 		default:
 			setAnimation(new Animation(1));
@@ -147,7 +136,7 @@ public abstract class AnimatedObject extends FacingObject {
 	
 	private void loadFoeAnimation() {
 		
-		for (int i = 1; i < 6; i++)
+		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++)
 		{
 		foe_move_animation[i][Size.DIRECTION_UP] = new Animation(10, texture.foe_walking[i][0], texture.foe_walking[i][1],
 				texture.foe_walking[i][2], texture.foe_walking[i][1]);

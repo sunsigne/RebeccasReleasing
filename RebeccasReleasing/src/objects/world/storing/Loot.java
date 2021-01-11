@@ -25,7 +25,7 @@ public class Loot extends GameObject implements ICollision {
 	protected LOOTID lootId;
 
 	public Loot(int x, int y, LOOTID lootId) {
-		super(x, y, OBJECTID.LOOT);
+		super(x, y, OBJECTID.LOOT, true);
 
 		this.lootId = lootId;
 	}
@@ -40,11 +40,6 @@ public class Loot extends GameObject implements ICollision {
 		return lootId;
 	}
 
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
-	
 	@Override
 	public void tick() {
 	}

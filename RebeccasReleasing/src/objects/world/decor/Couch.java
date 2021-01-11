@@ -6,63 +6,44 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 
-import objects.FacingObject;
+import objects.GameObject;
+import objects.IFacing;
 import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-public class Couch extends FacingObject implements ICollision {
+public class Couch extends GameObject implements ICollision, IFacing {
 
-	private boolean single, dual, trio;
+	private FACING facing;
+	private int lenght = 3;
 
-	public Couch(int x, int y, boolean facingLeft, boolean horizontal, int lenght) {
-		super(x, y, facingLeft, horizontal, OBJECTID.WALL);
+	public Couch(int x, int y, FACING facing, int lenght) {
+		super(x, y, OBJECTID.WALL, true);
 
-		w = Size.TILE;
-		h = Size.TILE;
+		this.facing = facing;
+		if (lenght < 4)
+			this.lenght = lenght;
 
-		if (lenght == 1)
-			setSingle();
-		if (lenght == 2)
-			setDual();
-		if (lenght == 3)
-			setTrio();
-	}
-
-	// state
-
-	private void setSingle() {
-		this.horizontal = true;
-		this.single = true;
-		this.dual = false;
-		this.trio = false;
-		w = Size.TILE;
-		h = Size.TILE;
-	}
-
-	private void setDual() {
-		this.single = false;
-		this.dual = true;
-		this.trio = false;
-		if (horizontal)
-			w = 2 * Size.TILE;
-		if (!horizontal)
-			h = 2 * Size.TILE;
-	}
-
-	private void setTrio() {
-		this.single = false;
-		this.dual = false;
-		this.trio = true;
-		if (horizontal)
-			w = 3 * Size.TILE;
-		if (!horizontal)
-			h = 3 * Size.TILE;
+		if (isHorizontal())
+			w = lenght * Size.TILE;
+		if (!isHorizontal())
+			h = lenght * Size.TILE;
 	}
 
 	@Override
-	public boolean isCameraDependant() {
-		return true;
+	public FACING getFacing() {
+		return facing;
+	}
+
+	@Override
+	public void setFacing(FACING facing) {
+		if (updatableFacing())
+			this.facing = facing;
+	}
+
+	@Override
+	public boolean updatableFacing() {
+		return false;
 	}
 
 	@Override
@@ -80,40 +61,16 @@ public class Couch extends FacingObject implements ICollision {
 	private BufferedImage paintingCouch() {
 
 		BufferedImage img = null;
-		if (horizontal) {
-			if (!facingLeft) {
-				if (trio)
-					img = texture.couch[0];
-				if (dual)
-					img = texture.couch[3];
-				if (single)
-					img = texture.couch[6];
-			} else {
-				if (trio)
-					img = texture.couch[1];
-				if (dual)
-					img = texture.couch[4];
-				if (single)
-					img = texture.couch[7];
-			}
-		}
-		if (!horizontal) {
-			if (!facingLeft) {
-				if (trio)
-					img = texture.couch[2];
-				if (dual)
-					img = texture.couch[5];
-				if (single)
-					img = texture.couch[6];
-			} else {
-				if (trio)
-					img = texture.couch[9];
-				if (dual)
-					img = texture.couch[8];
-				if (single)
-					img = texture.couch[7];
-			}
-		}
+
+		if (facing == FACING.UP)
+			img = texture.couch[Size.DIRECTION_UP][lenght];
+		if (facing == FACING.DOWN)
+			img = texture.couch[Size.DIRECTION_DOWN][lenght];
+		if (facing == FACING.LEFT)
+			img = texture.couch[Size.DIRECTION_LEFT][lenght];
+		if (facing == FACING.RIGHT)
+			img = texture.couch[Size.DIRECTION_RIGHT][lenght];
+
 		return img;
 	}
 

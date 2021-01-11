@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
@@ -200,6 +201,7 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 		}
 	}
 
+	@Todo("change FoeObject into instance of IPuzzle")
 	@Override
 	public Puzzle getPuzzle() {
 		return new PuzzleCard(this, dualObject, currentDifficulty);

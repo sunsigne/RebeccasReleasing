@@ -5,32 +5,30 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.OBJECTID;
 
 public class Bomb extends BombObject {
 
-	private boolean lastbomb;
-
 	public Bomb(int x, int y) {
-		super(x, y, OBJECTID.HEAD, BOMB);
+		super(x, y, OBJECTID.HEAD);
 
 		count = 1 + new Random().nextInt(3);
 		totalcount = count;
+
+		animation = createAnimation();
+	}
+
+	private Animation createAnimation() {
+		Animation anim = new Animation(2, texture.bomb[1], texture.bomb[2], texture.bomb[3], texture.bomb[4],
+				texture.bomb[5], texture.bomb[6], texture.bomb[7], texture.bomb[8], texture.bomb[9], texture.bomb[9]);
+		return anim;
 	}
 
 	// state
-
-	public void setLastbomb(boolean lastbomb) {
-		this.lastbomb = lastbomb;
-	}
-
-	public boolean isLastbomb() {
-		return lastbomb;
-	}
 
 	public void removeCount() {
 		SoundTask.playSound(SoundBank.explosion_little);
@@ -42,15 +40,12 @@ public class Bomb extends BombObject {
 		if (count == 0) {
 			count--;
 			setExploding(true);
-			if (!isLastbomb())
-				SoundTask.playSound(SoundBank.explosion_medium);
+			SoundTask.playSound(SoundBank.explosion_medium);
 		}
 
 		if (isExploding()) {
-			getAnimation().runAnimation();
+			animation.runAnimation();
 			boomtime--;
-			if (boomtime <= 0 || isLastbomb())
-				HandlerObject.getInstance().removeObject(this);
 		}
 	}
 
@@ -68,8 +63,14 @@ public class Bomb extends BombObject {
 		if (!isExploding()) {
 			g.drawImage(texture.bomb[0], x, y, w, h, null);
 			g.drawString("" + count, x + 88, y + 187);
-		} else
-			getAnimation().drawAnimation(g, x, y, w, h);
+
+		} else if (isExploding()) {
+			if (boomtime > 0)
+				animation.drawAnimation(g, x, y, w, h);
+			else
+				g.drawImage(texture.bomb[9], x, y, w, h, null);
+		}
+
 		drawHitbox(g);
 	}
 

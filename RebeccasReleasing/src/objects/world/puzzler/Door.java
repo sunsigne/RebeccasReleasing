@@ -26,23 +26,14 @@ public class Door extends GameObject implements IPuzzler {
 	}
 
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.DOOR);
+		super(x, y, OBJECTID.DOOR, true);
 
 		this.difficulty = difficulty;
-
-		w = Size.TILE;
-		h = Size.TILE;
-
 		setHorizontal(horizontal);
 
 	}
 
 	// state
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	@Override
 	public boolean isSolved() {
@@ -93,14 +84,15 @@ public class Door extends GameObject implements IPuzzler {
 		BufferedImage img = null;
 		int difficulty = getDifficulty().getNum();
 
-		if (horizontal && !isSolved())
-			img = texture.door[difficulty][2];
-		if (horizontal && isSolved())
-			img = texture.door[difficulty][3];
 		if (!horizontal && !isSolved())
 			img = texture.door[difficulty][0];
 		if (!horizontal && isSolved())
 			img = texture.door[difficulty][1];
+		if (horizontal && !isSolved())
+			img = texture.door[difficulty][2];
+		if (horizontal && isSolved())
+			img = texture.door[difficulty][3];
+
 		return img;
 	}
 

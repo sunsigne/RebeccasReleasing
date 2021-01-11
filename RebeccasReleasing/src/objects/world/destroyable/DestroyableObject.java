@@ -1,6 +1,7 @@
 package objects.world.destroyable;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -10,9 +11,8 @@ import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 import objects.world.storing.Looting;
-import tofinish.AudioBank;
 
-public abstract class DestroyableObject extends AnimatedObject implements Looting, ICollision {
+public abstract class DestroyableObject extends AnimatedObject implements ICollision {
 
 	protected DESTROYABLEID destroyableId;
 	protected boolean destroyed;
