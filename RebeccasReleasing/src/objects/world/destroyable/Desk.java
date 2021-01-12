@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
@@ -39,12 +39,12 @@ public class Desk extends DestroyableObject {
 	}
 
 	@Override
-	public AudioBank makeMainSound() {
-		return SoundBank.hit_attack;
+	public BufferedSound makeMainSound() {
+		return SoundBank.getSound(SoundBank.hit_attack);
 	}
 
 	@Override
-	public AudioBank makeSideSound() {
+	public BufferedSound makeSideSound() {
 		return null;
 	}
 

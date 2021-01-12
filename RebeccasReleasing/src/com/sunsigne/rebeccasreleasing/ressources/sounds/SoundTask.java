@@ -16,7 +16,7 @@ public class SoundTask {
 	private static Clip musicclip, soundclip;
 
 	// WARNING !!! All paths in this method must have their / replaced by double \\
-	public static void playMusic(double volume, AudioBank sound) {
+	public static void playMusic(double volume, BufferedSound sound) {
 
 		stopMusic();
 		try {
@@ -35,11 +35,11 @@ public class SoundTask {
 	}
 
 	// WARNING !!! All paths in this method must have their / replaced by double \\
-	public static void playSound(AudioBank sound) {
+	public static void playSound(BufferedSound sound) {
 		playSound(1d, sound);
 	}
 
-	public static void playSound(double volume, AudioBank sound) {
+	public static void playSound(double volume, BufferedSound sound) {
 
 		if (sound != null) {
 			try {

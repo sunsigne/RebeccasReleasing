@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
@@ -97,8 +97,8 @@ public class PuzzleKey extends Puzzle {
 	}
 
 	@Override
-	public AudioBank getSuccessSound() {
-		return SoundBank.opening_door;
+	public BufferedSound getSuccessSound() {
+		return SoundBank.getSound(SoundBank.opening_door);
 	}
 
 }

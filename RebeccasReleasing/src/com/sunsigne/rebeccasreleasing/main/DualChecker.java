@@ -25,7 +25,7 @@ public class DualChecker implements ITick {
 				boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 				if (!dualcheckerboolean) {
 					FileTask.write(dualcheck, "true");
-					SoundTask.playSound(SoundBank.error);
+					SoundTask.playSound(SoundBank.getSound(SoundBank.error));
 					JOptionPane.showMessageDialog(null, "An error has occured. Please try again");
 					Conductor.stop();
 				}

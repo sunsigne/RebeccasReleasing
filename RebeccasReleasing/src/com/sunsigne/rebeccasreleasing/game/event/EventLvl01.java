@@ -49,7 +49,7 @@ public class EventLvl01 extends EventBuilder {
 			setMustoccur(false, 3);
 			World.gui.getCharacteristics().getTool(Tool.KEY).upgradeTool();
 			World.gui.setRedtool(true, 0);
-			SoundTask.playSound(SoundBank.popup);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 			Conductor.setState(STATE.LEVEL);
 		}
 	}
@@ -106,7 +106,7 @@ public class EventLvl01 extends EventBuilder {
 			setMustoccur(false, 9);
 			World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeTool();
 			World.gui.setRedtool(true, 1);
-			SoundTask.playSound(SoundBank.popup);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 			Conductor.setState(STATE.LEVEL);
 		}
 	}

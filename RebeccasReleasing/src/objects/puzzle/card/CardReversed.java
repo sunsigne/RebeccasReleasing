@@ -137,11 +137,11 @@ public class CardReversed extends CardObject {
 		setDragged(true);
 
 		if (getCardtype() == CardType.attack)
-			SoundTask.playSound(SoundBank.r_hit_attack);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_attack));
 		if (getCardtype() == CardType.defense)
-			SoundTask.playSound(SoundBank.r_hit_defense);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_defense));
 		if (getCardtype() == CardType.critical)
-			SoundTask.playSound(SoundBank.r_hit_critical);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_critical));
 	}
 
 	public void resetPos() {

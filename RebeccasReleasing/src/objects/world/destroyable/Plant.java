@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 
 public class Plant extends DestroyableObject {
@@ -24,13 +24,13 @@ public class Plant extends DestroyableObject {
 	}
 
 	@Override
-	public AudioBank makeMainSound() {
-		return SoundBank.poterie;
+	public BufferedSound makeMainSound() {
+		return SoundBank.getSound(SoundBank.poterie);
 	}
 
 	@Override
-	public AudioBank makeSideSound() {
-		return SoundBank.hit_attack;
+	public BufferedSound makeSideSound() {
+		return SoundBank.getSound(SoundBank.hit_attack);
 	}
 
 

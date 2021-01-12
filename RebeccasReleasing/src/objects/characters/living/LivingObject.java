@@ -121,7 +121,7 @@ public abstract class LivingObject extends AnimatedObject {
 	public void pushed(int direction)
 	{
 		isPushed = true;
-		SoundTask.playSound(SoundBank.push);
+		SoundTask.playSound(SoundBank.getSound(SoundBank.push));
 		World.gui.removeHp();
 		if(direction == Size.DIRECTION_UP) velY = -Size.TILE / 5;
 		if(direction == Size.DIRECTION_DOWN) velY = Size.TILE / 5;

@@ -43,7 +43,7 @@ public class BombReversed extends BombObject {
 		{
 			count = 1;
 			boomtime--;
-			SoundTask.playSound(SoundBank.r_explosion_medium);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.r_explosion_medium));
 			setExploding(false);
 		}
 		
@@ -52,7 +52,7 @@ public class BombReversed extends BombObject {
 			if (count < totalcount)
 			{
 			count = count + 1;
-			SoundTask.playSound(SoundBank.r_explosion_little);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.r_explosion_little));
 			}
 		}
 	}

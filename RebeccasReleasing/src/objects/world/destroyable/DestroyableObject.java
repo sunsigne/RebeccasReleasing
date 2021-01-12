@@ -1,7 +1,7 @@
 package objects.world.destroyable;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -26,9 +26,9 @@ public abstract class DestroyableObject extends AnimatedObject implements IColli
 
 	public abstract int givePts();
 
-	public abstract AudioBank makeMainSound();
+	public abstract BufferedSound makeMainSound();
 
-	public abstract AudioBank makeSideSound();
+	public abstract BufferedSound makeSideSound();
 
 	// identity
 
@@ -85,8 +85,8 @@ public abstract class DestroyableObject extends AnimatedObject implements IColli
 				setFacingLeft(facingLeft);
 
 			int points = givePts();
-			AudioBank mainSound = makeMainSound();
-			AudioBank sideSound = makeSideSound();
+			BufferedSound mainSound = makeMainSound();
+			BufferedSound sideSound = makeSideSound();
 
 			if (living.collisionDetector.isPlayer) {
 				if (HandlerObject.getInstance().player.isPushed())

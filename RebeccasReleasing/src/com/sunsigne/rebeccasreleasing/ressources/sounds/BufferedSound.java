@@ -1,10 +1,10 @@
 package com.sunsigne.rebeccasreleasing.ressources.sounds;
 
-public class AudioBank {
+public class BufferedSound {
 
 	private String sound;
 	
-	public AudioBank(String sound)
+	public BufferedSound(String sound)
 	{
 		this.sound = sound;
 	}

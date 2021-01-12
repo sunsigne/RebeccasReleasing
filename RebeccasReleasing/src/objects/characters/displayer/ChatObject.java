@@ -135,10 +135,10 @@ public class ChatObject extends GameObject {
 	private void playTalkingSound() {
 		switch (chara) {
 		case Rebecca:
-			SoundTask.playSound(0.2, SoundBank.talking_rebecca);
+			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_rebecca));
 			break;
 		case Sarah:
-			SoundTask.playSound(0.2, SoundBank.talking_sarah);
+			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_sarah));
 			break;
 		default:
 			break;

@@ -9,7 +9,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
@@ -93,9 +93,9 @@ public class PuzzleBomb extends Puzzle {
 	}
 
 	@Override
-	public AudioBank getSuccessSound() {
+	public BufferedSound getSuccessSound() {
 
-		return SoundBank.explosion_big;
+		return SoundBank.getSound(SoundBank.explosion_big);
 	}
 
 }

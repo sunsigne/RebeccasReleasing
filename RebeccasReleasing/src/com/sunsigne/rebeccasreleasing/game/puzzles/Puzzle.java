@@ -2,7 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.AudioBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
@@ -81,7 +81,7 @@ public abstract class Puzzle extends Clickable {
 	protected abstract void createPuzzle();
 
 	@Todo("tous les puzzle n'ont accuellement pas de son de victoire")
-	protected abstract AudioBank getSuccessSound();
+	protected abstract BufferedSound getSuccessSound();
 
 	public void open() {
 
@@ -115,9 +115,9 @@ public abstract class Puzzle extends Clickable {
 
 		if (!winning) {
 			if (!reversed)
-				SoundTask.playSound(SoundBank.fail);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.fail));
 			else
-				SoundTask.playSound(SoundBank.r_fail);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.r_fail));
 			World.gui.removeHp();
 		} else if (winning)
 			SoundTask.playSound(getSuccessSound());

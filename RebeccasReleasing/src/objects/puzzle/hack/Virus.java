@@ -116,12 +116,12 @@ public class Virus extends AnimatedObject {
 		if (!isClicking() && getBounds().intersects(tempObject.getBounds())) {
 			if (processorObject.isLocked()) {
 				setClicking(true);
-				SoundTask.playSound(SoundBank.fail);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.fail));
 				updateLocker(processorObject);
 			} else {
 				processorObject.delete();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.virus_bite);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
 				updateLocker(processorObject);
 			}
 
@@ -135,10 +135,10 @@ public class Virus extends AnimatedObject {
 			if (!processorObject.isLocked()) {
 				processorObject.open();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.virus_explore);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_explore));
 			} else {
 				setClicking(true);
-				SoundTask.playSound(SoundBank.fail);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.fail));
 			}
 		}
 	}
@@ -150,12 +150,12 @@ public class Virus extends AnimatedObject {
 			if (trash.isEmpty()) {
 				trash.delete();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.virus_bite);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
 			}
 			if (!trash.isEmpty()) {
 				trash.setEmpty(true);
 				setClicking(true);
-				SoundTask.playSound(SoundBank.virus_bite);
+				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
 			}
 		}
 	}

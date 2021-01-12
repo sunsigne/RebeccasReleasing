@@ -138,11 +138,11 @@ public class Card extends CardObject {
 		setExist(false);
 
 		if (getCardtype() == CardType.attack)
-			SoundTask.playSound(SoundBank.hit_attack);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_attack));
 		if (getCardtype() == CardType.defense)
-			SoundTask.playSound(SoundBank.hit_defense);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_defense));
 		if (getCardtype() == CardType.critical) {
-			SoundTask.playSound(SoundBank.hit_critical);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
 			{
 			HandlerObject.getInstance().player.puzzle.setWinning(true);
 			HandlerObject.getInstance().player.puzzle.close();

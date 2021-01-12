@@ -31,7 +31,7 @@ public class Bomb extends BombObject {
 	// state
 
 	public void removeCount() {
-		SoundTask.playSound(SoundBank.explosion_little);
+		SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_little));
 		count = count - 1;
 	}
 
@@ -40,7 +40,7 @@ public class Bomb extends BombObject {
 		if (count == 0) {
 			count--;
 			setExploding(true);
-			SoundTask.playSound(SoundBank.explosion_medium);
+			SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_medium));
 		}
 
 		if (isExploding()) {

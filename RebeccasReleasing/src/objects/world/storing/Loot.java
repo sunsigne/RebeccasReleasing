@@ -89,7 +89,7 @@ public class Loot extends GameObject implements ICollision {
 	private void doActionCritCard() {
 
 		HandlerObject.getInstance().addObject(new BonusText(this, "100% crit"));
-		SoundTask.playSound(SoundBank.looting);
+		SoundTask.playSound(SoundBank.getSound(SoundBank.looting));
 		World.gui.getCharacteristics().setSureCrit(true);
 	}
 }

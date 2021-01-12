@@ -204,7 +204,7 @@ public class SearchWord extends PuzzleObject {
 			setExist(false);
 			setStable(true);
 			HandlerObject.getInstance().removeObject(this);
-			SoundTask.playSound(0.6, SoundBank.place_word);
+			SoundTask.playSound(0.6, SoundBank.getSound(SoundBank.place_word));
 		} else
 			HandlerObject.getInstance().player.puzzle.close();
 	}

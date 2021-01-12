@@ -1,131 +1,152 @@
 package com.sunsigne.rebeccasreleasing.ressources.sounds;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.sunsigne.rebeccasreleasing.Todo;
 
 public class SoundBank {
 
-	public static AudioBank error;
+	private static Map<SoundBank, BufferedSound>sounds = new HashMap<>();
+		
+	public static final SoundBank error = new SoundBank();
 
 	// music
-	public static AudioBank soundtrack_1;
-	public static AudioBank soundtrack_2;
-	public static AudioBank soundtrack_3;
+	public static final SoundBank soundtrack_1 = new SoundBank();
+	public static final SoundBank soundtrack_2 = new SoundBank();
+	public static final SoundBank soundtrack_3 = new SoundBank();
 
 	//other
-	public static AudioBank popup;
+	public static final SoundBank popup = new SoundBank();
 	
 	// talking
-	public static AudioBank talking_rebecca;
-	public static AudioBank talking_sarah;
+	public static final SoundBank talking_rebecca = new SoundBank();
+	public static final SoundBank talking_sarah = new SoundBank();
 
 	// sound normal
 	// bomb
-	public static AudioBank explosion_big;
-	public static AudioBank explosion_little;
-	public static AudioBank explosion_medium;
+	public static final SoundBank explosion_big = new SoundBank();
+	public static final SoundBank explosion_little = new SoundBank();
+	public static final SoundBank explosion_medium = new SoundBank();
 	// card
-	public static AudioBank hit_attack;
-	public static AudioBank hit_critical;
-	public static AudioBank hit_defense;
+	public static final SoundBank hit_attack = new SoundBank();
+	public static final SoundBank hit_critical = new SoundBank();
+	public static final SoundBank hit_defense = new SoundBank();
 	// hack
-	public static AudioBank computer;
-	public static AudioBank virus_bite;
-	public static AudioBank virus_explore;
+	public static final SoundBank computer = new SoundBank();
+	public static final SoundBank virus_bite = new SoundBank();
+	public static final SoundBank virus_explore = new SoundBank();
 	// key
-	public static AudioBank opening_door;
+	public static final SoundBank opening_door = new SoundBank();
 	// top
-	public static AudioBank place_word;
+	public static final SoundBank place_word = new SoundBank();
 	// world
-	public static AudioBank fail;
-	public static AudioBank looting;
-	public static AudioBank poterie;
-	public static AudioBank push;
+	public static final SoundBank fail = new SoundBank();
+	public static final SoundBank looting = new SoundBank();
+	public static final SoundBank poterie = new SoundBank();
+	public static final SoundBank push = new SoundBank();
 
 	// sound reversed
 	// bomb
-	public static AudioBank r_explosion_big;
-	public static AudioBank r_explosion_little;
-	public static AudioBank r_explosion_medium;
+	public static final SoundBank r_explosion_big = new SoundBank();
+	public static final SoundBank r_explosion_little = new SoundBank();
+	public static final SoundBank r_explosion_medium = new SoundBank();
 	// card
-	public static AudioBank r_hit_attack;
-	public static AudioBank r_hit_critical;
-	public static AudioBank r_hit_defense;
+	public static final SoundBank r_hit_attack = new SoundBank();
+	public static final SoundBank r_hit_critical = new SoundBank();
+	public static final SoundBank r_hit_defense = new SoundBank();
 	// hack
-	public static AudioBank r_computer;
-	public static AudioBank r_virus_bite;
-	public static AudioBank r_virus_explore;
+	public static final SoundBank r_computer = new SoundBank();
+	public static final SoundBank r_virus_bite = new SoundBank();
+	public static final SoundBank r_virus_explore = new SoundBank();
 	// key
-	public static AudioBank r_opening_door;
+	public static final SoundBank r_opening_door = new SoundBank();
 	// top
-	public static AudioBank r_place_word;
+	public static final SoundBank r_place_word = new SoundBank();
 	// world
-	public static AudioBank r_fail;
-	public static AudioBank r_looting;
-	public static AudioBank r_poterie;
-	public static AudioBank r_push;
+	public static final SoundBank r_fail = new SoundBank();
+	public static final SoundBank r_looting = new SoundBank();
+	public static final SoundBank r_poterie = new SoundBank();
+	public static final SoundBank r_push = new SoundBank();
 
 	@Todo("les bruits d'attaques et de defense ne conviennent pas bien")
 	public void loadRessources() {
 
-		error = new AudioBank("error.wav");
+		addSound(error, new BufferedSound("error.wav"));
 
 		// music
-		soundtrack_1 = new AudioBank("music\\soundtrack_1.wav");
-		soundtrack_2 = new AudioBank("music\\soundtrack_2.wav");
-		soundtrack_3 = new AudioBank("music\\soundtrack_3.wav");
+		addSound(soundtrack_1, new BufferedSound("music\\soundtrack_1.wav"));
+		addSound(soundtrack_2, new BufferedSound("music\\soundtrack_2.wav"));
+		addSound(soundtrack_3, new BufferedSound("music\\soundtrack_3.wav"));
 
 		// other
-		popup = new AudioBank("sound\\other\\popup.wav");
+		addSound(popup, new BufferedSound("sound\\other\\popup.wav"));
 		
 		// talking
-		talking_rebecca = new AudioBank("sound\\other\\talking\\rebecca.wav");
-		talking_sarah = new AudioBank("sound\\other\\talking\\sarah.wav");
+		addSound(talking_rebecca, new BufferedSound("sound\\other\\talking\\rebecca.wav"));
+		addSound(talking_sarah, new BufferedSound("sound\\other\\talking\\sarah.wav"));
 
 		// sound normal
 		// bomb
-		explosion_big = new AudioBank("sound\\normal\\bomb\\explosion_big.wav");
-		explosion_little = new AudioBank("sound\\normal\\bomb\\explosion_little.wav");
-		explosion_medium = new AudioBank("sound\\normal\\bomb\\explosion_medium.wav");
+		addSound(explosion_big, new BufferedSound("sound\\normal\\bomb\\explosion_big.wav"));
+		addSound(explosion_little, new BufferedSound("sound\\normal\\bomb\\explosion_little.wav"));
+		addSound(explosion_medium, new BufferedSound("sound\\normal\\bomb\\explosion_medium.wav"));
 		// card
-		hit_attack = new AudioBank("sound\\normal\\card\\hit_attack.wav");
-		hit_critical = new AudioBank("sound\\normal\\card\\hit_critical.wav");
-		hit_defense = new AudioBank("sound\\normal\\card\\hit_defense.wav");
+		addSound(hit_attack, new BufferedSound("sound\\normal\\card\\hit_attack.wav"));
+		addSound(hit_critical, new BufferedSound("sound\\normal\\card\\hit_critical.wav"));
+		addSound(hit_defense, new BufferedSound("sound\\normal\\card\\hit_defense.wav"));
 		// hack
-		computer = new AudioBank("sound\\normal\\hack\\computer.wav");
-		virus_bite = new AudioBank("sound\\normal\\hack\\virus_bite.wav");
-		virus_explore = new AudioBank("sound\\normal\\hack\\virus_explore.wav");
+		addSound(computer, new BufferedSound("sound\\normal\\hack\\computer.wav"));
+		addSound(virus_bite, new BufferedSound("sound\\normal\\hack\\virus_bite.wav"));
+		addSound(virus_explore, new BufferedSound("sound\\normal\\hack\\virus_explore.wav"));
 		// key
-		opening_door = new AudioBank("sound\\normal\\key\\opening_door.wav");
+		addSound(opening_door, new BufferedSound("sound\\normal\\key\\opening_door.wav"));
 		// top
-		place_word = new AudioBank("sound\\normal\\top\\place_word.wav");
+		addSound(place_word, new BufferedSound("sound\\normal\\top\\place_word.wav"));
 		// world
-		fail = new AudioBank("sound\\normal\\world\\fail.wav");
-		looting = new AudioBank("sound\\normal\\world\\looting.wav");
-		poterie = new AudioBank("sound\\normal\\world\\poterie.wav");
-		push = new AudioBank("sound\\normal\\world\\push.wav");
+		addSound(fail, new BufferedSound("sound\\normal\\world\\fail.wav"));
+		addSound(looting, new BufferedSound("sound\\normal\\world\\looting.wav"));
+		addSound(poterie, new BufferedSound("sound\\normal\\world\\poterie.wav"));
+		addSound(push, new BufferedSound("sound\\normal\\world\\push.wav"));
 
 		// sound normal
 		// bomb
-		r_explosion_big = new AudioBank("sound\\reversed\\bomb\\explosion_big.wav");
-		r_explosion_little = new AudioBank("sound\\reversed\\bomb\\explosion_little.wav");
-		r_explosion_medium = new AudioBank("sound\\reversed\\bomb\\explosion_medium.wav");
+		addSound(r_explosion_big, new BufferedSound("sound\\reversed\\bomb\\explosion_big.wav"));
+		addSound(r_explosion_little, new BufferedSound("sound\\reversed\\bomb\\explosion_little.wav"));
+		addSound(r_explosion_medium, new BufferedSound("sound\\reversed\\bomb\\explosion_medium.wav"));
 		// card
-		r_hit_attack = new AudioBank("sound\\reversed\\card\\hit_attack.wav");
-		r_hit_critical = new AudioBank("sound\\reversed\\card\\hit_critical.wav");
-		r_hit_defense = new AudioBank("sound\\reversed\\card\\hit_defense.wav");
+		addSound(r_hit_attack, new BufferedSound("sound\\reversed\\card\\hit_attack.wav"));
+		addSound(r_hit_critical, new BufferedSound("sound\\reversed\\card\\hit_critical.wav"));
+		addSound(r_hit_defense, new BufferedSound("sound\\reversed\\card\\hit_defense.wav"));
 		// hack
-		r_computer = new AudioBank("sound\\reversed\\hack\\computer.wav");
-		r_virus_bite = new AudioBank("sound\\reversed\\hack\\virus_bite.wav");
-		r_virus_explore = new AudioBank("sound\\reversed\\hack\\virus_explore.wav");
+		addSound(r_computer, new BufferedSound("sound\\reversed\\hack\\computer.wav"));
+		addSound(r_virus_bite, new BufferedSound("sound\\reversed\\hack\\virus_bite.wav"));
+		addSound(r_virus_explore, new BufferedSound("sound\\reversed\\hack\\virus_explore.wav"));
 		// key
-		r_opening_door = new AudioBank("sound\\reversed\\key\\opening_door.wav");
+		addSound(r_opening_door, new BufferedSound("sound\\reversed\\key\\opening_door.wav"));
 		// top
-		r_place_word = new AudioBank("sound\\reversed\\top\\place_word.wav");
+		addSound(r_place_word, new BufferedSound("sound\\reversed\\top\\place_word.wav"));
 		// world
-		r_fail = new AudioBank("sound\\reversed\\world\\fail.wav");
-		r_looting = new AudioBank("sound\\reversed\\world\\looting.wav");
-		r_poterie = new AudioBank("sound\\reversed\\world\\poterie.wav");
-		r_push = new AudioBank("sound\\reversed\\world\\push.wav");
+		addSound(r_fail, new BufferedSound("sound\\reversed\\world\\fail.wav"));
+		addSound(r_looting, new BufferedSound("sound\\reversed\\world\\looting.wav"));
+		addSound(r_poterie, new BufferedSound("sound\\reversed\\world\\poterie.wav"));
+		addSound(r_push, new BufferedSound("sound\\reversed\\world\\push.wav"));
 	}
+	
+	
+
+	// soundBank doesn't need to be more than new SoundBank()
+	// bufferedSound is the path of the sound
+	public void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
+
+		if (bufferedSound != null)
+			sounds.put(soundBank, bufferedSound);
+	}
+	
+	public static BufferedSound getSound(SoundBank soundBank)
+	{
+		return sounds.get(soundBank);
+	}
+		
 
 }
