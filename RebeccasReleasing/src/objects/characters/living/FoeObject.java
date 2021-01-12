@@ -174,7 +174,7 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 
 		if (living.collisionDetector.isPlayer) {
 			if (!stunned) {
-				if(touchingPlayer(living, this))
+				if(touchingPlayer(living, this) && HandlerObject.getInstance().player.isPlayerActive())
 				{
 					if (hasToolLvl(currentDifficulty, Tool.SWORD))
 						updatePuzzler(living, this);
