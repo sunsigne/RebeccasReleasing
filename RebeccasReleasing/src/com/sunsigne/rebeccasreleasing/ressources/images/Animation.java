@@ -34,7 +34,7 @@ public class Animation {
 			currentImg = ImageTask.drawMissingTexture();
 	}
 
-	public void runAnimation() {
+	protected void runAnimation() {
 		if (frames != 0) {
 			if (!flag) {
 				nextFrame();
@@ -60,11 +60,11 @@ public class Animation {
 			count = 0;
 	}
 
-	public void drawAnimation(Graphics g, int x, int y) {
+	protected void drawAnimation(Graphics g, int x, int y) {
 		g.drawImage(currentImg, x, y, Size.TILE, Size.TILE, null);
 	}
 
-	public void drawAnimation(Graphics g, int x, int y, int width, int height) {
+	protected void drawAnimation(Graphics g, int x, int y, int width, int height) {
 		g.drawImage(currentImg, x, y, width, height, null);
 	}
 

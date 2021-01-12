@@ -1,26 +1,28 @@
 package objects.world.destroyable;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
-import objects.AnimatedObject;
+import objects.FacingObject;
 import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
-import objects.world.storing.Looting;
 
-public abstract class DestroyableObject extends AnimatedObject implements ICollision {
+public abstract class DestroyableObject extends FacingObject implements ICollision, IAnimation {
 
+	protected Animation animation;
+	
 	protected DESTROYABLEID destroyableId;
 	protected boolean destroyed;
 	private boolean falling;
 
-	public DestroyableObject(int x, int y, boolean facingLeft, boolean horizontal, DESTROYABLEID destroyableId,
-			int animation) {
-		super(x, y, facingLeft, horizontal, OBJECTID.DESTROYABLE, animation);
+	public DestroyableObject(int x, int y, boolean facingLeft, boolean horizontal, DESTROYABLEID destroyableId) {
+		super(x, y, facingLeft, horizontal, OBJECTID.DESTROYABLE);
 		this.destroyableId = destroyableId;
 	}
 

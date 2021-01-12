@@ -6,8 +6,6 @@ public interface IFacing {
 
 	public void setFacing(FACING facing);
 
-	public boolean updatableFacing();
-
 	public default boolean isHorizontal() {
 		if (getFacing() == FACING.UP || getFacing() == FACING.DOWN)
 			return true;

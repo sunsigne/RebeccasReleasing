@@ -37,13 +37,7 @@ public class Couch extends GameObject implements ICollision, IFacing {
 
 	@Override
 	public void setFacing(FACING facing) {
-		if (updatableFacing())
 			this.facing = facing;
-	}
-
-	@Override
-	public boolean updatableFacing() {
-		return false;
 	}
 
 	@Override

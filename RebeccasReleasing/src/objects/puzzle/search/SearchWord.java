@@ -28,7 +28,7 @@ public class SearchWord extends PuzzleObject {
 	private String text;
 
 	public SearchWord(int wordnumber, int x, int y) {
-		super(x, y, OBJECTID.HEAD);
+		super(x, y, OBJECTID.P_WORD);
 
 		setExist(true);
 		setStable(true);
@@ -166,7 +166,7 @@ public class SearchWord extends PuzzleObject {
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.TAIL) {
+			if (tempObject.getId() == OBJECTID.P_WORDFOLDER) {
 				if (getBounds().intersects(tempObject.getBounds()))
 					setAboveFolder(true);
 				if (!getBounds().intersects(tempObject.getBounds()))

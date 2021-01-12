@@ -22,7 +22,7 @@ public class CardReversed extends CardObject {
 	private int startingX, startingY;
 
 	public CardReversed(int x, int y, CardType cardtype) {
-		super(x, y, OBJECTID.HEAD, cardtype);
+		super(x, y, OBJECTID.P_CARD, cardtype);
 
 		startingX = x;
 		startingY = y;
@@ -91,17 +91,17 @@ public class CardReversed extends CardObject {
 			g.setFont(font);
 
 			g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, w, h, null);
-			if (getCardtype() == CardType.attack) {
+			if (getCardtype() == CardType.ATTACK) {
 				g.setColor(Color.red);
 				g.drawImage(ImageBank.getImage(ImageBank.card_attack), x, y, w, h, null);
 				g.drawString("attack", x + 55, y + 45);
 			}
-			if (getCardtype() == CardType.critical) {
+			if (getCardtype() == CardType.CRITICAL) {
 				g.setColor(new Color(255, 255, 0)); // yellow
 				g.drawImage(ImageBank.getImage(ImageBank.card_critical), x, y, w, h, null);
 				g.drawString("critical", x + 40, y + 45);
 			}
-			if (getCardtype() == CardType.defense) {
+			if (getCardtype() == CardType.DEFENSE) {
 				g.setColor(new Color(0, 170, 0)); // green
 				g.drawImage(ImageBank.getImage(ImageBank.card_defense), x, y, w, h, null);
 				g.drawString("defense", x + 30, y + 45);
@@ -120,9 +120,9 @@ public class CardReversed extends CardObject {
 		
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.TAIL) {
+			if (tempObject.getId() == OBJECTID.P_CARDFOLDER) {
 				CardFolderReversed folder = (CardFolderReversed) tempObject;
-				if (folder.getCardtype() == CardType.reversed) {
+				if (folder.getCardtype() == CardType.REVERSED) {
 					if (getBounds().intersects(folder.getBounds()))
 						setAboveFolder(true);
 					else if (!getBounds().intersects(folder.getBounds()))
@@ -136,16 +136,16 @@ public class CardReversed extends CardObject {
 		setExist(true);
 		setDragged(true);
 
-		if (getCardtype() == CardType.attack)
+		if (getCardtype() == CardType.ATTACK)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_attack));
-		if (getCardtype() == CardType.defense)
+		if (getCardtype() == CardType.DEFENSE)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_defense));
-		if (getCardtype() == CardType.critical)
+		if (getCardtype() == CardType.CRITICAL)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.r_hit_critical));
 	}
 
 	public void resetPos() {
-		if (getCardtype() == CardType.critical) {
+		if (getCardtype() == CardType.CRITICAL) {
 			HandlerObject.getInstance().player.puzzle.setWinning(true);
 		}
 		setStable(true);

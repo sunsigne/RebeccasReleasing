@@ -9,16 +9,17 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 
-import objects.AnimatedObject;
+import objects.FacingObject;
 import objects.OBJECTID;
 import objects.characters.collision.CollisionDetector;
 
-public abstract class LivingObject extends AnimatedObject {
+public abstract class LivingObject extends FacingObject implements IAnimation {
 
 	public Puzzle puzzle;
 	public CollisionDetector collisionDetector;
@@ -29,8 +30,8 @@ public abstract class LivingObject extends AnimatedObject {
 	protected boolean isPushed;
 	protected int pushTime = 10;
 
-	public LivingObject(int x, int y, OBJECTID objectid, int animation) {
-		super(x, y, objectid, animation);
+	public LivingObject(int x, int y, OBJECTID objectid) {
+		super(x, y, objectid);
 
 		watching[Size.DIRECTION_DOWN] = true;
 		w = Size.TILE;

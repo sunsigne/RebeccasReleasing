@@ -1,7 +1,5 @@
 package objects.puzzle.bomb;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -9,30 +7,31 @@ import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 
-import objects.OBJECTID;
-
 public class Bomb extends BombObject {
 
 	public Bomb(int x, int y) {
-		super(x, y, OBJECTID.HEAD);
+		super(x, y);
 
 		count = 1 + new Random().nextInt(3);
 		totalcount = count;
-
-		animation = createAnimation();
 	}
 
-	private Animation createAnimation() {
-		Animation anim = new Animation(2, texture.bomb[1], texture.bomb[2], texture.bomb[3], texture.bomb[4],
-				texture.bomb[5], texture.bomb[6], texture.bomb[7], texture.bomb[8], texture.bomb[9], texture.bomb[9]);
-		return anim;
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+		if (animation == null)
+			animation = new Animation(2, texture.bomb[1], texture.bomb[2], texture.bomb[3], texture.bomb[4],
+					texture.bomb[5], texture.bomb[6], texture.bomb[7], texture.bomb[8], texture.bomb[9],
+					texture.bomb[9]);
+		return animation;
 	}
 
 	// state
 
 	public void removeCount() {
-		SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_little));
-		count = count - 1;
+		if (count > 0) {
+			SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_little));
+			count = count - 1;
+		}
 	}
 
 	@Override
@@ -44,7 +43,7 @@ public class Bomb extends BombObject {
 		}
 
 		if (isExploding()) {
-			animation.runAnimation();
+			runAnimation();
 			boomtime--;
 		}
 	}
@@ -52,13 +51,7 @@ public class Bomb extends BombObject {
 	@Override
 	public void render(Graphics g) {
 
-		int alpha = 160;
-		Font font = new Font("arial", 1, 120);
-		g.setFont(font);
-		if (count == totalcount)
-			g.setColor(new Color(250, 50, 50, alpha));
-		else
-			g.setColor(Color.yellow);
+		paintCount(g);
 
 		if (!isExploding()) {
 			g.drawImage(texture.bomb[0], x, y, w, h, null);
@@ -66,7 +59,7 @@ public class Bomb extends BombObject {
 
 		} else if (isExploding()) {
 			if (boomtime > 0)
-				animation.drawAnimation(g, x, y, w, h);
+				drawAnimation(g, x, y, w, h);
 			else
 				g.drawImage(texture.bomb[9], x, y, w, h, null);
 		}

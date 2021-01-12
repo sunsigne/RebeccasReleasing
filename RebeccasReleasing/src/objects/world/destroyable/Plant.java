@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 
@@ -12,12 +13,20 @@ public class Plant extends DestroyableObject {
 	private int falltime = 15;
 
 	public Plant(int x, int y, boolean facingLeft) {
-		super(x, y, facingLeft, false, DESTROYABLEID.PLANT, PLANT);
+		super(x, y, facingLeft, false, DESTROYABLEID.PLANT);
 
 		w = Size.TILE / 2;
 		h = Size.TILE / 2;
 	}
 
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+		if (animation == null)
+			animation = new Animation(2, texture.plant[0], texture.plant[1], texture.plant[2], texture.plant[3],
+				texture.plant[3]);
+		return animation;
+	}
+	
 	@Override
 	public int givePts() {
 		return 50;
@@ -37,7 +46,7 @@ public class Plant extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (isFalling() && isDestroyed()) {
-			getAnimation().runAnimation();
+			runAnimation();
 			;
 			falltime--;
 			if (falltime == 0)
@@ -59,7 +68,7 @@ public class Plant extends DestroyableObject {
 		if (!isDestroyed() || falltime >= 13)
 			g.drawImage(texture.plant[0], x, y, 4 * w, 2 * h, null);
 		else if (falltime > 0)
-			getAnimation().drawAnimation(g, x0, y, w0, 2 * h);
+			drawAnimation(g, x0, y, w0, 2 * h);
 		else
 			g.drawImage(texture.plant[3], x0, y, w0, 2 * h, null);
 

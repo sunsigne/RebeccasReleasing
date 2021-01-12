@@ -12,7 +12,7 @@ import objects.OBJECTID;
 public class CardFolder extends CardObject {
 
 	public CardFolder(int x, int y, CardType cardtype) {
-		super(x, y, OBJECTID.TAIL, cardtype);
+		super(x, y, OBJECTID.P_CARDFOLDER, cardtype);
 		setCardtype(cardtype);
 
 		w = Size.TILE_PUZZLE * 2;
@@ -26,9 +26,9 @@ public class CardFolder extends CardObject {
 	@Override
 	public void render(Graphics g) {
 
-		if (getCardtype() == CardType.defense)
+		if (getCardtype() == CardType.DEFENSE)
 			g.drawImage(ImageBank.getImage(ImageBank.card_folder_gamma), x - 30, y + 10, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 6, null);
-		if (getCardtype() == CardType.attack) {
+		if (getCardtype() == CardType.ATTACK) {
 			if (!HandlerObject.getInstance().player.puzzle.isDualFight())
 				g.drawImage(ImageBank.getImage(ImageBank.card_folder_soldier), x - 130, y + 10, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 6, null);
 			else {

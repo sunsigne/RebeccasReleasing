@@ -24,7 +24,7 @@ public class Card extends CardObject {
 	private int startingX, startingY;
 
 	public Card(int x, int y, CardType cardtype) {
-		super(x, y, OBJECTID.HEAD, cardtype);
+		super(x, y, OBJECTID.P_CARD, cardtype);
 
 		setExist(true);
 		startingX = x;
@@ -85,17 +85,17 @@ public class Card extends CardObject {
 		g.setFont(font);
 
 		g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, w, h, null);
-		if (getCardtype() == CardType.attack) {
+		if (getCardtype() == CardType.ATTACK) {
 			g.setColor(Color.red);
 			g.drawImage(ImageBank.getImage(ImageBank.card_attack), x, y, w, h, null);
 			g.drawString("attack", x + 55, y + 45);
 		}
-		if (getCardtype() == CardType.critical) {
+		if (getCardtype() == CardType.CRITICAL) {
 			g.setColor(new Color(255, 255, 0)); // yellow
 			g.drawImage(ImageBank.getImage(ImageBank.card_critical), x, y, w, h, null);
 			g.drawString("critical", x + 40, y + 45);
 		}
-		if (getCardtype() == CardType.defense) {
+		if (getCardtype() == CardType.DEFENSE) {
 			g.setColor(new Color(0, 170, 0)); // green
 			g.drawImage(ImageBank.getImage(ImageBank.card_defense), x, y, w, h, null);
 			g.drawString("defense", x + 30, y + 45);
@@ -115,13 +115,13 @@ public class Card extends CardObject {
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
 		for (GameObject tempObject : list) {
-			if (!flag && tempObject.getId() == OBJECTID.TAIL) {
+			if (!flag && tempObject.getId() == OBJECTID.P_CARDFOLDER) {
 				CardFolder folder = (CardFolder) tempObject;
 
 				if (getBounds().intersects(folder.getBounds())) {
-					if (folder.getCardtype() == getCardtype() || getCardtype() == CardType.critical)
+					if (folder.getCardtype() == getCardtype() || getCardtype() == CardType.CRITICAL)
 						setAboveRightFolder(true);
-					else if (folder.getCardtype() != getCardtype() && getCardtype() != CardType.critical)
+					else if (folder.getCardtype() != getCardtype() && getCardtype() != CardType.CRITICAL)
 						setAboveWrongFolder(true);
 					flag = true;
 				}
@@ -137,11 +137,11 @@ public class Card extends CardObject {
 	public void playCard() {
 		setExist(false);
 
-		if (getCardtype() == CardType.attack)
+		if (getCardtype() == CardType.ATTACK)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_attack));
-		if (getCardtype() == CardType.defense)
+		if (getCardtype() == CardType.DEFENSE)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_defense));
-		if (getCardtype() == CardType.critical) {
+		if (getCardtype() == CardType.CRITICAL) {
 			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
 			{
 			HandlerObject.getInstance().player.puzzle.setWinning(true);

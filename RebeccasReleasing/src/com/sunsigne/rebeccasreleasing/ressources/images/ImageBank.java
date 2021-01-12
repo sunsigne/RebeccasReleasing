@@ -6,8 +6,20 @@ import java.util.Map;
 
 public class ImageBank {
 
-	private static Map<ImageBank, BufferedImage>images = new HashMap<>();
-	
+	private static Map<ImageBank, BufferedImage> images = new HashMap<>();
+
+	// imageBank doesn't need to be more than new ImageBank()
+	// bufferedImage is the path of the image
+	public static void addImage(ImageBank imageBank, BufferedImage bufferedImage) {
+
+		if (bufferedImage != null)
+			images.put(imageBank, bufferedImage);
+	}
+
+	public static BufferedImage getImage(ImageBank imageBank) {
+		return images.get(imageBank);
+	}
+
 	// title
 	public static final ImageBank title_1 = new ImageBank();
 	public static final ImageBank title_2 = new ImageBank();
@@ -65,11 +77,8 @@ public class ImageBank {
 	// other
 	public static final ImageBank search_folder = new ImageBank();
 
+	public static void loadRessources() {
 
-	public void loadRessources() {
-
-		
-		
 		// title
 		addImage(title_1, ImageTask.loadImage("title_screen\\title_1.png"));
 		addImage(title_2, ImageTask.loadImage("title_screen\\title_2.png"));
@@ -127,20 +136,5 @@ public class ImageBank {
 		addImage(search_folder, ImageTask.loadImage("search_folder.png"));
 
 	}
-	
-	// imageBank doesn't need to be more than new ImageBank()
-	// bufferedImage is the path of the image
-	public void addImage(ImageBank imageBank, BufferedImage bufferedImage) {
-
-		if (bufferedImage != null)
-			images.put(imageBank, bufferedImage);
-	}
-	
-	public static BufferedImage getImage(ImageBank imageBank)
-	{
-		return images.get(imageBank);
-	}
-		
-	
 
 }

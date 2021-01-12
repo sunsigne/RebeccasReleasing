@@ -7,8 +7,20 @@ import com.sunsigne.rebeccasreleasing.Todo;
 
 public class SoundBank {
 
-	private static Map<SoundBank, BufferedSound>sounds = new HashMap<>();
-		
+	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
+
+	// soundBank doesn't need to be more than new SoundBank()
+	// bufferedSound is the path of the sound
+	public static void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
+
+		if (bufferedSound != null)
+			sounds.put(soundBank, bufferedSound);
+	}
+
+	public static BufferedSound getSound(SoundBank soundBank) {
+		return sounds.get(soundBank);
+	}
+
 	public static final SoundBank error = new SoundBank();
 
 	// music
@@ -16,9 +28,9 @@ public class SoundBank {
 	public static final SoundBank soundtrack_2 = new SoundBank();
 	public static final SoundBank soundtrack_3 = new SoundBank();
 
-	//other
+	// other
 	public static final SoundBank popup = new SoundBank();
-	
+
 	// talking
 	public static final SoundBank talking_rebecca = new SoundBank();
 	public static final SoundBank talking_sarah = new SoundBank();
@@ -70,7 +82,7 @@ public class SoundBank {
 	public static final SoundBank r_push = new SoundBank();
 
 	@Todo("les bruits d'attaques et de defense ne conviennent pas bien")
-	public void loadRessources() {
+	public static void loadRessources() {
 
 		addSound(error, new BufferedSound("error.wav"));
 
@@ -81,7 +93,7 @@ public class SoundBank {
 
 		// other
 		addSound(popup, new BufferedSound("sound\\other\\popup.wav"));
-		
+
 		// talking
 		addSound(talking_rebecca, new BufferedSound("sound\\other\\talking\\rebecca.wav"));
 		addSound(talking_sarah, new BufferedSound("sound\\other\\talking\\sarah.wav"));
@@ -132,21 +144,5 @@ public class SoundBank {
 		addSound(r_poterie, new BufferedSound("sound\\reversed\\world\\poterie.wav"));
 		addSound(r_push, new BufferedSound("sound\\reversed\\world\\push.wav"));
 	}
-	
-	
-
-	// soundBank doesn't need to be more than new SoundBank()
-	// bufferedSound is the path of the sound
-	public void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
-
-		if (bufferedSound != null)
-			sounds.put(soundBank, bufferedSound);
-	}
-	
-	public static BufferedSound getSound(SoundBank soundBank)
-	{
-		return sounds.get(soundBank);
-	}
-		
 
 }

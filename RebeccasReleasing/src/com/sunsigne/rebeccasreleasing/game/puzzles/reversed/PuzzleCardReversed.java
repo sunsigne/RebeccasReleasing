@@ -40,11 +40,11 @@ public class PuzzleCardReversed extends Puzzle {
 	@Override
 	public void randomGeneration() {
 
-		CardType type0 = CardType.attack;
-		CardType type1 = CardType.attack;
-		CardType type2 = CardType.attack;
-		CardType type3 = CardType.attack;
-		CardType type4 = CardType.attack;
+		CardType type0 = CardType.ATTACK;
+		CardType type1 = CardType.ATTACK;
+		CardType type2 = CardType.ATTACK;
+		CardType type3 = CardType.ATTACK;
+		CardType type4 = CardType.ATTACK;
 
 		double r0 = Math.random();
 		double r1 = Math.random();
@@ -55,26 +55,26 @@ public class PuzzleCardReversed extends Puzzle {
 		float chance = 0.4f;
 		float critchance = 0.98f;
 		if (r0 <= chance)
-			type0 = CardType.defense;
+			type0 = CardType.DEFENSE;
 		if (r1 <= chance)
-			type1 = CardType.defense;
+			type1 = CardType.DEFENSE;
 		if (r2 <= chance)
-			type2 = CardType.defense;
+			type2 = CardType.DEFENSE;
 		if (r3 <= chance)
-			type3 = CardType.defense;
+			type3 = CardType.DEFENSE;
 		if (r4 <= chance)
-			type4 = CardType.defense;
+			type4 = CardType.DEFENSE;
 
 		if (r0 >= critchance)
-			type0 = CardType.critical;
+			type0 = CardType.CRITICAL;
 		if (r1 >= critchance)
-			type1 = CardType.critical;
+			type1 = CardType.CRITICAL;
 		if (r2 >= critchance)
-			type2 = CardType.critical;
+			type2 = CardType.CRITICAL;
 		if (r3 >= critchance)
-			type3 = CardType.critical;
+			type3 = CardType.CRITICAL;
 		if (r4 >= critchance)
-			type4 = CardType.critical;
+			type4 = CardType.CRITICAL;
 
 		card[4] = new CardReversed(1120, 850, type4);
 		card[2] = new CardReversed(970, 850, type2);
@@ -92,12 +92,12 @@ public class PuzzleCardReversed extends Puzzle {
 		
 		if (isDualFight) {
 			if (surecrit)
-				card[3].setCardtype(CardType.critical);
+				card[3].setCardtype(CardType.CRITICAL);
 			card[4].setDual(false);
 			card[3].setDual(false);
 		} else {
 			if (surecrit)
-				card[0].setCardtype(CardType.critical);
+				card[0].setCardtype(CardType.CRITICAL);
 			card[4].setStable(true);
 			card[3].setStable(true);
 		}
@@ -105,9 +105,9 @@ public class PuzzleCardReversed extends Puzzle {
 
 	@Override
 	public void createPuzzle() {
-		folderattack = new CardFolderReversed(1300, 150, CardType.attack);
-		folderdefense = new CardFolderReversed(215, 150, CardType.defense);
-		folderreversed = new CardFolderReversed(520, 850, CardType.reversed);
+		folderattack = new CardFolderReversed(1300, 150, CardType.ATTACK);
+		folderdefense = new CardFolderReversed(215, 150, CardType.DEFENSE);
+		folderreversed = new CardFolderReversed(520, 850, CardType.REVERSED);
 
 		HandlerObject.getInstance().addObject(folderattack);
 		HandlerObject.getInstance().addObject(folderdefense);
@@ -128,7 +128,7 @@ public class PuzzleCardReversed extends Puzzle {
 		if (GameMouseListener.mouseOver(mx, my, folderattack.getX(), folderattack.getY(), Size.TILE_PUZZLE * 2,
 				Size.TILE_PUZZLE * 4)) {
 			for (int i = 4; i >= 0; i--) {
-				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.defense) {
+				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.DEFENSE) {
 					card[i].playCard();
 					return;
 				}
@@ -137,7 +137,7 @@ public class PuzzleCardReversed extends Puzzle {
 		if (GameMouseListener.mouseOver(mx, my, folderdefense.getX(), folderdefense.getY(), Size.TILE_PUZZLE * 2,
 				Size.TILE_PUZZLE * 4)) {
 			for (int i = 4; i >= 0; i--) {
-				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.attack) {
+				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.ATTACK) {
 					card[i].playCard();
 					return;
 				}

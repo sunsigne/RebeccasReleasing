@@ -22,7 +22,7 @@ public class Key extends PuzzleObject {
 	private int speed = 8;
 
 	public Key(int x, int y) {
-		super(x, y, OBJECTID.HEAD);
+		super(x, y, OBJECTID.P_KEY);
 
 		w = Size.TILE_PUZZLE;
 		h = Size.TILE_PUZZLE;
@@ -78,7 +78,7 @@ public class Key extends PuzzleObject {
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.TAIL && getBounds().intersects(tempObject.getBounds())) {
+			if (tempObject.getId() == OBJECTID.P_LOCK && getBounds().intersects(tempObject.getBounds())) {
 				HandlerObject.getInstance().player.puzzle.setWinning(true);
 				HandlerObject.getInstance().player.puzzle.close();
 			}

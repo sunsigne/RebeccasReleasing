@@ -39,11 +39,11 @@ public class PuzzleCard extends Puzzle {
 	@Override
 	public void randomGeneration() {
 
-		CardType type0 = CardType.attack;
-		CardType type1 = CardType.attack;
-		CardType type2 = CardType.attack;
-		CardType type3 = CardType.attack;
-		CardType type4 = CardType.attack;
+		CardType type0 = CardType.ATTACK;
+		CardType type1 = CardType.ATTACK;
+		CardType type2 = CardType.ATTACK;
+		CardType type3 = CardType.ATTACK;
+		CardType type4 = CardType.ATTACK;
 
 		double r0 = Math.random();
 		double r1 = Math.random();
@@ -54,27 +54,27 @@ public class PuzzleCard extends Puzzle {
 		float chance = 0.4f;
 		float critchance = 0.98f;
 		if (r0 <= chance)
-			type0 = CardType.defense;
+			type0 = CardType.DEFENSE;
 		if (r1 <= chance)
-			type1 = CardType.defense;
+			type1 = CardType.DEFENSE;
 		if (r2 <= chance)
-			type2 = CardType.defense;
+			type2 = CardType.DEFENSE;
 		if (r3 <= chance)
-			type3 = CardType.defense;
+			type3 = CardType.DEFENSE;
 		if (r4 <= chance)
-			type4 = CardType.defense;
+			type4 = CardType.DEFENSE;
 
 		if (World.levelnum != 1) {
 			if (r0 >= critchance)
-				type0 = CardType.critical;
+				type0 = CardType.CRITICAL;
 			if (r1 >= critchance)
-				type1 = CardType.critical;
+				type1 = CardType.CRITICAL;
 			if (r2 >= critchance)
-				type2 = CardType.critical;
+				type2 = CardType.CRITICAL;
 			if (r3 >= critchance)
-				type3 = CardType.critical;
+				type3 = CardType.CRITICAL;
 			if (r4 >= critchance)
-				type4 = CardType.critical;
+				type4 = CardType.CRITICAL;
 		}
 
 		card[4] = new Card(1120, 850, type4);
@@ -89,10 +89,10 @@ public class PuzzleCard extends Puzzle {
 
 		if (isDualFight) {
 			if (World.gui.getCharacteristics().isSureCrit())
-				card[3].setCardtype(CardType.critical);
+				card[3].setCardtype(CardType.CRITICAL);
 		} else {
 			if (World.gui.getCharacteristics().isSureCrit())
-				card[0].setCardtype(CardType.critical);
+				card[0].setCardtype(CardType.CRITICAL);
 			card[4].setExist(false);
 			card[3].setExist(false);
 		}
@@ -101,8 +101,8 @@ public class PuzzleCard extends Puzzle {
 
 	@Override
 	public void createPuzzle() {
-		HandlerObject.getInstance().addObject(new CardFolder(1300, 150, CardType.attack));
-		HandlerObject.getInstance().addObject(new CardFolder(215, 150, CardType.defense));
+		HandlerObject.getInstance().addObject(new CardFolder(1300, 150, CardType.ATTACK));
+		HandlerObject.getInstance().addObject(new CardFolder(215, 150, CardType.DEFENSE));
 
 		if (isDualFight)
 			HandlerObject.getInstance().addObject(card[4]);

@@ -5,27 +5,37 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
-import objects.AnimatedObject;
+import objects.FacingObject;
 import objects.GameObject;
 import objects.OBJECTID;
 
-public class Virus extends AnimatedObject {
+public class Virus extends FacingObject implements IAnimation {
 
+	private Animation animation;
 	private boolean clicking;
 
 	int xmin = Size.X0 + Size.TILE_PUZZLE, xmax = 104 + 12 * Size.TILE_PUZZLE;
 	int ymin = Size.Y0 + Size.TILE_PUZZLE, ymax = 32 + 13 * Size.TILE_PUZZLE / 2;
 
 	public Virus() {
-		super(0, 0, OBJECTID.HEAD, VIRUS);
+		super(0, 0, OBJECTID.P_VIRUS);
 
 		w = Size.TILE_PUZZLE / 2;
 		h = Size.TILE_PUZZLE / 2;
+	}
+	
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+		if (animation == null)
+			animation = new Animation(15, texture.virus[0], texture.virus[1]);
+		return animation;
 	}
 
 	@Override
@@ -45,7 +55,7 @@ public class Virus extends AnimatedObject {
 
 	@Override
 	public void tick() {
-		getAnimation().runAnimation();
+		runAnimation();
 
 		GameMouseListener mouse = GameMouseListener.getInstance();
 
@@ -67,7 +77,7 @@ public class Virus extends AnimatedObject {
 	@Override
 	public void render(Graphics g) {
 
-		getAnimation().drawAnimation(g, x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE);
+		drawAnimation(g, x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE);
 		drawHitbox(g);
 	}
 

@@ -17,7 +17,7 @@ public class Lock extends PuzzleObject {
 	int ymax = 32 + 6 * Size.TILE_PUZZLE;
 
 	public Lock(int x, int y) {
-		super(x, y, OBJECTID.TAIL);
+		super(x, y, OBJECTID.P_LOCK);
 
 		w = Size.TILE_PUZZLE;
 		h = Size.TILE_PUZZLE;

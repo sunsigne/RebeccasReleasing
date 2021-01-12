@@ -12,7 +12,7 @@ import objects.OBJECTID;
 public class CardFolderReversed extends CardObject {
 
 	public CardFolderReversed(int x, int y, CardType cardtype) {
-		super(x, y, OBJECTID.TAIL, cardtype);
+		super(x, y, OBJECTID.P_CARDFOLDER, cardtype);
 
 		w = Size.TILE_PUZZLE * 2;
 		h = Size.TILE_PUZZLE * 4;
@@ -25,9 +25,9 @@ public class CardFolderReversed extends CardObject {
 	@Override
 	public void render(Graphics g) {
 
-		if (getCardtype() == CardType.defense)
+		if (getCardtype() == CardType.DEFENSE)
 			g.drawImage(ImageBank.getImage(ImageBank.card_folder_gamma), x - 30, y + 10, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 6, null);
-		if (getCardtype() == CardType.attack) {
+		if (getCardtype() == CardType.ATTACK) {
 			if (!HandlerObject.getInstance().player.puzzle.isDualFight())
 				g.drawImage(ImageBank.getImage(ImageBank.card_folder_soldier), x - 130, y + 10, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 6, null);
 			if (HandlerObject.getInstance().player.puzzle.isDualFight()) {
@@ -40,7 +40,7 @@ public class CardFolderReversed extends CardObject {
 	
 	@Override
 	public Rectangle getBounds() {
-		if (getCardtype() == CardType.reversed)
+		if (getCardtype() == CardType.REVERSED)
 			return new Rectangle(x, y, Size.TILE_PUZZLE * 6, Size.TILE_PUZZLE * 3);
 		else
 			return new Rectangle(x + w / 4, y + h / 4, w, h);

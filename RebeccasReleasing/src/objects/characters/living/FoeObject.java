@@ -10,6 +10,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -26,6 +27,7 @@ import objects.world.storing.Looting;
 
 public class FoeObject extends LivingObject implements Looting, IPuzzler {
 
+	private Animation[][] animation = new Animation[DIFFICULTY.MAX + 1][4];
 	public static final int foespeed = 4 * Size.TILE / 64;
 	public static final int foesight = 400 * Size.TILE / 64;
 
@@ -44,7 +46,7 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 	}
 
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.FOE, FOE);
+		super(x, y, OBJECTID.FOE);
 
 		this.difficulty = difficulty;
 		this.currentDifficulty = difficulty;
@@ -52,7 +54,28 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 		collisionDetector = new CollisionDetector(false, this);
 	}
 
-	// state
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+
+		if (animation[array][secondarray] == null) {
+			if (secondarray == Size.DIRECTION_UP)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][0], texture.foe_walking[array][1],
+						texture.foe_walking[array][2], texture.foe_walking[array][1]);
+			else if (secondarray == Size.DIRECTION_DOWN)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][3], texture.foe_walking[array][4],
+						texture.foe_walking[array][5], texture.foe_walking[array][4]);
+			else if (secondarray == Size.DIRECTION_LEFT)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][6], texture.foe_walking[array][7],
+						texture.foe_walking[array][8], texture.foe_walking[array][7]);
+			else if (secondarray == Size.DIRECTION_RIGHT)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][9], texture.foe_walking[array][10],
+						texture.foe_walking[array][11], texture.foe_walking[array][10]);
+			else
+				animation[array][secondarray] = new Animation(1);
+		}
+		return animation[array][secondarray];
+	}
+
 
 	@Override
 	public boolean isSolved() {
@@ -121,11 +144,11 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 	}
 
 	private void runAnimations() {
-		for (int i = 1; i < 6; i++) {
-			getAnimation(i, Size.DIRECTION_UP).runAnimation();
-			getAnimation(i, Size.DIRECTION_DOWN).runAnimation();
-			getAnimation(i, Size.DIRECTION_LEFT).runAnimation();
-			getAnimation(i, Size.DIRECTION_RIGHT).runAnimation();
+		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
+			runAnimation(i, Size.DIRECTION_UP);
+			runAnimation(i, Size.DIRECTION_DOWN);
+			runAnimation(i, Size.DIRECTION_LEFT);
+			runAnimation(i, Size.DIRECTION_RIGHT);
 		}
 	}
 
@@ -140,7 +163,7 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 
 		int difficulty = this.currentDifficulty.getNum();
 
-		if (isMotionless()) {
+		if (isMotionless() || !isPlayerActive()) {
 			if (watching[Size.DIRECTION_UP])
 				g.drawImage(texture.foe_walking[difficulty][1], x, y, w, h, null);
 			if (watching[Size.DIRECTION_DOWN])
@@ -153,13 +176,13 @@ public class FoeObject extends LivingObject implements Looting, IPuzzler {
 
 		else {
 			if (watching[Size.DIRECTION_UP])
-				getAnimation(difficulty, Size.DIRECTION_UP).drawAnimation(g, x, y, w, h);
+				drawAnimation(difficulty, Size.DIRECTION_UP, g, x, y, w, h);
 			if (watching[Size.DIRECTION_DOWN])
-				getAnimation(difficulty, Size.DIRECTION_DOWN).drawAnimation(g, x, y, w, h);
+				drawAnimation(difficulty, Size.DIRECTION_DOWN, g, x, y, w, h);
 			if (watching[Size.DIRECTION_LEFT])
-				getAnimation(difficulty, Size.DIRECTION_LEFT).drawAnimation(g, x, y, w, h);
+				drawAnimation(difficulty, Size.DIRECTION_LEFT, g, x, y, w, h);
 			if (watching[Size.DIRECTION_RIGHT])
-				getAnimation(difficulty, Size.DIRECTION_RIGHT).drawAnimation(g, x, y, w, h);
+				drawAnimation(difficulty, Size.DIRECTION_RIGHT, g, x, y, w, h);
 		}
 
 	}

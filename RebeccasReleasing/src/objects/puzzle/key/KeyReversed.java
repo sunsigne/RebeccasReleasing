@@ -18,7 +18,7 @@ public class KeyReversed extends PuzzleObject {
 	private int speed = 8;
 
 	public KeyReversed(int x, int y) {
-		super(x, y, OBJECTID.HEAD);
+		super(x, y, OBJECTID.P_KEY);
 
 		velX = 53;
 		w = Size.TILE_PUZZLE;
