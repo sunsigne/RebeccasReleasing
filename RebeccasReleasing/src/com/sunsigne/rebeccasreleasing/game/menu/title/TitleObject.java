@@ -48,10 +48,10 @@ public class TitleObject extends MenuObject {
 
 	private void drawFoe(Graphics2D g2d) {
 		g2d.rotate(Math.toRadians(-rotation), 150, 965);
-		g2d.drawImage(ImageBank.foe, -50 - gap / 4, 270, 1050, 900, null);
+		g2d.drawImage(ImageBank.getImage(ImageBank.foe), -50 - gap / 4, 270, 1050, 900, null);
 		g2d.rotate(Math.toRadians(-10), 150, 965);
 		g2d.rotate(Math.toRadians(-rotation), 150, 965);
-		g2d.drawImage(ImageBank.hat, 325 - gap / 16, 300 - gap / 32, 230, 220, null);
+		g2d.drawImage(ImageBank.getImage(ImageBank.hat), 325 - gap / 16, 300 - gap / 32, 230, 220, null);
 		g2d.rotate(Math.toRadians(rotation), 150, 965);
 		g2d.rotate(Math.toRadians(10), 150, 965);
 		g2d.rotate(Math.toRadians(rotation), 150, 965);
@@ -59,35 +59,35 @@ public class TitleObject extends MenuObject {
 
 	private void drawPlayer(Graphics2D g2d) {
 		g2d.rotate(Math.toRadians(rotation), 1555, 745);
-		g2d.drawImage(ImageBank.chest, 1070 - gap / 4, 330 - gap / 8, 880 + gap / 2, 730 + gap / 4, null);
+		g2d.drawImage(ImageBank.getImage(ImageBank.chest), 1070 - gap / 4, 330 - gap / 8, 880 + gap / 2, 730 + gap / 4, null);
 		g2d.rotate(Math.toRadians(-2 * rotation), 1555, 745);
-		g2d.drawImage(ImageBank.arms, 1070 + gap / 4 - gap / 4, 330 - gap / 4 - gap / 8, 880 + gap / 2,
+		g2d.drawImage(ImageBank.getImage(ImageBank.arms), 1070 + gap / 4 - gap / 4, 330 - gap / 4 - gap / 8, 880 + gap / 2,
 				730 + gap / 4, null);
 		g2d.rotate(Math.toRadians(rotation), 1555, 745);
 		g2d.rotate(Math.toRadians(-rotation), 1425, 540);
-		g2d.drawImage(ImageBank.head, 1070 + gap / 8 - gap / 8, 330 - gap / 16, 860 + gap / 4,
+		g2d.drawImage(ImageBank.getImage(ImageBank.head), 1070 + gap / 8 - gap / 8, 330 - gap / 16, 860 + gap / 4,
 				710 + gap / 8, null);
 		g2d.rotate(Math.toRadians(rotation), 1425, 540);
 	}
 
 	private void drawTitle(Graphics g) {
-		g.drawImage(ImageBank.title_1, 300, 00 + gap / 12, 1350, 250, null);
-		g.drawImage(ImageBank.title_2, 470, 235 + gap / 12, 1000, 180, null);
+		g.drawImage(ImageBank.getImage(ImageBank.title_1), 300, 00 + gap / 12, 1350, 250, null);
+		g.drawImage(ImageBank.getImage(ImageBank.title_2), 470, 235 + gap / 12, 1000, 180, null);
 	}
 
 	private void drawButtons(Graphics g) {
 		switch (Options.getLanguage()) {
 		case FRENCH:
-			g.drawImage(ImageBank.jouer, 800, 580, 320, 70, null);
-			g.drawImage(ImageBank.options, 730, 750, 460, 70, null);
-			g.drawImage(ImageBank.quitter, 730, 920 + 10, 460, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.jouer), 800, 580, 320, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.options), 730, 750, 460, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.quitter), 730, 920 + 10, 460, 70, null);
 			break;
 
 		case ENGLISH:
 		default:
-			g.drawImage(ImageBank.play, 835, 580, 250, 70, null);
-			g.drawImage(ImageBank.options, 730, 750, 460, 70, null);
-			g.drawImage(ImageBank.quit, 835, 920 + 10, 250, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.play), 835, 580, 250, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.options), 730, 750, 460, 70, null);
+			g.drawImage(ImageBank.getImage(ImageBank.quit), 835, 920 + 10, 250, 70, null);
 			break;
 
 		}

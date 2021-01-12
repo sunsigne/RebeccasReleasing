@@ -48,8 +48,8 @@ public class Loot extends GameObject implements ICollision {
 	public void render(Graphics g) {
 
 		if (lootId == LOOTID.CRITCARD) {
-			g.drawImage(ImageBank.card_frame, x, y, Size.TILE * 2 / 3, Size.TILE, null);
-			g.drawImage(ImageBank.card_critical, x, y, Size.TILE * 2 / 3, Size.TILE, null);
+			g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, Size.TILE * 2 / 3, Size.TILE, null);
+			g.drawImage(ImageBank.getImage(ImageBank.card_critical), x, y, Size.TILE * 2 / 3, Size.TILE, null);
 		}
 		if(lootId == LOOTID.KEY)
 			g.drawImage(texture.item[0], x, y, w, h, null);

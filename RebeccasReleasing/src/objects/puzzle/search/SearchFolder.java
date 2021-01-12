@@ -27,7 +27,7 @@ public class SearchFolder extends PuzzleObject {
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(ImageBank.search_folder, x, y, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 4, null);
+		g.drawImage(ImageBank.getImage(ImageBank.search_folder), x, y, Size.TILE_PUZZLE * 4, Size.TILE_PUZZLE * 4, null);
 		drawHitbox(g);
 	}	
 

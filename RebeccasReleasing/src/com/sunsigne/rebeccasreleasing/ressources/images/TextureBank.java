@@ -45,22 +45,22 @@ public class TextureBank {
 
 	public void loadRessources() {
 
-		rebecca_sheet = new SpriteSheet(ImageBank.rebecca_walking);
-		foe_sheet = new SpriteSheet(ImageBank.foe_walking);
+		rebecca_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.rebecca_walking));
+		foe_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.foe_walking));
 
-		desk_sheet = new SpriteSheet(ImageBank.desk_sheet);
-		door_sheet = new SpriteSheet(ImageBank.door_sheet);
-		couch_sheet = new SpriteSheet(ImageBank.couch_sheet);
-		battery_sheet = new SpriteSheet(ImageBank.battery_sheet);
+		desk_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.desk_sheet));
+		door_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.door_sheet));
+		couch_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.couch_sheet));
+		battery_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.battery_sheet));
 
-		bomb_sheet = new SpriteSheet(ImageBank.bomb_sheet);
-		item_sheet = new SpriteSheet(ImageBank.item_sheet);
-		tool_sheet = new SpriteSheet(ImageBank.tool_sheet);
+		bomb_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.bomb_sheet));
+		item_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.item_sheet));
+		tool_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.tool_sheet));
 
-		virus_sheet = new SpriteSheet(ImageBank.virus_sheet);
-		hack_sheet = new SpriteSheet(ImageBank.hack_sheet);
+		virus_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.virus_sheet));
+		hack_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.hack_sheet));
 		
-		wallcracked_sheet = new SpriteSheet(ImageBank.wallcracked_sheet);
+		wallcracked_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.wallcracked_sheet));
 
 		getTextures();
 	}

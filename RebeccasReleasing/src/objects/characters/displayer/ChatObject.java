@@ -147,7 +147,7 @@ public class ChatObject extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(ImageBank.chatbox, 0, 0, Size.WIDHT, Size.HEIGHT, null);
+		g.drawImage(ImageBank.getImage(ImageBank.chatbox), 0, 0, Size.WIDHT, Size.HEIGHT, null);
 
 		BufferedImage img = null;
 		img = paintingChara(chara);
@@ -162,10 +162,10 @@ public class ChatObject extends GameObject {
 
 		switch (chara) {
 		case Rebecca:
-			img = ImageBank.rebecca;
+			img = ImageBank.getImage(ImageBank.rebecca);
 			break;
 		case Sarah:
-			img = ImageBank.sarah;
+			img = ImageBank.getImage(ImageBank.sarah);
 			break;
 		default:
 			img = ImageTask.drawMissingTexture();

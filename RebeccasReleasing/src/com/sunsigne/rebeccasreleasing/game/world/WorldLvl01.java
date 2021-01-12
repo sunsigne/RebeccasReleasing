@@ -15,12 +15,12 @@ public class WorldLvl01 implements ILvl {
 
 	@Override
 	public BufferedImage getCutoutLvlImage() {
-		return ImageBank.lvl01_cutout;
+		return ImageBank.getImage(ImageBank.lvl01_cutout);
 	}
 
 	@Override
 	public BufferedImage getLvlImage() {
-		return ImageBank.lvl01;
+		return ImageBank.getImage(ImageBank.lvl01);
 	}
 
 	@Override

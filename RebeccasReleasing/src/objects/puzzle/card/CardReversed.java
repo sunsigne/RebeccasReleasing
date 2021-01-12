@@ -90,20 +90,20 @@ public class CardReversed extends CardObject {
 			Font font = new Font("arial", 1, 50);
 			g.setFont(font);
 
-			g.drawImage(ImageBank.card_frame, x, y, w, h, null);
+			g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, w, h, null);
 			if (getCardtype() == CardType.attack) {
 				g.setColor(Color.red);
-				g.drawImage(ImageBank.card_attack, x, y, w, h, null);
+				g.drawImage(ImageBank.getImage(ImageBank.card_attack), x, y, w, h, null);
 				g.drawString("attack", x + 55, y + 45);
 			}
 			if (getCardtype() == CardType.critical) {
 				g.setColor(new Color(255, 255, 0)); // yellow
-				g.drawImage(ImageBank.card_critical, x, y, w, h, null);
+				g.drawImage(ImageBank.getImage(ImageBank.card_critical), x, y, w, h, null);
 				g.drawString("critical", x + 40, y + 45);
 			}
 			if (getCardtype() == CardType.defense) {
 				g.setColor(new Color(0, 170, 0)); // green
-				g.drawImage(ImageBank.card_defense, x, y, w, h, null);
+				g.drawImage(ImageBank.getImage(ImageBank.card_defense), x, y, w, h, null);
 				g.drawString("defense", x + 30, y + 45);
 			}
 
