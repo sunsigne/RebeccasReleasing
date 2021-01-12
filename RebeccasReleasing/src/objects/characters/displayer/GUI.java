@@ -125,8 +125,6 @@ public class GUI extends GameObject {
 
 	@Override
 	public void tick() {
-
-		System.out.println(hp);
 		
 		if (hp <= 0)
 			killPlayer();
