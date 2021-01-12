@@ -17,7 +17,7 @@ public class Flag extends GameObject implements ICollision {
 	private boolean reached;
 
 	public Flag(int x, int y) {
-		super(x, y, OBJECTID.FLAG, true);
+		super(true, x, y, OBJECTID.FLAG);
 
 	}
 

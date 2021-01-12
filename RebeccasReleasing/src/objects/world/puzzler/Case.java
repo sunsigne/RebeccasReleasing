@@ -26,7 +26,7 @@ public class Case extends GameObject implements IPuzzler {
 	}
 
 	public Case(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.CASE, true);
+		super(true, x, y, OBJECTID.CASE);
 
 		this.difficulty = difficulty;
 

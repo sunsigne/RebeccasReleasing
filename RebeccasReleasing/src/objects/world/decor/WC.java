@@ -13,7 +13,7 @@ import objects.characters.living.LivingObject;
 public class WC extends GameObject implements ICollision  {
 
 	public WC(int x, int y) {
-		super(x, y, OBJECTID.DECOR, true);
+		super(true, x, y, OBJECTID.DECOR);
 
 	}
 

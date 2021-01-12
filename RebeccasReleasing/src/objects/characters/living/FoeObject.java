@@ -23,9 +23,9 @@ import objects.characters.displayer.Tool;
 import objects.world.puzzler.IPuzzler;
 import objects.world.storing.LOOTID;
 import objects.world.storing.Loot;
-import objects.world.storing.Looting;
+import objects.world.storing.ILoot;
 
-public class FoeObject extends LivingObject implements Looting, IPuzzler {
+public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 
 	private Animation[][] animation = new Animation[DIFFICULTY.MAX + 1][4];
 	public static final int foespeed = 4 * Size.TILE / 64;

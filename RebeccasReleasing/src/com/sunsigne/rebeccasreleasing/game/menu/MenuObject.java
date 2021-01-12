@@ -9,7 +9,7 @@ import objects.OBJECTID;
 public abstract class MenuObject extends GameObject {
 
 	public MenuObject() {
-		super(0, 0, OBJECTID.MENU, false);
+		super(false, 0, 0, OBJECTID.MENU);
 	}
 
 	@Override

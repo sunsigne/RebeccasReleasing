@@ -16,10 +16,8 @@ public class Desk extends DestroyableObject {
 	private double random = Math.random();
 	private int falltime = 20;
 
-	public Desk(int x, int y, boolean horizontal) {
-		super(x, y, false, horizontal, DESTROYABLEID.DESK);
-
-		setUpdatableFacing(true);
+	public Desk(int x, int y, FACING facing) {
+		super(x, y, facing);
 
 		w = 2 * Size.TILE;
 		h = 2 * Size.TILE;
@@ -28,24 +26,29 @@ public class Desk extends DestroyableObject {
 	@Override
 	public Animation getAnimation(int array, int secondarray) {
 		if (animation == null)
-			if (random <= 0.5 & horizontal)
+			if (random <= 0.5 & isHorizontal())
 				animation = new Animation(2, texture.desk[0], texture.desk[1], texture.desk[2], texture.desk[3],
 						texture.desk[4], texture.desk[5], texture.desk[5]);
-			else if (random > 0.5 & horizontal)
+			else if (random > 0.5 & isHorizontal())
 				animation = new Animation(2, texture.desk[6], texture.desk[7], texture.desk[8], texture.desk[9],
 						texture.desk[10], texture.desk[11], texture.desk[11]);
-			else if (random <= 0.5 & !horizontal)
+			else if (random <= 0.5 & !isHorizontal())
 				animation = new Animation(2, texture.desk[12], texture.desk[13], texture.desk[14], texture.desk[15],
 						texture.desk[16], texture.desk[17], texture.desk[17]);
-			else if (random > 0.5 & !horizontal)
+			else if (random > 0.5 & !isHorizontal())
 				animation = new Animation(2, texture.desk[18], texture.desk[19], texture.desk[20], texture.desk[21],
 						texture.desk[22], texture.desk[23], texture.desk[23]);
 		return animation;
 	}
 
 	@Override
+	protected boolean updatableFacing() {
+		return true;
+	}
+
+	@Override
 	public int givePts() {
-		return 100;
+		return 2;
 	}
 
 	@Override
@@ -60,11 +63,9 @@ public class Desk extends DestroyableObject {
 
 	@Override
 	public void tick() {
-		if (isFalling() && isDestroyed()) {
+		if (isFalling() && falltime > 0) {
 			runAnimation();
 			falltime--;
-			if (falltime == 0)
-				setFalling(false);
 		}
 	}
 
@@ -76,7 +77,7 @@ public class Desk extends DestroyableObject {
 		int w0 = w;
 		int gap = 0;
 
-		if (horizontal) {
+		if (isHorizontal()) {
 			gap = w / 64;
 			if (random <= 0.5) {
 				startImg = texture.desk[0];
@@ -86,7 +87,7 @@ public class Desk extends DestroyableObject {
 				startImg = texture.desk[6];
 				endImg = texture.desk[11];
 			}
-		} else {
+		} else if (!isHorizontal()) {
 			if (random <= 0.5) {
 				startImg = texture.desk[12];
 				endImg = texture.desk[17];
@@ -95,13 +96,13 @@ public class Desk extends DestroyableObject {
 				startImg = texture.desk[18];
 				endImg = texture.desk[23];
 			}
-			if (isFacingLeft()) {
+			if (getFacing() == FACING.LEFT) {
 				x0 = x + w / 2 - w / 64;
 				w0 = -w;
 			}
 		}
 
-		if (!isDestroyed() || falltime >= 20)
+		if (!isFalling() || falltime >= 20)
 			g.drawImage(startImg, x - w / 64, y, w + gap, h, null);
 		else if (falltime > 0)
 			drawAnimation(g, x0, y, w0 + gap, h);
@@ -109,12 +110,13 @@ public class Desk extends DestroyableObject {
 			g.drawImage(endImg, x0, y, w0 + gap, h, null);
 
 		drawHitbox(g);
+
 	}
 
 	@Override
 	public Rectangle getBounds() {
 
-		if (!horizontal)
+		if (!isHorizontal())
 			return new Rectangle(x, y, w / 2, h);
 		else
 			return new Rectangle(x, y, w, h / 2);
@@ -122,7 +124,7 @@ public class Desk extends DestroyableObject {
 
 	@Override
 	public void refreshPlayerRendering() {
-		if (horizontal) {
+		if (isHorizontal()) {
 			if (HandlerObject.getInstance().player.getY() < y + h / 15)
 				HandlerRender.getInstance().playerAbove = false;
 		}

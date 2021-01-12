@@ -12,11 +12,11 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
-import objects.FacingObject;
 import objects.GameObject;
 import objects.OBJECTID;
+import objects.puzzle.PuzzleObject;
 
-public class Virus extends FacingObject implements IAnimation {
+public class Virus extends PuzzleObject implements IAnimation {
 
 	private Animation animation;
 	private boolean clicking;
@@ -36,11 +36,6 @@ public class Virus extends FacingObject implements IAnimation {
 		if (animation == null)
 			animation = new Animation(15, texture.virus[0], texture.virus[1]);
 		return animation;
-	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return false;
 	}
 
 	// state

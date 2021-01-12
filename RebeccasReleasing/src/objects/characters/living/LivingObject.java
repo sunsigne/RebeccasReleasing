@@ -15,11 +15,11 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 
-import objects.FacingObject;
+import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.collision.CollisionDetector;
 
-public abstract class LivingObject extends FacingObject implements IAnimation {
+public abstract class LivingObject extends GameObject implements IAnimation {
 
 	public Puzzle puzzle;
 	public CollisionDetector collisionDetector;
@@ -31,7 +31,7 @@ public abstract class LivingObject extends FacingObject implements IAnimation {
 	protected int pushTime = 10;
 
 	public LivingObject(int x, int y, OBJECTID objectid) {
-		super(x, y, objectid);
+		super(true, x, y, objectid);
 
 		watching[Size.DIRECTION_DOWN] = true;
 		w = Size.TILE;
@@ -39,11 +39,6 @@ public abstract class LivingObject extends FacingObject implements IAnimation {
 	}
 
 	// state
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	public boolean isPushed() {
 		return isPushed;

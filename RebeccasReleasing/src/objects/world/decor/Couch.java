@@ -18,7 +18,7 @@ public class Couch extends GameObject implements ICollision, IFacing {
 	private int lenght = 3;
 
 	public Couch(int x, int y, FACING facing, int lenght) {
-		super(x, y, OBJECTID.WALL, true);
+		super(true, x, y, OBJECTID.WALL);
 
 		this.facing = facing;
 		if (lenght < 4)

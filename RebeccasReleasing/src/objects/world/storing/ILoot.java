@@ -4,7 +4,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
 
-public interface Looting {
+public interface ILoot {
 
 	public default void drop(double chance, GameObject loot) {
 		double r = Math.random();

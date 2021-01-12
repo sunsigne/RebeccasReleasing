@@ -111,13 +111,13 @@ public class MapBuilder {
 				if (red == 128 && green == 128 && blue == 255)
 					handler_object.addObject(new Case(xx * Size.TILE, yy * Size.TILE));
 				if (red == 255 && green == 0 && blue == 255)
-					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, true));
+					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.DOWN));
 				if (red == 255 && green == 128 && blue == 255)
-					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, false));
+					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
 				if (red == 0 && green == 255 && blue == 128)
-					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, false));
+					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT));
 				if (red == 128 && green == 255 && blue == 128)
-					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, true));
+					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
 				if (red == 64 && green == 64 && blue == 0)
 					handler_object.addObject(new WC(xx * Size.TILE, yy * Size.TILE));
 				if (red == 64 && green == 64 && blue == 32)

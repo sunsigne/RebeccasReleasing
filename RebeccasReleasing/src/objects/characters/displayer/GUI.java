@@ -27,7 +27,7 @@ public class GUI extends GameObject {
 	private int redTime, redNum;
 
 	public GUI() {
-		super(0, 0, OBJECTID.DISPLAYER, false);
+		super(false, 0, 0, OBJECTID.DISPLAYER);
 
 		characteristics = new CharacteristicsTemp();
 		fullhp = 3;

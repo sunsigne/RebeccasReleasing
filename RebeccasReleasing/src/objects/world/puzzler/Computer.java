@@ -25,7 +25,7 @@ public class Computer extends GameObject implements IPuzzler {
 	}
 
 	public Computer(int x, int y, DIFFICULTY difficulty) {
-		super(x, y + Size.TILE / 64, OBJECTID.COMPUTER, true);
+		super(true, x, y + Size.TILE / 64, OBJECTID.COMPUTER);
 
 		this.difficulty = difficulty;
 		// to change

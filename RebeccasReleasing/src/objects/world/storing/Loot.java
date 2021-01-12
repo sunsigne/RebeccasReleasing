@@ -25,7 +25,7 @@ public class Loot extends GameObject implements ICollision {
 	protected LOOTID lootId;
 
 	public Loot(int x, int y, LOOTID lootId) {
-		super(x, y, OBJECTID.LOOT, true);
+		super(true, x, y, OBJECTID.LOOT);
 
 		this.lootId = lootId;
 	}

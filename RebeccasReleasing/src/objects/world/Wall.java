@@ -17,7 +17,7 @@ public class Wall extends GameObject implements ICollision {
 	private WALLTYPE type;
 
 	public Wall(int x, int y, WALLTYPE type) {
-		super(x, y, OBJECTID.WALL, true);
+		super(true, x, y, OBJECTID.WALL);
 		this.type = type;
 
 		if (type == WALLTYPE.WALL) {

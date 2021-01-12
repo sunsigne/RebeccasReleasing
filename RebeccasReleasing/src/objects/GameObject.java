@@ -20,11 +20,12 @@ public abstract class GameObject implements ITick, IRender {
 	protected int velX, velY;
 	private boolean cameraDependant;
 
-	public GameObject(int x, int y, OBJECTID id, boolean cameraDependant) {
+	public GameObject(boolean cameraDependant, int x, int y, OBJECTID id) {
+		
+		this.cameraDependant = cameraDependant;
 		setX(x);
 		setY(y);
 		setID(id);
-		this.cameraDependant = cameraDependant;
 
 		w = Size.TILE;
 		h = Size.TILE;

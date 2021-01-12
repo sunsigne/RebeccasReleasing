@@ -36,7 +36,7 @@ public class ChatObject extends GameObject {
 	private boolean[] stop = new boolean[2];
 
 	public ChatObject(CHARA chara, String text0, String text1) {
-		super(Size.X0, 750, OBJECTID.DISPLAYER, false);
+		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.chara = chara;
 		this.text[0] = text0;

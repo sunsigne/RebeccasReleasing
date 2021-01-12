@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class NullObject extends GameObject {
 
 	public NullObject() {
-		super(0, 0, OBJECTID.NULL, false);
+		super(false, 0, 0, OBJECTID.NULL);
 
 	}
 

@@ -13,7 +13,7 @@ import objects.characters.living.LivingObject;
 public class Water extends GameObject implements ICollision  {
 
 	public Water(int x, int y) {
-		super(x, y, OBJECTID.DECOR, true);
+		super(true, x, y, OBJECTID.DECOR);
 
 		w = Size.TILE;
 		h = 2 * Size.TILE;

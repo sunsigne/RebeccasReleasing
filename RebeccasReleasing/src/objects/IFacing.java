@@ -13,6 +13,13 @@ public interface IFacing {
 			return false;
 	}
 
+	public default boolean isHorizontal(FACING facing) {
+		if (facing == FACING.UP || facing == FACING.DOWN)
+			return true;
+		else
+			return false;
+	}
+
 	public enum FACING {
 		UP, DOWN, LEFT, RIGHT;
 	}

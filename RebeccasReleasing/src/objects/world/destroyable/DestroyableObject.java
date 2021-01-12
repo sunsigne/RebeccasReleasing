@@ -7,24 +7,42 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
-import objects.FacingObject;
 import objects.GameObject;
+import objects.IFacing;
 import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-public abstract class DestroyableObject extends FacingObject implements ICollision, IAnimation {
+public abstract class DestroyableObject extends GameObject implements ICollision, IAnimation, IFacing {
 
 	protected Animation animation;
-	
-	protected DESTROYABLEID destroyableId;
-	protected boolean destroyed;
+	private FACING facing;
+
 	private boolean falling;
 
-	public DestroyableObject(int x, int y, boolean facingLeft, boolean horizontal, DESTROYABLEID destroyableId) {
-		super(x, y, facingLeft, horizontal, OBJECTID.DESTROYABLE);
-		this.destroyableId = destroyableId;
+	public DestroyableObject(int x, int y, FACING facing) {
+		super(true, x, y, OBJECTID.DESTROYABLE);
+
+		this.facing = facing;
 	}
+
+	@Override
+	public FACING getFacing() {
+		return facing;
+	}
+
+	@Override
+	public void setFacing(FACING facing) {
+		boolean horizontaleToHorizontale = isHorizontal() && isHorizontal(facing);
+		boolean verticalToVertical = !isHorizontal() && !isHorizontal(facing);
+
+		if (updatableFacing()) {
+			if (horizontaleToHorizontale || verticalToVertical)
+				this.facing = facing;
+		}
+	}
+
+	protected abstract boolean updatableFacing();
 
 	public abstract int givePts();
 
@@ -32,15 +50,6 @@ public abstract class DestroyableObject extends FacingObject implements ICollisi
 
 	public abstract BufferedSound makeSideSound();
 
-	// identity
-
-	public void setDesstroyableID(DESTROYABLEID destroyableId) {
-		this.destroyableId = destroyableId;
-	}
-
-	public DESTROYABLEID getDestroyableID() {
-		return destroyableId;
-	}
 
 	// state
 
@@ -48,43 +57,30 @@ public abstract class DestroyableObject extends FacingObject implements ICollisi
 		this.falling = falling;
 	}
 
-	public void setDestroyed(boolean empty) {
-		this.destroyed = empty;
-	}
-
 	public boolean isFalling() {
 		return falling;
 	}
 
-	public boolean isDestroyed() {
-		return destroyed;
-	}
-
-	@Override
-	public boolean isCameraDependant() {
-		return true;
-	}
 
 	@Override
 	public void collision(LivingObject living) {
-		if (living.getBounds().intersects(getBounds()))
-			updateDestroyable(living, this, false);
 		if (living.getBoundsTop().intersects(getBounds()))
-			updateDestroyable(living, this, false);
+			updateDestroyable(living, this, FACING.UP);
+		if (living.getBounds().intersects(getBounds()))
+			updateDestroyable(living, this, FACING.DOWN);
 		if (living.getBoundsLeft().intersects(getBounds()))
-			updateDestroyable(living, this, true);
+			updateDestroyable(living, this, FACING.LEFT);
 		if (living.getBoundsRight().intersects(getBounds()))
-			updateDestroyable(living, this, false);
+			updateDestroyable(living, this, FACING.RIGHT);
 	}
 
-	public void updateDestroyable(LivingObject living, GameObject tempObject, boolean facingLeft) {
+	public void updateDestroyable(LivingObject living, GameObject tempObject, FACING playerfacing) {
 
 		if (living.collisionDetector.isPlayer)
 			refreshPlayerRendering();
 
-		if (!isDestroyed() && !isFalling()) {
-			if (isUpdatableFacing())
-				setFacingLeft(facingLeft);
+		if (!isFalling()) {
+			setFacing(playerfacing);
 
 			int points = givePts();
 			BufferedSound mainSound = makeMainSound();
@@ -92,7 +88,7 @@ public abstract class DestroyableObject extends FacingObject implements ICollisi
 
 			if (living.collisionDetector.isPlayer) {
 				if (HandlerObject.getInstance().player.isPushed())
-					World.gui.addPoints(this, 8 * points);
+					World.gui.addPoints(this, 5 * points);
 				else
 					World.gui.addPoints(this, points);
 			} else
@@ -101,7 +97,6 @@ public abstract class DestroyableObject extends FacingObject implements ICollisi
 			SoundTask.playSound(1.0, mainSound);
 			SoundTask.playSound(0.5, sideSound);
 
-			setDestroyed(true);
 			setFalling(true);
 		}
 	}

@@ -26,7 +26,7 @@ public class Door extends GameObject implements IPuzzler {
 	}
 
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.DOOR, true);
+		super(true, x, y, OBJECTID.DOOR);
 
 		this.difficulty = difficulty;
 		setHorizontal(horizontal);

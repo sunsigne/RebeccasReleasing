@@ -9,10 +9,10 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 
-import objects.GameObject;
 import objects.OBJECTID;
+import objects.puzzle.PuzzleObject;
 
-public abstract class BombObject extends GameObject implements IAnimation {
+public abstract class BombObject extends PuzzleObject implements IAnimation {
 
 	protected Animation animation;
 	
@@ -21,7 +21,7 @@ public abstract class BombObject extends GameObject implements IAnimation {
 	protected int totalcount, count;
 	
 	public BombObject(int x, int y) {
-		super(x, y, OBJECTID.P_BOMB, false);
+		super(x, y, OBJECTID.P_BOMB);
 
 		w = 2 * Size.TILE_PUZZLE;
 		h = 2 * Size.TILE_PUZZLE;

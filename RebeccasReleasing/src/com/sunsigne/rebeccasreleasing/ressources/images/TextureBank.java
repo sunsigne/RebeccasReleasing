@@ -152,8 +152,10 @@ public class TextureBank {
 		couch[Size.DIRECTION_DOWN][1] = couch_sheet.grabImage(6, 1, 32, 32);
 		couch[Size.DIRECTION_DOWN][2] = couch_sheet.grabImage(3, 2, 64, 32);
 		couch[Size.DIRECTION_DOWN][3] = couch_sheet.grabImage(2, 3, 96, 32);
+		couch[Size.DIRECTION_LEFT][1] = ImageTask.drawMissingTexture();
 		couch[Size.DIRECTION_LEFT][2] = couch_sheet.grabImage(2, 3, 32, 64);
 		couch[Size.DIRECTION_LEFT][3] = couch_sheet.grabImage(3, 2, 32, 96);
+		couch[Size.DIRECTION_RIGHT][1] = ImageTask.drawMissingTexture();
 		couch[Size.DIRECTION_RIGHT][2] = couch_sheet.grabImage(5, 3, 32, 64);
 		couch[Size.DIRECTION_RIGHT][3] = couch_sheet.grabImage(4, 2, 32, 96);
 
