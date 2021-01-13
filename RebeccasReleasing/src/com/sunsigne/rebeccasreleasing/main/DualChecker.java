@@ -18,7 +18,7 @@ public class DualChecker implements ITick {
 	@Override
 	public void tick() {
 		if (!hasbeenchecked) {
-			if (!FileTask.existing(dualcheck))
+			if (!FileTask.doesExist(dualcheck))
 				FileTask.write(dualcheck, "true");
 			else {
 				String dualcheckertxt = FileTask.read(dualcheck, 0);
@@ -36,7 +36,7 @@ public class DualChecker implements ITick {
 		String dualcheckertxt = FileTask.read(dualcheck, 0);
 		boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 
-		if (dualcheckerboolean || !FileTask.existing(dualcheck) && !closing)
+		if (dualcheckerboolean || !FileTask.doesExist(dualcheck) && !closing)
 			FileTask.write(dualcheck, "false");
 	}
 

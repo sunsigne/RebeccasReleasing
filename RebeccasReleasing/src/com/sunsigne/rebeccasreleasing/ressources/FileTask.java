@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class FileTask {
 
-	public static boolean existing(String filename) {
+	public static boolean doesExist(String filename) {
 		File file = new File("ressources/data/" + filename + ".csv");
 		return file.exists();
 	}
