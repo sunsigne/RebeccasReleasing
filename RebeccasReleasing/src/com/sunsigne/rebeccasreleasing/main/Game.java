@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
 import java.awt.image.BufferStrategy;
+import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleHack;
@@ -125,10 +126,10 @@ public class Game extends Canvas implements Runnable {
 				try {
 					tick();
 
+				} catch (ConcurrentModificationException e) {
+					forceLoop();
 				} catch (Exception e) {
-					// some commun lags may cause desynchronisation with some lists.
-					// This throws ask for the code to just ignore them.
-					// The next tick will repair it anyway.
+					e.printStackTrace();
 				}
 				delta--;
 				shouldRender = true;
@@ -138,8 +139,10 @@ public class Game extends Canvas implements Runnable {
 //				frames++;
 				try {
 					render();
+				} catch (ConcurrentModificationException e) {
+					forceLoop();
 				} catch (Exception e) {
-					// Same "problem" than above.
+					e.printStackTrace();
 				}
 			}
 
@@ -157,7 +160,13 @@ public class Game extends Canvas implements Runnable {
 		try {
 			tick();
 			render();
+		} catch (ConcurrentModificationException e) {
+			
+			System.out.println("If the game just started, ignore this :");
+			e.printStackTrace();
+			System.out.println("Otherwise, you are in trouble ...");
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

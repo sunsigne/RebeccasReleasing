@@ -22,7 +22,6 @@ public abstract class Puzzle extends Clickable {
 	private IPuzzler puzzler;
 	private DIFFICULTY difficulty;
 
-	private FoeObject foe;
 	private GameObject dualfoe;
 	protected boolean isDualFight;
 
@@ -40,9 +39,9 @@ public abstract class Puzzle extends Clickable {
 		this(state, puzzler, difficulty, false);
 	}
 
-	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty, boolean reversed) {
+	public Puzzle(STATE state, IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty, boolean reversed) {
 		super(state);
-		this.foe = foe;
+		this.puzzler = puzzler;
 		this.dualfoe = dualfoe;
 		this.difficulty = difficulty;
 		this.reversed = reversed;
@@ -50,8 +49,8 @@ public abstract class Puzzle extends Clickable {
 		open();
 	}	
 
-	public Puzzle(STATE state, FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
-		this(state, foe, dualfoe, difficulty, false);
+	public Puzzle(STATE state, IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
+		this(state, puzzler, dualfoe, difficulty, false);
 	}
 
 	public DIFFICULTY getDifficulty() {
@@ -97,6 +96,7 @@ public abstract class Puzzle extends Clickable {
 			isDualFight = true;
 	}
 
+	@Override
 	public void close() {
 		
 		GameMouseListener.getInstance().clearClickable();
@@ -104,8 +104,6 @@ public abstract class Puzzle extends Clickable {
 
 		if (puzzler != null)
 			puzzler.setSolved(winning);
-		if (foe != null)
-			foe.setSolved(winning);
 		if (isDualFight)
 			((FoeObject) dualfoe).setSolved(winning);
 

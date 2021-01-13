@@ -44,4 +44,5 @@ public class CardFolder extends CardObject {
 		return new Rectangle(x + w / 4, y + h / 4, w, h);
 	}
 
+
 }

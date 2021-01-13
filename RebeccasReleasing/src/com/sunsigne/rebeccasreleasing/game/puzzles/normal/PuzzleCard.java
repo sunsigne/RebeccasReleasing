@@ -2,6 +2,9 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.normal;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
@@ -14,148 +17,221 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
-import objects.characters.living.FoeObject;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.GameTimer;
-import objects.puzzle.WallPuzzle;
 import objects.puzzle.card.Card;
 import objects.puzzle.card.CardFolder;
 import objects.puzzle.card.CardType;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : simplifier le jeu ? Il doit être plus instinctif")
 public class PuzzleCard extends Puzzle {
 
-	private static Card[] card = new Card[5];
+	/*
+	 * 3 - 5 card with order 4 - 5 card with order and a mystery (type and order
+	 * shown by quickly replaced with question mark) 5 - 7 card with order and 2
+	 * mystery (because i want the player to suffer !!
+	 */
+	private static final int NUMOFCARD = 7;
+	private static Card[] card = new Card[NUMOFCARD];
+	private static CardFolder attackFolder, defenseFolder;
 
-	public PuzzleCard(FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
-		super(STATE.PUZZLECARD, foe, dualfoe, difficulty);
+	public PuzzleCard(IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, puzzler, dualfoe, difficulty);
 	}
 
 	@Override
 	public void createFrame() {
-		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.CARD));
-		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> close()));
+		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.CARD));
+		HandlerObject.getInstance().addObject(new GameTimer(999, () -> close()));
 	}
 
 	@Override
 	public void randomGeneration() {
 
-		CardType type0 = CardType.ATTACK;
-		CardType type1 = CardType.ATTACK;
-		CardType type2 = CardType.ATTACK;
-		CardType type3 = CardType.ATTACK;
-		CardType type4 = CardType.ATTACK;
+		CardType[] randomType = randomTypeGeneration();
 
-		double r0 = Math.random();
-		double r1 = Math.random();
-		double r2 = Math.random();
-		double r3 = Math.random();
-		double r4 = Math.random();
+		int lvl = getDifficulty().getLvl();
+		int[] randomOrder = new int[NUMOFCARD];
+		if (lvl == 3 || lvl == 4)
+			randomOrder = randomOrderGeneration(5);
+		if (lvl == 5)
+			randomOrder = randomOrderGeneration(7);
 
-		float chance = 0.4f;
-		float critchance = 0.98f;
-		if (r0 <= chance)
-			type0 = CardType.DEFENSE;
-		if (r1 <= chance)
-			type1 = CardType.DEFENSE;
-		if (r2 <= chance)
-			type2 = CardType.DEFENSE;
-		if (r3 <= chance)
-			type3 = CardType.DEFENSE;
-		if (r4 <= chance)
-			type4 = CardType.DEFENSE;
+		for (int i = 0; i < NUMOFCARD; i++) {
 
-		if (World.levelnum != 1) {
-			if (r0 >= critchance)
-				type0 = CardType.CRITICAL;
-			if (r1 >= critchance)
-				type1 = CardType.CRITICAL;
-			if (r2 >= critchance)
-				type2 = CardType.CRITICAL;
-			if (r3 >= critchance)
-				type3 = CardType.CRITICAL;
-			if (r4 >= critchance)
-				type4 = CardType.CRITICAL;
+			card[i] = new Card(370 + i * 150, 850, randomType[i]);
+			if (lvl == 3 || lvl == 4) {
+				if (i > 0 && i < 6)
+					card[i].setOrderNum(randomOrder[i - 1]);
+			} else if (lvl == 5)
+				card[i].setOrderNum(randomOrder[i]);
+
+		}
+	}
+
+	private CardType[] randomTypeGeneration() {
+		CardType[] type = new CardType[NUMOFCARD];
+		double[] r = new double[NUMOFCARD];
+		float defenseChance = 0.4f;
+
+		for (int i = 0; i < NUMOFCARD; i++) {
+			// creation of 5 attack card
+			type[i] = CardType.ATTACK;
+			r[i] = Math.random();
+			// 40% of them are turned into defense card
+			if (r[i] < defenseChance)
+				type[i] = CardType.DEFENSE;
+		}
+		return type;
+	}
+
+	private int[] randomOrderGeneration(int currentNumofCard) {
+
+		int[] randomOrder = new int[currentNumofCard];
+
+		// creation of numbers from 1 to currentNumofCard
+		LinkedList<Integer> numbers = new LinkedList<>();
+		for (int i = 1; i < currentNumofCard + 1; i++) {
+			numbers.add(i);
 		}
 
-		card[4] = new Card(1120, 850, type4);
-		card[2] = new Card(970, 850, type2);
-		card[1] = new Card(820, 850, type1);
-		card[0] = new Card(670, 850, type0);
-		card[3] = new Card(520, 850, type3);
+		// shuffle of the numbers
+		Random r = new Random();
+		for (int i = 0; i < currentNumofCard; i++) {
+			Collections.swap(numbers, i, r.nextInt(currentNumofCard));
+		}
+
+		// register of this new order into randomOrder.
+		for (int i = 0; i < currentNumofCard; i++) {
+			randomOrder[i] = numbers.get(0);
+			numbers.remove(0);
+		}
+
+		return randomOrder;
 	}
 
 	@Override
 	public void dualAdaptation() {
 
-		if (isDualFight) {
-			if (World.gui.getCharacteristics().isSureCrit())
-				card[3].setCardtype(CardType.CRITICAL);
-		} else {
-			if (World.gui.getCharacteristics().isSureCrit())
-				card[0].setCardtype(CardType.CRITICAL);
-			card[4].setExist(false);
-			card[3].setExist(false);
-		}
+		boolean surecrit = World.gui.getCharacteristics().isSureCrit();
 
+		/*
+		 * if (isDualFight) { if (surecrit) card[3].setCardtype(CardType.CRITICAL); }
+		 * else { if (surecrit) card[0].setCardtype(CardType.CRITICAL);
+		 * card[4].setExist(false); card[3].setExist(false); }
+		 */
 	}
 
 	@Override
 	public void createPuzzle() {
-		HandlerObject.getInstance().addObject(new CardFolder(1300, 150, CardType.ATTACK));
-		HandlerObject.getInstance().addObject(new CardFolder(215, 150, CardType.DEFENSE));
+		attackFolder = new CardFolder(1300, 150, CardType.ATTACK);
+		defenseFolder = new CardFolder(215, 150, CardType.DEFENSE);
 
-		if (isDualFight)
-			HandlerObject.getInstance().addObject(card[4]);
+		HandlerObject.getInstance().addObject(attackFolder);
+		HandlerObject.getInstance().addObject(defenseFolder);
+
+		switch (getDifficulty()) {
+		case RED:
+			hideTwoCardIntoSeven();
+			imposeOrder();
+			createSevenCard();
+			break;
+		case ORANGE:
+			hideOneCardIntoFive();
+		case YELLOW:
+			imposeOrder();
+		case GREEN:
+			createFiveCard();
+			break;
+		case CYAN:
+			createThreeCard();
+			break;
+
+		default:
+			break;
+
+		}
+	}
+
+
+	private void hideTwoCardIntoSeven() {
+		int random = new Random().nextInt(6);
+		int random2 = new Random().nextInt(6);
+		while (random == random2)
+			random2 = new Random().nextInt(6);
+		
+		for (int i = 0; i < 7; i++)
+			card[i].hideTemporarly();	
+		card[random].hidePermanently();
+		card[random2].hidePermanently();
+	}
+
+	private void createSevenCard() {
+		HandlerObject.getInstance().addObject(card[6]);
+		HandlerObject.getInstance().addObject(card[5]);
+		HandlerObject.getInstance().addObject(card[4]);
+		HandlerObject.getInstance().addObject(card[3]);
 		HandlerObject.getInstance().addObject(card[2]);
 		HandlerObject.getInstance().addObject(card[1]);
 		HandlerObject.getInstance().addObject(card[0]);
-		if (isDualFight)
-			HandlerObject.getInstance().addObject(card[3]);
+	}
+	
+
+	private void hideOneCardIntoFive() {
+		int random = 1 + new Random().nextInt(5);
+		
+		for (int i = 1; i < 6; i++)
+			card[i].hideTemporarly();	
+		card[random].hidePermanently();
+	}
+
+	private void imposeOrder() {
+		attackFolder.setOrderNum(1);
+		defenseFolder.setOrderNum(1);
+	}
+
+	private void createFiveCard() {
+		card[6].setExist(false);
+		HandlerObject.getInstance().addObject(card[5]);
+		HandlerObject.getInstance().addObject(card[4]);
+		HandlerObject.getInstance().addObject(card[3]);
+		HandlerObject.getInstance().addObject(card[2]);
+		HandlerObject.getInstance().addObject(card[1]);
+		card[0].setExist(false);
+	}
+
+	private void createThreeCard() {
+		card[6].setExist(false);
+		card[5].setExist(false);
+		HandlerObject.getInstance().addObject(card[4]);
+		HandlerObject.getInstance().addObject(card[3]);
+		HandlerObject.getInstance().addObject(card[2]);
+		card[1].setExist(false);
+		card[0].setExist(false);
 	}
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (card[3].doesExist()
-				&& GameMouseListener.mouseOver(mx, my, card[3].getX(), card[3].getY(), Size.TILE_PUZZLE * 2, Size.TILE_PUZZLE * 3)) {
-			card[3].setDragged(true);
-			return;
+
+		for (int i = 0; i < NUMOFCARD; i++) {
+			if (card[i].doesExist() && GameMouseListener.mouseOver(mx, my, card[i].getRect())) {
+				card[i].setDragged(true);
+				return;
+			}
 		}
 
-		if (card[0].doesExist()
-				&& GameMouseListener.mouseOver(mx, my, card[0].getX(), card[0].getY(), Size.TILE_PUZZLE * 2, Size.TILE_PUZZLE * 3)) {
-			card[0].setDragged(true);
-			return;
-		}
-
-		if (card[1].doesExist()
-				&& GameMouseListener.mouseOver(mx, my, card[1].getX(), card[1].getY(), Size.TILE_PUZZLE * 2, Size.TILE_PUZZLE * 3)) {
-			card[1].setDragged(true);
-			return;
-		}
-
-		if (card[2].doesExist()
-				&& GameMouseListener.mouseOver(mx, my, card[2].getX(), card[2].getY(), Size.TILE_PUZZLE * 2, Size.TILE_PUZZLE * 3)) {
-			card[2].setDragged(true);
-			return;
-		}
-
-		if (card[4].doesExist()
-				&& GameMouseListener.mouseOver(mx, my, card[4].getX(), card[4].getY(), Size.TILE_PUZZLE * 2, Size.TILE_PUZZLE * 3)) {
-			card[4].setDragged(true);
-			return;
-		}
 	}
 
 	@Override
 	public void mouseReleased(int mx, int my) {
-		card[3].setDragged(false);
-		card[0].setDragged(false);
-		card[1].setDragged(false);
-		card[2].setDragged(false);
-		card[4].setDragged(false);
+
+		for (int i = 0; i < NUMOFCARD; i++) {
+			card[i].setDragged(false);
+		}
 
 		boolean winning = true;
-		for (int i = 0; i <= 4; i++) {
+		for (int i = 0; i < NUMOFCARD; i++) {
 
 			if (card[i].doesExist()) {
 				if (!card[i].isAboveRightFolder()) {
@@ -168,6 +244,7 @@ public class PuzzleCard extends Puzzle {
 					card[i].playCard();
 					card[i].setX(0);
 					card[i].setY(0);
+					updateFolderNum(card[i]);
 				}
 			}
 			if (card[i].doesExist())
@@ -176,6 +253,16 @@ public class PuzzleCard extends Puzzle {
 		setWinning(winning);
 		if (isWinning())
 			close();
+	}
+
+	private void updateFolderNum(Card card) {
+
+		int currentOrderNum = card.getOrderNum();
+		if (currentOrderNum != 0) {
+			attackFolder.setOrderNum(currentOrderNum + 1);
+			defenseFolder.setOrderNum(currentOrderNum + 1);
+		}
+
 	}
 
 	@Override

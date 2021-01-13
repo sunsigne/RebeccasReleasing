@@ -22,6 +22,10 @@ public class Card extends CardObject {
 	private boolean dragged;
 	private boolean aboveRightFolder, aboveWrongFolder;
 	private int startingX, startingY;
+	
+	private boolean shouldHide;
+	private boolean stayHidden;
+	private int hiddingTime = 40;
 
 	public Card(int x, int y, CardType cardtype) {
 		super(x, y, OBJECTID.P_CARD, cardtype);
@@ -67,6 +71,17 @@ public class Card extends CardObject {
 	public boolean isAboveWrongFolder() {
 		return aboveWrongFolder;
 	}
+	
+	public void hideTemporarly()
+	{
+		shouldHide = true;
+	}
+	
+	public void hidePermanently()
+	{
+		shouldHide = true;
+		stayHidden = true;
+	}
 
 	@Override
 	public void tick() {
@@ -75,6 +90,11 @@ public class Card extends CardObject {
 			x = (int) GameMouseListener.getInstance().getPos().getX() - Size.TILE_PUZZLE / 2;
 			y = (int) GameMouseListener.getInstance().getPos().getY() - Size.TILE_PUZZLE / 2;
 		}
+		
+		if(shouldHide && hiddingTime > -30)
+			hiddingTime --;
+		else if(!stayHidden)
+			hiddingTime = 1800;
 		collision();
 	}
 
@@ -85,6 +105,20 @@ public class Card extends CardObject {
 		g.setFont(font);
 
 		g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, w, h, null);
+		
+		if(hiddingTime > 0)
+			{
+			drawCardContent(g);
+			drawOrderNum(g);
+			}
+		else drawMystery(g);
+		
+
+		drawHitbox(g);
+	}
+
+	private void drawCardContent(Graphics g) {
+		
 		if (getCardtype() == CardType.ATTACK) {
 			g.setColor(Color.red);
 			g.drawImage(ImageBank.getImage(ImageBank.card_attack), x, y, w, h, null);
@@ -100,10 +134,25 @@ public class Card extends CardObject {
 			g.drawImage(ImageBank.getImage(ImageBank.card_defense), x, y, w, h, null);
 			g.drawString("defense", x + 30, y + 45);
 		}
-
-		drawHitbox(g);
 	}
-		
+	
+	private void drawMystery(Graphics g) {
+		Font font = new Font("arial", 1, 300);
+		g.setFont(font);
+		g.setColor(Color.BLACK);
+		g.drawString("?", x + w/2 - 90, y + h/2 + 50);
+	}
+
+
+	private void drawOrderNum(Graphics g) {
+		if (getOrderNum() != 0) {
+			Font font = new Font("arial", 1, 50);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString(String.valueOf(getOrderNum()), x + w - 40, y + 45);
+		}
+	}
+
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, w, h);
@@ -119,11 +168,16 @@ public class Card extends CardObject {
 				CardFolder folder = (CardFolder) tempObject;
 
 				if (getBounds().intersects(folder.getBounds())) {
-					if (folder.getCardtype() == getCardtype() || getCardtype() == CardType.CRITICAL)
-						setAboveRightFolder(true);
-					else if (folder.getCardtype() != getCardtype() && getCardtype() != CardType.CRITICAL)
+					if (folder.getOrderNum() == getOrderNum()) {
+						if (folder.getCardtype() == getCardtype() || getCardtype() == CardType.CRITICAL)
+							setAboveRightFolder(true);
+						else if (folder.getCardtype() != getCardtype() && getCardtype() != CardType.CRITICAL)
+							setAboveWrongFolder(true);
+						flag = true;
+					} else {
 						setAboveWrongFolder(true);
-					flag = true;
+						flag = true;
+					}
 				}
 
 				if (!getBounds().intersects(folder.getBounds())) {
@@ -144,8 +198,8 @@ public class Card extends CardObject {
 		if (getCardtype() == CardType.CRITICAL) {
 			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
 			{
-			HandlerObject.getInstance().player.puzzle.setWinning(true);
-			HandlerObject.getInstance().player.puzzle.close();
+				HandlerObject.getInstance().player.puzzle.setWinning(true);
+				HandlerObject.getInstance().player.puzzle.close();
 			}
 		}
 		HandlerObject.getInstance().removeObject(this);
@@ -155,6 +209,5 @@ public class Card extends CardObject {
 		x = startingX;
 		y = startingY;
 	}
-
 
 }

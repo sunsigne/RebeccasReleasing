@@ -48,7 +48,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
 
-		this.difficulty = DIFFICULTY.GREEN;
+		this.difficulty = DIFFICULTY.RED;
 		this.currentDifficulty = difficulty;
 		
 		collisionDetector = new CollisionDetector(false, this);
@@ -135,6 +135,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 							.sqrt(Math.pow(getX() - foe2.getX(), 2) + Math.pow(getY() - foe2.getY(), 2));
 					if (distance < FoeObject.foedualrange) {
 						dualObject = tempObject2;
+						if(difficulty.getLvl() + 1 < DIFFICULTY.MAX)
 						currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getLvl() + 1);
 					}
 

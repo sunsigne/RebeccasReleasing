@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
@@ -12,81 +13,66 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
-import objects.characters.living.FoeObject;
 import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
-import objects.puzzle.WallPuzzle;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.card.CardFolderReversed;
 import objects.puzzle.card.CardReversed;
 import objects.puzzle.card.CardType;
+import objects.world.puzzler.IPuzzler;
 
 public class PuzzleCardReversed extends Puzzle {
 
-	private static CardReversed[] card = new CardReversed[5];
-	public static boolean surecrit;
+	private static final int NUMOFCARD = 5;
+	private static CardReversed[] card = new CardReversed[NUMOFCARD];
 
 	private static CardFolderReversed folderattack, folderdefense, folderreversed;
 
-	public PuzzleCardReversed(FoeObject foe, GameObject dualfoe, DIFFICULTY difficulty) {
-		super(STATE.PUZZLECARD, foe, dualfoe, difficulty, true);
+	public PuzzleCardReversed(IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, puzzler, dualfoe, difficulty, true);
 	}
 
 	@Override
 	public void createFrame() {
-		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.CARD));
+		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.CARD));
 		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimer.TIME, () -> close()));
 	}
 
 	@Override
 	public void randomGeneration() {
 
-		CardType type0 = CardType.ATTACK;
-		CardType type1 = CardType.ATTACK;
-		CardType type2 = CardType.ATTACK;
-		CardType type3 = CardType.ATTACK;
-		CardType type4 = CardType.ATTACK;
+		CardType[] type = new CardType[NUMOFCARD];
+		double[] r = new double[NUMOFCARD];
+		float defenseChance = 0.4f;
+		float critChance = 0.98f;
 
-		double r0 = Math.random();
-		double r1 = Math.random();
-		double r2 = Math.random();
-		double r3 = Math.random();
-		double r4 = Math.random();
-
-		float chance = 0.4f;
-		float critchance = 0.98f;
-		if (r0 <= chance)
-			type0 = CardType.DEFENSE;
-		if (r1 <= chance)
-			type1 = CardType.DEFENSE;
-		if (r2 <= chance)
-			type2 = CardType.DEFENSE;
-		if (r3 <= chance)
-			type3 = CardType.DEFENSE;
-		if (r4 <= chance)
-			type4 = CardType.DEFENSE;
-
-		if (r0 >= critchance)
-			type0 = CardType.CRITICAL;
-		if (r1 >= critchance)
-			type1 = CardType.CRITICAL;
-		if (r2 >= critchance)
-			type2 = CardType.CRITICAL;
-		if (r3 >= critchance)
-			type3 = CardType.CRITICAL;
-		if (r4 >= critchance)
-			type4 = CardType.CRITICAL;
-
-		card[4] = new CardReversed(1120, 850, type4);
-		card[2] = new CardReversed(970, 850, type2);
-		card[1] = new CardReversed(820, 850, type1);
-		card[0] = new CardReversed(670, 850, type0);
-		card[3] = new CardReversed(520, 850, type3);
+		for (int i = 0; i < NUMOFCARD; i++) {
+			//creation of 5 attack card
+			type[i] = CardType.ATTACK;
+			r[i] = Math.random();
+			// 40% of them are turned into defense card
+			if (r[i] < defenseChance)
+				type[i] = CardType.DEFENSE;
+			if (World.levelnum != 1) {
+				// 2% of all card become critical
+				if (r[i] >= critChance)
+					type[i] = CardType.CRITICAL;
+			}
+		}
+		
+		card[4] = new CardReversed(1120, 850, type[4]);
+		card[2] = new CardReversed(970, 850, type[2]);
+		card[1] = new CardReversed(820, 850, type[1]);
+		card[0] = new CardReversed(670, 850, type[0]);
+		card[3] = new CardReversed(520, 850, type[3]);
 
 	}	
 
 	@Override
 	public void dualAdaptation() {
 
+		boolean surecrit = World.gui.getCharacteristics().isSureCrit();
+		
 		card[4].setDual(true);
 		card[3].setDual(true);
 		
@@ -125,18 +111,16 @@ public class PuzzleCardReversed extends Puzzle {
 	@Override
 	public void mousePressed(int mx, int my) {
 
-		if (GameMouseListener.mouseOver(mx, my, folderattack.getX(), folderattack.getY(), Size.TILE_PUZZLE * 2,
-				Size.TILE_PUZZLE * 4)) {
-			for (int i = 4; i >= 0; i--) {
+		if (GameMouseListener.mouseOver(mx, my, folderattack.getRect())) {
+			for (int i = NUMOFCARD - 1; i >= 0; i--) {
 				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.DEFENSE) {
 					card[i].playCard();
 					return;
 				}
 			}
 		}
-		if (GameMouseListener.mouseOver(mx, my, folderdefense.getX(), folderdefense.getY(), Size.TILE_PUZZLE * 2,
-				Size.TILE_PUZZLE * 4)) {
-			for (int i = 4; i >= 0; i--) {
+		if (GameMouseListener.mouseOver(mx, my, folderdefense.getRect())) {
+			for (int i = NUMOFCARD - 1; i >= 0; i--) {
 				if (!card[i].doesExist() && !card[i].isDual() && card[i].getCardtype() != CardType.ATTACK) {
 					card[i].playCard();
 					return;
@@ -147,14 +131,13 @@ public class PuzzleCardReversed extends Puzzle {
 
 	@Override
 	public void mouseReleased(int mx, int my) {
-		card[4].setDragged(false);
-		card[3].setDragged(false);
-		card[2].setDragged(false);
-		card[1].setDragged(false);
-		card[0].setDragged(false);
-
+		
+		for (int i = NUMOFCARD - 1; i >= 0; i--) {
+			card[i].setDragged(false);
+		}
+		
 		boolean winning = true;
-		for (int i = 4; i >= 0; i--) {
+		for (int i = NUMOFCARD - 1; i >= 0; i--) {
 			if (card[i].doesExist() && card[i].isAboveFolder())
 				card[i].resetPos();
 			if (card[i].doesExist() && !card[i].isAboveFolder())
