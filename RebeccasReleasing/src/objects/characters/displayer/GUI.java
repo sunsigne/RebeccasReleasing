@@ -22,6 +22,9 @@ public class GUI extends GameObject {
 	private int points;
 	private boolean infiniteHp;
 
+	private int invulnerabitilyTime;
+	private boolean isInvulnerable;
+
 	private boolean[] redtool = new boolean[2];
 	private boolean[] redMoment = new boolean[2];
 	private int redTime, redNum;
@@ -58,7 +61,7 @@ public class GUI extends GameObject {
 	 * Add one hp to the GUI
 	 */
 	public void addHp() {
-		hp = hp + 1;
+		addHp(1);
 	}
 
 	/**
@@ -74,8 +77,7 @@ public class GUI extends GameObject {
 	 * Remove one hp to the GUI
 	 */
 	public void removeHp() {
-		if (!infiniteHp)
-			hp = hp - 1;
+		removeHp(1);
 	}
 
 	/**
@@ -84,8 +86,11 @@ public class GUI extends GameObject {
 	 * @param amount
 	 */
 	public void removeHp(int amount) {
-		if (!infiniteHp)
+		if (!infiniteHp && !isInvulnerable)
+		{
 			hp = hp - amount;
+			setInvulnerable();
+		}
 	}
 
 	public boolean isFullHp() {
@@ -125,11 +130,25 @@ public class GUI extends GameObject {
 
 	@Override
 	public void tick() {
-		
+
+		tickInvunerability();
+
 		if (hp <= 0)
 			killPlayer();
 
 		tickRedTool();
+	}
+	
+	@Todo("first, this function should depends on the player. Second, the player should blink or something")
+	private void tickInvunerability()
+	{
+		if (isInvulnerable) {
+			if (invulnerabitilyTime > 0)
+				invulnerabitilyTime--;
+			else {
+				isInvulnerable = false;
+			}
+		}
 	}
 
 	private void tickRedTool() {
@@ -218,10 +237,16 @@ public class GUI extends GameObject {
 	public Rectangle getBounds() {
 		return null;
 	}
+	
+	@Todo("put a verification : if the player is suddently tasking, he should no longer be invulnerable")
+	public void setInvulnerable() {
+		isInvulnerable = true;
+		invulnerabitilyTime = 30;
+	}
 
 	private void killPlayer() {
 
-		World.world.restart();
+		World.currentWorld.restart();
 	}
 
 }

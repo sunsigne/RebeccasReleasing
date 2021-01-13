@@ -14,14 +14,14 @@ public class ProcessorFolder extends ProcessorObject {
 	private ProcessorObject[] processors;
 	private int docs;
 	private String name;
-	private int gap;
+	private int nameGap;
 	private boolean system;
 
-	public ProcessorFolder(int j, int k, int gap, String name, ProcessorObject... args) {
-		super(j, k, PROCESSORID.FOLDER);
+	public ProcessorFolder(int col, int row, int nameGap, String name, ProcessorObject... args) {
+		super(col, row, PROCESSORID.FOLDER);
 
 		this.name = name;
-		this.gap = gap;
+		this.nameGap = nameGap;
 
 		processors = new ProcessorObject[args.length];
 		for (int i = 0; i < args.length; i++) {
@@ -56,7 +56,7 @@ public class ProcessorFolder extends ProcessorObject {
 			g.drawString("system", x + Size.TILE_PUZZLE / 2 - 20, y + 2 * Size.TILE_PUZZLE - 10);
 			g.drawImage(texture.hack[0], x + w / 4, y + h / 4, w, h, null);
 		} else {
-			g.drawString(name, x + gap + Size.TILE_PUZZLE / 4 - 15, y + 2 * Size.TILE_PUZZLE - 20);
+			g.drawString(name, x + nameGap + Size.TILE_PUZZLE / 4 - 15, y + 2 * Size.TILE_PUZZLE - 20);
 			g.drawImage(texture.hack[4], x + w / 4, y + h / 4, w, h, null);
 		}
 

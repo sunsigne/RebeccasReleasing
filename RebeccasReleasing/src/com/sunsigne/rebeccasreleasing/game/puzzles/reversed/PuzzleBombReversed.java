@@ -16,13 +16,14 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
-import objects.puzzle.WallPuzzle;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.bomb.BombReversed;
 import objects.world.puzzler.IPuzzler;
 
 public class PuzzleBombReversed extends Puzzle {
 
-	private static BombReversed[] bomb = new BombReversed[4];
+	private static final int NUMOFBOMB = 4;
+	private static BombReversed[] bomb = new BombReversed[NUMOFBOMB];
 
 	public PuzzleBombReversed(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEBOMB, puzzler, difficulty, true);
@@ -30,25 +31,23 @@ public class PuzzleBombReversed extends Puzzle {
 
 	@Override
 	public void createFrame() {
-		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.BOMB));
+		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.BOMB));
 		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimer.TIME, () -> close()));
 	}
 
 	@Override
 	public void randomGeneration() {
-		bomb[0] = new BombReversed(Size.X0 + 3 * Size.TILE_PUZZLE / 2, Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[1] = new BombReversed(Size.X0 + 9 * Size.TILE_PUZZLE / 2, Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[2] = new BombReversed(Size.X0 + 15 * Size.TILE_PUZZLE / 2, Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[3] = new BombReversed(Size.X0 + 21 * Size.TILE_PUZZLE / 2, Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			bomb[i] = new BombReversed(Size.X0 + (6 * i + 3) * (Size.TILE_PUZZLE / 2),
+					Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
+		}
 	}
 
 	@Override
 	public void createPuzzle() {
-		HandlerObject.getInstance().addObject(bomb[0]);
-		HandlerObject.getInstance().addObject(bomb[1]);
-		HandlerObject.getInstance().addObject(bomb[2]);
-		HandlerObject.getInstance().addObject(bomb[3]);
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			HandlerObject.getInstance().addObject(bomb[i]);
+		}
 	}
 
 	@Override
@@ -58,26 +57,21 @@ public class PuzzleBombReversed extends Puzzle {
 
 	@Override
 	public void mouseReleased(int mx, int my) {
-		
-		boolean winning = true;
-		
-		if (GameMouseListener.mouseOver(mx, my, bomb[0].getX(), bomb[0].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
-			bomb[0].addCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[1].getX(), bomb[1].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
-			bomb[1].addCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[2].getX(), bomb[2].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
-			bomb[2].addCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[3].getX(), bomb[3].getY(), 2 * Size.TILE_PUZZLE, 2 * Size.TILE_PUZZLE))
-			bomb[3].addCount();
 
-		for (int i = 0; i <= 3; i++) {
+		boolean winning = true;
+
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			if (GameMouseListener.mouseOver(mx, my, bomb[i].getRect()))
+				bomb[i].addCount();
+		}
+
+		for (int i = 0; i < NUMOFBOMB; i++) {
 			if (!bomb[i].isWinning())
 				winning = false;
 		}
 		setWinning(winning);
 
 	}
-
 
 	@Override
 	public void render(Graphics g) {

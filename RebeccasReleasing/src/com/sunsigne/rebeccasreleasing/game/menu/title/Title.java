@@ -2,13 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.menu.title;
 
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.game.world.ILvl;
-import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl01;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl02;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl03;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
@@ -36,14 +30,11 @@ public class Title extends Clickable {
 			SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
 	}
 
-	@Todo("passer a un système intelligent qui determine le lvl avec la sauvegarde (dans une autre classe bien sûr)")
 	@Override
 	public void mousePressed(int mx, int my) {
 		if (GameMouseListener.mouseOver(mx, my, playRect)) {
 			close();
-			SoundTask.stopMusic();
-			ILvl level = new WorldLvl02();
-			World.world = new World(level);
+			Conductor.openLvl();
 		}
 
 		if (GameMouseListener.mouseOver(mx, my, optionsRect)) {
@@ -66,6 +57,7 @@ public class Title extends Clickable {
 
 	}
 
+	@Override
 	public void close() {
 		GameMouseListener.getInstance().clearClickable();
 		HandlerObject.getInstance().clearAll();

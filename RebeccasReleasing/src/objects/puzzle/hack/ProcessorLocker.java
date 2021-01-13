@@ -10,8 +10,8 @@ public class ProcessorLocker extends ProcessorObject {
 
 	private ProcessorObject processor;
 
-	public ProcessorLocker(int j, int k) {
-		super(j, k, PROCESSORID.LOCKER);
+	public ProcessorLocker(int col, int row) {
+		super(col, row, PROCESSORID.LOCKER);
 	}
 
 	@Override

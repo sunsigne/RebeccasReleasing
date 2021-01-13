@@ -13,14 +13,15 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
-import objects.puzzle.WallPuzzle;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.search.SearchFolder;
 import objects.puzzle.search.SearchWord;
 import objects.world.puzzler.IPuzzler;
 
 public class PuzzleSearch extends Puzzle {
 
-	private static SearchWord[] word = new SearchWord[6];
+	private static final int NUMOFWORD = 6;
+	private static SearchWord[] word = new SearchWord[NUMOFWORD];
 	private static SearchFolder searchfolder;
 
 	public PuzzleSearch(IPuzzler puzzler, DIFFICULTY difficulty) {
@@ -29,7 +30,7 @@ public class PuzzleSearch extends Puzzle {
 
 	@Override
 	public void createFrame() {
-		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.SEARCH));
+		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.SEARCH));
 		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> close()));
 	}
 
@@ -67,50 +68,20 @@ public class PuzzleSearch extends Puzzle {
 		searchfolder = new SearchFolder();
 
 		HandlerObject.getInstance().addObject(searchfolder);
-		HandlerObject.getInstance().addObject(word[0]);
-		HandlerObject.getInstance().addObject(word[1]);
-		HandlerObject.getInstance().addObject(word[2]);
-		HandlerObject.getInstance().addObject(word[3]);
-		HandlerObject.getInstance().addObject(word[4]);
-		HandlerObject.getInstance().addObject(word[5]);
+
+		for (int i = 0; i < NUMOFWORD; i++) {
+			HandlerObject.getInstance().addObject(word[i]);
+		}
 	}
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (word[0].doesExist() && GameMouseListener.mouseOver(mx, my, word[0].getX(), word[0].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[0].setDragged(true);
-			return;
-		}
 
-		if (word[1].doesExist() && GameMouseListener.mouseOver(mx, my, word[1].getX(), word[1].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[1].setDragged(true);
-			return;
-		}
-
-		if (word[2].doesExist() && GameMouseListener.mouseOver(mx, my, word[2].getX(), word[2].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[2].setDragged(true);
-			return;
-		}
-
-		if (word[3].doesExist() && GameMouseListener.mouseOver(mx, my, word[3].getX(), word[3].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[3].setDragged(true);
-			return;
-		}
-
-		if (word[4].doesExist() && GameMouseListener.mouseOver(mx, my, word[4].getX(), word[4].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[4].setDragged(true);
-			return;
-		}
-
-		if (word[5].doesExist() && GameMouseListener.mouseOver(mx, my, word[5].getX(), word[5].getY(),
-				Size.TILE_PUZZLE * 3, Size.TILE_PUZZLE)) {
-			word[5].setDragged(true);
-			return;
+		for (int i = 0; i < NUMOFWORD; i++) {
+			if (word[i].doesExist() && GameMouseListener.mouseOver(mx, my, word[i].getRect())) {
+				word[i].setDragged(true);
+				return;
+			}
 		}
 	}
 
@@ -118,7 +89,7 @@ public class PuzzleSearch extends Puzzle {
 	public void mouseReleased(int mx, int my) {
 
 		boolean winning = true;
-		for (int i = 0; i <= 5; i++) {
+		for (int i = 0; i < NUMOFWORD; i++) {
 			if (word[i].isDragged() && word[i].isAboveFolder())
 				word[i].placeWord();
 

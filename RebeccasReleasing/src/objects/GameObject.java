@@ -79,6 +79,16 @@ public abstract class GameObject implements ITick, IRender {
 	public int getHeight() {
 		return h;
 	}
+	
+	public int[] getRect()
+	{
+		int[] rect = new int[4];
+		rect[0] = getX();
+		rect[1] = getY();
+		rect[2] = getWitdh();
+		rect[3] = getHeight();
+		return rect;
+	}
 
 	// velocity
 

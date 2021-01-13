@@ -48,7 +48,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
 
-		this.difficulty = difficulty;
+		this.difficulty = DIFFICULTY.GREEN;
 		this.currentDifficulty = difficulty;
 		
 		collisionDetector = new CollisionDetector(false, this);
@@ -135,7 +135,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 							.sqrt(Math.pow(getX() - foe2.getX(), 2) + Math.pow(getY() - foe2.getY(), 2));
 					if (distance < FoeObject.foedualrange) {
 						dualObject = tempObject2;
-						currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getNum() + 1);
+						currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getLvl() + 1);
 					}
 
 				}
@@ -161,7 +161,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 
 	private void renderingFoe(Graphics g) {
 
-		int difficulty = this.currentDifficulty.getNum();
+		int difficulty = this.currentDifficulty.getLvl();
 
 		if (isMotionless() || !isPlayerActive()) {
 			if (watching[Size.DIRECTION_UP])
@@ -265,10 +265,10 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 
 	private void checkEvent(int number) {
 		if (World.levelnum == 1) {
-			if (number == 1 && !World.world.getIEvent().hasOccured(11))
-				World.world.getIEvent().setMustoccur(true, 10);
+			if (number == 1 && !World.currentWorld.getIEvent().hasOccured(11))
+				World.currentWorld.getIEvent().setMustoccur(true, 10);
 			if (number == 2)
-				World.world.getIEvent().setMustoccur(true, 11);
+				World.currentWorld.getIEvent().setMustoccur(true, 11);
 		}
 
 	}

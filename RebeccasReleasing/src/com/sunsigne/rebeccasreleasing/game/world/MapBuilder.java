@@ -31,7 +31,7 @@ import objects.world.storing.Loot;
 public class MapBuilder {
 
 	
-
+	@Todo("clean that mess")
 	public static void createLevel(BufferedImage image) {
 
 		HandlerObject handler_object = HandlerObject.getInstance();
@@ -56,7 +56,7 @@ public class MapBuilder {
 				}
 
 				if (red == 255 && green == 255 && blue == 255)
-					handler_object.addObject(new Wall(xx * Size.TILE, yy * Size.TILE, Wall.WALLTYPE.WALL));
+					handler_object.addObject(new Wall(xx * Size.TILE, yy * Size.TILE));
 				// door
 				if (red == 128 && green == 128 && blue == 128)
 					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true));

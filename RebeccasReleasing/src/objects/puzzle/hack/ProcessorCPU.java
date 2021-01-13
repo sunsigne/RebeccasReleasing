@@ -10,8 +10,8 @@ public class ProcessorCPU extends ProcessorObject {
 
 	private int number;
 
-	public ProcessorCPU(int j, int k, int number) {
-		super(j, k, PROCESSORID.CPU);
+	public ProcessorCPU(int col, int row, int number) {
+		super(col, row, PROCESSORID.CPU);
 
 		this.number = number;
 	}

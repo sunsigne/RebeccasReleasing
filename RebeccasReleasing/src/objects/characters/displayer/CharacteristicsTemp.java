@@ -8,7 +8,7 @@ public class CharacteristicsTemp {
 
 	public CharacteristicsTemp() {
 		tools[Tool.KEY] = new Tool(Tool.KEY, 1);
-		tools[Tool.SWORD] = new Tool(Tool.SWORD, 0);
+		tools[Tool.SWORD] = new Tool(Tool.SWORD, 5);
 	}
 
 	public boolean isSureCrit() {

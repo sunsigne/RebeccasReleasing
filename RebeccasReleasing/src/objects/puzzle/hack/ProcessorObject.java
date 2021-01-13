@@ -9,19 +9,21 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import objects.OBJECTID;
 import objects.puzzle.PuzzleObject;
 
+// Yes, the whole running of thoses classes between each other
+//is incredibly complexe... I'm a mad man !
 public abstract class ProcessorObject extends PuzzleObject {
 
 	protected PROCESSORID processorId;
-	protected int j, k;
+	protected int col, row;
 	protected boolean locked, deleted;
 	public ProcessorBack myback;
 	public ProcessorBack previousback;
 
-	public ProcessorObject(int j, int k, PROCESSORID processorId) {
-		super(Size.X0 + (j * 2 - 1) * Size.TILE_PUZZLE, Size.Y0 + (k * 2 - 1) * Size.TILE_PUZZLE, OBJECTID.PROCESSOR);
+	public ProcessorObject(int col, int row, PROCESSORID processorId) {
+		super(Size.X0 + (col * 2 - 1) * Size.TILE_PUZZLE, Size.Y0 + (row * 2 - 1) * Size.TILE_PUZZLE, OBJECTID.PROCESSOR);
 		this.processorId = processorId;
-		this.j = j;
-		this.k = k;
+		this.col = col;
+		this.row = row;
 
 		w = 4 * Size.TILE_PUZZLE / 3;
 		h = 4 * Size.TILE_PUZZLE / 3;
@@ -62,20 +64,20 @@ public abstract class ProcessorObject extends PuzzleObject {
 
 	// position
 
-	public void setJ(int j) {
-		this.j = j;
+	public void setCol(int col) {
+		this.col = col;
 	}
 
-	public void setK(int k) {
-		this.k = k;
+	public void setRow(int row) {
+		this.row = row;
 	}
 
-	public int getJ() {
-		return j;
+	public int getCol() {
+		return col;
 	}
 
-	public int getK() {
-		return k;
+	public int getRow() {
+		return row;
 	}
 
 	@Override

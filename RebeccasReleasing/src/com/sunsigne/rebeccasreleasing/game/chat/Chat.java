@@ -19,12 +19,10 @@ import objects.characters.displayer.ChatObject;
 public abstract class Chat extends Clickable implements IChat, IClick {
 
 	private static IChat ichat;
-
-	protected static String frTxt, engTxt;
+	private static String frTxt, engTxt;
 	
-	protected ChatObject chatObject;
-
-	protected int number, count;
+	private ChatObject chatObject;
+	private int number, count;
 
 	/**
 	 * WARNING ! Because of the fonctions mouse.clearClickable() and

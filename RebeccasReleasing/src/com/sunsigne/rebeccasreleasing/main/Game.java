@@ -51,7 +51,7 @@ public class Game extends Canvas implements Runnable {
 
 		game = this;
 		Conductor.setState(STATE.LOADING);
-		Options.loadLanguage();
+		Options.loadSavedSettings();
 		ImageBank.loadRessources();
 		SoundBank.loadRessources();
 		TextureBank.getInstance().loadRessources();

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -12,6 +13,7 @@ import objects.GameObject;
 import objects.OBJECTID;
 import objects.puzzle.PuzzleObject;
 
+@Todo("create a power where the key destroy some walls encountered (like fist and second for exemple)")
 public class Key extends PuzzleObject {
 
 	int ymin = 32 + Size.TILE_PUZZLE;
@@ -83,11 +85,11 @@ public class Key extends PuzzleObject {
 				HandlerObject.getInstance().player.puzzle.close();
 			}
 			if (tempObject.getId() == OBJECTID.WALL && getBounds().intersects(tempObject.getBounds())) {
-				if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5) && !World.world.getIEvent().hasOccured(6))
+				if (World.levelnum == 1 && !World.currentWorld.getIEvent().hasOccured(5) && !World.currentWorld.getIEvent().hasOccured(6))
 				{
 					int playerPosX = HandlerObject.getInstance().player.getX();
 					HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
-					World.world.getIEvent().setMustoccur(true, 5);
+					World.currentWorld.getIEvent().setMustoccur(true, 5);
 				}
 				HandlerObject.getInstance().player.puzzle.close();
 			}

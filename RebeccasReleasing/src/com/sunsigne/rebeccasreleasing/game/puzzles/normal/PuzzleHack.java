@@ -16,7 +16,7 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
-import objects.puzzle.WallPuzzle;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.hack.ProcessorCPU;
 import objects.puzzle.hack.ProcessorDesktop;
 import objects.puzzle.hack.ProcessorFolder;
@@ -29,7 +29,7 @@ import objects.world.puzzler.IPuzzler;
 		+ "/ difficulty : hack : processors to destroy : timer (+3sec), glue, hidder, defender (+3 clicks), antivirus (mine but deadly)")
 public class PuzzleHack extends Puzzle {
 
-	private static WallPuzzle wall;
+	private static FakeWallPuzzle wall;
 	private static GameTimer timer;
 	public static Virus virus;
 
@@ -46,7 +46,7 @@ public class PuzzleHack extends Puzzle {
 
 	@Override
 	public void createFrame() {
-		wall = new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.HACK);
+		wall = new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.HACK);
 		timer = new GameTimer(GameTimer.TIME, () -> close());
 
 		HandlerObject.getInstance().addObject(wall);

@@ -16,14 +16,15 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
-import objects.puzzle.WallPuzzle;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.bomb.Bomb;
 import objects.world.puzzler.IPuzzler;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public class PuzzleBomb extends Puzzle {
 
-	private static Bomb[] bomb = new Bomb[4];
+	private static final int NUMOFBOMB = 4;
+	private static Bomb[] bomb = new Bomb[NUMOFBOMB];
 
 	public PuzzleBomb(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(STATE.PUZZLEBOMB, puzzler, difficulty);
@@ -31,45 +32,31 @@ public class PuzzleBomb extends Puzzle {
 
 	@Override
 	public void createFrame() {
-		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0, WallPuzzle.WALLTYPE.BOMB));
+		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.BOMB));
 		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> close()));
 	}
 
 	@Override
 	public void randomGeneration() {
-		bomb[0] = new Bomb(Size.X0 + 3 * Size.TILE_PUZZLE / 2,
-				Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[1] = new Bomb(Size.X0 + 9 * Size.TILE_PUZZLE / 2,
-				Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[2] = new Bomb(Size.X0 + 15 * Size.TILE_PUZZLE / 2,
-				Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-		bomb[3] = new Bomb(Size.X0 + 21 * Size.TILE_PUZZLE / 2,
-				Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
-
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			bomb[i] = new Bomb(Size.X0 + (6*i + 3)*(Size.TILE_PUZZLE / 2),
+					Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE);
+		}
 	}
 
 	@Override
 	public void createPuzzle() {
-		HandlerObject.getInstance().addObject(bomb[0]);
-		HandlerObject.getInstance().addObject(bomb[1]);
-		HandlerObject.getInstance().addObject(bomb[2]);
-		HandlerObject.getInstance().addObject(bomb[3]);
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			HandlerObject.getInstance().addObject(bomb[i]);
+		}
 	}
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (GameMouseListener.mouseOver(mx, my, bomb[0].getX(), bomb[0].getY(), 2 * Size.TILE_PUZZLE,
-				2 * Size.TILE_PUZZLE))
-			bomb[0].removeCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[1].getX(), bomb[1].getY(), 2 * Size.TILE_PUZZLE,
-				2 * Size.TILE_PUZZLE))
-			bomb[1].removeCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[2].getX(), bomb[2].getY(), 2 * Size.TILE_PUZZLE,
-				2 * Size.TILE_PUZZLE))
-			bomb[2].removeCount();
-		if (GameMouseListener.mouseOver(mx, my, bomb[3].getX(), bomb[3].getY(), 2 * Size.TILE_PUZZLE,
-				2 * Size.TILE_PUZZLE))
-			bomb[3].removeCount();
+		for (int i = 0; i < NUMOFBOMB; i++) {
+			if (GameMouseListener.mouseOver(mx, my, bomb[i].getRect()))
+				bomb[i].removeCount();
+		}
 	}
 
 	@Override
@@ -77,7 +64,7 @@ public class PuzzleBomb extends Puzzle {
 
 		boolean winning = true;
 
-		for (int i = 0; i <= 3; i++) {
+		for (int i = 0; i < NUMOFBOMB; i++) {
 			if (!bomb[i].isExploding())
 				winning = false;
 		}

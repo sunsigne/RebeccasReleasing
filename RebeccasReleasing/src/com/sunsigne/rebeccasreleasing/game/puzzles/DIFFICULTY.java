@@ -12,23 +12,23 @@ public enum DIFFICULTY {
 	public static final int MIN = 1;
 	public static final int MAX = 5;
 	
-	private int num;
+	private int lvl;
 
-	DIFFICULTY(int num) {
+	DIFFICULTY(int lvl) {
 
-		this.num = num;
+		this.lvl = lvl;
 	}
 
-	public int getNum() {
-		return num;
+	public int getLvl() {
+		return lvl;
 	}
 	
-	public static DIFFICULTY getDifficulty(int num) {
+	public static DIFFICULTY getDifficulty(int lvl) {
 
 		DIFFICULTY difficulty = null;
 
 		for (DIFFICULTY alldifficulty : DIFFICULTY.values()) {
-			if (alldifficulty.getNum() == num)
+			if (alldifficulty.getLvl() == lvl)
 				difficulty = alldifficulty;
 		}
 

@@ -12,15 +12,19 @@ public class EventLoader implements ITick {
 		this.ievent = ievent;
 		HandlerTick.getInstance().addObject(this);
 	}
-	
-	public void start()
-	{
+
+	public void start() {
 		start = true;
+	}
+
+	public void stop() {
+		start = false;
 	}
 
 	@Override
 	public void tick() {
-		if(start) ievent.event();
+		if (start)
+			ievent.event();
 	}
 
 	public void clearEvent() {

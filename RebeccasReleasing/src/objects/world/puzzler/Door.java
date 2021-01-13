@@ -82,7 +82,7 @@ public class Door extends GameObject implements IPuzzler {
 	private BufferedImage paintingDoor() {
 
 		BufferedImage img = null;
-		int difficulty = getDifficulty().getNum();
+		int difficulty = getDifficulty().getLvl();
 
 		if (!horizontal && !isSolved())
 			img = texture.door[difficulty][0];

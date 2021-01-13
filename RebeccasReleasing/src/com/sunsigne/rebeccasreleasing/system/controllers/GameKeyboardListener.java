@@ -23,14 +23,14 @@ public class GameKeyboardListener extends KeyAdapter {
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			if (Conductor.getState() != STATE.TITLE) {
-				World.world.close();
+				World.currentWorld.close();
 				new Title();
 			} else
 				Conductor.stop();
 		}
 
 		if (key == KeyEvent.VK_R) {
-			World.world.restart();
+			World.currentWorld.restart();
 		}
 
 		if (key == KeyEvent.VK_Z)

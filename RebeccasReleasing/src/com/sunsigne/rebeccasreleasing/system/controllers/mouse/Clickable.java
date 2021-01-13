@@ -22,6 +22,8 @@ public abstract class Clickable extends GameMouseListener implements IClick {
 		return false;
 	}
 	
+	public abstract void close();
+	
 	protected void colorRender(Graphics g, Color color) {
 		g.setColor(color);
 		int x0 = 64 + Size.TILE_PUZZLE;

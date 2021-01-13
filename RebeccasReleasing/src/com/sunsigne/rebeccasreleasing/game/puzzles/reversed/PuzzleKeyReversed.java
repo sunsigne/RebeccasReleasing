@@ -16,9 +16,9 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
+import objects.puzzle.WallPuzzle;
 import objects.puzzle.key.KeyReversed;
 import objects.puzzle.key.Lock;
-import objects.world.Wall;
 import objects.world.puzzler.IPuzzler;
 
 public class PuzzleKeyReversed extends Puzzle {
@@ -35,18 +35,17 @@ public class PuzzleKeyReversed extends Puzzle {
 	public void createFrame() {
 
 		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, Wall.WALLTYPE.KEY));
-		}
-		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
-		}
-		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+			HandlerObject.getInstance()
+					.addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, WallPuzzle.WALLTYPE.KEY));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE,
+					Size.Y0 + 7 * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 		}
 		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+			HandlerObject.getInstance()
+					.addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE,
+					Size.Y0 + i * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 		}
-
 		HandlerObject.getInstance().addObject(new GameTimerReversed(GameTimer.TIME, () -> close()));
 
 	}
@@ -56,7 +55,8 @@ public class PuzzleKeyReversed extends Puzzle {
 		int r0 = 2 + new Random().nextInt(10);
 		int r1 = 1 + new Random().nextInt(5);
 
-		HandlerObject.getInstance().addObject(new Wall(Size.X0 + r0 * Size.TILE_PUZZLE, Size.Y0 + r1 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+		HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + r0 * Size.TILE_PUZZLE,
+				Size.Y0 + r1 * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 	}
 
 	@Override

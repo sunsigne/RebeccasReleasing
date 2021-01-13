@@ -18,7 +18,7 @@ public class ScoreScreen extends Clickable {
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		World.world.close();
+		World.currentWorld.close();
 //		World.world = new WorldLvl01();
 	}
 
@@ -33,5 +33,8 @@ public class ScoreScreen extends Clickable {
 
 	}
 
+	@Override
+	public void close() {
+	}
 
 }

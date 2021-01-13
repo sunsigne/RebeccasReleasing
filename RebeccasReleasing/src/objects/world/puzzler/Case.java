@@ -79,15 +79,15 @@ public class Case extends GameObject implements IPuzzler {
 	protected void drawDifficulty(Graphics g) {
 
 		Color color = new Color(0, 0, 0, 0);
-		if (getDifficulty().getNum() == 1)
+		if (getDifficulty().getLvl() == 1)
 			color = new Color(0, 255, 255, 100);
-		if (getDifficulty().getNum() == 2)
+		if (getDifficulty().getLvl() == 2)
 			color = new Color(0, 255, 0, 100);
-		if (getDifficulty().getNum() == 3)
+		if (getDifficulty().getLvl() == 3)
 			color = new Color(255, 255, 0, 100);
-		if (getDifficulty().getNum() == 4)
+		if (getDifficulty().getLvl() == 4)
 			color = new Color(255, 128, 0, 100);
-		if (getDifficulty().getNum() == 5)
+		if (getDifficulty().getLvl() == 5)
 			color = new Color(255, 0, 0, 100);
 		g.setColor(color);
 		g.fillRect(x, y, w, h);

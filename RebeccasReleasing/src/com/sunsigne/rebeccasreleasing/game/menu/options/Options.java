@@ -21,7 +21,7 @@ public class Options extends Clickable {
 		HandlerObject.getInstance().addObject(new OptionObject());
 	}
 
-	public static void loadLanguage() {
+	public static void loadSavedSettings() {
 		language = getLanguageSaved();
 	}
 
@@ -53,10 +53,9 @@ public class Options extends Clickable {
 	private static LANGUAGE getLanguageSaved() {
 
 		LANGUAGE language;
-		try {
-			String languagetxt = FileTask.read(options, 0);
-			String languagetxtnum = languagetxt.substring(9);
-			int languagenum = Integer.valueOf(languagetxtnum);
+		try {			
+			String languagetxt = FileTask.read(options, 1);
+			int languagenum = Integer.valueOf(languagetxt.split("=")[1]);
 
 			language = LANGUAGE.getLanguage(languagenum);
 		} catch (Exception e) {
@@ -88,6 +87,7 @@ public class Options extends Clickable {
 
 	}
 
+	@Override
 	public void close() {
 		GameMouseListener.getInstance().clearClickable();
 		HandlerObject.getInstance().clearAll();

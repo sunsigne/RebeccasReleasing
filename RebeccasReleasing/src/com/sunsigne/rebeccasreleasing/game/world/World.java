@@ -27,7 +27,7 @@ public class World implements IRender {
 	private IEvent ievent;
 	private EventLoader event;
 
-	public static World world;
+	public static World currentWorld;
 
 	public static GUI gui = new GUI();
 	public static int levelnum;
@@ -56,17 +56,18 @@ public class World implements IRender {
 		return ievent;
 	}
 
-	private static void startGUI() {
-		gui = new GUI();
-		HandlerObject.getInstance().addObject(gui);
-	}
-
 	private void loadLevel() {
 
 		MapBuilder.createLevel(ilvl.getLvlImage());
 		startGUI();
 		Conductor.setState(STATE.LEVEL);
 		event.start();
+	}
+	
+
+	private static void startGUI() {
+		gui = new GUI();
+		HandlerObject.getInstance().addObject(gui);
 	}
 
 	// level maker
@@ -89,8 +90,8 @@ public class World implements IRender {
 	}
 
 	public void restart() {
-		world.close();
-		world = new World(world.getILvl());
+		currentWorld.close();
+		currentWorld = new World(currentWorld.getILvl());
 	}
 
 	public void close() {

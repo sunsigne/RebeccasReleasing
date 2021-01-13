@@ -8,18 +8,18 @@ import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 
 import objects.OBJECTID;
 
-public class WallPuzzle extends PuzzleObject {
+public class FakeWallPuzzle extends PuzzleObject {
 
 	private WALLTYPE type;
 
-	public WallPuzzle(int x, int y, WALLTYPE type) {
+	public FakeWallPuzzle(int x, int y, WALLTYPE type) {
 		super(x, y, OBJECTID.WALL);
 		this.type = type;
 
 	}
 
 	public static enum WALLTYPE {
-		KEY;
+		CARD, HACK, SEARCH, BOMB;
 	}
 
 	@Override
@@ -32,16 +32,37 @@ public class WallPuzzle extends PuzzleObject {
 		BufferedImage img = null;
 		img = paintingWall(type);
 
-		g.drawImage(img, x, y, w, h, null);
-		drawHitbox(g);
+		for (int i = 0; i < 13; i++) {
+			g.drawImage(img, x + i * w, y, w, h, null);
+		}
+		for (int i = 0; i < 13; i++) {
+			g.drawImage(img, x + i * w, y + 7 * h, w, h, null);
+		}
+		for (int i = 0; i < 8; i++) {
+			g.drawImage(img, x, y + i * h, w, h, null);
+		}
+		for (int i = 0; i < 8; i++) {
+			g.drawImage(img, x + 13 * w, y + i * h, w, h, null);
+		}
 	}
 
 	private BufferedImage paintingWall(WALLTYPE type) {
+
 		BufferedImage img = null;
 
 		switch (type) {
-		case KEY:
-			img = texture.item[3];
+		
+		case BOMB:
+			img = texture.item[30];
+			break;
+		case CARD:
+			img = texture.item[25];
+			break;
+		case HACK:
+			img = texture.item[32];
+			break;
+		case SEARCH:
+			img = texture.item[35];
 			break;
 		default:
 			img = ImageTask.drawMissingTexture();
@@ -53,7 +74,8 @@ public class WallPuzzle extends PuzzleObject {
 	@Override
 	public Rectangle getBounds() {
 
-		return new Rectangle(x, y, w, h);
-	}	
+		return null;
+	}
+
 
 }

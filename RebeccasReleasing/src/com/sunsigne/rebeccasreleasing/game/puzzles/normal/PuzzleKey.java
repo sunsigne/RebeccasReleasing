@@ -17,9 +17,9 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.puzzle.GameTimer;
+import objects.puzzle.WallPuzzle;
 import objects.puzzle.key.Key;
 import objects.puzzle.key.Lock;
-import objects.world.Wall;
 import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : immobiliser la clef loin du cadenas")
@@ -35,26 +35,22 @@ public class PuzzleKey extends Puzzle {
 	@Override
 	public void createFrame() {
 		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, Wall.WALLTYPE.KEY));
-		}
-		for (int i = 0; i < 13; i++) {
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, WallPuzzle.WALLTYPE.KEY));
 			HandlerObject.getInstance().addObject(
-					new Wall(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+					new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 		}
 		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new Wall(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
-		}
-		for (int i = 0; i < 8; i++) {
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 			HandlerObject.getInstance().addObject(
-					new Wall(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+					new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 		}
 
 		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> {
 			close();
-			if (World.levelnum == 1 && !World.world.getIEvent().hasOccured(5) && !World.world.getIEvent().hasOccured(6)) {
+			if (World.levelnum == 1 && !World.currentWorld.getIEvent().hasOccured(5) && !World.currentWorld.getIEvent().hasOccured(6)) {
 				int playerPosX = HandlerObject.getInstance().player.getX();
 				HandlerObject.getInstance().player.setX(playerPosX - Size.TILE/2);
-				World.world.getIEvent().setMustoccur(true, 4);
+				World.currentWorld.getIEvent().setMustoccur(true, 4);
 			}
 		}));
 	}
@@ -62,7 +58,7 @@ public class PuzzleKey extends Puzzle {
 	@Override
 	public void randomGeneration() {
 		int j = 1;
-		if (getDifficulty().getNum() >= 2)
+		if (getDifficulty().getLvl() >= 2)
 			j = 5;
 
 		for (int i = 0; i < j; i++) {
@@ -70,7 +66,7 @@ public class PuzzleKey extends Puzzle {
 			int r1 = 1 + new Random().nextInt(5);
 
 			HandlerObject.getInstance().addObject(
-					new Wall(Size.X0 + r0 * Size.TILE_PUZZLE, Size.Y0 + r1 * Size.TILE_PUZZLE, Wall.WALLTYPE.KEY));
+					new WallPuzzle(Size.X0 + r0 * Size.TILE_PUZZLE, Size.Y0 + r1 * Size.TILE_PUZZLE, WallPuzzle.WALLTYPE.KEY));
 		}
 	}
 

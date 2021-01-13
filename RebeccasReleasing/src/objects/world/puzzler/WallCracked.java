@@ -54,7 +54,7 @@ public class WallCracked extends GameObject implements IPuzzler {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.wallcracked[difficulty.getNum()];
+		BufferedImage img = texture.wallcracked[difficulty.getLvl()];
 		if (!isSolved())
 			g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);

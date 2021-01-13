@@ -29,7 +29,7 @@ public interface IPuzzler extends ICollision {
 		boolean toolhasLvl = false;
 		Tool current_tool = World.gui.getCharacteristics().getTool(toolnum);
 		int current_tool_lvl = current_tool.getLvl();
-		if (current_tool_lvl >= difficulty.getNum())
+		if (current_tool_lvl >= difficulty.getLvl())
 			toolhasLvl = true;
 		return toolhasLvl;
 	}
