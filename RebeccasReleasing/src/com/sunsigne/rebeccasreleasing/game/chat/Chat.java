@@ -77,15 +77,15 @@ public abstract class Chat extends Clickable implements IChat, IClick {
 		
 		String dataline = read(lineID);
 		String [] data = dataline.split(";");
-		CHARA chara = CHARA.getChara(Integer.valueOf(data[1]));
-		String line = data[3].replace("\"", "");
+		CHARA chara = CHARA.getChara(Integer.valueOf(data[2]));
+		String line = data[4].replace("\"", "");
 		String secondline = null;
 		
 		if(secondLine == lineID + 1)
 		{
 			String seconddataline = read(secondLine);
 			String [] seconddata = seconddataline.split(";");	
-			secondline = seconddata[3].replace("\"", "");;
+			secondline = seconddata[4].replace("\"", "");;
 		}
 		
 		chatObject = new ChatObject(chara, line, secondline);
