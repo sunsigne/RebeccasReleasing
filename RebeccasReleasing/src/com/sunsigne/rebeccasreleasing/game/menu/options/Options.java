@@ -3,8 +3,8 @@ package com.sunsigne.rebeccasreleasing.game.menu.options;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
+import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
-import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -54,7 +54,7 @@ public class Options extends Clickable {
 
 		LANGUAGE language;
 		try {			
-			String languagetxt = FileTask.read(options, 1);
+			String languagetxt = FileTask.read(options);
 			int languagenum = Integer.valueOf(languagetxt.split("=")[1]);
 
 			language = LANGUAGE.getLanguage(languagenum);

@@ -14,8 +14,6 @@ import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.Camera;
-import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.GameKeyboardListener;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -127,7 +125,9 @@ public class Game extends Canvas implements Runnable {
 					tick();
 
 				} catch (ConcurrentModificationException e) {
-					forceLoop();
+					// some list are sometimes changed during a tick instead of between
+					// two, which may cause crash. As next tick will repair the problem,
+					//no need to escape this exception.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 				try {
 					render();
 				} catch (ConcurrentModificationException e) {
-					forceLoop();
+					// same problem as above
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -156,17 +156,13 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	public void forceLoop() {
+	void forceLoop() {
 		try {
 			tick();
 			render();
-		} catch (ConcurrentModificationException e) {
-			
-			System.out.println("If the game just started, ignore this :");
-			e.printStackTrace();
-			System.out.println("Otherwise, you are in trouble ...");
 		} catch (Exception e) {
-			e.printStackTrace();
+			// same problem as above but can be more annoying.
+			// Clearly, It's just better to ignore this catch as this method is called ONCE.
 		}
 	}
 

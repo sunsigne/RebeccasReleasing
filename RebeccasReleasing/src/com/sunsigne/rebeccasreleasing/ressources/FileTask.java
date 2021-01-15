@@ -11,12 +11,11 @@ public class FileTask {
 		return file.exists();
 	}
 
-	public static String read(String filename, int lineToRead) {
+	public static String read(String filename) {
 
 		File file = new File("ressources/data/" + filename + ".csv");
 		Scanner scan = null;
 		String fileContent = "";
-		int readingline = 0;
 
 		try {
 			if (file.exists()) {
@@ -24,19 +23,11 @@ public class FileTask {
 				boolean flag = false;
 
 				while (scan.hasNextLine()) {
-					if (lineToRead == 0) {
-						if (!flag) {
-							fileContent = fileContent.concat(scan.nextLine());
-							flag = true;
-						} else
-							fileContent = fileContent.concat(String.format("%n" + scan.nextLine()));
-					} else {
-						readingline++;
-						String linecontent = scan.nextLine();
-
-						if (readingline == lineToRead)
-							fileContent = fileContent.concat(linecontent);
-					}
+					if (!flag) {
+						fileContent = fileContent.concat(scan.nextLine());
+						flag = true;
+					} else
+						fileContent = fileContent.concat(String.format("%n" + scan.nextLine()));
 				}
 				scan.close();
 			}

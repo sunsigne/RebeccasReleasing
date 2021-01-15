@@ -6,11 +6,11 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.event.EventLoader;
 import com.sunsigne.rebeccasreleasing.game.event.IEvent;
+import com.sunsigne.rebeccasreleasing.main.Conductor;
+import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;

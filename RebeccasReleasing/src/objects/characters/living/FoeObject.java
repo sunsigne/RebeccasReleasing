@@ -9,10 +9,10 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.main.Conductor;
+import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
@@ -48,7 +48,7 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
 
-		this.difficulty = DIFFICULTY.RED;
+		this.difficulty = DIFFICULTY.YELLOW;
 		this.currentDifficulty = difficulty;
 		
 		collisionDetector = new CollisionDetector(false, this);

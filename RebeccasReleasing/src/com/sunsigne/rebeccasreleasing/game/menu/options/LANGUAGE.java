@@ -1,8 +1,11 @@
 package com.sunsigne.rebeccasreleasing.game.menu.options;
 
+import com.sunsigne.rebeccasreleasing.Todo;
+
+@Todo("at least, create ONE customable language, for developpers")
 public enum LANGUAGE {
 
-	ENGLISH(1), FRENCH(2);
+	ENGLISH(1), FRENCH(2), ;
 
 	public static final int TOTALNUM = 2;
 	private int num;

@@ -9,8 +9,6 @@ public class SoundBank {
 
 	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
 
-	// soundBank doesn't need to be more than new SoundBank()
-	// bufferedSound is the path of the sound
 	public static void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
 
 		if (bufferedSound != null)

@@ -3,10 +3,10 @@ package com.sunsigne.rebeccasreleasing.game.menu.title;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
+import com.sunsigne.rebeccasreleasing.main.Conductor;
+import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.system.conductor.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;

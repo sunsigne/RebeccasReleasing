@@ -8,8 +8,6 @@ public class ImageBank {
 
 	private static Map<ImageBank, BufferedImage> images = new HashMap<>();
 
-	// imageBank doesn't need to be more than new ImageBank()
-	// bufferedImage is the path of the image
 	public static void addImage(ImageBank imageBank, BufferedImage bufferedImage) {
 
 		if (bufferedImage != null)

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
@@ -23,6 +24,7 @@ public class ChatObject extends GameObject {
 	private CHARA chara;
 	private String[] text = new String[2];
 	private String[] currentText = new String[2];
+	private int eventOnDisplay;
 
 	private char[][] letter = new char[2][64];
 
@@ -35,7 +37,7 @@ public class ChatObject extends GameObject {
 
 	private boolean[] stop = new boolean[2];
 
-	public ChatObject(CHARA chara, String text0, String text1) {
+	public ChatObject(CHARA chara, String text0, String text1, int eventOnDisplay) {
 		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.chara = chara;
@@ -43,6 +45,7 @@ public class ChatObject extends GameObject {
 		this.text[1] = text1;
 		this.currentText[0] = "";
 		this.currentText[1] = "";
+		this.eventOnDisplay = eventOnDisplay;
 
 		w = 1857;
 		h = 300;
@@ -143,6 +146,11 @@ public class ChatObject extends GameObject {
 		default:
 			break;
 		}
+	}
+	
+	public void startEvent()
+	{
+		if(eventOnDisplay != 0) World.currentWorld.getIEvent().setMustoccur(true, eventOnDisplay);
 	}
 
 	@Override

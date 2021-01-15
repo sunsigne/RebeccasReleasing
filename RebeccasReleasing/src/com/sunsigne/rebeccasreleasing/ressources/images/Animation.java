@@ -25,7 +25,7 @@ public class Animation {
 
 		if (frames != 0) {
 			images = new BufferedImage[frames];
-			for (int i = 0; i < args.length; i++) {
+			for (int i = 0; i < frames; i++) {
 				images[i] = args[i];
 			}
 

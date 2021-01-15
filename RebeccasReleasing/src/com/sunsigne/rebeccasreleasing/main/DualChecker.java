@@ -1,11 +1,6 @@
 package com.sunsigne.rebeccasreleasing.main;
 
-import javax.swing.JOptionPane;
-
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
 
@@ -21,19 +16,17 @@ public class DualChecker implements ITick {
 			if (!FileTask.doesExist(dualcheck))
 				FileTask.write(dualcheck, "true");
 			else {
-				String dualcheckertxt = FileTask.read(dualcheck, 0);
+				String dualcheckertxt = FileTask.read(dualcheck);
 				boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 				if (!dualcheckerboolean) {
 					FileTask.write(dualcheck, "true");
-					SoundTask.playSound(SoundBank.getSound(SoundBank.error));
-					JOptionPane.showMessageDialog(null, "An error has occured. Please try again");
-					Conductor.stop();
+					Conductor.fatalError("An error has occured. Please try again");
 				}
 			}
 			hasbeenchecked = true;
 		}
 
-		String dualcheckertxt = FileTask.read(dualcheck, 0);
+		String dualcheckertxt = FileTask.read(dualcheck);
 		boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 
 		if (dualcheckerboolean || !FileTask.doesExist(dualcheck) && !closing)
