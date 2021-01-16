@@ -4,10 +4,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.GameObject;
 import objects.OBJECTID;
@@ -16,33 +18,37 @@ import objects.characters.living.LivingObject;
 
 public class Door extends GameObject implements IPuzzler {
 
-	private boolean solved;
+	private EventListener eventOnVictory;
+	private EventListener eventOnDefeat;
+
 	private DIFFICULTY difficulty;
+	private boolean solved;
 
 	private boolean horizontal;
-
-	public Door(int x, int y, boolean horizontal) {
-		this(x, y, horizontal, DIFFICULTY.CYAN);
-	}
 
 	public Door(int x, int y, boolean horizontal, DIFFICULTY difficulty) {
 		super(true, x, y, OBJECTID.DOOR);
 
 		this.difficulty = difficulty;
 		setHorizontal(horizontal);
-
 	}
 
 	// state
 
 	@Override
-	public boolean isSolved() {
-		return solved;
+	public EventListener getEventOnClose() {
+		if (solved)
+			return eventOnVictory;
+		else
+			return eventOnDefeat;
 	}
 
 	@Override
-	public void setSolved(boolean solved) {
-		this.solved = solved;
+	public void setEventOnClose(EventListener eventOnClose, boolean onVictory) {
+		if (onVictory)
+			this.eventOnVictory = eventOnClose;
+		else
+			this.eventOnDefeat = eventOnClose;
 	}
 
 	@Override
@@ -53,6 +59,16 @@ public class Door extends GameObject implements IPuzzler {
 	@Override
 	public void setDifficulty(DIFFICULTY difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	@Override
+	public boolean isSolved() {
+		return solved;
+	}
+
+	@Override
+	public void setSolved(boolean solved) {
+		this.solved = solved;
 	}
 
 	public void setHorizontal(boolean horizontal) {
@@ -67,9 +83,13 @@ public class Door extends GameObject implements IPuzzler {
 		return horizontal;
 	}
 
+	// behavior
+
 	@Override
 	public void tick() {
 	}
+
+	// design
 
 	@Override
 	public void render(Graphics g) {
@@ -96,6 +116,8 @@ public class Door extends GameObject implements IPuzzler {
 		return img;
 	}
 
+	// collision
+
 	@Override
 	public Rectangle getBounds() {
 
@@ -113,6 +135,7 @@ public class Door extends GameObject implements IPuzzler {
 				blockPass(living, this);
 		}
 	}
+
 	@Override
 	public Puzzle getPuzzle() {
 		return new PuzzleKey(this, getDifficulty());

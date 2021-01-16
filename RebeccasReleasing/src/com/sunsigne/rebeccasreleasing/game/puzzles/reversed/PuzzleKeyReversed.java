@@ -13,13 +13,13 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
 import objects.puzzle.WallPuzzle;
 import objects.puzzle.key.KeyReversed;
 import objects.puzzle.key.Lock;
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleKeyReversed extends Puzzle {
 

@@ -4,9 +4,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleBomb;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.GameObject;
 import objects.OBJECTID;
@@ -15,8 +17,11 @@ import objects.characters.living.LivingObject;
 
 public class WallCracked extends GameObject implements IPuzzler {
 
-	private boolean solved;
+	private EventListener eventOnVictory;
+	private EventListener eventOnDefeat;
+	
 	private DIFFICULTY difficulty;
+	private boolean solved;
 
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {
 		super(true, x, y, OBJECTID.WALLCRACKED);
@@ -26,6 +31,23 @@ public class WallCracked extends GameObject implements IPuzzler {
 
 	// state
 
+	@Override
+	public EventListener getEventOnClose() {
+		if(solved) return eventOnVictory;
+		else return eventOnDefeat;
+	}
+
+	@Override
+	public void setEventOnClose(EventListener eventOnClose, boolean onVictory) {
+		if(onVictory) this.eventOnVictory = eventOnClose;	
+		else this.eventOnDefeat = eventOnClose;
+	}
+	
+	@Override
+	public void setDifficulty(DIFFICULTY difficulty) {
+		this.difficulty = difficulty;
+	}
+	
 	@Override
 	public boolean isSolved() {
 		return solved;
@@ -42,15 +64,12 @@ public class WallCracked extends GameObject implements IPuzzler {
 	}
 
 	@Override
-	public void setDifficulty(DIFFICULTY difficulty) {
-		this.difficulty = difficulty;
-	}
-
-	@Override
 	public void tick() {
 
 	}
 
+	// behavior
+	
 	@Override
 	public void render(Graphics g) {
 
@@ -59,6 +78,8 @@ public class WallCracked extends GameObject implements IPuzzler {
 			g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
+	
+	// collision
 
 	@Override
 	public Rectangle getBounds() {

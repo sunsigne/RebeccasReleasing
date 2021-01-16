@@ -31,9 +31,13 @@ public class Flag extends GameObject implements ICollision {
 		return reached;
 	}	
 
+	// behavior
+	
 	@Override
 	public void tick() {
 	}
+	
+	// design
 
 	@Override
 	public void render(Graphics g) {
@@ -43,6 +47,8 @@ public class Flag extends GameObject implements ICollision {
 //		g.drawImage(texture.item[2], x, y, Size.TILE, Size.TILE, null);	
 		drawHitbox(g);
 	}
+	
+	// collision
 
 	@Override
 	public void collision(LivingObject living) {
@@ -52,7 +58,6 @@ public class Flag extends GameObject implements ICollision {
 			living.collisionDetector.collidingBehavior(false, this, () -> {
 				setReached(true);
 				new ScoreScreen();
-				return;
 			});
 		}
 
@@ -61,7 +66,7 @@ public class Flag extends GameObject implements ICollision {
 	@Override
 	public Rectangle getBounds() {
 
-		return new Rectangle(x, y, Size.TILE, Size.TILE);
+		return new Rectangle(x, y, w, h);
 	}
 
 

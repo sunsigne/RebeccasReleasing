@@ -14,11 +14,11 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.bomb.Bomb;
-import objects.world.puzzler.IPuzzler;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public class PuzzleBomb extends Puzzle {

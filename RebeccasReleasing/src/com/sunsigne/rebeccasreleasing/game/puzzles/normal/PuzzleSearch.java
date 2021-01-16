@@ -11,12 +11,12 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.search.SearchFolder;
 import objects.puzzle.search.SearchWord;
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleSearch extends Puzzle {
 

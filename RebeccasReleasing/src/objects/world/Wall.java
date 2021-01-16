@@ -14,16 +14,22 @@ public class Wall extends GameObject implements ICollision {
 		super(true, x, y, OBJECTID.WALL);
 	}
 
+	// behavior
+	
 	@Override
 	public void tick() {
 	}
 
+	// design
+	
 	@Override
 	public void render(Graphics g) {
 
 		g.drawImage(texture.item[2], x, y, w, h, null);
 		drawHitbox(g);
 	}
+	
+	// collision
 
 	@Override
 	public void collision(LivingObject living)

@@ -1,5 +1,7 @@
-package objects.world.puzzler;
+package com.sunsigne.rebeccasreleasing.toclean.verify;
 
+import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
@@ -14,17 +16,18 @@ import objects.characters.living.LivingObject;
 
 public interface IPuzzler extends ICollision {
 	
-	public boolean isSolved();
-	public void setSolved(boolean solved);
+	public EventListener getEventOnClose();
+	public void setEventOnClose(EventListener eventOnClose, boolean onVictory);
 	public DIFFICULTY getDifficulty();
 	public void setDifficulty(DIFFICULTY difficulty);
-	
-	public Puzzle getPuzzle();
+	public boolean isSolved();
+	public void setSolved(boolean solved);
 
 	public default boolean hasToolLvl(int toolnum) {
 		return hasToolLvl(getDifficulty(), toolnum);
 	}
 	
+	@Todo("check if this function is REALLY necessary")
 	public default boolean hasToolLvl(DIFFICULTY difficulty, int toolnum) {
 		boolean toolhasLvl = false;
 		Tool current_tool = World.gui.getCharacteristics().getTool(toolnum);
@@ -35,7 +38,7 @@ public interface IPuzzler extends ICollision {
 	}
 	
 	public default void openPuzzle(LivingObject living, GameObject currentObject) {
-		living.collisionDetector.collidingBehavior(true, currentObject, () -> updatePuzzler(living, currentObject));
+		living.collisionDetector.collidingBehavior(true, currentObject, () -> updatePuzzler(living));
 	}
 
 	public default void blockPass(LivingObject living, GameObject currentObject) {
@@ -43,7 +46,7 @@ public interface IPuzzler extends ICollision {
 	}
 
 	
-	public default void updatePuzzler(LivingObject living, GameObject tempObject) {
+	public default void updatePuzzler(LivingObject living) {
 		if (living.collisionDetector.isPlayer) {
 			
 			World.stunAllFoes();
@@ -60,7 +63,7 @@ public interface IPuzzler extends ICollision {
 		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
 			HandlerObject.getInstance().player.loadBasicState();
 	}
-
 	
+	public Puzzle getPuzzle();
 
 }

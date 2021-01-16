@@ -1,25 +1,30 @@
-package objects.world.puzzler;
+package com.sunsigne.rebeccasreleasing.toclean.redesign;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleSearch;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.displayer.Tool;
 import objects.characters.living.LivingObject;
 
-@Todo("à redesinger absoluement")
+@Todo("redesign")
 public class Case extends GameObject implements IPuzzler {
 
-	private boolean solved;
+	private EventListener eventOnVictory;
+	private EventListener eventOnDefeat;
+
 	private DIFFICULTY difficulty;
+	private boolean solved;
 
 	public Case(int x, int y) {
 		this(x, y, DIFFICULTY.CYAN);
@@ -37,13 +42,19 @@ public class Case extends GameObject implements IPuzzler {
 	// state
 
 	@Override
-	public boolean isSolved() {
-		return solved;
+	public EventListener getEventOnClose() {
+		if (solved)
+			return eventOnVictory;
+		else
+			return eventOnDefeat;
 	}
 
 	@Override
-	public void setSolved(boolean solved) {
-		this.solved = solved;
+	public void setEventOnClose(EventListener eventOnClose, boolean onVictory) {
+		if (onVictory)
+			this.eventOnVictory = eventOnClose;
+		else
+			this.eventOnDefeat = eventOnClose;
 	}
 
 	@Override
@@ -57,47 +68,60 @@ public class Case extends GameObject implements IPuzzler {
 	}
 
 	@Override
+	public boolean isSolved() {
+		return solved;
+	}
+
+	@Override
+	public void setSolved(boolean solved) {
+		this.solved = solved;
+	}
+
+	// behavior
+
+	@Override
 	public void tick() {
 	}
+
+	// design
 
 	@Override
 	public void render(Graphics g) {
 
-		if (!isSolved()) {
-			g.drawImage(texture.item[21], x, y, Size.TILE, Size.TILE, null);
-			g.drawImage(texture.item[22], x, y + Size.TILE, Size.TILE, Size.TILE, null);
-		} else {
-			g.drawImage(texture.item[23], x, y, Size.TILE, Size.TILE, null);
-			g.drawImage(texture.item[24], x, y + Size.TILE, Size.TILE, Size.TILE, null);
-		}
-
-		drawDifficulty(g);
-		drawHitbox(g);
+		BufferedImage img = paintingCase();
+		g.drawImage(img, x, y, w, h, null);
+		drawHitbox(g);		
 	}
-
-	@Todo("Improve graphism, here are some basic layers to identify the difficulty")
-	protected void drawDifficulty(Graphics g) {
-
-		Color color = new Color(0, 0, 0, 0);
-		if (getDifficulty().getLvl() == 1)
-			color = new Color(0, 255, 255, 100);
-		if (getDifficulty().getLvl() == 2)
-			color = new Color(0, 255, 0, 100);
-		if (getDifficulty().getLvl() == 3)
-			color = new Color(255, 255, 0, 100);
-		if (getDifficulty().getLvl() == 4)
-			color = new Color(255, 128, 0, 100);
-		if (getDifficulty().getLvl() == 5)
-			color = new Color(255, 0, 0, 100);
-		g.setColor(color);
-		g.fillRect(x, y, w, h);
+	
+	private BufferedImage paintingCase() {
+		
+		BufferedImage img = null;
+		if (!isSolved())
+			img = texture.item[21];
+		else
+			img = texture.item[23];
+		return img;
 	}
+/*	
+	private BufferedImage paintingComputer() {
+
+		BufferedImage img = null;
+		int difficulty = getDifficulty().getLvl();
+
+		if (!isSolved())
+			img = texture.door[difficulty][2];
+		if (isSolved())
+			img = texture.door[difficulty][3];
+
+		return img;
+	}
+*/
+	// collision
 
 	@Override
 	public Rectangle getBounds() {
 
 		return new Rectangle(x, y, w, h);
-
 	}
 
 	@Override
@@ -107,11 +131,8 @@ public class Case extends GameObject implements IPuzzler {
 
 			if (hasToolLvl(Tool.KEY))
 				openPuzzle(living, this);
-		}
-
-		else
+		} else
 			blockPass(living, this);
-
 	}
 
 	@Override

@@ -11,20 +11,22 @@ public class TextureBank {
 
 	private static TextureBank instance = null;
 
-	private SpriteSheet rebecca_sheet, foe_sheet, desk_sheet, door_sheet, couch_sheet, battery_sheet, bomb_sheet,
+	private SpriteSheet rebecca_sheet, foe_sheet, desk_sheet, door_sheet, key_sheet, couch_sheet, battery_sheet, bomb_sheet,
 			item_sheet, tool_sheet, hack_sheet, virus_sheet, wallcracked_sheet;
 
 	public BufferedImage[] rebecca_walking = new BufferedImage[12];
 	public BufferedImage[][] foe_walking = new BufferedImage[DIFFICULTY.MAX + 1][12];
 
-	public BufferedImage[] desk = new BufferedImage[24];
+	public BufferedImage[] desk = new BufferedImage[36];
 	public BufferedImage[] dispenser = new BufferedImage[2];
 	public BufferedImage[] lamp = new BufferedImage[1];
 	
 	public BufferedImage[][] door = new BufferedImage[DIFFICULTY.MAX + 1][4];
 	public BufferedImage[] wallcracked = new BufferedImage[DIFFICULTY.MAX + 1];
 	
-	public BufferedImage[] plant = new BufferedImage[4];
+	public BufferedImage[] key = new BufferedImage[DIFFICULTY.MAX + 1];
+	
+	public BufferedImage[] plant = new BufferedImage[8];
 	public BufferedImage[][] couch = new BufferedImage[4][4];
 
 	public BufferedImage[][] battery = new BufferedImage[DIFFICULTY.MAX + 1][DIFFICULTY.MAX + 1];
@@ -52,6 +54,8 @@ public class TextureBank {
 		door_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.door_sheet));
 		couch_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.couch_sheet));
 		battery_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.battery_sheet));
+		
+		key_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.key_sheet));
 
 		bomb_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.bomb_sheet));
 		item_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.item_sheet));
@@ -108,6 +112,7 @@ public class TextureBank {
 		for (int j = 0; j < 2; j++) {
 			for (int i = 0; i < 6; i++) {
 				desk[i + 12 + 6 * j] = desk_sheet.grabImage(j + 1, i + 2, 64, 64); // vertical
+				desk[i + 24 + 6 * j] = desk_sheet.grabImage(j + 5, i + 2, 64, 64); // vertical
 			}
 		}
 
@@ -124,12 +129,17 @@ public class TextureBank {
 		
 		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
 			wallcracked[i] = wallcracked_sheet.grabImage(1, i, 32, 32);
+			key[i] = key_sheet.grabImage(1, i, 32, 32);
 		}
 
-		plant[0] = desk_sheet.grabImage(3, 3, 64, 32);
+		plant[0] = desk_sheet.grabImage(3, 3, 64, 32); //right
 		plant[1] = desk_sheet.grabImage(3, 4, 64, 32);
 		plant[2] = desk_sheet.grabImage(3, 5, 64, 32);
 		plant[3] = desk_sheet.grabImage(3, 6, 64, 32);
+		plant[4] = desk_sheet.grabImage(4, 3, 64, 32); // left
+		plant[5] = desk_sheet.grabImage(4, 4, 64, 32);
+		plant[6] = desk_sheet.grabImage(4, 5, 64, 32);
+		plant[7] = desk_sheet.grabImage(4, 6, 64, 32);
 
 		battery[1][2] = battery_sheet.grabImage(1, 1, 32, 32);
 		battery[2][2] = battery_sheet.grabImage(2, 1, 32, 32);

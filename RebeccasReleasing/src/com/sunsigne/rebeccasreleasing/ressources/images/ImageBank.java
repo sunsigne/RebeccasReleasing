@@ -51,6 +51,8 @@ public class ImageBank {
 	public static final ImageBank item_sheet = new ImageBank();
 	public static final ImageBank tool_sheet = new ImageBank();
 	public static final ImageBank wallcracked_sheet = new ImageBank();
+	
+	public static final ImageBank key_sheet = new ImageBank();
 
 	// chara
 	public static final ImageBank chatbox = new ImageBank();
@@ -112,6 +114,8 @@ public class ImageBank {
 		addImage(hack_sheet, ImageTask.loadImage("hack_sheet.png"));
 		addImage(virus_sheet, ImageTask.loadImage("virus_sheet.png"));
 		addImage(wallcracked_sheet, ImageTask.loadImage("wallcracked_sheet.png"));
+		
+		addImage(key_sheet, ImageTask.loadImage("key_sheet.png"));
 
 		// chara
 		addImage(chatbox, ImageTask.loadImage("chatbox.png"));

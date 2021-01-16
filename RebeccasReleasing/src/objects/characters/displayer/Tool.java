@@ -1,5 +1,7 @@
 package objects.characters.displayer;
 
+import com.sunsigne.rebeccasreleasing.game.world.World;
+
 public class Tool {
 
 	private int toolnum;
@@ -10,22 +12,30 @@ public class Tool {
 
 	public Tool(int toolnum, int lvl) {
 		this.toolnum = toolnum;
-		setLvl(lvl);
+		this.lvl = lvl;
 	}
 
 	public int getLvl() {
 		return lvl;
 	}
 
-	private void setLvl(int lvl) {
+	public void setLvl(int lvl) {
 		this.lvl = lvl;
 	}
 
-	public void upgradeTool() {
+	public void upgradeLvlTo(int lvl) {
 
-		if (lvl < CharacteristicsSaved.batterySize[toolnum]) {
-			setLvl(lvl + 1);
+		int currentLvl = World.gui.getCharacteristics().getTool(toolnum).getLvl();
+		int lvlMax = CharacteristicsSaved.batterySize[toolnum];
+		
+		if(currentLvl < lvl)
+		{
+			if (lvl < lvlMax)
+				setLvl(lvl);
+			else 
+				setLvl(lvlMax);
 		}
+	
 	}
 
 }

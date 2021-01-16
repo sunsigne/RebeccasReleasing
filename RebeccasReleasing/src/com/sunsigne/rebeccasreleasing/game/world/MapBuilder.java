@@ -6,6 +6,8 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.redesign.Case;
+import com.sunsigne.rebeccasreleasing.toclean.redesign.Computer;
 
 import objects.IFacing.FACING;
 import objects.characters.living.FoeObject;
@@ -19,12 +21,10 @@ import objects.world.decor.WC;
 import objects.world.decor.Water;
 import objects.world.destroyable.Desk;
 import objects.world.destroyable.Plant;
-import objects.world.puzzler.Case;
-import objects.world.puzzler.Computer;
+import objects.world.loot.tools.LootKey;
 import objects.world.puzzler.Door;
+import objects.world.puzzler.TutoDoor;
 import objects.world.puzzler.WallCracked;
-import objects.world.storing.LOOTID;
-import objects.world.storing.Loot;
 
 @Todo("find the key to open the exit door / pour la déco : tapis, parquet, distributeur de café, de bouffe, poubelle,"
 		+ " boites en cartons ou en bois, cuisines & salle de repos, toilettes, labo-chimique, débaras, vestiaires?")
@@ -58,18 +58,22 @@ public class MapBuilder {
 				if (red == 255 && green == 255 && blue == 255)
 					handler_object.addObject(new Wall(xx * Size.TILE, yy * Size.TILE));
 				// door
+				if (red == 130 && green == 130 && blue == 130)
+					handler_object.addObject(new TutoDoor(xx * Size.TILE, yy * Size.TILE, true));
+				if (red == 129 && green == 129 && blue == 129)
+					handler_object.addObject(new TutoDoor(xx * Size.TILE, yy * Size.TILE, false));				
 				if (red == 128 && green == 128 && blue == 128)
-					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true));
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true, DIFFICULTY.CYAN));
 				if (red == 127 && green == 127 && blue == 127)
-					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false));
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false, DIFFICULTY.CYAN));
 				if (red == 126 && green == 126 && blue == 126)
-					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true, DIFFICULTY.YELLOW));
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, true, DIFFICULTY.GREEN));
 				if (red == 125 && green == 125 && blue == 125)
-					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false, DIFFICULTY.YELLOW));
+					handler_object.addObject(new Door(xx * Size.TILE, yy * Size.TILE, false, DIFFICULTY.GREEN));
 				
 				//key
 				if (red == 126 && green == 126 && blue == 125)
-					handler_object.addObject(new Loot(xx * Size.TILE, yy * Size.TILE, LOOTID.KEY));
+					handler_object.addObject(new LootKey(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.YELLOW));
 				
 				// couch
 				if (red == 64 && green == 0 && blue == 0)
@@ -105,7 +109,7 @@ public class MapBuilder {
 				if (red == 64 && green == 64 && blue == 64)
 					handler_object.addObject(new WallCracked(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.CYAN));
 				if (red == 0 && green == 0 && blue == 255)
-					handler_object.addObject(new FoeObject(xx * Size.TILE, yy * Size.TILE));
+					handler_object.addObject(new FoeObject(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.CYAN));
 				if (red == 0 && green == 255 && blue == 0)
 					handler_object.addObject(new Computer(xx * Size.TILE, yy * Size.TILE));
 				if (red == 128 && green == 128 && blue == 255)

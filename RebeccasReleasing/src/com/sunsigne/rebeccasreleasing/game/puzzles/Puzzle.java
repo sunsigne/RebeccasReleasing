@@ -10,11 +10,11 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.GameObject;
 import objects.OBJECTID;
 import objects.characters.living.FoeObject;
-import objects.world.puzzler.IPuzzler;
 
 @Todo("difficulty : moving bomb, bigger count, more bomb")
 public abstract class Puzzle extends Clickable {
@@ -22,7 +22,7 @@ public abstract class Puzzle extends Clickable {
 	private IPuzzler puzzler;
 	private DIFFICULTY difficulty;
 
-	private GameObject dualfoe;
+	private FoeObject[] multipleFoe = new FoeObject[FoeObject.MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 	protected boolean isDualFight;
 
 	private boolean reversed, winning;
@@ -39,18 +39,17 @@ public abstract class Puzzle extends Clickable {
 		this(state, puzzler, difficulty, false);
 	}
 
-	public Puzzle(STATE state, IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty, boolean reversed) {
+	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty, boolean reversed) {
 		super(state);
 		this.puzzler = puzzler;
-		this.dualfoe = dualfoe;
+		this.multipleFoe = multipleFoe;
 		this.difficulty = difficulty;
 		this.reversed = reversed;
-		dualChecker(dualfoe);
 		open();
 	}	
 
-	public Puzzle(STATE state, IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
-		this(state, puzzler, dualfoe, difficulty, false);
+	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] mutlipleFoe, DIFFICULTY difficulty) {
+		this(state, puzzler, mutlipleFoe, difficulty, false);
 	}
 
 	public DIFFICULTY getDifficulty() {
@@ -73,10 +72,6 @@ public abstract class Puzzle extends Clickable {
 
 	protected abstract void randomGeneration();
 
-	protected void dualAdaptation() {
-
-	}
-
 	protected abstract void createPuzzle();
 
 	@Todo("tous les puzzle n'ont accuellement pas de son de victoire")
@@ -87,13 +82,7 @@ public abstract class Puzzle extends Clickable {
 		HandlerObject.getInstance().clearFront();
 		createFrame();
 		randomGeneration();
-		dualAdaptation();
 		createPuzzle();
-	}
-
-	private void dualChecker(GameObject dualfoe) {
-		if (dualfoe.getId() == OBJECTID.FOE)
-			isDualFight = true;
 	}
 
 	@Override
@@ -104,8 +93,9 @@ public abstract class Puzzle extends Clickable {
 
 		if (puzzler != null)
 			puzzler.setSolved(winning);
-		if (isDualFight)
-			((FoeObject) dualfoe).setSolved(winning);
+		if(puzzler.getEventOnClose() != null)
+			puzzler.getEventOnClose().startEvent();
+		checkMultipleFoes(winning);
 
 		World.stunAllFoes();
 		Conductor.setState(STATE.LEVEL);
@@ -119,6 +109,13 @@ public abstract class Puzzle extends Clickable {
 			World.gui.removeHp();
 		} else if (winning)
 			SoundTask.playSound(getSuccessSound());
+	}
+
+	private void checkMultipleFoes(boolean winning) {
+		for (int i = 0; i < FoeObject.MAX_ADDITIONAL_FOES_AT_SAME_FIGHT; i++)
+		{
+			if(multipleFoe[i] != null) multipleFoe[i].setSolved(winning);
+		}
 	}
 
 }

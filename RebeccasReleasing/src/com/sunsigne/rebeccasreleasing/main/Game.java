@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable {
 	private static final Camera cam = new Camera();
 
 	public static final String NAME = "Rebecca's Releasing";
-	public static final boolean visibleHitbox = false;
+	public static final boolean visibleHitbox = true;
 
 	public static Game game;
 
@@ -127,7 +127,7 @@ public class Game extends Canvas implements Runnable {
 				} catch (ConcurrentModificationException e) {
 					// some list are sometimes changed during a tick instead of between
 					// two, which may cause crash. As next tick will repair the problem,
-					//no need to escape this exception.
+					// no need to proccess this exception.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -163,6 +163,7 @@ public class Game extends Canvas implements Runnable {
 		} catch (Exception e) {
 			// same problem as above but can be more annoying.
 			// Clearly, It's just better to ignore this catch as this method is called ONCE.
+			// Besides, this method get created to solve another problem, so fuck it.
 		}
 	}
 

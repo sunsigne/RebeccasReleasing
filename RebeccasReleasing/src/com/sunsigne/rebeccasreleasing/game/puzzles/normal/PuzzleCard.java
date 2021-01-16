@@ -9,41 +9,35 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
-import objects.GameObject;
+import objects.characters.living.FoeObject;
 import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.GameTimer;
 import objects.puzzle.card.Card;
 import objects.puzzle.card.CardFolder;
 import objects.puzzle.card.CardType;
-import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : simplifier le jeu ? Il doit être plus instinctif")
 public class PuzzleCard extends Puzzle {
 
-	/*
-	 * 3 - 5 card with order 4 - 5 card with order and a mystery (type and order
-	 * shown by quickly replaced with question mark) 5 - 7 card with order and 2
-	 * mystery (because i want the player to suffer !!
-	 */
-	private static final int NUMOFCARD = 7;
+	private static final int NUMOFCARD = 5;
 	private static Card[] card = new Card[NUMOFCARD];
 	private static CardFolder attackFolder, defenseFolder;
 
-	public PuzzleCard(IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
-		super(STATE.PUZZLECARD, puzzler, dualfoe, difficulty);
+	public PuzzleCard(IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, puzzler, multipleFoe, difficulty);
 	}
 
 	@Override
 	public void createFrame() {
 		HandlerObject.getInstance().addObject(new FakeWallPuzzle(Size.X0, Size.Y0, FakeWallPuzzle.WALLTYPE.CARD));
-		HandlerObject.getInstance().addObject(new GameTimer(999, () -> close()));
+		HandlerObject.getInstance().addObject(new GameTimer(GameTimer.TIME, () -> close()));
 	}
 
 	@Override
@@ -53,20 +47,14 @@ public class PuzzleCard extends Puzzle {
 
 		int lvl = getDifficulty().getLvl();
 		int[] randomOrder = new int[NUMOFCARD];
-		if (lvl == 3 || lvl == 4)
-			randomOrder = randomOrderGeneration(5);
-		if (lvl == 5)
-			randomOrder = randomOrderGeneration(7);
+		if (lvl >= 3)
+			randomOrder = randomOrderGeneration(NUMOFCARD);
 
 		for (int i = 0; i < NUMOFCARD; i++) {
 
-			card[i] = new Card(370 + i * 150, 850, randomType[i]);
-			if (lvl == 3 || lvl == 4) {
-				if (i > 0 && i < 6)
-					card[i].setOrderNum(randomOrder[i - 1]);
-			} else if (lvl == 5)
+			card[i] = new Card(520 + i * 150, 925, randomType[i]);
+			if (lvl >= 3)
 				card[i].setOrderNum(randomOrder[i]);
-
 		}
 	}
 
@@ -112,18 +100,6 @@ public class PuzzleCard extends Puzzle {
 	}
 
 	@Override
-	public void dualAdaptation() {
-
-		boolean surecrit = World.gui.getCharacteristics().isSureCrit();
-
-		/*
-		 * if (isDualFight) { if (surecrit) card[3].setCardtype(CardType.CRITICAL); }
-		 * else { if (surecrit) card[0].setCardtype(CardType.CRITICAL);
-		 * card[4].setExist(false); card[3].setExist(false); }
-		 */
-	}
-
-	@Override
 	public void createPuzzle() {
 		attackFolder = new CardFolder(1300, 150, CardType.ATTACK);
 		defenseFolder = new CardFolder(215, 150, CardType.DEFENSE);
@@ -133,12 +109,12 @@ public class PuzzleCard extends Puzzle {
 
 		switch (getDifficulty()) {
 		case RED:
-			hideTwoCardIntoSeven();
+			hideOneCard(true);
 			imposeOrder();
-			createSevenCard();
+			createFiveCard();
 			break;
 		case ORANGE:
-			hideOneCardIntoFive();
+			hideOneCard(false);
 		case YELLOW:
 			imposeOrder();
 		case GREEN:
@@ -154,36 +130,14 @@ public class PuzzleCard extends Puzzle {
 		}
 	}
 
-
-	private void hideTwoCardIntoSeven() {
-		int random = new Random().nextInt(6);
-		int random2 = new Random().nextInt(6);
+	private void hideOneCard(boolean twoInstead) {
+		int random = new Random().nextInt(NUMOFCARD);
+		int random2 = new Random().nextInt(NUMOFCARD);
 		while (random == random2)
-			random2 = new Random().nextInt(6);
-		
-		for (int i = 0; i < 7; i++)
-			card[i].hideTemporarly();	
-		card[random].hidePermanently();
-		card[random2].hidePermanently();
-	}
+			random2 = new Random().nextInt(NUMOFCARD);
 
-	private void createSevenCard() {
-		HandlerObject.getInstance().addObject(card[6]);
-		HandlerObject.getInstance().addObject(card[5]);
-		HandlerObject.getInstance().addObject(card[4]);
-		HandlerObject.getInstance().addObject(card[3]);
-		HandlerObject.getInstance().addObject(card[2]);
-		HandlerObject.getInstance().addObject(card[1]);
-		HandlerObject.getInstance().addObject(card[0]);
-	}
-	
-
-	private void hideOneCardIntoFive() {
-		int random = 1 + new Random().nextInt(5);
-		
-		for (int i = 1; i < 6; i++)
-			card[i].hideTemporarly();	
-		card[random].hidePermanently();
+		card[random].willHide();
+		if(twoInstead) card[random2].willHide();
 	}
 
 	private void imposeOrder() {
@@ -192,22 +146,18 @@ public class PuzzleCard extends Puzzle {
 	}
 
 	private void createFiveCard() {
-		card[6].setExist(false);
-		HandlerObject.getInstance().addObject(card[5]);
 		HandlerObject.getInstance().addObject(card[4]);
 		HandlerObject.getInstance().addObject(card[3]);
 		HandlerObject.getInstance().addObject(card[2]);
 		HandlerObject.getInstance().addObject(card[1]);
-		card[0].setExist(false);
+		HandlerObject.getInstance().addObject(card[0]);
 	}
 
 	private void createThreeCard() {
-		card[6].setExist(false);
-		card[5].setExist(false);
-		HandlerObject.getInstance().addObject(card[4]);
+		card[4].setExist(false);
 		HandlerObject.getInstance().addObject(card[3]);
 		HandlerObject.getInstance().addObject(card[2]);
-		card[1].setExist(false);
+		HandlerObject.getInstance().addObject(card[1]);
 		card[0].setExist(false);
 	}
 

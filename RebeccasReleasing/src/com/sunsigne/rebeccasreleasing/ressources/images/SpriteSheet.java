@@ -12,7 +12,12 @@ public class SpriteSheet {
 
 	public BufferedImage grabImage(int col, int row, int width, int height) {
 
-		BufferedImage img = image.getSubimage((col * width) - width, (row * height) - height, width, height);
+		BufferedImage img = null;
+		try {
+			img = image.getSubimage((col * width) - width, (row * height) - height, width, height);
+		} catch (Exception e) {
+			img = ImageTask.drawMissingTexture();
+		}
 		return img;
 	}
 

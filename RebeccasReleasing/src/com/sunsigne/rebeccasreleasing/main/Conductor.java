@@ -45,7 +45,7 @@ public class Conductor {
 	public static void openLvl()
 	{
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl01();
+		ILvl level = new WorldLvl02();
 		World.currentWorld = new World(level);
 	}
 	

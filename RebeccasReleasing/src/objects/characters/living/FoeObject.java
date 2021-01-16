@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleCard;
@@ -14,81 +15,64 @@ import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.ILoot;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
+import com.sunsigne.rebeccasreleasing.toclean.verify.LootCritCard;
 
 import objects.GameObject;
 import objects.NullObject;
 import objects.OBJECTID;
 import objects.characters.collision.CollisionDetector;
+import objects.characters.displayer.CharacteristicsSaved;
 import objects.characters.displayer.Tool;
-import objects.world.puzzler.IPuzzler;
-import objects.world.storing.LOOTID;
-import objects.world.storing.Loot;
-import objects.world.storing.ILoot;
 
 public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 
-	private Animation[][] animation = new Animation[DIFFICULTY.MAX + 1][4];
 	public static final int foespeed = 4 * Size.TILE / 64;
 	public static final int foesight = 400 * Size.TILE / 64;
-
 	public static final int foedualrange = 200 * Size.TILE / 64;
-	private GameObject dualObject = new NullObject();
+	public static final int MAX_ADDITIONAL_FOES_AT_SAME_FIGHT = 4;
 
-	private boolean solved;
+	private Animation[][] animation = new Animation[DIFFICULTY.MAX + 1][4];
+
+	private EventListener eventOnVictory;
+	private EventListener eventOnDefeat;
+
 	private DIFFICULTY difficulty;
 	private DIFFICULTY currentDifficulty;
+	private boolean solved;
+
+	private GameObject dualObject = new NullObject();
+	private FoeObject[] multipleFoe = new FoeObject[MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 
 	public boolean stunned;
 	private int stuntime;
 
-	public FoeObject(int x, int y) {
-		this(x, y, DIFFICULTY.CYAN);
-	}
-
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
 
-		this.difficulty = DIFFICULTY.YELLOW;
+		this.difficulty = difficulty;
 		this.currentDifficulty = difficulty;
-		
+
 		collisionDetector = new CollisionDetector(false, this);
 	}
 
-	@Override
-	public Animation getAnimation(int array, int secondarray) {
-
-		if (animation[array][secondarray] == null) {
-			if (secondarray == Size.DIRECTION_UP)
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][0], texture.foe_walking[array][1],
-						texture.foe_walking[array][2], texture.foe_walking[array][1]);
-			else if (secondarray == Size.DIRECTION_DOWN)
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][3], texture.foe_walking[array][4],
-						texture.foe_walking[array][5], texture.foe_walking[array][4]);
-			else if (secondarray == Size.DIRECTION_LEFT)
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][6], texture.foe_walking[array][7],
-						texture.foe_walking[array][8], texture.foe_walking[array][7]);
-			else if (secondarray == Size.DIRECTION_RIGHT)
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][9], texture.foe_walking[array][10],
-						texture.foe_walking[array][11], texture.foe_walking[array][10]);
-			else
-				animation[array][secondarray] = new Animation(1);
-		}
-		return animation[array][secondarray];
-	}
-
+	// state
 
 	@Override
-	public boolean isSolved() {
-		return solved;
+	public EventListener getEventOnClose() {
+		if (solved)
+			return eventOnVictory;
+		else
+			return eventOnDefeat;
 	}
 
-	public void setSolved(boolean solved) {
-		this.solved = solved;
-		if (solved) {
-			kill();
-			checkEvent(2);
-		} else
-			checkEvent(1);
+	@Override
+	public void setEventOnClose(EventListener eventOnClose, boolean onVictory) {
+		if (onVictory)
+			this.eventOnVictory = eventOnClose;
+		else
+			this.eventOnDefeat = eventOnClose;
 	}
 
 	@Override
@@ -102,6 +86,19 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 	}
 
 	@Override
+	public boolean isSolved() {
+		return solved;
+	}
+
+	public void setSolved(boolean solved) {
+		this.solved = solved;
+		if (solved)
+			kill();
+	}
+
+	// behavior
+
+	@Override
 	public void tick() {
 
 		runAnimations();
@@ -109,7 +106,8 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 		if (isPlayerActive() && Conductor.getState() != STATE.CHATTING)
 			velocity();
 		collisionDetector.update();
-		updateDual();
+
+		checkMultipleFoes();
 
 		if (isPlayerInSight() && !stunned)
 			movingtoPlayer();
@@ -122,27 +120,35 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 		}
 	}
 
-	private void updateDual() {
-		dualObject = new NullObject();
+	private void checkMultipleFoes() {
 		currentDifficulty = difficulty;
-
+		int count = 0;
+		
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
-		for (GameObject tempObject2 : list) {
-			if (tempObject2.getId() == OBJECTID.FOE) {
-				FoeObject foe2 = (FoeObject) tempObject2;
-				if (foe2 != this) {
-					float distance = (float) Math
-							.sqrt(Math.pow(getX() - foe2.getX(), 2) + Math.pow(getY() - foe2.getY(), 2));
-					if (distance < FoeObject.foedualrange) {
-						dualObject = tempObject2;
-						if(difficulty.getLvl() + 1 < DIFFICULTY.MAX)
-						currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getLvl() + 1);
-					}
-
+		for (GameObject tempObject : list) {
+			if (tempObject != this && tempObject.getId() == OBJECTID.FOE) {
+				float distance = (float) Math
+						.sqrt(Math.pow(getX() - tempObject.getX(), 2) + Math.pow(getY() - tempObject.getY(), 2));
+				if(distance < FoeObject.foedualrange)
+				{
+					if(count < MAX_ADDITIONAL_FOES_AT_SAME_FIGHT)
+					multipleFoe[count] = (FoeObject) tempObject;
+					count++;					
 				}
 			}
 		}
+		updateDifficulty(count);
 	}
+	
+
+	private void updateDifficulty(int numberOfLvl) {
+
+		if (difficulty.getLvl() + numberOfLvl < DIFFICULTY.MAX)
+			currentDifficulty = DIFFICULTY.getDifficulty(difficulty.getLvl() + numberOfLvl);
+		else 
+			currentDifficulty = DIFFICULTY.RED;
+	}
+
 
 	private void runAnimations() {
 		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
@@ -151,6 +157,30 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 			runAnimation(i, Size.DIRECTION_LEFT);
 			runAnimation(i, Size.DIRECTION_RIGHT);
 		}
+	}
+
+	// design
+
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+
+		if (animation[array][secondarray] == null) {
+			if (secondarray == Size.DIRECTION_UP)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][0],
+						texture.foe_walking[array][1], texture.foe_walking[array][2], texture.foe_walking[array][1]);
+			else if (secondarray == Size.DIRECTION_DOWN)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][3],
+						texture.foe_walking[array][4], texture.foe_walking[array][5], texture.foe_walking[array][4]);
+			else if (secondarray == Size.DIRECTION_LEFT)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][6],
+						texture.foe_walking[array][7], texture.foe_walking[array][8], texture.foe_walking[array][7]);
+			else if (secondarray == Size.DIRECTION_RIGHT)
+				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][9],
+						texture.foe_walking[array][10], texture.foe_walking[array][11], texture.foe_walking[array][10]);
+			else
+				animation[array][secondarray] = new Animation(1);
+		}
+		return animation[array][secondarray];
 	}
 
 	@Override
@@ -187,51 +217,53 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 		}
 
 	}
-	
+
+	// collision
+
 	public Rectangle getBigBounds() {
 		return new Rectangle(x, y, Size.TILE, Size.TILE);
 	}
-
 
 	@Override
 	public void collision(LivingObject living) {
 
 		if (living.collisionDetector.isPlayer) {
 			if (!stunned) {
-				if(touchingPlayer(living, this) && HandlerObject.getInstance().player.isPlayerActive())
-				{
+				if (touchingPlayer(living) && HandlerObject.getInstance().player.isPlayerActive()) {
 					if (hasToolLvl(currentDifficulty, Tool.SWORD))
-						updatePuzzler(living, this);
-					else pushPlayer();
+						updatePuzzler(living);
+					else
+						pushPlayer();
 				}
 			}
 		}
 	}
-	
-	private boolean touchingPlayer(LivingObject living, GameObject currentObject) {
-		if (living.getBounds().intersects(getBigBounds())) return true;
-		if (living.getBoundsTop().intersects(getBigBounds())) return true;
-		if (living.getBoundsLeft().intersects(getBigBounds())) return true;
-		if (living.getBoundsRight().intersects(getBigBounds())) return true;
+
+	private boolean touchingPlayer(LivingObject living) {
+		if (living.getBounds().intersects(getBigBounds()))
+			return true;
+		if (living.getBoundsTop().intersects(getBigBounds()))
+			return true;
+		if (living.getBoundsLeft().intersects(getBigBounds()))
+			return true;
+		if (living.getBoundsRight().intersects(getBigBounds()))
+			return true;
 		return false;
 	}
 
-	
 	private void pushPlayer() {
 		stun();
-		for (int direction = 0; direction < 4; direction++)
-		{
-			if (watching[direction]) HandlerObject.getInstance().player.pushed(direction);	
+		for (int direction = 0; direction < 4; direction++) {
+			if (watching[direction])
+				HandlerObject.getInstance().player.pushed(direction);
 		}
 	}
 
 	@Todo("change FoeObject into instance of IPuzzle")
 	@Override
 	public Puzzle getPuzzle() {
-		return new PuzzleCard(this, dualObject, currentDifficulty);
+		return new PuzzleCard(this, multipleFoe, currentDifficulty);
 	}
-
-
 
 	private boolean isPlayerInSight() {
 		float distance = (float) Math.sqrt(Math.pow(x - HandlerObject.getInstance().player.getX(), 2)
@@ -260,18 +292,8 @@ public class FoeObject extends LivingObject implements ILoot, IPuzzler {
 	public void kill() {
 		World.gui.getCharacteristics().setSureCrit(false);
 		if (World.levelnum != 1)
-			drop(0.05, new Loot(getX(), getY(), LOOTID.CRITCARD));
+			drop(0.05, new LootCritCard(getX(), getY()));
 		HandlerObject.getInstance().removeObject(this);
-	}
-
-	private void checkEvent(int number) {
-		if (World.levelnum == 1) {
-			if (number == 1 && !World.currentWorld.getIEvent().hasOccured(11))
-				World.currentWorld.getIEvent().setMustoccur(true, 10);
-			if (number == 2)
-				World.currentWorld.getIEvent().setMustoccur(true, 11);
-		}
-
 	}
 
 }

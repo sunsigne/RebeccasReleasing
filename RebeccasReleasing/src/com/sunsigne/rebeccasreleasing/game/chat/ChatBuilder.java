@@ -2,8 +2,10 @@ package com.sunsigne.rebeccasreleasing.game.chat;
 
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
+import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
@@ -12,7 +14,6 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.IClick;
 
 import objects.characters.CHARA;
-import objects.characters.displayer.ChatObject;
 
 public abstract class ChatBuilder extends Clickable implements IClick {
 
@@ -136,7 +137,12 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 			else
 				sentence[line + 1] = null;
 
-			chatObject[line - gap] = new ChatObject(chara[line], sentence[line], sentence[line + 1], event[line]);
+			//checking for eventual event
+			EventListener eventOnDisplay = null;
+			int eventNum = event[line];
+			if (eventNum != 0) eventOnDisplay = () -> World.currentWorld.getIEvent().setMustoccur(true, eventNum);
+			
+			chatObject[line - gap] = new ChatObject(chara[line], sentence[line], sentence[line + 1], eventOnDisplay);
 			chatObject[line + 1 - gap] = null;
 		}
 

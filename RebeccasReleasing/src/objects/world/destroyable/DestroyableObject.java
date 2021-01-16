@@ -13,18 +13,22 @@ import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-public abstract class DestroyableObject extends GameObject implements ICollision, IAnimation, IFacing {
+public abstract class DestroyableObject extends GameObject implements IAnimation, IFacing, ICollision {
 
-	protected Animation animation;
 	private FACING facing;
 
-	private boolean falling;
+	protected boolean falling;
+	protected int falltime;
 
 	public DestroyableObject(int x, int y, FACING facing) {
 		super(true, x, y, OBJECTID.DESTROYABLE);
 
 		this.facing = facing;
 	}
+	
+	// state
+
+	protected abstract boolean updatableFacing();
 
 	@Override
 	public FACING getFacing() {
@@ -42,44 +46,26 @@ public abstract class DestroyableObject extends GameObject implements ICollision
 		}
 	}
 
-	protected abstract boolean updatableFacing();
-
-	public abstract int givePts();
-
-	public abstract BufferedSound makeMainSound();
-
-	public abstract BufferedSound makeSideSound();
-
-
-	// state
-
-	public void setFalling(boolean falling) {
-		this.falling = falling;
-	}
-
-	public boolean isFalling() {
-		return falling;
-	}
-
+	// collision
 
 	@Override
 	public void collision(LivingObject living) {
 		if (living.getBoundsTop().intersects(getBounds()))
-			updateDestroyable(living, this, FACING.UP);
+			updateDestroyable(living, FACING.UP);
 		if (living.getBounds().intersects(getBounds()))
-			updateDestroyable(living, this, FACING.DOWN);
+			updateDestroyable(living, FACING.DOWN);
 		if (living.getBoundsLeft().intersects(getBounds()))
-			updateDestroyable(living, this, FACING.LEFT);
+			updateDestroyable(living, FACING.LEFT);
 		if (living.getBoundsRight().intersects(getBounds()))
-			updateDestroyable(living, this, FACING.RIGHT);
+			updateDestroyable(living, FACING.RIGHT);
 	}
 
-	public void updateDestroyable(LivingObject living, GameObject tempObject, FACING playerfacing) {
+	public void updateDestroyable(LivingObject living, FACING playerfacing) {
 
 		if (living.collisionDetector.isPlayer)
 			refreshPlayerRendering();
 
-		if (!isFalling()) {
+		if (!falling) {
 			setFacing(playerfacing);
 
 			int points = givePts();
@@ -97,8 +83,16 @@ public abstract class DestroyableObject extends GameObject implements ICollision
 			SoundTask.playSound(1.0, mainSound);
 			SoundTask.playSound(0.5, sideSound);
 
-			setFalling(true);
+			fall();
 		}
 	}
+
+	protected abstract void fall();
+
+	public abstract int givePts();
+
+	public abstract BufferedSound makeMainSound();
+
+	public abstract BufferedSound makeSideSound();
 
 }

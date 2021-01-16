@@ -1,5 +1,8 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles;
 
+import com.sunsigne.rebeccasreleasing.Todo;
+
+@Todo("creer un difficulté legendaire violette pour un boss bien précis par exemple")
 public enum DIFFICULTY {
 	
 	NONE(0),

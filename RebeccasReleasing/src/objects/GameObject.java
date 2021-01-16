@@ -14,14 +14,16 @@ import com.sunsigne.rebeccasreleasing.system.handler.ITick;
 public abstract class GameObject implements ITick, IRender {
 
 	protected TextureBank texture = TextureBank.getInstance();
-	protected int x, y;
-	protected int w, h;
-	protected OBJECTID id;
-	protected int velX, velY;
+
 	private boolean cameraDependant;
 
+	protected OBJECTID id;
+	protected int x, y;
+	protected int w, h;
+	protected int velX, velY;
+
 	public GameObject(boolean cameraDependant, int x, int y, OBJECTID id) {
-		
+
 		this.cameraDependant = cameraDependant;
 		setX(x);
 		setY(y);
@@ -30,20 +32,14 @@ public abstract class GameObject implements ITick, IRender {
 		w = Size.TILE;
 		h = Size.TILE;
 	}
-	
-	public abstract Rectangle getBounds();
-
-	public void refreshPlayerRendering() {
-	}
 
 	// identity
-	
+
 	@Override
-	public boolean isCameraDependant()
-	{
+	public boolean isCameraDependant() {
 		return cameraDependant;
 	}
-	
+
 	public void setID(OBJECTID id) {
 		this.id = id;
 	}
@@ -79,9 +75,8 @@ public abstract class GameObject implements ITick, IRender {
 	public int getHeight() {
 		return h;
 	}
-	
-	public int[] getRect()
-	{
+
+	public int[] getRect() {
 		int[] rect = new int[4];
 		rect[0] = getX();
 		rect[1] = getY();
@@ -142,7 +137,10 @@ public abstract class GameObject implements ITick, IRender {
 			return false;
 	}
 
-	// other
+	// design
+
+	public void refreshPlayerRendering() {
+	}
 
 	protected void drawHitbox(Graphics g) {
 		if (Game.visibleHitbox) {
@@ -152,5 +150,9 @@ public abstract class GameObject implements ITick, IRender {
 				g2d.draw(getBounds());
 		}
 	}
+
+	// collision
+
+	public abstract Rectangle getBounds();
 
 }

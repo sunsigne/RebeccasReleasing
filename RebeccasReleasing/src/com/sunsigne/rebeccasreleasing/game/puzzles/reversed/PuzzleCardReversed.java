@@ -11,15 +11,15 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
-import objects.GameObject;
+import objects.characters.living.FoeObject;
+import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.GameTimer;
 import objects.puzzle.GameTimerReversed;
-import objects.puzzle.FakeWallPuzzle;
 import objects.puzzle.card.CardFolderReversed;
 import objects.puzzle.card.CardReversed;
 import objects.puzzle.card.CardType;
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleCardReversed extends Puzzle {
 
@@ -28,8 +28,8 @@ public class PuzzleCardReversed extends Puzzle {
 
 	private static CardFolderReversed folderattack, folderdefense, folderreversed;
 
-	public PuzzleCardReversed(IPuzzler puzzler, GameObject dualfoe, DIFFICULTY difficulty) {
-		super(STATE.PUZZLECARD, puzzler, dualfoe, difficulty, true);
+	public PuzzleCardReversed(IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty) {
+		super(STATE.PUZZLECARD, puzzler, multipleFoe, difficulty, true);
 	}
 
 	@Override
@@ -67,27 +67,6 @@ public class PuzzleCardReversed extends Puzzle {
 		card[3] = new CardReversed(520, 850, type[3]);
 
 	}	
-
-	@Override
-	public void dualAdaptation() {
-
-		boolean surecrit = World.gui.getCharacteristics().isSureCrit();
-		
-		card[4].setDual(true);
-		card[3].setDual(true);
-		
-		if (isDualFight) {
-			if (surecrit)
-				card[3].setCardtype(CardType.CRITICAL);
-			card[4].setDual(false);
-			card[3].setDual(false);
-		} else {
-			if (surecrit)
-				card[0].setCardtype(CardType.CRITICAL);
-			card[4].setStable(true);
-			card[3].setStable(true);
-		}
-	}
 
 	@Override
 	public void createPuzzle() {

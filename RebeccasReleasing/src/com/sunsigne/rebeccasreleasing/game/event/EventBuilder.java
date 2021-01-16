@@ -70,6 +70,7 @@ public abstract class EventBuilder implements IEvent {
 		Conductor.setState(STATE.CHATTING);
 		HandlerObject.getInstance().player.setMotionless();
 		setOccured(true, i);
+		setMustoccur(false, i);
 	}
 
 }

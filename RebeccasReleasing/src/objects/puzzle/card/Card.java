@@ -22,9 +22,9 @@ public class Card extends CardObject {
 	private boolean dragged;
 	private boolean aboveRightFolder, aboveWrongFolder;
 	private int startingX, startingY;
-	
+	private int upwardTime = 15;
+
 	private boolean shouldHide;
-	private boolean stayHidden;
 	private int hiddingTime = 40;
 
 	public Card(int x, int y, CardType cardtype) {
@@ -71,31 +71,32 @@ public class Card extends CardObject {
 	public boolean isAboveWrongFolder() {
 		return aboveWrongFolder;
 	}
-	
-	public void hideTemporarly()
-	{
+
+	public void willHide() {
 		shouldHide = true;
-	}
-	
-	public void hidePermanently()
-	{
-		shouldHide = true;
-		stayHidden = true;
 	}
 
 	@Override
 	public void tick() {
 
+		hiddingTime--;
+		goUpward();
+
 		if (isDragged()) {
 			x = (int) GameMouseListener.getInstance().getPos().getX() - Size.TILE_PUZZLE / 2;
 			y = (int) GameMouseListener.getInstance().getPos().getY() - Size.TILE_PUZZLE / 2;
 		}
-		
-		if(shouldHide && hiddingTime > -30)
-			hiddingTime --;
-		else if(!stayHidden)
-			hiddingTime = 1800;
 		collision();
+	}
+
+	private void goUpward() {
+		if (upwardTime > 0) {
+			if (hasSameOrderNumThanFolder(false) || (upwardTime > 10 && hasSameOrderNumThanFolder(true))) {
+				upwardTime--;
+				y = y - 7;
+				startingY = startingY - 7;
+			}
+		}
 	}
 
 	@Override
@@ -105,20 +106,18 @@ public class Card extends CardObject {
 		g.setFont(font);
 
 		g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, w, h, null);
-		
-		if(hiddingTime > 0)
-			{
+
+		if (hiddingTime > 0 || !shouldHide) {
 			drawCardContent(g);
-			drawOrderNum(g);
-			}
-		else drawMystery(g);
-		
+			drawOrderLayer(g);
+		} else
+			drawMystery(g);
 
 		drawHitbox(g);
 	}
 
 	private void drawCardContent(Graphics g) {
-		
+
 		if (getCardtype() == CardType.ATTACK) {
 			g.setColor(Color.red);
 			g.drawImage(ImageBank.getImage(ImageBank.card_attack), x, y, w, h, null);
@@ -135,22 +134,46 @@ public class Card extends CardObject {
 			g.drawString("defense", x + 30, y + 45);
 		}
 	}
-	
+
 	private void drawMystery(Graphics g) {
 		Font font = new Font("arial", 1, 300);
 		g.setFont(font);
 		g.setColor(Color.BLACK);
-		g.drawString("?", x + w/2 - 90, y + h/2 + 50);
+		g.drawString("?", x + w / 2 - 90, y + h / 2 + 50);
 	}
 
-
-	private void drawOrderNum(Graphics g) {
+	private void drawOrderLayer(Graphics g) {
 		if (getOrderNum() != 0) {
-			Font font = new Font("arial", 1, 50);
-			g.setFont(font);
-			g.setColor(Color.BLACK);
-			g.drawString(String.valueOf(getOrderNum()), x + w - 40, y + 45);
+			/*
+			 * // write number Font font = new Font("arial", 1, 50); g.setFont(font);
+			 * g.setColor(Color.BLACK); g.drawString(String.valueOf(getOrderNum()), x + w -
+			 * 40, y + 45);
+			 */
+			// grey layer
+			if (!hasSameOrderNumThanFolder(false)) {
+				int alpha = 200;
+				if (hasSameOrderNumThanFolder(true))
+					alpha = 100;
+				g.setColor(new Color(64, 64, 64, alpha));
+				g.fillRect(x, y, w, h);
+			}
 		}
+	}
+
+	private boolean hasSameOrderNumThanFolder(boolean oneUnderInstead) {
+		CardFolder folder = null;
+
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		for (GameObject tempObject : list)
+			if (tempObject.getId() == OBJECTID.P_CARDFOLDER) {
+				folder = (CardFolder) tempObject;
+				break;
+			}
+
+		if (oneUnderInstead)
+			return folder.getOrderNum() == getOrderNum() - 1;
+		else
+			return folder.getOrderNum() == getOrderNum();
 	}
 
 	@Override

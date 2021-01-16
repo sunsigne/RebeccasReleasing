@@ -32,8 +32,8 @@ public class ImageTask {
 	}
 
 	public static BufferedImage drawMissingTexture() {
-		int width = 64;
-		int height = 64;
+		int width = 32;
+		int height = 32;
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = img.createGraphics();
 

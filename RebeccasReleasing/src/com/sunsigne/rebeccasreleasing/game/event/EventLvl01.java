@@ -1,9 +1,12 @@
 package com.sunsigne.rebeccasreleasing.game.event;
 
+import java.util.LinkedList;
+
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
@@ -11,14 +14,19 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
+import objects.GameObject;
+import objects.OBJECTID;
 import objects.characters.displayer.Tool;
+import objects.characters.living.FoeObject;
+import objects.world.puzzler.Door;
 
 public class EventLvl01 extends EventBuilder {
 
 	private static final ChatMap frlvl01 = new ChatMap(LANGUAGE.FRENCH, "/dialogues/french/lvl01");
 	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, "/dialogues/english/lvl01");
-	
+
 	@Override
 	public void event00() {
 		if (HandlerObject.getInstance().isPlayerExisting) {
@@ -26,6 +34,7 @@ public class EventLvl01 extends EventBuilder {
 			World.gui.setInfinitHp(true);
 			HandlerObject.getInstance().player.setVelY(0);
 			HandlerObject.getInstance().player.setVelX(Size.TILE / 16);
+
 		}
 	}
 
@@ -46,16 +55,17 @@ public class EventLvl01 extends EventBuilder {
 		}
 	}
 
-	@Todo("rendre l'apparition de l'outils + évidente ! (nouveau dessin de cutout ?)")
+	@Todo("rendre l'apparition de l'outils + évidente ! (nouveau dessin de cutout ?)"
+			+ "éventuellemt faire loot la clef (l'idée est bonne mais il faut justifier le fait de ne pas looter l'épée ...")
 	@Override
 	public void event03() {
 		if (getMustoccur(3)) {
 			event(3);
-			setMustoccur(false, 3);
-			World.gui.getCharacteristics().getTool(Tool.KEY).upgradeTool();
+			World.gui.getCharacteristics().getTool(Tool.KEY).upgradeLvlTo(1);
 			World.gui.setRedtool(true, 0);
 			SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 			Conductor.setState(STATE.LEVEL);
+			getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> setMustoccur(true, 4), false);
 		}
 	}
 
@@ -63,8 +73,9 @@ public class EventLvl01 extends EventBuilder {
 	public void event04() {
 		if (getMustoccur(4)) {
 			event(4);
-			setMustoccur(false, 4);
+			moveThePlayerFutherFromDoor();
 			new Chat(3, null, frlvl01, englvl01);
+			getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> setMustoccur(true, 5), false);
 		}
 	}
 
@@ -72,7 +83,7 @@ public class EventLvl01 extends EventBuilder {
 	public void event05() {
 		if (getMustoccur(5)) {
 			event(5);
-			setMustoccur(false, 5);
+			moveThePlayerFutherFromDoor();
 			new Chat(4, null, frlvl01, englvl01);
 		}
 	}
@@ -83,6 +94,7 @@ public class EventLvl01 extends EventBuilder {
 			event(6);
 			setMustoccur(false, 4);
 			setMustoccur(false, 5);
+			// event 7 during chat
 			new Chat(5, null, frlvl01, englvl01);
 		}
 	}
@@ -91,7 +103,6 @@ public class EventLvl01 extends EventBuilder {
 	public void event07() {
 		if (getMustoccur(7)) {
 			event(7);
-			setMustoccur(false, 7);
 			World.gui.setInfinitHp(false);
 		}
 	}
@@ -108,11 +119,12 @@ public class EventLvl01 extends EventBuilder {
 	public void event09() {
 		if (getMustoccur(9)) {
 			event(9);
-			setMustoccur(false, 9);
-			World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeTool();
+			World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeLvlTo(1);
 			World.gui.setRedtool(true, 1);
 			SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 			Conductor.setState(STATE.LEVEL);
+			getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> setMustoccur(true, 10), false);
+			getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> setMustoccur(true, 11), true);
 		}
 	}
 
@@ -120,7 +132,6 @@ public class EventLvl01 extends EventBuilder {
 	public void event10() {
 		if (getMustoccur(10)) {
 			event(10);
-			setMustoccur(false, 10);
 			new Chat(7, null, frlvl01, englvl01);
 		}
 	}
@@ -130,7 +141,6 @@ public class EventLvl01 extends EventBuilder {
 		if (getMustoccur(11)) {
 			event(11);
 			setMustoccur(false, 10);
-			setMustoccur(false, 11);
 			new Chat(8, null, frlvl01, englvl01);
 		}
 	}
@@ -149,6 +159,32 @@ public class EventLvl01 extends EventBuilder {
 
 	@Override
 	public void event15() {
+	}
+
+	// !! currently, give the wrong door (because not recalculate when puzzle
+	// solved)
+	private void moveThePlayerFutherFromDoor() {
+		int playerPosX = HandlerObject.getInstance().player.getX();
+		HandlerObject.getInstance().player.setX(playerPosX - Size.TILE / 2);
+	}
+
+	@Todo("unfinished method")
+	private IPuzzler getMostLeftPuzzler(OBJECTID objectID) {
+		IPuzzler object = null;
+		if (objectID == OBJECTID.DOOR)
+			object = new Door(99999, 0, false, DIFFICULTY.CYAN);
+		if (objectID == OBJECTID.FOE)
+			object = new FoeObject(99999, 0, DIFFICULTY.CYAN);
+
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(true);
+		for (GameObject tempObject : list) {
+			if (tempObject.getId() == objectID) {
+				IPuzzler tempPuzzler = (IPuzzler) tempObject;
+				if (!tempPuzzler.isSolved() && tempObject.getX() < ((GameObject) object).getX())
+					object = tempPuzzler;
+			}
+		}
+		return object;
 	}
 
 }

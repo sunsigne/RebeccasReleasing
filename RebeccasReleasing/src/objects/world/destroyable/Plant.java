@@ -11,7 +11,7 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 
 public class Plant extends DestroyableObject {
 
-	private int falltime = 15;
+	private Animation[] animation = new Animation[4];
 
 	public Plant(int x, int y, FACING facing) {
 		super(x, y, facing);
@@ -20,17 +20,102 @@ public class Plant extends DestroyableObject {
 		h = Size.TILE / 2;
 	}
 
-	@Override
-	public Animation getAnimation(int array, int secondarray) {
-		if (animation == null)
-			animation = new Animation(2, texture.plant[0], texture.plant[1], texture.plant[2], texture.plant[3],
-					texture.plant[3]);
-		return animation;
-	}
+	// state
 
 	@Override
 	protected boolean updatableFacing() {
 		return false;
+	}
+
+	// behavior
+
+	@Override
+	public void tick() {
+		if (falltime > 0) {
+			runAnimations();
+			falltime--;
+		}
+	}
+
+	private void runAnimations() {
+		runAnimation(Size.DIRECTION_UP);
+		runAnimation(Size.DIRECTION_DOWN);
+		runAnimation(Size.DIRECTION_LEFT);
+		runAnimation(Size.DIRECTION_RIGHT);
+	}
+
+	// design
+
+	@Override
+	public Animation getAnimation(int array, int secondarray) {
+
+		if (animation[array] == null) {
+			if (array == Size.DIRECTION_LEFT)
+				animation[array] = new Animation(2, texture.plant[0], texture.plant[0], texture.plant[1], texture.plant[2],
+						texture.plant[3], texture.plant[3]);
+			else if (array == Size.DIRECTION_RIGHT)
+				animation[array] = new Animation(2, texture.plant[4], texture.plant[4], texture.plant[5], texture.plant[6],
+						texture.plant[7], texture.plant[3]);
+			else
+				animation[array] = new Animation(1);
+		}
+		return animation[array];
+	}
+
+	@Override
+	public void render(Graphics g) {
+
+		renderingPlant(g);
+		drawHitbox(g);
+	}
+
+	private void renderingPlant(Graphics g) {
+
+		int w0 = 2 * Size.TILE;
+		int h0 = Size.TILE;
+
+		if (!isHorizontal()) {
+
+			// inital rendering
+			if (!falling) {
+				if (getFacing() == FACING.LEFT)
+					g.drawImage(texture.plant[0], x - Size.TILE, y, w0, h0, null);
+				if (getFacing() == FACING.RIGHT)
+					g.drawImage(texture.plant[4], x, y, w0, h0, null);
+			}
+
+			// falling rendering
+			if (falling && falltime > 0) {
+				if (getFacing() == FACING.LEFT)
+					drawAnimation(Size.DIRECTION_LEFT, g, x - Size.TILE, y, w0, h0);
+				if (getFacing() == FACING.RIGHT)
+					drawAnimation(Size.DIRECTION_RIGHT, g, x, y, w0, h0);
+			}
+
+			// final rendering
+			if (falling && falltime <= 0) {
+				if (getFacing() == FACING.LEFT)
+					g.drawImage(texture.plant[3], x - Size.TILE, y, w0, h0, null);
+				if (getFacing() == FACING.RIGHT)
+					g.drawImage(texture.plant[7], x, y, w0, h0, null);
+			}
+
+		} else
+			g.drawImage(ImageTask.drawMissingTexture(), x, y, w0, h0, null);
+	}
+
+	// collision
+
+	@Override
+	public Rectangle getBounds() {
+
+		return new Rectangle(x + w / 2, y + h / 2, w, h);
+	}
+
+	@Override
+	protected void fall() {
+		falling = true;
+		falltime = 15;
 	}
 
 	@Override
@@ -46,51 +131,6 @@ public class Plant extends DestroyableObject {
 	@Override
 	public BufferedSound makeSideSound() {
 		return SoundBank.getSound(SoundBank.hit_attack);
-	}
-
-	@Override
-	public void tick() {
-		if (isFalling() && falltime > 0) {
-			runAnimation();
-			falltime--;
-		}
-	}
-
-	@Override
-	public void render(Graphics g) {
-
-		int x0 = x;
-		int w0 = w;
-
-		if (getFacing() == FACING.LEFT) {
-			x0 = x + 2 * w;
-			w0 = -4 * w;
-		}
-
-		if (getFacing() == FACING.RIGHT) {
-			x0 = x;
-			w0 = 4 * w;
-		}
-
-		if (!isHorizontal()) {
-
-			if (!isFalling() || falltime >= 13)
-				g.drawImage(texture.plant[0], x, y, 4 * w, 2 * h, null);
-			else if (falltime > 0)
-				drawAnimation(g, x0, y, w0, 2 * h);
-			else
-				g.drawImage(texture.plant[3], x0, y, w0, 2 * h, null);
-		}
-		
-		else g.drawImage(ImageTask.drawMissingTexture(), x, y, w, h, null);
-
-		drawHitbox(g);
-	}
-
-	@Override
-	public Rectangle getBounds() {
-
-		return new Rectangle(x + w / 2, y + h / 2, w, h);
 	}
 
 }

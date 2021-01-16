@@ -14,6 +14,7 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
 
 import objects.puzzle.GameTimer;
 import objects.puzzle.FakeWallPuzzle;
@@ -23,7 +24,6 @@ import objects.puzzle.hack.ProcessorFolder;
 import objects.puzzle.hack.ProcessorLocker;
 import objects.puzzle.hack.ProcessorTrash;
 import objects.puzzle.hack.Virus;
-import objects.world.puzzler.IPuzzler;
 
 @Todo("pour tuto : carrement trop complexe, rendre la navigation et le lien cause-conséquence plus compréhensible +"
 		+ "/ difficulty : hack : processors to destroy : timer (+3sec), glue, hidder, defender (+3 clicks), antivirus (mine but deadly)")
