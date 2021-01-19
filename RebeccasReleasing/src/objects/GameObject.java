@@ -5,11 +5,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public abstract class GameObject implements ITick, IRender {
 
@@ -39,24 +40,16 @@ public abstract class GameObject implements ITick, IRender {
 	public boolean isCameraDependant() {
 		return cameraDependant;
 	}
+	
+	public OBJECTID getId() {
+		return id;
+	}
 
 	public void setID(OBJECTID id) {
 		this.id = id;
 	}
 
-	public OBJECTID getId() {
-		return id;
-	}
-
 	// position
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
 
 	public int getX() {
 		return x;
@@ -64,6 +57,14 @@ public abstract class GameObject implements ITick, IRender {
 
 	public int getY() {
 		return y;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	// size
@@ -76,24 +77,16 @@ public abstract class GameObject implements ITick, IRender {
 		return h;
 	}
 
-	public int[] getRect() {
+	public int[] getRect() {		
 		int[] rect = new int[4];
-		rect[0] = getX();
-		rect[1] = getY();
-		rect[2] = getWitdh();
-		rect[3] = getHeight();
+		rect[0] = getBounds().x;
+		rect[1] = getBounds().y;
+		rect[2] = getBounds().width;
+		rect[3] = getBounds().height;
 		return rect;
 	}
 
 	// velocity
-
-	public void setVelX(int velX) {
-		this.velX = velX;
-	}
-
-	public void setVelY(int velY) {
-		this.velY = velY;
-	}
 
 	public int getVelX() {
 		return velX;
@@ -103,16 +96,19 @@ public abstract class GameObject implements ITick, IRender {
 		return velY;
 	}
 
+	public void setVelX(int velX) {
+		this.velX = velX;
+	}
+
+	public void setVelY(int velY) {
+		this.velY = velY;
+	}
+	
 	protected void velocity() {
 		x = x + velX;
 		y = y + velY;
 	}
-
-	public void setMotionless() {
-		velX = 0;
-		velY = 0;
-	}
-
+	
 	public boolean isMotionless() {
 
 		if (velX == 0 && velY == 0)
@@ -135,6 +131,11 @@ public abstract class GameObject implements ITick, IRender {
 			return true;
 		else
 			return false;
+	}
+
+	public void setMotionless() {
+		velX = 0;
+		velY = 0;
 	}
 
 	// design

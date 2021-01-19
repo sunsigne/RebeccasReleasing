@@ -6,8 +6,9 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.redesign.Case;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Lamp;
 import com.sunsigne.rebeccasreleasing.toclean.redesign.Computer;
+import com.sunsigne.rebeccasreleasing.toclean.redesign.WC;
 
 import objects.IFacing.FACING;
 import objects.characters.living.FoeObject;
@@ -16,12 +17,11 @@ import objects.world.Flag;
 import objects.world.Wall;
 import objects.world.decor.Coffee;
 import objects.world.decor.Couch;
-import objects.world.decor.Lamp;
-import objects.world.decor.WC;
 import objects.world.decor.Water;
 import objects.world.destroyable.Desk;
 import objects.world.destroyable.Plant;
 import objects.world.loot.tools.LootKey;
+import objects.world.puzzler.Case;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.TutoDoor;
 import objects.world.puzzler.WallCracked;
@@ -76,6 +76,14 @@ public class MapBuilder {
 					handler_object.addObject(new LootKey(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.YELLOW));
 				
 				// couch
+				if (red == 64 && green == 0 && blue == 6)
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 2)); // dual left
+				if (red == 64 && green == 0 && blue == 7)
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 3)); // trial left
+				if (red == 64 && green == 0 && blue == 8)
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 2)); // dual right
+				if (red == 64 && green == 0 && blue == 9)
+					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 3)); // trial right
 				if (red == 64 && green == 0 && blue == 0)
 					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.UP, 1)); // single up
 				if (red == 64 && green == 0 && blue == 1)
@@ -88,14 +96,7 @@ public class MapBuilder {
 					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.DOWN, 2)); // dual down
 				if (red == 64 && green == 0 && blue == 5)
 					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.DOWN, 3)); // trial down
-				if (red == 64 && green == 0 && blue == 6)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 2)); // dual left
-				if (red == 64 && green == 0 && blue == 7)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.LEFT, 3)); // trial left
-				if (red == 64 && green == 0 && blue == 8)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 2)); // dual right
-				if (red == 64 && green == 0 && blue == 9)
-					handler_object.addObject(new Couch(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT, 3)); // trial right
+
 				// other
 				if (red == 0 && green == 64 && blue == 64)
 					handler_object.addObject(new Water(xx * Size.TILE, yy * Size.TILE));
@@ -114,14 +115,14 @@ public class MapBuilder {
 					handler_object.addObject(new Computer(xx * Size.TILE, yy * Size.TILE));
 				if (red == 128 && green == 128 && blue == 255)
 					handler_object.addObject(new Case(xx * Size.TILE, yy * Size.TILE));
-				if (red == 255 && green == 0 && blue == 255)
-					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.DOWN));
 				if (red == 255 && green == 128 && blue == 255)
 					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
-				if (red == 0 && green == 255 && blue == 128)
-					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT));
+				if (red == 255 && green == 0 && blue == 255)
+					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.UP));
 				if (red == 128 && green == 255 && blue == 128)
 					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
+				if (red == 0 && green == 255 && blue == 128)
+					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT));
 				if (red == 64 && green == 64 && blue == 0)
 					handler_object.addObject(new WC(xx * Size.TILE, yy * Size.TILE));
 				if (red == 64 && green == 64 && blue == 32)

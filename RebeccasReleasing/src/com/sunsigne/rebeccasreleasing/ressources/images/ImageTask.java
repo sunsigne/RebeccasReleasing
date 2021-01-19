@@ -8,7 +8,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.sunsigne.rebeccasreleasing.main.Game;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
 
 public class ImageTask {
 
@@ -24,16 +24,19 @@ public class ImageTask {
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 			image = ImageIO.read(url);
 		} catch (Exception e) {
-			System.err.println("an image's path isn't corret");
+			e.printStackTrace();
 			image = drawMissingTexture();
 		}
 
 		return image;
 	}
-
+	
 	public static BufferedImage drawMissingTexture() {
-		int width = 32;
-		int height = 32;
+		return drawMissingTexture(32, 32);
+	}
+
+	public static BufferedImage drawMissingTexture(int width, int height) {
+
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = img.createGraphics();
 

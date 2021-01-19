@@ -8,24 +8,25 @@ import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
-import objects.characters.displayer.Tool;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.Door;
+import objects.world.puzzler.IPuzzler;
 
 public class EventLvl01 extends EventBuilder {
 
-	private static final ChatMap frlvl01 = new ChatMap(LANGUAGE.FRENCH, "/dialogues/french/lvl01");
-	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, "/dialogues/english/lvl01");
+	private static final ChatMap frlvl01 = new ChatMap(LANGUAGE.FRENCH, new GameFile("/dialogues/french/lvl01"));
+	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/dialogues/english/lvl01"));
 
 	@Override
 	public void event00() {

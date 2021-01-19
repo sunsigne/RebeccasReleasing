@@ -8,6 +8,8 @@ public class ImageBank {
 
 	private static Map<ImageBank, BufferedImage> images = new HashMap<>();
 
+	// Even if this method is only used in this class, I prefered to let it public
+	// to make it easier for modders and devellopers in adding content 
 	public static void addImage(ImageBank imageBank, BufferedImage bufferedImage) {
 
 		if (bufferedImage != null)
@@ -17,6 +19,26 @@ public class ImageBank {
 	public static BufferedImage getImage(ImageBank imageBank) {
 		return images.get(imageBank);
 	}
+	
+	
+	// tool
+	public static final ImageBank tool_sword_sheet = new ImageBank();
+	public static final ImageBank tool_key_sheet = new ImageBank();
+	
+	// puzzler
+	public static final ImageBank puzzler_wallcracked_sheet = new ImageBank();
+	public static final ImageBank puzzler_computer_sheet = new ImageBank();
+	public static final ImageBank puzzler_case_sheet = new ImageBank();
+	public static final ImageBank puzzler_door_sheet = new ImageBank();
+	
+	// destroyable
+	public static final ImageBank destroyable_plant_sheet = new ImageBank();
+	
+	// living
+	public static final ImageBank living_rebecca_battle_sheet = new ImageBank();
+	
+	
+	
 
 	// title
 	public static final ImageBank title_1 = new ImageBank();
@@ -45,14 +67,19 @@ public class ImageBank {
 	// sheet
 	public static final ImageBank battery_sheet = new ImageBank();
 	public static final ImageBank desk_sheet = new ImageBank();
-	public static final ImageBank door_sheet = new ImageBank();
+	public static final ImageBank neodesk_sheet = new ImageBank();
+	
 	public static final ImageBank couch_sheet = new ImageBank();
 	public static final ImageBank bomb_sheet = new ImageBank();
 	public static final ImageBank item_sheet = new ImageBank();
 	public static final ImageBank tool_sheet = new ImageBank();
-	public static final ImageBank wallcracked_sheet = new ImageBank();
 	
-	public static final ImageBank key_sheet = new ImageBank();
+	
+	
+	
+	
+
+	
 
 	// chara
 	public static final ImageBank chatbox = new ImageBank();
@@ -74,11 +101,30 @@ public class ImageBank {
 	public static final ImageBank card_folder_gamma = new ImageBank();
 	public static final ImageBank card_folder_soldier = new ImageBank();
 
+	
 	// other
 	public static final ImageBank search_folder = new ImageBank();
 
 	public static void loadRessources() {
-
+		
+		// tool
+		addImage(tool_sword_sheet, ImageTask.loadImage("tool\\sword_sheet.png"));
+		addImage(tool_key_sheet, ImageTask.loadImage("tool\\key_sheet.png"));
+		
+		// puzzler
+		addImage(puzzler_wallcracked_sheet, ImageTask.loadImage("puzzler\\wallcracked_sheet.png"));
+		addImage(puzzler_computer_sheet, ImageTask.loadImage("puzzler\\computer_sheet.png"));
+		addImage(puzzler_case_sheet, ImageTask.loadImage("puzzler\\case_sheet.png"));
+		addImage(puzzler_door_sheet, ImageTask.loadImage("puzzler\\door_sheet.png"));
+		
+		// destroyable
+		addImage(destroyable_plant_sheet, ImageTask.loadImage("destroyable\\plant_sheet.png"));
+		
+		// living
+		addImage(living_rebecca_battle_sheet, ImageTask.loadImage("living\\rebecca_battle_sheet.png"));
+		
+		
+		
 		// title
 		addImage(title_1, ImageTask.loadImage("title_screen\\title_1.png"));
 		addImage(title_2, ImageTask.loadImage("title_screen\\title_2.png"));
@@ -106,16 +152,19 @@ public class ImageBank {
 		// sheet
 		addImage(battery_sheet, ImageTask.loadImage("battery_sheet.png"));
 		addImage(desk_sheet, ImageTask.loadImage("desk_sheet.png"));
-		addImage(door_sheet, ImageTask.loadImage("door_sheet.png"));
+		addImage(neodesk_sheet, ImageTask.loadImage("neodesk_sheet.png"));
+		
 		addImage(couch_sheet, ImageTask.loadImage("couch_sheet.png"));
 		addImage(bomb_sheet, ImageTask.loadImage("bomb_sheet.png"));
 		addImage(item_sheet, ImageTask.loadImage("item_sheet.png"));
 		addImage(tool_sheet, ImageTask.loadImage("tool_sheet.png"));
 		addImage(hack_sheet, ImageTask.loadImage("hack_sheet.png"));
 		addImage(virus_sheet, ImageTask.loadImage("virus_sheet.png"));
-		addImage(wallcracked_sheet, ImageTask.loadImage("wallcracked_sheet.png"));
 		
-		addImage(key_sheet, ImageTask.loadImage("key_sheet.png"));
+		
+
+		
+		
 
 		// chara
 		addImage(chatbox, ImageTask.loadImage("chatbox.png"));
@@ -133,6 +182,7 @@ public class ImageBank {
 		addImage(card_defense, ImageTask.loadImage("card_defense.png"));
 		addImage(card_folder_gamma, ImageTask.loadImage("card_folder_gamma.png"));
 		addImage(card_folder_soldier, ImageTask.loadImage("card_folder_soldier.png"));
+
 
 		// other
 		addImage(search_folder, ImageTask.loadImage("search_folder.png"));

@@ -6,12 +6,13 @@ import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.IClick;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 import objects.characters.CHARA;
 
@@ -20,7 +21,7 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 	protected static final int MAX_LINES_FOR_SAME_DIALOGUE = 255;
 	
 	protected ChatObject[] chatObject = new ChatObject[MAX_LINES_FOR_SAME_DIALOGUE];
-	private String[] filenameFromLang = new String[LANGUAGE.TOTALNUM + 1];	
+	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.TOTALNUM + 1];	
 
 	
 	/**
@@ -61,11 +62,11 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 		LANGUAGE language = chatMap.getLanguage();
 		switch (language) {
 		case FRENCH:
-			filenameFromLang[2] = chatMap.getFilename();
+			gamefileFromLang[2] = chatMap.getGameFile();
 			break;
 		case ENGLISH:
 		default:
-			filenameFromLang[1] = chatMap.getFilename();
+			gamefileFromLang[1] = chatMap.getGameFile();
 			break;
 		}
 	}
@@ -73,23 +74,23 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 	private String readDataFromFile() {
 		switch (Options.getLanguage()) {
 		case FRENCH:
-			return verified(filenameFromLang[2]);
+			return verified(gamefileFromLang[2]);
 		case ENGLISH:
 		default:
-			return verified(filenameFromLang[1]);
+			return verified(gamefileFromLang[1]);
 		}
 	}
 
-	private String verified(String txt) {
-		if (txt != null)
-			return FileTask.read(txt);
+	private String verified(GameFile gamefile) {
+		if (gamefile != null)
+			return FileTask.read(gamefile);
 
 		// if language not found, return the first valid language
 		else {
 			int size = LANGUAGE.TOTALNUM + 1;
 			for (int i = 0; i < size; i++)
-				if (filenameFromLang[i] != null)
-					return FileTask.read(filenameFromLang[i]);
+				if (gamefileFromLang[i] != null)
+					return FileTask.read(gamefileFromLang[i]);
 		}
 		Conductor.fatalError(
 				"An unknown error has occured : couldn't correcly make a link between a text and an existing Language");

@@ -1,24 +1,25 @@
 package com.sunsigne.rebeccasreleasing.game.chat;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 
 public class ChatMap {
 
 	private LANGUAGE language;
-	private String filename;
+	private GameFile gamefile;
 	
-	public ChatMap(LANGUAGE language, String filename)
+	public ChatMap(LANGUAGE language, GameFile gamefile)
 	{
 		this.language = language;
-		this.filename = filename;
+		this.gamefile = gamefile;
 	}
 
 	public LANGUAGE getLanguage() {
 		return language;
 	}
 
-	public String getFilename() {
-		return filename;
+	public GameFile getGameFile() {
+		return gamefile;
 	}
 
 }

@@ -16,7 +16,7 @@ public class SpriteSheet {
 		try {
 			img = image.getSubimage((col * width) - width, (row * height) - height, width, height);
 		} catch (Exception e) {
-			img = ImageTask.drawMissingTexture();
+			img = ImageTask.drawMissingTexture(width, height);
 		}
 		return img;
 	}

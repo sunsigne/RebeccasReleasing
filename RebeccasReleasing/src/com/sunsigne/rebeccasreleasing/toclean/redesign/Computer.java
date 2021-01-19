@@ -8,20 +8,19 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleHack;
+import com.sunsigne.rebeccasreleasing.game.puzzles.hack.PuzzleHack;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
-import objects.characters.displayer.Tool;
 import objects.characters.living.LivingObject;
+import objects.world.puzzler.IPuzzler;
 
 @Todo("redesign")
 public class Computer extends GameObject implements IPuzzler {
 
-	private EventListener eventOnVictory;
-	private EventListener eventOnDefeat;
+	private EventListener eventOnVictory, eventOnDefeat;
 
 	private DIFFICULTY difficulty;
 	private boolean solved;

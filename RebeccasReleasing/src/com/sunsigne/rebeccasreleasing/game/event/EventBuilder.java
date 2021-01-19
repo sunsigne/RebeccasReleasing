@@ -1,8 +1,8 @@
 package com.sunsigne.rebeccasreleasing.game.event;
 
-import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 public abstract class EventBuilder implements IEvent {
 

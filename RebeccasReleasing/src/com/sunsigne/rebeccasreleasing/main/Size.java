@@ -2,8 +2,6 @@ package com.sunsigne.rebeccasreleasing.main;
 
 public final class Size {
 	
-	public static final int DIRECTION_UP = 0, DIRECTION_DOWN = 1, DIRECTION_LEFT = 2, DIRECTION_RIGHT = 3;
-	
 	public static final int WIDHT = 1920;
 	public static final int HEIGHT = 1080;
 	

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 
+import objects.IFacing.FACING;
+
 public interface IAnimation {
 
 	public Animation getAnimation(int array, int secondarray);
@@ -14,7 +16,19 @@ public interface IAnimation {
 
 	public default void runAnimation(int array) {
 		runAnimation(array, 0);
-	}	
+	}
+	
+	public default void runFourDirectionAnimations() {
+		runAnimation(FACING.LEFT.getNum());
+		runAnimation(FACING.RIGHT.getNum());
+		runAnimation(FACING.UP.getNum());
+		runAnimation(FACING.DOWN.getNum());
+	}
+	
+	public default void runTwoDirectionAnimations() {
+		runAnimation(FACING.LEFT.getNum());
+		runAnimation(FACING.RIGHT.getNum());
+	}
 	
 	public default void runAnimation(int array, int secondarray) {
 		getAnimation(array, secondarray).runAnimation();

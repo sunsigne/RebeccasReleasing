@@ -3,13 +3,13 @@ package com.sunsigne.rebeccasreleasing.game.menu.title;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
-import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 public class Title extends Clickable {
 
@@ -32,17 +32,17 @@ public class Title extends Clickable {
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (GameMouseListener.mouseOver(mx, my, playRect)) {
+		if (GameMouseInput.mouseOver(mx, my, playRect)) {
 			close();
 			Conductor.openLvl();
 		}
 
-		if (GameMouseListener.mouseOver(mx, my, optionsRect)) {
+		if (GameMouseInput.mouseOver(mx, my, optionsRect)) {
 			close();
 			new Options();
 		}
 
-		if (GameMouseListener.mouseOver(mx, my, quitRect))
+		if (GameMouseInput.mouseOver(mx, my, quitRect))
 			Conductor.stop();
 	}
 
@@ -59,7 +59,7 @@ public class Title extends Clickable {
 
 	@Override
 	public void close() {
-		GameMouseListener.getInstance().clearClickable();
+		GameMouseInput.getInstance().clearClickable();
 		HandlerObject.getInstance().clearAll();
 	}
 

@@ -3,8 +3,8 @@ package objects.characters;
 public enum CHARA {
 
 	NONE(0),
-	Rebecca(1),
-	Sarah(2);
+	REBECCA(1),
+	SARAH(2);
 	
 
 	private int num;

@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
+
 public class Window extends Canvas {
 
 	private static final long serialVersionUID = 1L;

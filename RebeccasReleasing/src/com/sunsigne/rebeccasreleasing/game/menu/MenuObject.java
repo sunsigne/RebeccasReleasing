@@ -3,8 +3,9 @@ package com.sunsigne.rebeccasreleasing.game.menu;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+
 import objects.GameObject;
-import objects.OBJECTID;
 
 public abstract class MenuObject extends GameObject {
 

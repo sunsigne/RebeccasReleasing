@@ -6,9 +6,9 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.ScoreScreen;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
@@ -23,13 +23,13 @@ public class Flag extends GameObject implements ICollision {
 
 	// state
 
-	public void setReached(boolean reached) {
-		this.reached = reached;
-	}
-
 	public boolean isReached() {
 		return reached;
 	}	
+	
+	public void setReached(boolean reached) {
+		this.reached = reached;
+	}
 
 	// behavior
 	
@@ -53,9 +53,9 @@ public class Flag extends GameObject implements ICollision {
 	@Override
 	public void collision(LivingObject living) {
 
-		if (living.collisionDetector.isPlayer && !this.isReached()) {
+		if (living.isPlayer() && !this.isReached()) {
 
-			living.collisionDetector.collidingBehavior(false, this, () -> {
+			living.getCollisionDetector().collidingBehavior(false, this, () -> {
 				setReached(true);
 				new ScoreScreen();
 			});

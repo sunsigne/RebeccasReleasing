@@ -3,8 +3,7 @@ package objects.world.loot.tools;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-
-import objects.characters.displayer.Tool;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 public class LootKey extends LootTool {
 
@@ -24,7 +23,7 @@ public class LootKey extends LootTool {
 
 	@Override
 	public BufferedImage[] getTexture() {
-		return texture.key;
+		return texture.tool_key;
 	}
 
 }

@@ -6,19 +6,19 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.event.EventLoader;
 import com.sunsigne.rebeccasreleasing.game.event.IEvent;
-import com.sunsigne.rebeccasreleasing.main.Conductor;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.GUI;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
-import objects.characters.displayer.GUI;
 import objects.characters.living.FoeObject;
 
 public class World implements IRender {
@@ -96,7 +96,7 @@ public class World implements IRender {
 
 	public void close() {
 
-		GameMouseListener.getInstance().clearClickable();
+		GameMouseInput.getInstance().clearClickable();
 		event.clearEvent();
 		HandlerObject.getInstance().isPlayerExisting = false;
 		HandlerObject.getInstance().clearAll();

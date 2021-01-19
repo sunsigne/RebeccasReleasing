@@ -3,8 +3,9 @@ package objects.world;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+
 import objects.GameObject;
-import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
@@ -34,7 +35,7 @@ public class Wall extends GameObject implements ICollision {
 	@Override
 	public void collision(LivingObject living)
 	{
-		living.collisionDetector.collidingBehavior(true, this, null);
+		living.getCollisionDetector().collidingBehavior(true, this, null);
 	}
 
 	@Override

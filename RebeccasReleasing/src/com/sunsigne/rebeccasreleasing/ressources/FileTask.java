@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class FileTask {
 
-	public static boolean doesExist(String filename) {
-		File file = new File("ressources/data/" + filename + ".csv");
+	public static boolean doesExist(GameFile gamefile) {
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
 		return file.exists();
 	}
 
-	public static String read(String filename) {
+	public static String read(GameFile gamefile) {
 
-		File file = new File("ressources/data/" + filename + ".csv");
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
 		Scanner scan = null;
 		String fileContent = "";
 
@@ -38,8 +38,8 @@ public class FileTask {
 		return fileContent;
 	}
 
-	public static void write(String filename, String text) {
-		File file = new File("ressources/data/" + filename + ".csv");
+	public static void write(GameFile gamefile, String text) {
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
 		FileWriter writer = null;
 
 		try {
@@ -52,8 +52,29 @@ public class FileTask {
 		}
 	}
 
-	public static void delete(String filename) {
-		File file = new File("ressources/data/" + filename + ".csv");
+	public static void write(GameFile gamefile, String text, int atLine) {
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
+		String fileContent = read(gamefile);
+		String[] alllines = fileContent.split(System.getProperty("line.separator"));
+		int size = alllines.length;
+
+		FileWriter writer = null;
+
+		try {
+			writer = new FileWriter(file);
+			for (int i = 0; i < size; i++) {
+				if(i != atLine)	writer.write(String.format(alllines[i] + "%n"));
+				else writer.write(String.format(text + "%n"));
+			}
+			writer.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void delete(GameFile gamefile) {
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
 		if (file.exists())
 			file.delete();
 	}

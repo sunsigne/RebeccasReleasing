@@ -5,17 +5,16 @@ import java.util.LinkedList;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
+import objects.characters.living.FoeObject;
 import objects.characters.living.LivingObject;
 
 public class CollisionDetector {
 
 	private LivingObject living;
-	public boolean isPlayer;
 	
-	public CollisionDetector(boolean isPlayer, LivingObject livingObject) 
+	public CollisionDetector(LivingObject livingObject) 
 	{		
 		this.living = livingObject;
-		this.isPlayer = isPlayer;
 	}
 
 	
@@ -47,18 +46,33 @@ public class CollisionDetector {
 
 		if (living.getBoundsTop().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setY((tempObject.getY() + tempObject.getHeight()));
+				living.setY((tempObject.getY() + tempObject.getBounds().height));
 			if(listener != null) listener.triggerAction();
 		}
 		if (living.getBoundsLeft().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setX((tempObject.getX() + tempObject.getWitdh()));
+				living.setX((tempObject.getX() + tempObject.getBounds().width));
 			if(listener != null) listener.triggerAction();
 		}
 		if (living.getBoundsRight().intersects(tempObject.getBounds())) {
 			if (isWall)
 				living.setX((tempObject.getX() - living.getWitdh()));
 			if(listener != null) listener.triggerAction();
+		}
+	}
+	
+	public void collidingBehaviorBetweenFoes(LivingObject living, FoeObject currentFoe) {
+		if (living.getBounds().intersects(currentFoe.getBigBounds())) {
+			living.setY((currentFoe.getY() - living.getHeight()));
+		}
+		if (living.getBoundsTop().intersects(currentFoe.getBigBounds())) {
+			living.setY((currentFoe.getY() + currentFoe.getBigBounds().height));
+		}
+		if (living.getBoundsLeft().intersects(currentFoe.getBigBounds())) {
+			living.setX((currentFoe.getX() + currentFoe.getBigBounds().width));
+		}
+		if (living.getBoundsRight().intersects(currentFoe.getBigBounds())) {
+			living.setX((currentFoe.getX() - living.getWitdh()));
 		}
 	}
 

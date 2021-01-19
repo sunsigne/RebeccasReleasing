@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 
@@ -16,6 +15,9 @@ public class Plant extends DestroyableObject {
 	public Plant(int x, int y, FACING facing) {
 		super(x, y, facing);
 
+		if(facing == FACING.UP) facing = FACING.LEFT;
+		if(facing == FACING.DOWN) facing = FACING.RIGHT;
+		
 		w = Size.TILE / 2;
 		h = Size.TILE / 2;
 	}
@@ -32,16 +34,9 @@ public class Plant extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runAnimations();
+			runTwoDirectionAnimations();
 			falltime--;
 		}
-	}
-
-	private void runAnimations() {
-		runAnimation(Size.DIRECTION_UP);
-		runAnimation(Size.DIRECTION_DOWN);
-		runAnimation(Size.DIRECTION_LEFT);
-		runAnimation(Size.DIRECTION_RIGHT);
 	}
 
 	// design
@@ -50,14 +45,10 @@ public class Plant extends DestroyableObject {
 	public Animation getAnimation(int array, int secondarray) {
 
 		if (animation[array] == null) {
-			if (array == Size.DIRECTION_LEFT)
-				animation[array] = new Animation(2, texture.plant[0], texture.plant[0], texture.plant[1], texture.plant[2],
-						texture.plant[3], texture.plant[3]);
-			else if (array == Size.DIRECTION_RIGHT)
-				animation[array] = new Animation(2, texture.plant[4], texture.plant[4], texture.plant[5], texture.plant[6],
-						texture.plant[7], texture.plant[3]);
-			else
-				animation[array] = new Animation(1);
+			animation[array] = new Animation(2, texture.destroyable_plant[array][0],
+					texture.destroyable_plant[array][0], texture.destroyable_plant[array][1],
+					texture.destroyable_plant[array][2], texture.destroyable_plant[array][3],
+					texture.destroyable_plant[array][3]);
 		}
 		return animation[array];
 	}
@@ -73,35 +64,20 @@ public class Plant extends DestroyableObject {
 
 		int w0 = 2 * Size.TILE;
 		int h0 = Size.TILE;
+		int gap = 0;
 
-		if (!isHorizontal()) {
+		if (getFacing() == FACING.LEFT)
+			gap = Size.TILE;
 
-			// inital rendering
-			if (!falling) {
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.plant[0], x - Size.TILE, y, w0, h0, null);
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.plant[4], x, y, w0, h0, null);
-			}
+		if (!falling)
+			g.drawImage(texture.destroyable_plant[getFacing().getNum()][0], x - gap, y, w0, h0, null);
 
-			// falling rendering
-			if (falling && falltime > 0) {
-				if (getFacing() == FACING.LEFT)
-					drawAnimation(Size.DIRECTION_LEFT, g, x - Size.TILE, y, w0, h0);
-				if (getFacing() == FACING.RIGHT)
-					drawAnimation(Size.DIRECTION_RIGHT, g, x, y, w0, h0);
-			}
+		if (falling && falltime > 0)
+			drawAnimation(getFacing().getNum(), g, x - gap, y, w0, h0);
 
-			// final rendering
-			if (falling && falltime <= 0) {
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.plant[3], x - Size.TILE, y, w0, h0, null);
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.plant[7], x, y, w0, h0, null);
-			}
+		if (falling && falltime <= 0)
+			g.drawImage(texture.destroyable_plant[getFacing().getNum()][3], x - gap, y, w0, h0, null);
 
-		} else
-			g.drawImage(ImageTask.drawMissingTexture(), x, y, w0, h0, null);
 	}
 
 	// collision
@@ -130,7 +106,7 @@ public class Plant extends DestroyableObject {
 
 	@Override
 	public BufferedSound makeSideSound() {
-		return SoundBank.getSound(SoundBank.hit_attack);
+		return SoundBank.getSound(SoundBank.hit_defense);
 	}
 
 }

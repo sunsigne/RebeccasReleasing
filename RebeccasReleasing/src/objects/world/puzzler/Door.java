@@ -7,19 +7,17 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleKey;
+import com.sunsigne.rebeccasreleasing.game.puzzles.key.clickable.PuzzleKey;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
-import objects.characters.displayer.Tool;
 import objects.characters.living.LivingObject;
 
 public class Door extends GameObject implements IPuzzler {
 
-	private EventListener eventOnVictory;
-	private EventListener eventOnDefeat;
+	private EventListener eventOnVictory, eventOnDefeat;
 
 	private DIFFICULTY difficulty;
 	private boolean solved;
@@ -69,6 +67,10 @@ public class Door extends GameObject implements IPuzzler {
 	@Override
 	public void setSolved(boolean solved) {
 		this.solved = solved;
+	}	
+
+	public boolean isHorizontal() {
+		return horizontal;
 	}
 
 	public void setHorizontal(boolean horizontal) {
@@ -77,10 +79,6 @@ public class Door extends GameObject implements IPuzzler {
 			w = 2 * Size.TILE;
 		if (!horizontal)
 			h = 2 * Size.TILE;
-	}
-
-	public boolean isHorizontal() {
-		return horizontal;
 	}
 
 	// behavior
@@ -105,13 +103,13 @@ public class Door extends GameObject implements IPuzzler {
 		int difficulty = getDifficulty().getLvl();
 
 		if (!horizontal && !isSolved())
-			img = texture.door[difficulty][0];
+			img = texture.puzzler_door[difficulty][0];
 		if (!horizontal && isSolved())
-			img = texture.door[difficulty][1];
+			img = texture.puzzler_door[difficulty][1];
 		if (horizontal && !isSolved())
-			img = texture.door[difficulty][2];
+			img = texture.puzzler_door[difficulty][2];
 		if (horizontal && isSolved())
-			img = texture.door[difficulty][3];
+			img = texture.puzzler_door[difficulty][3];
 
 		return img;
 	}

@@ -2,29 +2,23 @@ package objects.world.destroyable;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 
-import objects.IFacing.FACING;
-
 public class Desk extends DestroyableObject {
 
 	private Animation[] animation = new Animation[4];
 
-	private double random;
-
 	public Desk(int x, int y, FACING facing) {
 		super(x, y, facing);
 
-		this.random = Math.random();
-		resize();
+		w = 2 * Size.TILE;
+		h = 2 * Size.TILE;
 	}
 
 	// state
@@ -33,27 +27,15 @@ public class Desk extends DestroyableObject {
 	protected boolean updatableFacing() {
 		return true;
 	}
-		
-	private void resize() {
-		if(isHorizontal()) w = 2 * Size.TILE;
-		else h = 2 * Size.TILE;		
-	}
 
 	// behavior
 
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runAnimations();
+			runFourDirectionAnimations();
 			falltime--;
 		}
-	}
-	
-	private void runAnimations() {
-		runAnimation(Size.DIRECTION_UP);
-		runAnimation(Size.DIRECTION_DOWN);
-		runAnimation(Size.DIRECTION_LEFT);
-		runAnimation(Size.DIRECTION_RIGHT);
 	}
 
 	// design
@@ -61,154 +43,64 @@ public class Desk extends DestroyableObject {
 	@Override
 	public Animation getAnimation(int array, int secondarray) {
 
-		if (animation[array] == null)
-			
-			/*if (random <= 0.5)*/
-			animation[array] = getRandomAnimationA(array);
-			/*if (random > 0.5)animation[array] = getRandomAnimationB(array); */
+		if (animation[array] == null) {
+			if (array == FACING.LEFT.getNum())
+				animation[array] = new Animation(2, texture.neodesk[7], texture.neodesk[8], texture.neodesk[9],
+						texture.neodesk[10], texture.neodesk[11], texture.neodesk[11], texture.neodesk[11]);
+			else if (array == FACING.RIGHT.getNum())
+				animation[array] = new Animation(2, texture.neodesk[13], texture.neodesk[14], texture.neodesk[15],
+						texture.neodesk[16], texture.neodesk[17], texture.neodesk[17], texture.neodesk[17]);
+			else if (array == FACING.UP.getNum())
+				animation[array] = new Animation(2, texture.neodesk[1], texture.neodesk[2], texture.neodesk[3],
+						texture.neodesk[4], texture.neodesk[5], texture.neodesk[5], texture.neodesk[5]);
+			else if (array == FACING.DOWN.getNum())
+				animation[array] = new Animation(2, texture.neodesk[1], texture.neodesk[2], texture.neodesk[3],
+						texture.neodesk[4], texture.neodesk[5], texture.neodesk[5], texture.neodesk[5]);
 
+			else
+				animation[array] = new Animation(1);
+		}
 		return animation[array];
 	}
 
-	private Animation getRandomAnimationA(int array) {
-		if (isHorizontal())
-		animation[array] = new Animation(2, texture.desk[0], texture.desk[1], texture.desk[2],
-				texture.desk[3], texture.desk[4], texture.desk[5], texture.desk[5]);
-		else
-		{
-			if (array == Size.DIRECTION_LEFT)
-				animation[array] = new Animation(2, texture.desk[24], texture.desk[25], texture.desk[26],
-						texture.desk[27], texture.desk[28], texture.desk[29], texture.desk[29]);
-			if (array == Size.DIRECTION_RIGHT)
-				animation[array] = new Animation(2, texture.desk[12], texture.desk[13], texture.desk[14],
-						texture.desk[15], texture.desk[16], texture.desk[17], texture.desk[17]);
-		}
-		return animation[array];		
-	}
-	
-	private Animation getRandomAnimationB(int array) {
-		if (isHorizontal())
-			animation[array] = new Animation(2, texture.desk[6], texture.desk[7], texture.desk[8],
-					texture.desk[9], texture.desk[10], texture.desk[11], texture.desk[11]);
-		else
-		{
-			if (array == Size.DIRECTION_LEFT)
-				animation[array] = new Animation(2, texture.desk[30], texture.desk[31], texture.desk[32],
-						texture.desk[33], texture.desk[34], texture.desk[35], texture.desk[35]);
-			if (array == Size.DIRECTION_RIGHT)
-				animation[array] = new Animation(2, texture.desk[18], texture.desk[19], texture.desk[20],
-						texture.desk[21], texture.desk[22], texture.desk[23], texture.desk[23]);
-		}
-		return animation[array];		
-	}
-
 	public void render(Graphics g) {
-/*
-		BufferedImage startImg = null;
-		BufferedImage endImg = null;
-		int x0 = x - w / 64;
-		int w0 = w;
-		int gap = 0;
 
-		if (isHorizontal()) {
-			gap = w / 64;
-			if (random <= 0.5) {
-				startImg = texture.desk[0];
-				endImg = texture.desk[5];
-			}
-			if (random > 0.5) {
-				startImg = texture.desk[6];
-				endImg = texture.desk[11];
-			}
-		} else if (!isHorizontal()) {
-			if (random <= 0.5) {
-				startImg = texture.desk[12];
-				endImg = texture.desk[17];
-			}
-			if (random > 0.5) {
-				startImg = texture.desk[18];
-				endImg = texture.desk[23];
-			}
-			if (getFacing() == FACING.LEFT) {
-				x0 = x + w / 2 - w / 64;
-				w0 = -w;
-			}
-		}
-
-		if (!falling || falltime > 19)
-			g.drawImage(startImg, x - w / 64, y, w + gap, h, null);
-		else if (falltime > 0)
-			drawAnimation(g, x0, y, w0 + gap, h);
-		else
-			g.drawImage(endImg, x0, y, w0 + gap, h, null);
-*/
 		renderingDesk(g);
 		drawHitbox(g);
-
 	}
-	
+
 	private void renderingDesk(Graphics g) {
-		
-		int w0 = 2 * Size.TILE;
-		int h0 = 2 * Size.TILE;
-		
+
 		// inital rendering
 		if (!falling) {
-//			if(random <= 0.5)
-			{
-				if (isHorizontal())
-					g.drawImage(texture.desk[0], x, y, w0, h0, null);
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.desk[30], x - Size.TILE, y, w0, h0, null);	
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.desk[12], x, y, w0, h0, null);
-			}
-/*			else
-			{
-				if (isHorizontal())
-					g.drawImage(texture.desk[6], x, y, w, h, null);
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.desk[30], x, y, w  - Size.TILE, h, null);	
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.desk[18], x, y, w, h, null);
-			}
-*/
+			if (getFacing() == FACING.LEFT)
+				g.drawImage(texture.neodesk[6], x, y, w, h, null);
+			if (getFacing() == FACING.RIGHT)
+				g.drawImage(texture.neodesk[12], x, y, w, h, null);
+			if (isHorizontal())
+				g.drawImage(texture.neodesk[0], x, y, w, h, null);
 		}
-	}
-	
-	private void renderingPlant(Graphics g) {
 
-		int w0 = 2 * Size.TILE;
-		int h0 = Size.TILE;
+		// falling rendering
+		if (falling && falltime > 0) {
+			if (getFacing() == FACING.LEFT)
+				drawAnimation(FACING.LEFT.getNum(), g, x, y, w, h);
+			if (getFacing() == FACING.RIGHT)
+				drawAnimation(FACING.RIGHT.getNum(), g, x, y, w, h);
+			if (isHorizontal())
+				drawAnimation(FACING.DOWN.getNum(), g, x, y, w, h);
+		}
 
-		if (!isHorizontal()) {
+		// final rendering
+		if (falling && falltime <= 0) {
+			if (getFacing() == FACING.LEFT)
+				g.drawImage(texture.neodesk[11], x, y, w, h, null);
+			if (getFacing() == FACING.RIGHT)
+				g.drawImage(texture.neodesk[17], x, y, w, h, null);
+			if (isHorizontal())
+				g.drawImage(texture.neodesk[5], x, y, w, h, null);
+		}
 
-			// inital rendering
-			if (!falling) {
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.plant[0], x - Size.TILE, y, w0, h0, null);
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.plant[4], x, y, w0, h0, null);
-			}
-
-			// falling rendering
-			if (falling && falltime > 0) {
-				if (getFacing() == FACING.LEFT)
-					drawAnimation(Size.DIRECTION_LEFT, g, x - Size.TILE, y, w0, h0);
-				if (getFacing() == FACING.RIGHT)
-					drawAnimation(Size.DIRECTION_RIGHT, g, x, y, w0, h0);
-			}
-
-			// final rendering
-			if (falling && falltime <= 0) {
-				if (getFacing() == FACING.LEFT)
-					g.drawImage(texture.plant[3], x - Size.TILE, y, w0, h0, null);
-				if (getFacing() == FACING.RIGHT)
-					g.drawImage(texture.plant[7], x, y, w0, h0, null);
-			}
-
-		} else
-			g.drawImage(ImageTask.drawMissingTexture(), x, y, w0, h0, null);
 	}
 
 	// collision
@@ -216,15 +108,17 @@ public class Desk extends DestroyableObject {
 	@Override
 	public void refreshPlayerRendering() {
 		if (isHorizontal()) {
-			if (HandlerObject.getInstance().player.getY() < y + h / 15)
+			if (HandlerObject.getInstance().player.getY() < y + h / 4)
 				HandlerRender.getInstance().playerAbove = false;
 		}
 	}
 
 	@Override
 	public Rectangle getBounds() {
-
-		return new Rectangle(x, y, w, h);
+		if (isHorizontal())
+			return new Rectangle(x + w / 8, y + h / 16, w - w / 4, h - h / 2);
+		else
+			return new Rectangle(x + w / 4, y + h / 16, w - w / 2, h - h / 4);
 	}
 
 	@Override
@@ -240,7 +134,7 @@ public class Desk extends DestroyableObject {
 
 	@Override
 	public BufferedSound makeMainSound() {
-		return SoundBank.getSound(SoundBank.hit_attack);
+		return SoundBank.getSound(SoundBank.hit_defense);
 	}
 
 	@Override

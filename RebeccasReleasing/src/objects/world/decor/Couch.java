@@ -5,10 +5,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
 import objects.IFacing;
-import objects.OBJECTID;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
@@ -24,11 +24,15 @@ public class Couch extends GameObject implements ICollision, IFacing {
 		if (lenght < 4)
 			this.lenght = lenght;
 
+		h = Size.TILE/2;
+		
 		if (isHorizontal())
 			w = lenght * Size.TILE;
 		if (!isHorizontal())
-			h = lenght * Size.TILE;
+			h = h + (lenght-1) * Size.TILE;
 	}
+	
+	// state
 
 	@Override
 	public FACING getFacing() {
@@ -39,16 +43,22 @@ public class Couch extends GameObject implements ICollision, IFacing {
 	public void setFacing(FACING facing) {
 			this.facing = facing;
 	}
+	
+	// behavior
 
 	@Override
 	public void tick() {
 	}
+	
+	// design
 
 	@Override
 	public void render(Graphics g) {
 
+		int h0 = h + Size.TILE/2;
+		
 		BufferedImage img = paintingCouch();
-		g.drawImage(img, x, y, w, h, null);
+		g.drawImage(img, x, y, w, h0, null);
 		drawHitbox(g);
 	}
 
@@ -56,22 +66,24 @@ public class Couch extends GameObject implements ICollision, IFacing {
 
 		BufferedImage img = null;
 
-		if (facing == FACING.UP)
-			img = texture.couch[Size.DIRECTION_UP][lenght];
-		if (facing == FACING.DOWN)
-			img = texture.couch[Size.DIRECTION_DOWN][lenght];
 		if (facing == FACING.LEFT)
-			img = texture.couch[Size.DIRECTION_LEFT][lenght];
+			img = texture.couch[FACING.LEFT.getNum()][lenght];
 		if (facing == FACING.RIGHT)
-			img = texture.couch[Size.DIRECTION_RIGHT][lenght];
+			img = texture.couch[FACING.RIGHT.getNum()][lenght];
+		if (facing == FACING.UP)
+			img = texture.couch[FACING.UP.getNum()][lenght];
+		if (facing == FACING.DOWN)
+			img = texture.couch[FACING.DOWN.getNum()][lenght];
 
 		return img;
 	}
+	
+	// collision
 
 	@Override
 	public void collision(LivingObject living) {
 
-		living.collisionDetector.collidingBehavior(true, this, null);
+		living.getCollisionDetector().collidingBehavior(true, this, null);
 	}
 
 	@Override

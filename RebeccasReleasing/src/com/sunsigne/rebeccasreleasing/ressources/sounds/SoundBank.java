@@ -3,12 +3,12 @@ package com.sunsigne.rebeccasreleasing.ressources.sounds;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-
 public class SoundBank {
 
 	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
 
+	// Even if this method is only used in this class, I prefered to let it public
+	// to make it easier for modders and devellopers in adding content
 	public static void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
 
 		if (bufferedSound != null)
@@ -19,21 +19,17 @@ public class SoundBank {
 		return sounds.get(soundBank);
 	}
 
-	public static final SoundBank error = new SoundBank();
-
 	// music
 	public static final SoundBank soundtrack_1 = new SoundBank();
 	public static final SoundBank soundtrack_2 = new SoundBank();
 	public static final SoundBank soundtrack_3 = new SoundBank();
 
-	// other
-	public static final SoundBank popup = new SoundBank();
-
-	// talking
-	public static final SoundBank talking_rebecca = new SoundBank();
-	public static final SoundBank talking_sarah = new SoundBank();
-
 	// sound normal
+	// world
+	public static final SoundBank fail = new SoundBank();
+	public static final SoundBank looting = new SoundBank();
+	public static final SoundBank poterie = new SoundBank();
+	public static final SoundBank push = new SoundBank();
 	// bomb
 	public static final SoundBank explosion_big = new SoundBank();
 	public static final SoundBank explosion_little = new SoundBank();
@@ -48,15 +44,15 @@ public class SoundBank {
 	public static final SoundBank virus_explore = new SoundBank();
 	// key
 	public static final SoundBank opening_door = new SoundBank();
-	// top
+	// search
 	public static final SoundBank place_word = new SoundBank();
-	// world
-	public static final SoundBank fail = new SoundBank();
-	public static final SoundBank looting = new SoundBank();
-	public static final SoundBank poterie = new SoundBank();
-	public static final SoundBank push = new SoundBank();
 
 	// sound reversed
+	// world
+	public static final SoundBank r_fail = new SoundBank();
+	public static final SoundBank r_looting = new SoundBank();
+	public static final SoundBank r_poterie = new SoundBank();
+	public static final SoundBank r_push = new SoundBank();
 	// bomb
 	public static final SoundBank r_explosion_big = new SoundBank();
 	public static final SoundBank r_explosion_little = new SoundBank();
@@ -71,32 +67,30 @@ public class SoundBank {
 	public static final SoundBank r_virus_explore = new SoundBank();
 	// key
 	public static final SoundBank r_opening_door = new SoundBank();
-	// top
+	// search
 	public static final SoundBank r_place_word = new SoundBank();
-	// world
-	public static final SoundBank r_fail = new SoundBank();
-	public static final SoundBank r_looting = new SoundBank();
-	public static final SoundBank r_poterie = new SoundBank();
-	public static final SoundBank r_push = new SoundBank();
 
-	@Todo("les bruits d'attaques et de defense ne conviennent pas bien")
+	// other
+	// general
+	public static final SoundBank error = new SoundBank();
+	public static final SoundBank popup = new SoundBank();
+	// talking
+	public static final SoundBank talking_rebecca = new SoundBank();
+	public static final SoundBank talking_sarah = new SoundBank();
+
 	public static void loadRessources() {
-
-		addSound(error, new BufferedSound("error.wav"));
 
 		// music
 		addSound(soundtrack_1, new BufferedSound("music\\soundtrack_1.wav"));
 		addSound(soundtrack_2, new BufferedSound("music\\soundtrack_2.wav"));
 		addSound(soundtrack_3, new BufferedSound("music\\soundtrack_3.wav"));
 
-		// other
-		addSound(popup, new BufferedSound("sound\\other\\popup.wav"));
-
-		// talking
-		addSound(talking_rebecca, new BufferedSound("sound\\other\\talking\\rebecca.wav"));
-		addSound(talking_sarah, new BufferedSound("sound\\other\\talking\\sarah.wav"));
-
 		// sound normal
+		// world
+		addSound(fail, new BufferedSound("sound\\normal\\world\\fail.wav"));
+		addSound(looting, new BufferedSound("sound\\normal\\world\\looting.wav"));
+		addSound(poterie, new BufferedSound("sound\\normal\\world\\poterie.wav"));
+		addSound(push, new BufferedSound("sound\\normal\\world\\push.wav"));
 		// bomb
 		addSound(explosion_big, new BufferedSound("sound\\normal\\bomb\\explosion_big.wav"));
 		addSound(explosion_little, new BufferedSound("sound\\normal\\bomb\\explosion_little.wav"));
@@ -113,13 +107,13 @@ public class SoundBank {
 		addSound(opening_door, new BufferedSound("sound\\normal\\key\\opening_door.wav"));
 		// top
 		addSound(place_word, new BufferedSound("sound\\normal\\top\\place_word.wav"));
-		// world
-		addSound(fail, new BufferedSound("sound\\normal\\world\\fail.wav"));
-		addSound(looting, new BufferedSound("sound\\normal\\world\\looting.wav"));
-		addSound(poterie, new BufferedSound("sound\\normal\\world\\poterie.wav"));
-		addSound(push, new BufferedSound("sound\\normal\\world\\push.wav"));
 
 		// sound normal
+		// world
+		addSound(r_fail, new BufferedSound("sound\\reversed\\world\\fail.wav"));
+		addSound(r_looting, new BufferedSound("sound\\reversed\\world\\looting.wav"));
+		addSound(r_poterie, new BufferedSound("sound\\reversed\\world\\poterie.wav"));
+		addSound(r_push, new BufferedSound("sound\\reversed\\world\\push.wav"));
 		// bomb
 		addSound(r_explosion_big, new BufferedSound("sound\\reversed\\bomb\\explosion_big.wav"));
 		addSound(r_explosion_little, new BufferedSound("sound\\reversed\\bomb\\explosion_little.wav"));
@@ -136,11 +130,15 @@ public class SoundBank {
 		addSound(r_opening_door, new BufferedSound("sound\\reversed\\key\\opening_door.wav"));
 		// top
 		addSound(r_place_word, new BufferedSound("sound\\reversed\\top\\place_word.wav"));
-		// world
-		addSound(r_fail, new BufferedSound("sound\\reversed\\world\\fail.wav"));
-		addSound(r_looting, new BufferedSound("sound\\reversed\\world\\looting.wav"));
-		addSound(r_poterie, new BufferedSound("sound\\reversed\\world\\poterie.wav"));
-		addSound(r_push, new BufferedSound("sound\\reversed\\world\\push.wav"));
+
+		// other
+		// general
+		addSound(error, new BufferedSound("sound\\other\\general\\error.wav"));
+		addSound(popup, new BufferedSound("sound\\other\\general\\popup.wav"));
+		// talking
+		addSound(talking_rebecca, new BufferedSound("sound\\other\\talking\\rebecca.wav"));
+		addSound(talking_sarah, new BufferedSound("sound\\other\\talking\\sarah.wav"));
+
 	}
 
 }

@@ -1,12 +1,14 @@
 package com.sunsigne.rebeccasreleasing.main;
 
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 public class DualChecker implements ITick {
 
-	private static final String dualcheck = "dualcheck";
+	private static final GameFile dualcheck = new GameFile("dualcheck");
 	private static boolean hasbeenchecked;
 	private static boolean closing;
 	

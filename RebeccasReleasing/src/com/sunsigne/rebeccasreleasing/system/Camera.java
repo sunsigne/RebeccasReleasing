@@ -11,19 +11,18 @@ public class Camera implements ITick {
 
 	private float x, y;
 
-
 	public Camera() {
 		HandlerTick.getInstance().addObject(this);
+	}	
+	
+	// state
+	
+	public float getX() {
+		return x;
 	}
 
-	@Override
-	public void tick() {
-		if (HandlerObject.getInstance().isPlayerExisting)
-		{
-		GameObject player = HandlerObject.getInstance().player;
-		x = -player.getX() - Size.TILE / 2 + Size.WIDHT / 2;
-		y = -player.getY() - Size.TILE / 2 + Size.HEIGHT / 2;
-		}
+	public float getY() {
+		return y;
 	}
 
 	public void setX(float x) {
@@ -34,12 +33,17 @@ public class Camera implements ITick {
 		this.y = y;
 	}
 
-	public float getX() {
-		return x;
+	// behavior
+	
+	@Override
+	public void tick() {
+		if (HandlerObject.getInstance().isPlayerExisting)
+		{
+		GameObject player = HandlerObject.getInstance().player;
+		x = -player.getX() - Size.TILE / 2 + Size.WIDHT / 2;
+		y = -player.getY() - Size.TILE / 2 + Size.HEIGHT / 2;
+		}
 	}
 
-	public float getY() {
-		return y;
-	}
 
 }

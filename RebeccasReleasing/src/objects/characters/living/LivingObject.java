@@ -7,43 +7,52 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.main.Conductor;
-import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
+import objects.IFacing.FACING;
 import objects.characters.collision.CollisionDetector;
 
 public abstract class LivingObject extends GameObject implements IAnimation {
 
 	public Puzzle puzzle;
-	public CollisionDetector collisionDetector;
+	private CollisionDetector collisionDetector;
 
 	protected boolean[] watching = new boolean[4];
 	private boolean flagX, flagY;
-	
+
 	protected boolean isPushed;
 	protected int pushTime = 10;
 
 	public LivingObject(int x, int y, OBJECTID objectid) {
 		super(true, x, y, objectid);
 
-		watching[Size.DIRECTION_DOWN] = true;
-		w = Size.TILE;
-		h = Size.TILE;
+		watching[FACING.DOWN.getNum()] = true;
+		collisionDetector = new CollisionDetector(this);
 	}
 
 	// state
+	
+	public CollisionDetector getCollisionDetector()
+	{
+		return collisionDetector;
+	}
 
 	public boolean isPushed() {
 		return isPushed;
 	}
-	
+
+	public boolean isPlayer() {
+		return getId() == OBJECTID.PLAYER;
+	}
+
 	public boolean isPlayerActive() {
 
 		if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.CHATTING)
@@ -54,30 +63,40 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 		}
 	}
 
-	@Override
-	public void tick() {
+	// behavior
 
-		if(!isPushed) updateWatchingDirection();
-		if (isPlayerActive())
-		{
+	protected void livingTickBehavior(boolean canMoveIfPlayerChatting) {
+
+		boolean flag = true;
+		if(!canMoveIfPlayerChatting && Conductor.getState() == STATE.CHATTING)
+			flag = false;
+		
+		if (!isPushed)
+			updateWatchingDirection();
+
+		if (isPlayerActive() && flag) {
 			velocity();
 			pushTimer();
 		}
 		collisionDetector.update();
 	}
 
-	private void pushTimer() {
-		if (isPushed && pushTime > 0)
-			pushTime --;
-		else if (isPushed)
-		{
-			isPushed = false;
-			pushTime = 10;
-			setMotionless();
+	protected void pushTimer() {
+		if (isPushed) {
+			if (pushTime > 0)
+				pushTime--;
+			else {
+				isPushed = false;
+				pushTime = 10;
+				setMotionless();
+			}
 		}
-		
 	}
 
+	// hard to complexe, but make the animation fluid and intuitive :
+	// he the player start to move a direction but then goes diagonaly
+	// (like to adjust), the sprite wont update as the main direction is
+	// the first called, but it will if the main is finnaly abandon.
 	protected void updateWatchingDirection() {
 		if (isMotionlessbyX())
 			flagX = false;
@@ -85,45 +104,51 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 			flagY = false;
 
 		if (!flagX && velY < 0) {
-			watching[Size.DIRECTION_UP] = true;
-			watching[Size.DIRECTION_DOWN] = false;
-			watching[Size.DIRECTION_LEFT] = false;
-			watching[Size.DIRECTION_RIGHT] = false;
+			watching[FACING.LEFT.getNum()] = false;
+			watching[FACING.RIGHT.getNum()] = false;
+			watching[FACING.UP.getNum()] = true;
+			watching[FACING.DOWN.getNum()] = false;
 			flagY = true;
 		}
 		if (!flagX && velY > 0) {
-			watching[Size.DIRECTION_UP] = false;
-			watching[Size.DIRECTION_DOWN] = true;
-			watching[Size.DIRECTION_LEFT] = false;
-			watching[Size.DIRECTION_RIGHT] = false;
+			watching[FACING.LEFT.getNum()] = false;
+			watching[FACING.RIGHT.getNum()] = false;
+			watching[FACING.UP.getNum()] = false;
+			watching[FACING.DOWN.getNum()] = true;
 			flagY = true;
 		}
 		if (!flagY && velX < 0) {
-			watching[Size.DIRECTION_UP] = false;
-			watching[Size.DIRECTION_DOWN] = false;
-			watching[Size.DIRECTION_LEFT] = true;
-			watching[Size.DIRECTION_RIGHT] = false;
+			watching[FACING.LEFT.getNum()] = true;
+			watching[FACING.RIGHT.getNum()] = false;
+			watching[FACING.UP.getNum()] = false;
+			watching[FACING.DOWN.getNum()] = false;
 			flagX = true;
 		}
 		if (!flagY && velX > 0) {
-			watching[Size.DIRECTION_UP] = false;
-			watching[Size.DIRECTION_DOWN] = false;
-			watching[Size.DIRECTION_LEFT] = false;
-			watching[Size.DIRECTION_RIGHT] = true;
+			watching[FACING.LEFT.getNum()] = false;
+			watching[FACING.RIGHT.getNum()] = true;
+			watching[FACING.UP.getNum()] = false;
+			watching[FACING.DOWN.getNum()] = false;
 			flagX = true;
 		}
 	}
-	
-	public void pushed(int direction)
-	{
+
+	public void pushed(int direction) {
 		isPushed = true;
 		SoundTask.playSound(SoundBank.getSound(SoundBank.push));
-		World.gui.removeHp();
-		if(direction == Size.DIRECTION_UP) velY = -Size.TILE / 5;
-		if(direction == Size.DIRECTION_DOWN) velY = Size.TILE / 5;
-		if(direction == Size.DIRECTION_LEFT) velX = -Size.TILE / 5;
-		if(direction == Size.DIRECTION_RIGHT) velX = Size.TILE / 5;
+		if (isPlayer())
+			World.gui.removeHp();
+		if (direction == FACING.LEFT.getNum())
+			velX = -Size.TILE / 5;
+		if (direction == FACING.RIGHT.getNum())
+			velX = Size.TILE / 5;
+		if (direction == FACING.UP.getNum())
+			velY = -Size.TILE / 5;
+		if (direction == FACING.DOWN.getNum())
+			velY = Size.TILE / 5;
 	}
+
+	// design
 
 	@Override
 	public void render(Graphics g) {
@@ -142,6 +167,8 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 			g2d.draw(getBoundsRight());
 		}
 	}
+
+	// collision
 
 	@Override
 	public Rectangle getBounds() {

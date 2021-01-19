@@ -5,14 +5,15 @@ import java.awt.Graphics;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
-import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseListener;
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class Options extends Clickable {
 
 	private static LANGUAGE language;
-	private static final String options = "options";
+	private static final GameFile options = new GameFile("options");
 	public static final int[] languageRect = { 300, 720, 360, 90 };
 
 	public Options() {
@@ -27,7 +28,7 @@ public class Options extends Clickable {
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (GameMouseListener.mouseOver(mx, my, languageRect)) {
+		if (GameMouseInput.mouseOver(mx, my, languageRect)) {
 			setNextLanguage();
 		} else
 			close();
@@ -89,7 +90,7 @@ public class Options extends Clickable {
 
 	@Override
 	public void close() {
-		GameMouseListener.getInstance().clearClickable();
+		GameMouseInput.getInstance().clearClickable();
 		HandlerObject.getInstance().clearAll();
 		new Title();
 	}

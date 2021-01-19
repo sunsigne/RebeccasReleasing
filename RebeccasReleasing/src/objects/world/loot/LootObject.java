@@ -7,11 +7,11 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.verify.BonusText;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
 import objects.characters.collision.ICollision;
-import objects.characters.displayer.BonusText;
 import objects.characters.living.LivingObject;
 
 @Todo("item to stun all ennemies"
@@ -34,8 +34,8 @@ public abstract class LootObject extends GameObject implements ICollision {
 	@Override
 	public void collision(LivingObject living) {
 
-		if (living.collisionDetector.isPlayer && !living.isMotionless())
-			living.collisionDetector.collidingBehavior(false, this, () -> {
+		if (living.isPlayer() && !living.isMotionless())
+			living.getCollisionDetector().collidingBehavior(false, this, () -> {
 				HandlerObject.getInstance().removeObject(this);
 				HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
 				SoundTask.playSound(playSoundOnPickup());
@@ -45,12 +45,12 @@ public abstract class LootObject extends GameObject implements ICollision {
 	
 	protected abstract String displayTextOnPickup();
 
+	protected abstract void triggerActionOnPickup();
+	
 	protected BufferedSound playSoundOnPickup()
 	{
 		return SoundBank.getSound(SoundBank.looting);
 	}
-
-	protected abstract void triggerActionOnPickup();
 
 	@Override
 	public Rectangle getBounds() {

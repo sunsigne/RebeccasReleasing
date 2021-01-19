@@ -9,11 +9,11 @@ import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 
-public abstract class Clickable extends GameMouseListener implements IClick {
+public abstract class Clickable extends GameMouseInput implements IClick {
 
 	public Clickable(STATE state) {
 		super(state);
-		GameMouseListener.clickable = this;
+		GameMouseInput.clickable = this;
 		HandlerRender.getInstance().addObject(this);
 	}
 

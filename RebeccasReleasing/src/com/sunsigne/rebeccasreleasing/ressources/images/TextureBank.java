@@ -4,29 +4,59 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.main.Size;
+
+import objects.IFacing.FACING;
 
 @Todo("ranger ce foutoir !")
 public class TextureBank {
 
 	private static TextureBank instance = null;
 
-	private SpriteSheet rebecca_sheet, foe_sheet, desk_sheet, door_sheet, key_sheet, couch_sheet, battery_sheet, bomb_sheet,
-			item_sheet, tool_sheet, hack_sheet, virus_sheet, wallcracked_sheet;
+	// tool
+	private SpriteSheet tool_sword_sheet;
+	private SpriteSheet tool_key_sheet;
+
+	// puzzler
+	private SpriteSheet puzzler_wallcracked_sheet;
+	private SpriteSheet puzzler_computer_sheet;
+	private SpriteSheet puzzler_case_sheet;
+	private SpriteSheet puzzler_door_sheet;
+
+	// destroyable
+	private SpriteSheet destroyable_plant_sheet;
+	
+	// living
+	private SpriteSheet living_rebecca_battle_sheet;
+
+	// tool
+	public BufferedImage[] tool_sword = new BufferedImage[7];
+	public BufferedImage[] tool_key = new BufferedImage[7];
+
+	// puzzler
+	public BufferedImage[] puzzler_wallcracked = new BufferedImage[7];
+	public BufferedImage[][] puzzler_computer = new BufferedImage[7][2];
+	public BufferedImage[][] puzzler_case = new BufferedImage[7][2];
+	public BufferedImage[][] puzzler_door = new BufferedImage[7][4];
+
+	// destroyable
+	public BufferedImage[][] destroyable_plant = new BufferedImage[2][4];
+	
+	// living
+	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][9];
+	
+	
+
+	private SpriteSheet rebecca_sheet, foe_sheet, desk_sheet, neodesk_sheet, couch_sheet, battery_sheet, bomb_sheet,
+			item_sheet, tool_sheet, hack_sheet, virus_sheet;
 
 	public BufferedImage[] rebecca_walking = new BufferedImage[12];
 	public BufferedImage[][] foe_walking = new BufferedImage[DIFFICULTY.MAX + 1][12];
 
 	public BufferedImage[] desk = new BufferedImage[36];
+	public BufferedImage[] neodesk = new BufferedImage[18];
 	public BufferedImage[] dispenser = new BufferedImage[2];
 	public BufferedImage[] lamp = new BufferedImage[1];
-	
-	public BufferedImage[][] door = new BufferedImage[DIFFICULTY.MAX + 1][4];
-	public BufferedImage[] wallcracked = new BufferedImage[DIFFICULTY.MAX + 1];
-	
-	public BufferedImage[] key = new BufferedImage[DIFFICULTY.MAX + 1];
-	
-	public BufferedImage[] plant = new BufferedImage[8];
+
 	public BufferedImage[][] couch = new BufferedImage[4][4];
 
 	public BufferedImage[][] battery = new BufferedImage[DIFFICULTY.MAX + 1][DIFFICULTY.MAX + 1];
@@ -39,6 +69,7 @@ public class TextureBank {
 	public BufferedImage[] hack = new BufferedImage[15];
 	public BufferedImage[] virus = new BufferedImage[2];
 
+
 	public static TextureBank getInstance() {
 		if (instance == null)
 			instance = new TextureBank();
@@ -47,15 +78,30 @@ public class TextureBank {
 
 	public void loadRessources() {
 
+		// tool
+		tool_sword_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.tool_sword_sheet));
+		tool_key_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.tool_key_sheet));
+
+		// puzzler
+		puzzler_wallcracked_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_wallcracked_sheet));
+		puzzler_computer_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_computer_sheet));
+		puzzler_case_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_case_sheet));
+		puzzler_door_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_door_sheet));
+
+		// destroyable
+		destroyable_plant_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.destroyable_plant_sheet));
+
+		//living
+		living_rebecca_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_battle_sheet));
+		
 		rebecca_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.rebecca_walking));
 		foe_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.foe_walking));
 
 		desk_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.desk_sheet));
-		door_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.door_sheet));
+		neodesk_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.neodesk_sheet));
+
 		couch_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.couch_sheet));
 		battery_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.battery_sheet));
-		
-		key_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.key_sheet));
 
 		bomb_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.bomb_sheet));
 		item_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.item_sheet));
@@ -63,8 +109,8 @@ public class TextureBank {
 
 		virus_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.virus_sheet));
 		hack_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.hack_sheet));
+
 		
-		wallcracked_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.wallcracked_sheet));
 
 		getTextures();
 	}
@@ -72,6 +118,35 @@ public class TextureBank {
 	@Todo("le design de la clef et du cadena font vieux, alors que celui de la porte est très moderne ..." + " "
 			+ "Le desing du canapé est trop simpliste")
 	private void getTextures() {
+
+		for (int i = 0; i < 7; i++) {
+			tool_sword[i] = tool_sword_sheet.grabImage(i, 1, 32, 32);
+			tool_key[i] = tool_key_sheet.grabImage(i, 1, 32, 32);
+
+			puzzler_wallcracked[i] = puzzler_wallcracked_sheet.grabImage(i, 1, 32, 32);
+
+			puzzler_computer[i][0] = puzzler_computer_sheet.grabImage(i, 1, 32, 32); // running
+			puzzler_computer[i][1] = puzzler_computer_sheet.grabImage(i, 2, 32, 32); // down
+
+			puzzler_case[i][0] = puzzler_case_sheet.grabImage(i, 1, 32, 64); // close
+			puzzler_case[i][1] = puzzler_case_sheet.grabImage(i, 2, 32, 64); // open
+
+			puzzler_door[i][0] = puzzler_door_sheet.grabImage(2 * i - 1, 1, 32, 64); // vertical close
+			puzzler_door[i][1] = puzzler_door_sheet.grabImage(2 * i, 1, 32, 64); // vertical open
+			puzzler_door[i][2] = puzzler_door_sheet.grabImage(i, 3, 64, 32); // horizontal close
+			puzzler_door[i][3] = puzzler_door_sheet.grabImage(i, 4, 64, 32); // horizontal open
+		}
+
+		for (int i = 0; i < 4; i++) {
+			destroyable_plant[FACING.LEFT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 1, 64, 32);
+			destroyable_plant[FACING.RIGHT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 2, 64, 32);
+		}
+		
+		for (int i = 0; i < 9; i++) {
+			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
+		}
+
 
 		rebecca_walking[0] = rebecca_sheet.grabImage(1, 1, 48, 48); // up
 		rebecca_walking[1] = rebecca_sheet.grabImage(2, 1, 48, 48);
@@ -87,18 +162,18 @@ public class TextureBank {
 		rebecca_walking[11] = rebecca_sheet.grabImage(3, 4, 48, 48);
 
 		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
-			foe_walking[i][0] = foe_sheet.grabImage(1, 4*i-3, 48, 48); // up
-			foe_walking[i][1] = foe_sheet.grabImage(2, 4*i-3, 48, 48);
-			foe_walking[i][2] = foe_sheet.grabImage(3, 4*i-3, 48, 48);
-			foe_walking[i][3] = foe_sheet.grabImage(1, 4*i-2, 48, 48); // down
-			foe_walking[i][4] = foe_sheet.grabImage(2, 4*i-2, 48, 48);
-			foe_walking[i][5] = foe_sheet.grabImage(3, 4*i-2, 48, 48);
-			foe_walking[i][6] = foe_sheet.grabImage(1, 4*i-1, 48, 48); // left
-			foe_walking[i][7] = foe_sheet.grabImage(2, 4*i-1, 48, 48);
-			foe_walking[i][8] = foe_sheet.grabImage(3, 4*i-1, 48, 48);
-			foe_walking[i][9] = foe_sheet.grabImage(1, 4*i, 48, 48); // right
-			foe_walking[i][10] = foe_sheet.grabImage(2, 4*i, 48, 48);
-			foe_walking[i][11] = foe_sheet.grabImage(3, 4*i, 48, 48);
+			foe_walking[i][0] = foe_sheet.grabImage(1, 4 * i - 3, 48, 48); // up
+			foe_walking[i][1] = foe_sheet.grabImage(2, 4 * i - 3, 48, 48);
+			foe_walking[i][2] = foe_sheet.grabImage(3, 4 * i - 3, 48, 48);
+			foe_walking[i][3] = foe_sheet.grabImage(1, 4 * i - 2, 48, 48); // down
+			foe_walking[i][4] = foe_sheet.grabImage(2, 4 * i - 2, 48, 48);
+			foe_walking[i][5] = foe_sheet.grabImage(3, 4 * i - 2, 48, 48);
+			foe_walking[i][6] = foe_sheet.grabImage(1, 4 * i - 1, 48, 48); // left
+			foe_walking[i][7] = foe_sheet.grabImage(2, 4 * i - 1, 48, 48);
+			foe_walking[i][8] = foe_sheet.grabImage(3, 4 * i - 1, 48, 48);
+			foe_walking[i][9] = foe_sheet.grabImage(1, 4 * i, 48, 48); // right
+			foe_walking[i][10] = foe_sheet.grabImage(2, 4 * i, 48, 48);
+			foe_walking[i][11] = foe_sheet.grabImage(3, 4 * i, 48, 48);
 		}
 
 		for (int i = 0; i < 10; i++) {
@@ -116,30 +191,15 @@ public class TextureBank {
 			}
 		}
 
+		for (int i = 0; i < 6; i++) {
+			neodesk[i] = neodesk_sheet.grabImage(1 + i, 1, 64, 64); // horizontal
+			neodesk[i + 6] = neodesk_sheet.grabImage(1 + i, 2, 64, 64); // left
+			neodesk[i + 12] = neodesk_sheet.grabImage(1 + i, 3, 64, 64); // right
+		}
+
 		dispenser[0] = desk_sheet.grabImage(5, 4, 32, 64); // water
 		dispenser[1] = desk_sheet.grabImage(5, 6, 32, 64); // coffe
 		lamp[0] = desk_sheet.grabImage(5, 9, 32, 32); // lamp
-
-		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
-			door[i][0] = door_sheet.grabImage(1, i, 32, 64); // vertical close
-			door[i][1] = door_sheet.grabImage(2, i, 32, 64); // vertical open
-			door[i][2] = door_sheet.grabImage(2, i, 64, 32); // horizontal close
-			door[i][3] = door_sheet.grabImage(2, i + 1, 64, 32); // horizontal open
-		}
-		
-		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
-			wallcracked[i] = wallcracked_sheet.grabImage(1, i, 32, 32);
-			key[i] = key_sheet.grabImage(1, i, 32, 32);
-		}
-
-		plant[0] = desk_sheet.grabImage(3, 3, 64, 32); //right
-		plant[1] = desk_sheet.grabImage(3, 4, 64, 32);
-		plant[2] = desk_sheet.grabImage(3, 5, 64, 32);
-		plant[3] = desk_sheet.grabImage(3, 6, 64, 32);
-		plant[4] = desk_sheet.grabImage(4, 3, 64, 32); // left
-		plant[5] = desk_sheet.grabImage(4, 4, 64, 32);
-		plant[6] = desk_sheet.grabImage(4, 5, 64, 32);
-		plant[7] = desk_sheet.grabImage(4, 6, 64, 32);
 
 		battery[1][2] = battery_sheet.grabImage(1, 1, 32, 32);
 		battery[2][2] = battery_sheet.grabImage(2, 1, 32, 32);
@@ -156,57 +216,31 @@ public class TextureBank {
 		battery[4][5] = battery_sheet.grabImage(4, 4, 32, 32);
 		battery[5][5] = battery_sheet.grabImage(5, 4, 32, 32);
 
-		couch[Size.DIRECTION_UP][1] = couch_sheet.grabImage(1, 1, 32, 32);
-		couch[Size.DIRECTION_UP][2] = couch_sheet.grabImage(1, 2, 64, 32);
-		couch[Size.DIRECTION_UP][3] = couch_sheet.grabImage(1, 3, 96, 32);
-		couch[Size.DIRECTION_DOWN][1] = couch_sheet.grabImage(6, 1, 32, 32);
-		couch[Size.DIRECTION_DOWN][2] = couch_sheet.grabImage(3, 2, 64, 32);
-		couch[Size.DIRECTION_DOWN][3] = couch_sheet.grabImage(2, 3, 96, 32);
-		couch[Size.DIRECTION_LEFT][1] = ImageTask.drawMissingTexture();
-		couch[Size.DIRECTION_LEFT][2] = couch_sheet.grabImage(2, 3, 32, 64);
-		couch[Size.DIRECTION_LEFT][3] = couch_sheet.grabImage(3, 2, 32, 96);
-		couch[Size.DIRECTION_RIGHT][1] = ImageTask.drawMissingTexture();
-		couch[Size.DIRECTION_RIGHT][2] = couch_sheet.grabImage(5, 3, 32, 64);
-		couch[Size.DIRECTION_RIGHT][3] = couch_sheet.grabImage(4, 2, 32, 96);
-
+		couch[FACING.LEFT.getNum()][1] = ImageTask.drawMissingTexture(32, 32);
+		couch[FACING.LEFT.getNum()][2] = couch_sheet.grabImage(2, 3, 32, 64);
+		couch[FACING.LEFT.getNum()][3] = couch_sheet.grabImage(3, 2, 32, 96);
+		couch[FACING.RIGHT.getNum()][1] = ImageTask.drawMissingTexture(32, 32);
+		couch[FACING.RIGHT.getNum()][2] = couch_sheet.grabImage(5, 3, 32, 64);
+		couch[FACING.RIGHT.getNum()][3] = couch_sheet.grabImage(4, 2, 32, 96);
+		couch[FACING.UP.getNum()][1] = couch_sheet.grabImage(1, 1, 32, 32);
+		couch[FACING.UP.getNum()][2] = couch_sheet.grabImage(1, 2, 64, 32);
+		couch[FACING.UP.getNum()][3] = couch_sheet.grabImage(1, 3, 96, 32);
+		couch[FACING.DOWN.getNum()][1] = couch_sheet.grabImage(6, 1, 32, 32);
+		couch[FACING.DOWN.getNum()][2] = couch_sheet.grabImage(3, 2, 64, 32);
+		couch[FACING.DOWN.getNum()][3] = couch_sheet.grabImage(2, 3, 96, 32);
+		
 		item[0] = item_sheet.grabImage(1, 1, 32, 32); // key
 		item[1] = item_sheet.grabImage(2, 1, 32, 32); // lock
 		item[2] = item_sheet.grabImage(3, 1, 32, 32); // wall
 		item[3] = item_sheet.grabImage(4, 1, 32, 32); // wall maze
-		item[4] = item_sheet.grabImage(5, 1, 32, 32); // door horizontal closed left
-		item[5] = item_sheet.grabImage(6, 1, 32, 32); // door horizontal closed right
-		item[6] = item_sheet.grabImage(7, 1, 32, 32); // door horizontal opened left
-		item[7] = item_sheet.grabImage(8, 1, 32, 32); // door horizontal opened right
-		item[8] = item_sheet.grabImage(9, 1, 32, 32); // door vertical closed up
-		item[9] = item_sheet.grabImage(10, 1, 32, 32); // door vertical closed down
-		item[10] = item_sheet.grabImage(1, 2, 32, 32); // door vertical opened up
-		item[11] = item_sheet.grabImage(2, 2, 32, 32); // door vertical opened down
 		item[12] = item_sheet.grabImage(3, 2, 32, 32); // timer
 		item[13] = item_sheet.grabImage(4, 2, 32, 32); // heart full
 		item[14] = item_sheet.grabImage(5, 2, 32, 32); // heart empty
-		item[15] = item_sheet.grabImage(6, 2, 32, 32); // nails club
-		item[16] = item_sheet.grabImage(7, 2, 32, 32); // weapon rack full left
-		item[17] = item_sheet.grabImage(8, 2, 32, 32); // weapon rack full right
-		item[18] = item_sheet.grabImage(9, 2, 32, 32); // weapon rack empty left
-		item[19] = item_sheet.grabImage(10, 2, 32, 32); // weapon rack empty right
-		item[20] = item_sheet.grabImage(1, 3, 32, 32); // filing cabinet
-		item[21] = item_sheet.grabImage(2, 3, 32, 32); // filing cabinet full up
-		item[22] = item_sheet.grabImage(3, 3, 32, 32); // filing cabinet full down
-		item[23] = item_sheet.grabImage(4, 3, 32, 32); // filing cabinet empty up
-		item[24] = item_sheet.grabImage(5, 3, 32, 32); // filing cabinet empty down
 		item[25] = item_sheet.grabImage(6, 3, 32, 32); // wall card
-		item[26] = item_sheet.grabImage(7, 3, 32, 32); // desk horizontal 1
-		item[27] = item_sheet.grabImage(8, 3, 32, 32); // desk horizontal 2
-		item[28] = item_sheet.grabImage(9, 3, 32, 32); // desk vertical 1
-		item[29] = item_sheet.grabImage(10, 3, 32, 32); // desk vertical 2
 		item[30] = item_sheet.grabImage(1, 4, 32, 32); // wall bomb
 		item[31] = item_sheet.grabImage(2, 4, 32, 32); // wall cracked
 		item[32] = item_sheet.grabImage(3, 4, 32, 32); // wall hack
-		item[33] = item_sheet.grabImage(4, 4, 32, 32); // computer on
-		item[34] = item_sheet.grabImage(5, 4, 32, 32); // computer off
 		item[35] = item_sheet.grabImage(6, 4, 32, 32); // wall top
-		item[36] = item_sheet.grabImage(7, 4, 32, 32); // wc
-		item[37] = item_sheet.grabImage(8, 4, 32, 32); // wc watching left
 
 		tool[0] = tool_sheet.grabImage(1, 1, 32, 32); // key
 		tool[1] = tool_sheet.grabImage(2, 1, 32, 32); // foe
@@ -221,6 +255,8 @@ public class TextureBank {
 
 		virus[0] = virus_sheet.grabImage(1, 1, 16, 16);
 		virus[1] = virus_sheet.grabImage(2, 1, 16, 16);
+
+	
 	}
 
 }

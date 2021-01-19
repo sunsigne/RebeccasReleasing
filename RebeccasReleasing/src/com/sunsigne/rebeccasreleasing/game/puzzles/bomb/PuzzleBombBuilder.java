@@ -1,0 +1,85 @@
+
+package com.sunsigne.rebeccasreleasing.game.puzzles.bomb;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Random;
+
+import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.Bomb;
+import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.BombObject;
+import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.BombReversed;
+import com.sunsigne.rebeccasreleasing.main.STATE;
+import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+
+import objects.world.puzzler.IPuzzler;
+
+@Todo("difficulty : moving bomb, bigger count")
+public abstract class PuzzleBombBuilder<T> extends Puzzle {
+
+	private static BombObject[] bomb = new BombObject[4];
+
+	public PuzzleBombBuilder(IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
+		super(STATE.PUZZLE, puzzler, difficulty, reversed);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	protected T getBomb(int number) {
+		return (T) bomb[number];
+	}
+
+	protected BombObject createBomb(int x, int y) {
+		if (!isReversed())
+			return new Bomb(x, y, getDifficulty());
+		return new BombReversed(x, y, getDifficulty());
+	}
+
+	@Override
+	public void randomGeneration() {
+
+		bomb[0] = createBomb(setCol(1), setRandomLine());
+		bomb[1] = createBomb(setCol(2), setRandomLine());
+		bomb[2] = createBomb(setCol(3), setRandomLine());
+		bomb[3] = createBomb(setCol(4), setRandomLine());
+	}
+
+	private int setCol(int col) {
+		return Size.X0 + (-3 + 6 * col) * (Size.TILE_PUZZLE / 2);
+	}
+
+	private int setRandomLine() {
+		return Size.Y0 + (1 + new Random().nextInt(5)) * Size.TILE_PUZZLE;
+	}
+
+	@Override
+	public void createPuzzle() {
+
+		HandlerObject.getInstance().addObject(bomb[0]);
+		HandlerObject.getInstance().addObject(bomb[1]);
+		HandlerObject.getInstance().addObject(bomb[2]);
+		HandlerObject.getInstance().addObject(bomb[3]);
+
+	}
+
+	@Override
+	public void render(Graphics g) {
+		colorRender(g, new Color(50, 10, 10, 240));
+		renderingFakeWall(g, texture.item[30]);
+	}
+
+	@Override
+	public BufferedSound getSuccessSound() {
+
+		if (!isReversed())
+			return SoundBank.getSound(SoundBank.explosion_big);
+		else
+			return SoundBank.getSound(SoundBank.r_explosion_big);
+	}
+
+}

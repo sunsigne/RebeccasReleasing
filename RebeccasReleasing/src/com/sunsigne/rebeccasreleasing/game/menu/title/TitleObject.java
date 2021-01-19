@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.game.menu.MenuObject;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.main.Game;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
 
 public class TitleObject extends MenuObject {
 

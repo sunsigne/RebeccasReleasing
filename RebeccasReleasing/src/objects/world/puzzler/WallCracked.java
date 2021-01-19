@@ -7,18 +7,16 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.normal.PuzzleBomb;
-import com.sunsigne.rebeccasreleasing.toclean.verify.IPuzzler;
+import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.clickable.PuzzleBomb;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.OBJECTID;
-import objects.characters.displayer.Tool;
 import objects.characters.living.LivingObject;
 
 public class WallCracked extends GameObject implements IPuzzler {
 
-	private EventListener eventOnVictory;
-	private EventListener eventOnDefeat;
+	private EventListener eventOnVictory, eventOnDefeat;
 	
 	private DIFFICULTY difficulty;
 	private boolean solved;
@@ -44,6 +42,11 @@ public class WallCracked extends GameObject implements IPuzzler {
 	}
 	
 	@Override
+	public DIFFICULTY getDifficulty() {
+		return difficulty;
+	}
+	
+	@Override
 	public void setDifficulty(DIFFICULTY difficulty) {
 		this.difficulty = difficulty;
 	}
@@ -59,11 +62,6 @@ public class WallCracked extends GameObject implements IPuzzler {
 	}
 
 	@Override
-	public DIFFICULTY getDifficulty() {
-		return difficulty;
-	}
-
-	@Override
 	public void tick() {
 
 	}
@@ -73,7 +71,7 @@ public class WallCracked extends GameObject implements IPuzzler {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.wallcracked[difficulty.getLvl()];
+		BufferedImage img = texture.puzzler_wallcracked[difficulty.getLvl()];
 		if (!isSolved())
 			g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);

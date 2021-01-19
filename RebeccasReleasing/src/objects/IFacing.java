@@ -18,6 +18,18 @@ public interface IFacing {
 	}
 
 	public enum FACING {
-		UP, DOWN, LEFT, RIGHT;
+		LEFT(0), RIGHT(1), UP(2), DOWN(3);
+
+		private int num;
+
+		FACING(int num) {
+
+			this.num = num;
+		}
+
+		public int getNum() {
+			return num;
+		}
 	}
+
 }
