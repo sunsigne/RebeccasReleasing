@@ -26,6 +26,7 @@ public class TextureBank {
 	private SpriteSheet destroyable_plant_sheet;
 	
 	// living
+	private SpriteSheet living_foe_battle_sheet;
 	private SpriteSheet living_rebecca_battle_sheet;
 
 	// tool
@@ -42,6 +43,7 @@ public class TextureBank {
 	public BufferedImage[][] destroyable_plant = new BufferedImage[2][4];
 	
 	// living
+	public BufferedImage[][] living_foe_battle = new BufferedImage[2][9];
 	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][9];
 	
 	
@@ -92,6 +94,7 @@ public class TextureBank {
 		destroyable_plant_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.destroyable_plant_sheet));
 
 		//living
+		living_foe_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_battle_sheet));
 		living_rebecca_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_battle_sheet));
 		
 		rebecca_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.rebecca_walking));
@@ -143,6 +146,8 @@ public class TextureBank {
 		}
 		
 		for (int i = 0; i < 9; i++) {
+			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);			
 			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
 		}

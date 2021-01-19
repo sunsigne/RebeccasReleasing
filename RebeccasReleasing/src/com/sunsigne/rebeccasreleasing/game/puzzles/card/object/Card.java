@@ -98,7 +98,7 @@ public class Card extends CardObject {
 		setExist(false);
 
 		if (getCardtype() == CARDTYPE.ATTACK)
-			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_attack));
+			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
 		if (getCardtype() == CARDTYPE.DEFENSE)
 			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_defense));
 		if (getCardtype() == CARDTYPE.CRITICAL) {

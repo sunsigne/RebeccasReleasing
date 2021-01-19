@@ -35,6 +35,7 @@ public class ImageBank {
 	public static final ImageBank destroyable_plant_sheet = new ImageBank();
 	
 	// living
+	public static final ImageBank living_foe_battle_sheet = new ImageBank();
 	public static final ImageBank living_rebecca_battle_sheet = new ImageBank();
 	
 	
@@ -121,6 +122,7 @@ public class ImageBank {
 		addImage(destroyable_plant_sheet, ImageTask.loadImage("destroyable\\plant_sheet.png"));
 		
 		// living
+		addImage(living_foe_battle_sheet, ImageTask.loadImage("living\\foe_battle_sheet.png"));
 		addImage(living_rebecca_battle_sheet, ImageTask.loadImage("living\\rebecca_battle_sheet.png"));
 		
 		

@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.card.clickable;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.PuzzleCardBuilder;
+import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CARDTYPE;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 
@@ -48,6 +49,7 @@ public class PuzzleCard extends PuzzleCardBuilder<Card> {
 					getCard(i).playCard();
 					getCard(i).setX(0);
 					getCard(i).setY(0);
+					updateFolderAnimation(getCard(i));
 					updateFolderNum(getCard(i));
 				}
 			}
@@ -57,6 +59,12 @@ public class PuzzleCard extends PuzzleCardBuilder<Card> {
 		setWinning(winning);
 		if (isWinning())
 			close();
+	}
+
+	private void updateFolderAnimation(Card card) {
+		CARDTYPE type = card.getCardtype();
+		attackFolder.playCard(type);
+		defenseFolder.playCard(type);
 	}
 
 	private void updateFolderNum(Card card) {
