@@ -27,9 +27,6 @@ public abstract class CardObject extends CommunCardObject {
 
 		startingX = x;
 		startingY = y;
-
-		w = Size.TILE_PUZZLE * 2;
-		h = Size.TILE_PUZZLE * 3;
 	}
 
 	// state

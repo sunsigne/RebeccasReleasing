@@ -45,6 +45,7 @@ public class TextureBank {
 	// living
 	public BufferedImage[][] living_foe_battle = new BufferedImage[2][9];
 	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][9];
+	public BufferedImage[][] living_err_battle = new BufferedImage[2][9];
 	
 	
 
@@ -150,6 +151,8 @@ public class TextureBank {
 			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);			
 			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
+			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
 		}
 
 

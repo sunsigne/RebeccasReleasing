@@ -16,6 +16,8 @@ import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
+import objects.IFacing.FACING;
+import objects.characters.CHARA;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
@@ -115,8 +117,8 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	@Override
 	public void createPuzzle() {
-		attackFolder = new CardFolder(1300, 150, CARDTYPE.ATTACK);
-		defenseFolder = new CardFolder(215, 150, CARDTYPE.DEFENSE);
+		attackFolder = new CardFolder(FACING.LEFT, CHARA.FOE, CARDTYPE.ATTACK);
+		defenseFolder = new CardFolder(FACING.RIGHT, CHARA.REBECCA, CARDTYPE.DEFENSE);
 
 		HandlerObject.getInstance().addObject(attackFolder);
 		HandlerObject.getInstance().addObject(defenseFolder);

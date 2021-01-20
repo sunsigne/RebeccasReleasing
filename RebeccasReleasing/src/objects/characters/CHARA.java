@@ -2,7 +2,7 @@ package objects.characters;
 
 public enum CHARA {
 
-	NONE(0),
+	FOE(0),
 	REBECCA(1),
 	SARAH(2);
 	

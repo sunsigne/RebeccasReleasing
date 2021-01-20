@@ -1,6 +1,7 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles.card.object;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public abstract class CommunCardObject extends PuzzleObject {
@@ -11,7 +12,10 @@ public abstract class CommunCardObject extends PuzzleObject {
 	public CommunCardObject(int x, int y, OBJECTID id, CARDTYPE cardtype) {
 		super(x, y, id);
 
-		this.cardtype = cardtype;
+		this.cardtype = cardtype;		
+
+		w = Size.TILE_PUZZLE * 2;
+		h = Size.TILE_PUZZLE * 3;
 	}
 
 	public void setCardtype(CARDTYPE cardtype) {
