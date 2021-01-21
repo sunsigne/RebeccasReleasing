@@ -34,7 +34,7 @@ public class Plant extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runTwoDirectionAnimations();
+			runAnimation(getFacing().getNum());
 			falltime--;
 		}
 	}

@@ -24,12 +24,7 @@ public interface IAnimation {
 		runAnimation(FACING.UP.getNum());
 		runAnimation(FACING.DOWN.getNum());
 	}
-	
-	public default void runTwoDirectionAnimations() {
-		runAnimation(FACING.LEFT.getNum());
-		runAnimation(FACING.RIGHT.getNum());
-	}
-	
+
 	public default void runAnimation(int array, int secondarray) {
 		getAnimation(array, secondarray).runAnimation();
 	}
