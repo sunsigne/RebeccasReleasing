@@ -14,6 +14,21 @@ public class Tool {
 		this.toolnum = toolnum;
 		this.lvl = lvl;
 	}
+	
+	public String getName()
+	{
+		switch(toolnum)
+		{
+		case 0 : return "Key";
+		case 1 : return "Sword";
+		default : return "Unknown";
+		}
+	}
+	
+	public int getToolNum()
+	{
+		return toolnum;
+	}
 
 	public int getLvl() {
 		return lvl;

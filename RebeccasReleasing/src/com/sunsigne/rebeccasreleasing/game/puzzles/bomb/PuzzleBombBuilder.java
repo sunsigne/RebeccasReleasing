@@ -70,7 +70,7 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	@Override
 	public void render(Graphics g) {
 		colorRender(g, new Color(50, 10, 10, 240));
-		renderingFakeWall(g, texture.item[30]);
+		renderingFakeWall(g, texture.decor_wall[1][0]);
 	}
 
 	@Override

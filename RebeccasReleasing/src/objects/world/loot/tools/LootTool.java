@@ -3,42 +3,26 @@ package objects.world.loot.tools;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.world.loot.LootObject;
 
-public abstract class LootTool extends LootObject {
+public class LootTool extends LootObject {
 
-	private DIFFICULTY difficulty;
+	private Tool tool;
 	
-	public LootTool(int x, int y, DIFFICULTY difficulty) {
+	public LootTool(int x, int y, Tool tool) {
 		super(x, y);
-		this.setDifficulty(difficulty);
-	}
-	
-	// state
-
-	public DIFFICULTY getDifficulty() {
-		return difficulty;
+		this.tool = tool;
 	}
 
-	public void setDifficulty(DIFFICULTY difficulty) {
-		this.difficulty = difficulty;
-	}	
-	
-	public abstract String getName();
-	
-	public abstract int getTool();
-	
 	// design
 
-	public abstract BufferedImage [] getTexture();
-	
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = getTexture()[difficulty.getLvl()];
+		BufferedImage img = texture.loot_tool[tool.getLvl()][tool.getToolNum()];
 		g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
@@ -47,13 +31,13 @@ public abstract class LootTool extends LootObject {
 
 	@Override
 	protected String displayTextOnPickup() {
-		return "Lvl" + " " + difficulty.getLvl() +  " " + getName();
+		return "Lvl" + " " + tool.getLvl() +  " " + tool.getName();
 	}
 	
 	@Override
 	protected void triggerActionOnPickup() {
 
-		World.gui.getCharacteristics().getTool(getTool()).upgradeLvlTo(difficulty.getLvl());
+		World.gui.getCharacteristics().getTool(tool.getToolNum()).upgradeLvlTo(tool.getLvl());
 	}
 
 

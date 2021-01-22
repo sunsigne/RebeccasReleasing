@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 
 public class Plant extends DestroyableObject {
 
-	private Animation[] animation = new Animation[4];
+	private Animation[] animation = new Animation[2];
 
 	public Plant(int x, int y, FACING facing) {
 		super(x, y, facing);
@@ -42,15 +42,17 @@ public class Plant extends DestroyableObject {
 	// design
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 
-		if (animation[array] == null) {
-			animation[array] = new Animation(2, texture.destroyable_plant[array][0],
-					texture.destroyable_plant[array][0], texture.destroyable_plant[array][1],
-					texture.destroyable_plant[array][2], texture.destroyable_plant[array][3],
-					texture.destroyable_plant[array][3]);
+		int facing = array[0];
+		
+		if (animation[facing] == null) {
+			animation[facing] = new Animation(2, texture.destroyable_plant[facing][0],
+					texture.destroyable_plant[facing][0], texture.destroyable_plant[facing][1],
+					texture.destroyable_plant[facing][2], texture.destroyable_plant[facing][3],
+					texture.destroyable_plant[facing][3]);
 		}
-		return animation[array];
+		return animation[facing];
 	}
 
 	@Override
@@ -73,7 +75,7 @@ public class Plant extends DestroyableObject {
 			g.drawImage(texture.destroyable_plant[getFacing().getNum()][0], x - gap, y, w0, h0, null);
 
 		if (falling && falltime > 0)
-			drawAnimation(getFacing().getNum(), g, x - gap, y, w0, h0);
+			drawAnimation(g, x - gap, y, w0, h0, getFacing().getNum());
 
 		if (falling && falltime <= 0)
 			g.drawImage(texture.destroyable_plant[getFacing().getNum()][3], x - gap, y, w0, h0, null);

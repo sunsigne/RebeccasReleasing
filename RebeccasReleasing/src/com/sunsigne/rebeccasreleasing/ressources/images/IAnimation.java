@@ -2,55 +2,16 @@ package com.sunsigne.rebeccasreleasing.ressources.images;
 
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
-
-import objects.IFacing.FACING;
-
 public interface IAnimation {
 
-	public Animation getAnimation(int array, int secondarray);
+	public Animation getAnimation(int... array);
 
-	public default void runAnimation() {
-		runAnimation(0, 0);
-	}	
+	public default void runAnimation(int... array) {
+		getAnimation(array).runAnimation();
+	}
 
-	public default void runAnimation(int array) {
-		runAnimation(array, 0);
+	public default void drawAnimation(Graphics g, int x, int y, int width, int height, int... array) {
+		getAnimation(array).drawAnimation(g, x, y, width, height);
 	}
 	
-	public default void runFourDirectionAnimations() {
-		runAnimation(FACING.LEFT.getNum());
-		runAnimation(FACING.RIGHT.getNum());
-		runAnimation(FACING.UP.getNum());
-		runAnimation(FACING.DOWN.getNum());
-	}
-
-	public default void runAnimation(int array, int secondarray) {
-		getAnimation(array, secondarray).runAnimation();
-	}
-
-	public default void drawAnimation(Graphics g, int x, int y) {
-		drawAnimation(0, 0, g, x, y, Size.TILE, Size.TILE);
-	}	
-
-	public default void drawAnimation(int array, Graphics g, int x, int y) {
-		drawAnimation(array, 0, g, x, y, Size.TILE, Size.TILE);
-	}	
-
-	public default void drawAnimation(int array, int secondarray, Graphics g, int x, int y) {
-		getAnimation(array, secondarray).drawAnimation(g, x, y, Size.TILE, Size.TILE);
-	}
-
-	public default void drawAnimation(Graphics g, int x, int y, int width, int height) {
-		drawAnimation(0, 0, g, x, y, width, height);
-	}
-
-	public default void drawAnimation(int array, Graphics g, int x, int y, int width, int height) {
-		drawAnimation(array, 0, g, x, y, width, height);
-	}
-
-	public default void drawAnimation(int array, int secondarray, Graphics g, int x, int y, int width, int height) {
-		getAnimation(array, secondarray).drawAnimation(g, x, y, width, height);
-	}
-
 }

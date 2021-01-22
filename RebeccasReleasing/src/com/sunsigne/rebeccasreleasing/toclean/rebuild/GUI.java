@@ -183,23 +183,23 @@ public class GUI extends GameObject {
 
 	private void drawHearts(Graphics g) {
 
-		int heart3 = 13;
-		int heart2 = 13;
-		int heart1 = 13;
+		int heart3 = 0;
+		int heart2 = 0;
+		int heart1 = 0;
 
 		if (hp <= 2)
-			heart3 = 14;
+			heart3 = 1;
 		if (hp <= 1)
-			heart2 = 14;
+			heart2 = 1;
 		if (hp <= 0)
-			heart1 = 14;
+			heart1 = 1;
 
 		if (!infiniteHp) {
-			g.drawImage(texture.item[heart3], x + (Size.TILE_PUZZLE + Size.TILE_PUZZLE / 2), y, Size.TILE_PUZZLE,
+			g.drawImage(texture.gui_data[heart3], x + (Size.TILE_PUZZLE + Size.TILE_PUZZLE / 2), y, Size.TILE_PUZZLE,
 					Size.TILE_PUZZLE, null);
-			g.drawImage(texture.item[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y, Size.TILE_PUZZLE,
+			g.drawImage(texture.gui_data[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y, Size.TILE_PUZZLE,
 					Size.TILE_PUZZLE, null);
-			g.drawImage(texture.item[heart1], x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+			g.drawImage(texture.gui_data[heart1], x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 		}
 	}
 
@@ -211,6 +211,7 @@ public class GUI extends GameObject {
 		g.drawString("" + points, x + Size.WIDHT / 2 - 50, y + 90);
 	}
 
+	@Todo("change redtool!")
 	private void drawTools(Graphics g) {
 
 		int numberofTools = CharacteristicsSaved.batterySize.length;
@@ -222,12 +223,12 @@ public class GUI extends GameObject {
 			savedBatterySize = CharacteristicsSaved.batterySize[i];
 
 			if (currentToolLvl != 0) {
-				g.drawImage(texture.tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
+				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
 						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 				if (redMoment[i])
-					g.drawImage(texture.tool_cutout[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
-							Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
-				g.drawImage(texture.battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
+					g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
+							Size.HEIGHT - Size.TILE_PUZZLE, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				g.drawImage(texture.gui_battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
 						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 			}
 

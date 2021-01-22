@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
-import objects.IFacing.FACING;
-
 public class PlayerObject extends LivingObject {
 
 	private Animation[] animation = new Animation[4];
@@ -21,27 +19,17 @@ public class PlayerObject extends LivingObject {
 	// state
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 
-		if (animation[array] == null) {
-			if (array == FACING.LEFT.getNum())
-				animation[array] = new Animation(10, texture.rebecca_walking[6], texture.rebecca_walking[7],
-						texture.rebecca_walking[8], texture.rebecca_walking[7]);
-			else if (array == FACING.RIGHT.getNum())
-				animation[array] = new Animation(10, texture.rebecca_walking[9], texture.rebecca_walking[10],
-						texture.rebecca_walking[11], texture.rebecca_walking[10]);
-			else if (array == FACING.UP.getNum())
-				animation[array] = new Animation(10, texture.rebecca_walking[0], texture.rebecca_walking[1],
-						texture.rebecca_walking[2], texture.rebecca_walking[1]);
-			else if (array == FACING.DOWN.getNum())
-				animation[array] = new Animation(10, texture.rebecca_walking[3], texture.rebecca_walking[4],
-						texture.rebecca_walking[5], texture.rebecca_walking[4]);
+		int facing = array[0];
 
-			else
-				animation[array] = new Animation(1);
+		if (animation[facing] == null) {
+			animation[facing] = new Animation(10, texture.living_rebecca_walking[facing][0],
+					texture.living_rebecca_walking[facing][1], texture.living_rebecca_walking[facing][2],
+					texture.living_rebecca_walking[facing][3]);
 		}
 
-		return animation[array];
+		return animation[facing];
 	}
 
 	public boolean isTasking() {
@@ -56,7 +44,7 @@ public class PlayerObject extends LivingObject {
 
 	@Override
 	public void tick() {
-		runFourDirectionAnimations();
+		runAnimation(getFacing().getNum());
 		livingTickBehavior(true);
 	}
 
@@ -75,28 +63,13 @@ public class PlayerObject extends LivingObject {
 	}
 
 	private void renderingRebecca(Graphics g) {
+		int facing = getFacing().getNum();
+		
+		if (isMotionless())
+			g.drawImage(texture.living_rebecca_walking[facing][0], x, y, w, h, null);
+		else
+			drawAnimation(g, x, y, w, h, getFacing().getNum());
 
-		if (isMotionless()) {
-			if (watching[FACING.LEFT.getNum()])
-				g.drawImage(texture.rebecca_walking[7], x, y, w, h, null);
-			if (watching[FACING.RIGHT.getNum()])
-				g.drawImage(texture.rebecca_walking[10], x, y, w, h, null);
-			if (watching[FACING.UP.getNum()])
-				g.drawImage(texture.rebecca_walking[1], x, y, w, h, null);
-			if (watching[FACING.DOWN.getNum()])
-				g.drawImage(texture.rebecca_walking[4], x, y, w, h, null);
-		}
-
-		else {
-			if (watching[FACING.LEFT.getNum()])
-				drawAnimation(FACING.LEFT.getNum(), g, x, y, w, h);
-			if (watching[FACING.RIGHT.getNum()])
-				drawAnimation(FACING.RIGHT.getNum(), g, x, y, w, h);
-			if (watching[FACING.UP.getNum()])
-				drawAnimation(FACING.UP.getNum(), g, x, y, w, h);
-			if (watching[FACING.DOWN.getNum()])
-				drawAnimation(FACING.DOWN.getNum(), g, x, y, w, h);
-		}
 	}
 
 }

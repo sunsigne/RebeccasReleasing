@@ -38,9 +38,9 @@ public class ProcessorTrash extends ProcessorObject {
 		g.drawString("trash", x + Size.TILE_PUZZLE / 2 - 10, y + 2 * Size.TILE_PUZZLE - 10);
 
 		if (isEmpty())
-			g.drawImage(texture.hack[3], x + w / 4, y + h / 4, w, h, null);
+			g.drawImage(texture.puzzle_hack[12], x + w / 4, y + h / 4, w, h, null);
 		else
-			g.drawImage(texture.hack[2], x + w / 4, y + h / 4, w, h, null);
+			g.drawImage(texture.puzzle_hack[11], x + w / 4, y + h / 4, w, h, null);
 		drawHitbox(g);
 	}
 

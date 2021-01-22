@@ -16,7 +16,6 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.IFacing.FACING;
 import objects.world.puzzler.IPuzzler;
 
 public class FoeObject extends LivingObject implements IPuzzler {
@@ -26,7 +25,7 @@ public class FoeObject extends LivingObject implements IPuzzler {
 	public static final int MULTIPLE_FOE_RANGE = 200 * Size.TILE / 64;
 	public static final int MAX_ADDITIONAL_FOES_AT_SAME_FIGHT = 4;
 
-	private Animation[][] animation = new Animation[DIFFICULTY.MAX + 1][4];
+	private Animation[][] animation = new Animation[7][4];
 
 	private EventListener eventOnVictory, eventOnDefeat;
 
@@ -49,26 +48,18 @@ public class FoeObject extends LivingObject implements IPuzzler {
 	// state
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 
-		if (animation[array][secondarray] == null) {
-			if (secondarray == FACING.LEFT.getNum())
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][6],
-						texture.foe_walking[array][7], texture.foe_walking[array][8], texture.foe_walking[array][7]);
-			else if (secondarray == FACING.RIGHT.getNum())
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][9],
-						texture.foe_walking[array][10], texture.foe_walking[array][11], texture.foe_walking[array][10]);
-			else if (secondarray == FACING.UP.getNum())
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][0],
-						texture.foe_walking[array][1], texture.foe_walking[array][2], texture.foe_walking[array][1]);
-			else if (secondarray == FACING.DOWN.getNum())
-				animation[array][secondarray] = new Animation(10, texture.foe_walking[array][3],
-						texture.foe_walking[array][4], texture.foe_walking[array][5], texture.foe_walking[array][4]);
+		int difficulty = array[0];
+		int facing = array[1];
 
-			else
-				animation[array][secondarray] = new Animation(1);
-		}
-		return animation[array][secondarray];
+		if (animation[difficulty][facing] == null)
+			animation[difficulty][facing] = new Animation(10, texture.living_foe_walking[difficulty][facing][0],
+					texture.living_foe_walking[difficulty][facing][1],
+					texture.living_foe_walking[difficulty][facing][2],
+					texture.living_foe_walking[difficulty][facing][3]);
+
+		return animation[difficulty][facing];
 	}
 
 	@Override
@@ -128,7 +119,7 @@ public class FoeObject extends LivingObject implements IPuzzler {
 
 	@Override
 	public void tick() {
-		runAnimations();
+		runAnimation(this.currentDifficulty.getLvl(), getFacing().getNum());
 		livingTickBehavior(false);
 
 		checkMultipleFoes();
@@ -142,15 +133,6 @@ public class FoeObject extends LivingObject implements IPuzzler {
 				--stuntime;
 			else
 				stunned = false;
-		}
-	}
-
-	private void runAnimations() {
-		for (int i = DIFFICULTY.MIN; i < DIFFICULTY.MAX + 1; i++) {
-			runAnimation(i, FACING.LEFT.getNum());
-			runAnimation(i, FACING.RIGHT.getNum());
-			runAnimation(i, FACING.UP.getNum());
-			runAnimation(i, FACING.DOWN.getNum());			
 		}
 	}
 
@@ -210,30 +192,13 @@ public class FoeObject extends LivingObject implements IPuzzler {
 	}
 
 	private void renderingFoe(Graphics g) {
-
 		int difficulty = this.currentDifficulty.getLvl();
+		int facing = getFacing().getNum();
 
-		if (isMotionless() || !isPlayerActive()) {
-			if (watching[FACING.LEFT.getNum()])
-				g.drawImage(texture.foe_walking[difficulty][7], x, y, w, h, null);
-			if (watching[FACING.RIGHT.getNum()])
-				g.drawImage(texture.foe_walking[difficulty][10], x, y, w, h, null);
-			if (watching[FACING.UP.getNum()])
-				g.drawImage(texture.foe_walking[difficulty][1], x, y, w, h, null);
-			if (watching[FACING.DOWN.getNum()])
-				g.drawImage(texture.foe_walking[difficulty][4], x, y, w, h, null);
-		}
-
-		else {
-			if (watching[FACING.LEFT.getNum()])
-				drawAnimation(difficulty, FACING.LEFT.getNum(), g, x, y, w, h);
-			if (watching[FACING.RIGHT.getNum()])
-				drawAnimation(difficulty, FACING.RIGHT.getNum(), g, x, y, w, h);
-			if (watching[FACING.UP.getNum()])
-				drawAnimation(difficulty, FACING.UP.getNum(), g, x, y, w, h);
-			if (watching[FACING.DOWN.getNum()])
-				drawAnimation(difficulty, FACING.DOWN.getNum(), g, x, y, w, h);
-		}
+		if (isMotionless() || !isPlayerActive())
+			g.drawImage(texture.living_foe_walking[difficulty][facing][1], x, y, w, h, null);
+		else
+			drawAnimation(g, x, y, w, h, difficulty, facing);
 
 	}
 

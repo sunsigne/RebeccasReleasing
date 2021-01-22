@@ -33,7 +33,7 @@ public class Desk extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runFourDirectionAnimations();
+			runAnimation(getFacing().getNum());
 			falltime--;
 		}
 	}
@@ -41,28 +41,18 @@ public class Desk extends DestroyableObject {
 	// design
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 
-		if (animation[array] == null) {
-			if (array == FACING.LEFT.getNum())
-				animation[array] = new Animation(2, texture.neodesk[7], texture.neodesk[8], texture.neodesk[9],
-						texture.neodesk[10], texture.neodesk[11], texture.neodesk[11], texture.neodesk[11]);
-			else if (array == FACING.RIGHT.getNum())
-				animation[array] = new Animation(2, texture.neodesk[13], texture.neodesk[14], texture.neodesk[15],
-						texture.neodesk[16], texture.neodesk[17], texture.neodesk[17], texture.neodesk[17]);
-			else if (array == FACING.UP.getNum())
-				animation[array] = new Animation(2, texture.neodesk[1], texture.neodesk[2], texture.neodesk[3],
-						texture.neodesk[4], texture.neodesk[5], texture.neodesk[5], texture.neodesk[5]);
-			else if (array == FACING.DOWN.getNum())
-				animation[array] = new Animation(2, texture.neodesk[1], texture.neodesk[2], texture.neodesk[3],
-						texture.neodesk[4], texture.neodesk[5], texture.neodesk[5], texture.neodesk[5]);
+		int facing = array[0];
+		
+		if (animation[facing] == null) {
+				animation[facing] = new Animation(2, texture.destroyable_desk[facing][1], texture.destroyable_desk[facing][2], texture.destroyable_desk[facing][3],
+						texture.destroyable_desk[facing][4], texture.destroyable_desk[facing][5], texture.destroyable_desk[facing][5], texture.destroyable_desk[facing][5]);
 
-			else
-				animation[array] = new Animation(1);
 		}
-		return animation[array];
+		return animation[facing];
 	}
-
+	
 	public void render(Graphics g) {
 
 		renderingDesk(g);
@@ -72,37 +62,20 @@ public class Desk extends DestroyableObject {
 	private void renderingDesk(Graphics g) {
 
 		// inital rendering
-		if (!falling) {
-			if (getFacing() == FACING.LEFT)
-				g.drawImage(texture.neodesk[6], x, y, w, h, null);
-			if (getFacing() == FACING.RIGHT)
-				g.drawImage(texture.neodesk[12], x, y, w, h, null);
-			if (isHorizontal())
-				g.drawImage(texture.neodesk[0], x, y, w, h, null);
-		}
-
+		if (!falling)
+			g.drawImage(texture.destroyable_desk[getFacing().getNum()][0], x , y, w, h, null);
+	
 		// falling rendering
-		if (falling && falltime > 0) {
-			if (getFacing() == FACING.LEFT)
-				drawAnimation(FACING.LEFT.getNum(), g, x, y, w, h);
-			if (getFacing() == FACING.RIGHT)
-				drawAnimation(FACING.RIGHT.getNum(), g, x, y, w, h);
-			if (isHorizontal())
-				drawAnimation(FACING.DOWN.getNum(), g, x, y, w, h);
-		}
-
+		if (falling && falltime > 0)
+			drawAnimation(g, x , y, w, h, getFacing().getNum());
+		
 		// final rendering
-		if (falling && falltime <= 0) {
-			if (getFacing() == FACING.LEFT)
-				g.drawImage(texture.neodesk[11], x, y, w, h, null);
-			if (getFacing() == FACING.RIGHT)
-				g.drawImage(texture.neodesk[17], x, y, w, h, null);
-			if (isHorizontal())
-				g.drawImage(texture.neodesk[5], x, y, w, h, null);
+		if (falling && falltime <= 0)
+		{
+			g.drawImage(texture.destroyable_desk[getFacing().getNum()][5], x , y, w, h, null);	
 		}
-
 	}
-
+	
 	// collision
 
 	@Override

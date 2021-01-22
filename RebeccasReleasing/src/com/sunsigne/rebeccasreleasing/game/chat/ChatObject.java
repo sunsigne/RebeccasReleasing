@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
@@ -157,7 +156,7 @@ public class ChatObject extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(ImageBank.getImage(ImageBank.chatbox), 0, 0, Size.WIDHT, Size.HEIGHT, null);
+		g.drawImage(texture.interface_chat, 0, 0, Size.WIDHT, Size.HEIGHT, null);
 
 		BufferedImage img = null;
 		img = paintingChara(chara);
@@ -172,10 +171,10 @@ public class ChatObject extends GameObject {
 
 		switch (chara) {
 		case REBECCA:
-			img = ImageBank.getImage(ImageBank.rebecca);
+			img = texture.living_rebecca_face[0];
 			break;
 		case SARAH:
-			img = ImageBank.getImage(ImageBank.sarah);
+			img = texture.living_sarah_face[0];
 			break;
 		default:
 			img = ImageTask.drawMissingTexture();

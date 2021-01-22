@@ -18,11 +18,11 @@ public class Bomb extends BombObject {
 	// state
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 		if (animation == null)
-			animation = new Animation(2, texture.bomb[1], texture.bomb[2], texture.bomb[3], texture.bomb[4],
-					texture.bomb[5], texture.bomb[6], texture.bomb[7], texture.bomb[8], texture.bomb[9],
-					texture.bomb[9]);
+			animation = new Animation(2, texture.puzzle_bomb[1], texture.puzzle_bomb[2], texture.puzzle_bomb[3], texture.puzzle_bomb[4],
+					texture.puzzle_bomb[5], texture.puzzle_bomb[6], texture.puzzle_bomb[7], texture.puzzle_bomb[8], texture.puzzle_bomb[9],
+					texture.puzzle_bomb[9]);
 		return animation;
 	}
 
@@ -65,14 +65,14 @@ public class Bomb extends BombObject {
 		if(getDifficulty().getLvl() > 4) gap = 16 + enlargeTime;
 
 		if (!isExploding()) {
-			g.drawImage(texture.bomb[0], x + 2*gap, y + 2*gap, w - 4*gap, h - 4*gap, null);
+			g.drawImage(texture.puzzle_bomb[0], x + 2*gap, y + 2*gap, w - 4*gap, h - 4*gap, null);
 			g.drawString("" + count, x + 88 + 5*gap/8, y + 187 - 7*gap/8);
 
 		} else if (isExploding()) {
 			if (boomtime > 0)
 				drawAnimation(g, x + 2*gap, y + 2*gap, w - 4*gap, h - 4*gap);
 			else
-				g.drawImage(texture.bomb[9], x + 2*gap, y + 2*gap, w - 4*gap, h - 4*gap, null);
+				g.drawImage(texture.puzzle_bomb[9], x + 2*gap, y + 2*gap, w - 4*gap, h - 4*gap, null);
 		}
 
 		drawHitbox(g);

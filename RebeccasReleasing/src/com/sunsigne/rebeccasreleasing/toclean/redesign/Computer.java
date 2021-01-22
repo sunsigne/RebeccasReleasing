@@ -94,28 +94,17 @@ public class Computer extends GameObject implements IPuzzler {
 	}
 
 	private BufferedImage paintingComputer() {
-		
-		BufferedImage img = null;
-		if (!isSolved())
-			img = texture.item[33];
-		else
-			img = texture.item[34];
-		return img;
-	}
-/*	
-	private BufferedImage paintingComputer() {
 
 		BufferedImage img = null;
 		int difficulty = getDifficulty().getLvl();
 
 		if (!isSolved())
-			img = texture.door[difficulty][2];
-		if (isSolved())
-			img = texture.door[difficulty][3];
-
+			img = texture.puzzler_computer[difficulty][0];
+		else
+			img = texture.puzzler_computer[difficulty][1];
 		return img;
 	}
-*/
+
 	// collision
 
 	@Override

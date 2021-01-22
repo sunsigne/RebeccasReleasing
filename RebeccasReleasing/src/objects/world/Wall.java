@@ -26,7 +26,7 @@ public class Wall extends GameObject implements ICollision {
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(texture.item[2], x, y, w, h, null);
+		g.drawImage(texture.decor_wall[0][0], x, y, w, h, null);
 		drawHitbox(g);
 	}
 	

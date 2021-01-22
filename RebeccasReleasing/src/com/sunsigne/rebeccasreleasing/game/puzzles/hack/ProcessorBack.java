@@ -37,7 +37,7 @@ public class ProcessorBack extends ProcessorObject {
 		g.setColor(Color.white);
 		g.drawString("back", x + 3 * Size.TILE_PUZZLE / 4 - 27, y + 2 * Size.TILE_PUZZLE - 15);
 
-		g.drawImage(texture.hack[10], x + h / 3, y + h / 4, w, h, null);
+		g.drawImage(texture.puzzle_hack[4], x + h / 3, y + h / 4, w, h, null);
 		drawHitbox(g);
 	}
 

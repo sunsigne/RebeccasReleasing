@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Lamp;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.redesign.Computer;
 import com.sunsigne.rebeccasreleasing.toclean.redesign.WC;
 
@@ -20,7 +21,7 @@ import objects.world.decor.Couch;
 import objects.world.decor.Water;
 import objects.world.destroyable.Desk;
 import objects.world.destroyable.Plant;
-import objects.world.loot.tools.LootKey;
+import objects.world.loot.tools.LootTool;
 import objects.world.puzzler.Case;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.TutoDoor;
@@ -73,7 +74,7 @@ public class MapBuilder {
 				
 				//key
 				if (red == 126 && green == 126 && blue == 125)
-					handler_object.addObject(new LootKey(xx * Size.TILE, yy * Size.TILE, DIFFICULTY.YELLOW));
+					handler_object.addObject(new LootTool(xx * Size.TILE, yy * Size.TILE, new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl())));
 				
 				// couch
 				if (red == 64 && green == 0 && blue == 6)

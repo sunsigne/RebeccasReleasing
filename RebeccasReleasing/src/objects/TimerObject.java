@@ -59,7 +59,7 @@ public abstract class TimerObject extends GameObject {
 			g.setColor(Color.yellow);
 		if (getIntToDisplay() <= 2)
 			g.setColor(Color.red);
-		g.drawImage(texture.item[12], x, y, w, h, null);
+		g.drawImage(texture.gui_data[2], x, y, w, h, null);
 		g.drawString(String.valueOf(getIntToDisplay()), x + 68, y + 145);
 	}
 

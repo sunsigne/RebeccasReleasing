@@ -7,16 +7,16 @@ public class HandlerRender implements IRender {
 
 	private static HandlerRender instance = null;
 
-	private LinkedList<IRender> handler_render_camera_dependant_list = new LinkedList<>();
-	private LinkedList<IRender> handler_render_camera_independant_list = new LinkedList<>();
-	private boolean cameraDependant;
-	public boolean playerAbove;
-
 	public static HandlerRender getInstance() {
 		if (instance == null)
 			instance = new HandlerRender();
 		return instance;
 	}
+	
+	private LinkedList<IRender> handler_render_camera_dependant_list = new LinkedList<>();
+	private LinkedList<IRender> handler_render_camera_independant_list = new LinkedList<>();
+	private boolean cameraDependant;
+	public boolean playerAbove;
 
 	@Override
 	public boolean isCameraDependant() {

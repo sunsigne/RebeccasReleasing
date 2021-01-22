@@ -67,13 +67,13 @@ public class Couch extends GameObject implements ICollision, IFacing {
 		BufferedImage img = null;
 
 		if (facing == FACING.LEFT)
-			img = texture.couch[FACING.LEFT.getNum()][lenght];
+			img = texture.decor_couch[FACING.LEFT.getNum()][lenght];
 		if (facing == FACING.RIGHT)
-			img = texture.couch[FACING.RIGHT.getNum()][lenght];
+			img = texture.decor_couch[FACING.RIGHT.getNum()][lenght];
 		if (facing == FACING.UP)
-			img = texture.couch[FACING.UP.getNum()][lenght];
+			img = texture.decor_couch[FACING.UP.getNum()][lenght];
 		if (facing == FACING.DOWN)
-			img = texture.couch[FACING.DOWN.getNum()][lenght];
+			img = texture.decor_couch[FACING.DOWN.getNum()][lenght];
 
 		return img;
 	}

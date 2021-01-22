@@ -53,14 +53,14 @@ public class ProcessorFolder extends ProcessorObject {
 
 		if (system) {
 			g.drawString("system", x + Size.TILE_PUZZLE / 2 - 20, y + 2 * Size.TILE_PUZZLE - 10);
-			g.drawImage(texture.hack[0], x + w / 4, y + h / 4, w, h, null);
+			g.drawImage(texture.puzzle_hack[2], x + w / 4, y + h / 4, w, h, null);
 		} else {
 			g.drawString(name, x + nameGap + Size.TILE_PUZZLE / 4 - 15, y + 2 * Size.TILE_PUZZLE - 20);
-			g.drawImage(texture.hack[4], x + w / 4, y + h / 4, w, h, null);
+			g.drawImage(texture.puzzle_hack[3], x + w / 4, y + h / 4, w, h, null);
 		}
 
 		if (isLocked())
-			g.drawImage(texture.hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
+			g.drawImage(texture.puzzle_hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
 		drawHitbox(g);
 	}
 

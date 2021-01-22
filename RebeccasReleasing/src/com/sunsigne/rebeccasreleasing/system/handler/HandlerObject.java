@@ -10,6 +10,12 @@ public class HandlerObject implements ITick, IRender {
 
 	private static HandlerObject instance = null;
 
+	public static HandlerObject getInstance() {
+		if (instance == null)
+			instance = new HandlerObject();
+		return instance;
+	}
+
 	private LinkedList<GameObject> handler_object_camera_dependant_list = new LinkedList<GameObject>();
 	private LinkedList<GameObject> handler_object_camera_independant_list = new LinkedList<GameObject>();
 
@@ -20,12 +26,6 @@ public class HandlerObject implements ITick, IRender {
 		HandlerTick.getInstance().addObject(this);
 		HandlerRender.getInstance().addObject(true, this);
 		HandlerRender.getInstance().addObject(false, this);
-	}
-
-	public static HandlerObject getInstance() {
-		if (instance == null)
-			instance = new HandlerObject();
-		return instance;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 
 import objects.world.loot.LootObject;
 
@@ -21,8 +22,7 @@ public class LootCritCard extends LootObject {
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(ImageBank.getImage(ImageBank.card_frame), x, y, Size.TILE * 2 / 3, Size.TILE, null);
-		g.drawImage(ImageBank.getImage(ImageBank.card_critical), x, y, Size.TILE * 2 / 3, Size.TILE, null);
+		g.drawImage(ImageTask.drawMissingTexture(Size.TILE * 2 / 3, Size.TILE), x, y, Size.TILE * 2 / 3, Size.TILE, null);
 		drawHitbox(g);
 	}
 

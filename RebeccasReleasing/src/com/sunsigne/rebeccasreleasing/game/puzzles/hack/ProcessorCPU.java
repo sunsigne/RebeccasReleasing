@@ -28,9 +28,9 @@ public class ProcessorCPU extends ProcessorObject {
 		g.setColor(Color.white);
 		g.drawString("CPU-" + number, x + Size.TILE_PUZZLE / 2 - 10, y + 2 * Size.TILE_PUZZLE - 10);
 
-		g.drawImage(texture.hack[1], x + w / 4, y + h / 4, w, h, null);
+		g.drawImage(texture.puzzle_hack[10], x + w / 4, y + h / 4, w, h, null);
 		if (isLocked())
-			g.drawImage(texture.hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
+			g.drawImage(texture.puzzle_hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
 		drawHitbox(g);
 	}
 

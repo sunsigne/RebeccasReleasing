@@ -164,8 +164,8 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	@Override
 	public void render(Graphics g) {
-		renderingFakeWall(g, texture.item[25]);
 		colorRender(g, new Color(70, 70, 10, 240));
+		renderingFakeWall(g, texture.decor_wall[1][1]);
 
 	}
 

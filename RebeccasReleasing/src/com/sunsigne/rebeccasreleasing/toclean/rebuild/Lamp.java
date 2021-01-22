@@ -29,7 +29,7 @@ public class Lamp extends GameObject implements ICollision {
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(texture.lamp[0], x, y, w, h, null);
+		g.drawImage(texture.decor_small[0], x, y, w, h, null);
 		drawHitbox(g);
 	}
 

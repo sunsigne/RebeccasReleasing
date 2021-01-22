@@ -4,6 +4,9 @@ game design = nouvelle mécanique, twist de la mécanique, test final (boss)
 un personnage comme flowey : qui ne peut accepter que le jeu se termine et fait tout
 pour que l'utilisateur reste. Jouer avec les fichier du pc
 
+un boss de 10m sur 10m, comme urgot
+
+un lvl sous l'eau, un autre dans l'espace
 
 pour un mini-jeu il faut répondre à 3 questions : 
 	- sur quoi le joueur a le contrôle (la souris) ?

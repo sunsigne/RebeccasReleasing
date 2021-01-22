@@ -5,13 +5,14 @@ import java.util.LinkedList;
 public class HandlerTick implements ITick {
 
 	private static HandlerTick instance = null;
-	private LinkedList<ITick> handler_tick_list = new LinkedList<>();
 
 	public static HandlerTick getInstance() {
 		if (instance == null)
 			instance = new HandlerTick();
 		return instance;
 	}
+	
+	private LinkedList<ITick> handler_tick_list = new LinkedList<>();
 
 	@Override
 	public void tick() {

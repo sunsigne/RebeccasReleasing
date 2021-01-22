@@ -94,8 +94,8 @@ public class PuzzleSearch extends Puzzle {
 	
 	@Override
 	public void render(Graphics g) {
-		renderingFakeWall(g, texture.item[35]);
 		colorRender(g, new Color(35, 25, 45, 240));
+		renderingFakeWall(g, texture.decor_wall[1][4]);
 
 	}
 

@@ -23,7 +23,7 @@ public class TutoPuzzleKey extends PuzzleKey {
 	@Override
 	public void randomGeneration() {
 		int col = 2 + new Random().nextInt(10);
-		randomOneWall = new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE, 0, texture.item[3]);
+		randomOneWall = new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE, 0, texture.decor_wall[1][3]);
 		HandlerObject.getInstance().addObject(randomOneWall);
 	}
 

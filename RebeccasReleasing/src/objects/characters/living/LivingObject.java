@@ -17,14 +17,15 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Gam
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.IFacing.FACING;
+import objects.IFacing;
 import objects.characters.collision.CollisionDetector;
 
-public abstract class LivingObject extends GameObject implements IAnimation {
+public abstract class LivingObject extends GameObject implements IAnimation, IFacing {
 
 	public Puzzle puzzle;
 	private CollisionDetector collisionDetector;
 
+	private FACING facing;
 	protected boolean[] watching = new boolean[4];
 	private boolean flagX, flagY;
 
@@ -35,13 +36,25 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 		super(true, x, y, objectid);
 
 		watching[FACING.DOWN.getNum()] = true;
+		facing = FACING.DOWN;
 		collisionDetector = new CollisionDetector(this);
 	}
 
 	// state
-	
-	public CollisionDetector getCollisionDetector()
-	{
+
+	@Override
+	public FACING getFacing() {
+		return facing;
+	}
+
+	@Override
+	public void setFacing(FACING facing) {
+		resetWatchingDirection();
+		watching[facing.getNum()] = true;
+		this.facing = facing;
+	}
+
+	public CollisionDetector getCollisionDetector() {
 		return collisionDetector;
 	}
 
@@ -68,9 +81,9 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 	protected void livingTickBehavior(boolean canMoveIfPlayerChatting) {
 
 		boolean flag = true;
-		if(!canMoveIfPlayerChatting && Conductor.getState() == STATE.CHATTING)
+		if (!canMoveIfPlayerChatting && Conductor.getState() == STATE.CHATTING)
 			flag = false;
-		
+
 		if (!isPushed)
 			updateWatchingDirection();
 
@@ -93,6 +106,13 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 		}
 	}
 
+	public void resetWatchingDirection() {
+		watching[FACING.LEFT.getNum()] = false;
+		watching[FACING.RIGHT.getNum()] = false;
+		watching[FACING.UP.getNum()] = false;
+		watching[FACING.DOWN.getNum()] = false;
+	}
+
 	// hard to complexe, but make the animation fluid and intuitive :
 	// he the player start to move a direction but then goes diagonaly
 	// (like to adjust), the sprite wont update as the main direction is
@@ -103,34 +123,32 @@ public abstract class LivingObject extends GameObject implements IAnimation {
 		if (isMotionlessbyY())
 			flagY = false;
 
-		if (!flagX && velY < 0) {
-			watching[FACING.LEFT.getNum()] = false;
-			watching[FACING.RIGHT.getNum()] = false;
-			watching[FACING.UP.getNum()] = true;
-			watching[FACING.DOWN.getNum()] = false;
-			flagY = true;
-		}
-		if (!flagX && velY > 0) {
-			watching[FACING.LEFT.getNum()] = false;
-			watching[FACING.RIGHT.getNum()] = false;
-			watching[FACING.UP.getNum()] = false;
-			watching[FACING.DOWN.getNum()] = true;
-			flagY = true;
-		}
 		if (!flagY && velX < 0) {
+			resetWatchingDirection();
 			watching[FACING.LEFT.getNum()] = true;
-			watching[FACING.RIGHT.getNum()] = false;
-			watching[FACING.UP.getNum()] = false;
-			watching[FACING.DOWN.getNum()] = false;
+			facing = FACING.LEFT;
 			flagX = true;
 		}
 		if (!flagY && velX > 0) {
-			watching[FACING.LEFT.getNum()] = false;
+			resetWatchingDirection();
 			watching[FACING.RIGHT.getNum()] = true;
-			watching[FACING.UP.getNum()] = false;
-			watching[FACING.DOWN.getNum()] = false;
+			facing = FACING.RIGHT;
 			flagX = true;
 		}
+
+		if (!flagX && velY < 0) {
+			resetWatchingDirection();
+			watching[FACING.UP.getNum()] = true;
+			facing = FACING.UP;
+			flagY = true;
+		}
+		if (!flagX && velY > 0) {
+			resetWatchingDirection();
+			watching[FACING.DOWN.getNum()] = true;
+			facing = FACING.DOWN;
+			flagY = true;
+		}
+
 	}
 
 	public void pushed(int direction) {

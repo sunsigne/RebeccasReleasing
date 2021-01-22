@@ -33,7 +33,7 @@ public class Coffee extends GameObject implements ICollision {
 
 		int h0 = 2 * Size.TILE;
 
-		g.drawImage(texture.dispenser[1], x, y, w, h0, null);
+		g.drawImage(texture.decor_tall[0], x, y, w, h0, null);
 		drawHitbox(g);
 	}
 	

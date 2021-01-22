@@ -43,11 +43,13 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 	// state
 
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int...array) {
 
+		int facing = array[0];
+		
 		if (animation == null)
-			animation = new Animation(12, getTextureFromChara()[array][0], getTextureFromChara()[array][1],
-					getTextureFromChara()[array][2], getTextureFromChara()[array][3]);
+			animation = new Animation(12, getTextureFromChara()[facing][0], getTextureFromChara()[facing][1],
+					getTextureFromChara()[facing][2], getTextureFromChara()[facing][3]);
 		return animation;
 	}
 
@@ -70,8 +72,6 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		this.facing = facing;
 	}
 
-	// behavior
-
 	public void playCard(CARDTYPE type) {
 		if (type != getCardtype())
 			attack();
@@ -88,6 +88,9 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		if (defenseTime <= 0)
 			defenseTime = 30;
 	}
+	
+
+	// behavior
 
 	@Override
 	public void tick() {
@@ -148,9 +151,9 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 			else if (getCardtype() == CARDTYPE.ATTACK && defenseTime < 16)
 				g.drawImage(getTextureFromChara()[getFacing().getNum()][7], x0, y0, w0, h0, null);
 			else
-				drawAnimation(getFacing().getNum(), g, x0, y0, w0, h0);
+				drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 		} else
-			drawAnimation(getFacing().getNum(), g, x0, y0, w0, h0);
+			drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 
 		drawHitbox(g);
 	}

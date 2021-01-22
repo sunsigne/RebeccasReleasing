@@ -7,7 +7,7 @@ public class SoundBank {
 
 	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
 
-	// Even if this method is only used in this class, I prefered to let it public
+	// Even if this method is only used in this class, I prefere to let it public
 	// to make it easier for modders and devellopers in adding content
 	public static void addSound(SoundBank soundBank, BufferedSound bufferedSound) {
 

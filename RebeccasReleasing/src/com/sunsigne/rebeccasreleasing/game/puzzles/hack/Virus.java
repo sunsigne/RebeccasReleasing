@@ -33,9 +33,9 @@ public class Virus extends PuzzleObject implements IAnimation {
 	}
 	
 	@Override
-	public Animation getAnimation(int array, int secondarray) {
+	public Animation getAnimation(int... array) {
 		if (animation == null)
-			animation = new Animation(15, texture.virus[0], texture.virus[1]);
+			animation = new Animation(15, texture.puzzle_hack[0], texture.puzzle_hack[1]);
 		return animation;
 	}
 

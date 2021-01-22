@@ -35,7 +35,7 @@ public class Lock extends PuzzleObject {
 	@Override
 	public void render(Graphics g) {
 
-		g.drawImage(texture.item[1], x, y, w, h, null);
+		g.drawImage(texture.puzzle_key[1], x, y, w, h, null);
 		drawHitbox(g);
 	}
 	

@@ -26,10 +26,10 @@ public class ProcessorLocker extends ProcessorObject {
 		g.setColor(Color.white);
 
 		g.drawString("Locker", x + Size.TILE_PUZZLE / 2 - 20, y + 2 * Size.TILE_PUZZLE - 20);
-		g.drawImage(texture.hack[6], x + w / 4, y + h / 4, w, h, null);
+		g.drawImage(texture.puzzle_hack[5], x + w / 4, y + h / 4, w, h, null);
 
 		if (isLocked())
-			g.drawImage(texture.hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
+			g.drawImage(texture.puzzle_hack[9], x + w / 2, y + h / 2, w / 2, h / 2, null);
 
 		drawHitbox(g);
 	}
