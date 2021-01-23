@@ -7,7 +7,7 @@ public class CharacteristicsTemp {
 	private Tool[] tools = new Tool[6];
 
 	public CharacteristicsTemp() {
-		tools[Tool.KEY] = new Tool(Tool.KEY, 1);
+		tools[Tool.KEY] = new Tool(Tool.KEY, 0);
 		tools[Tool.SWORD] = new Tool(Tool.SWORD, 5);
 		tools[Tool.BOMB] = new Tool(Tool.BOMB, 1);
 		tools[Tool.SEARCH] = new Tool(Tool.SEARCH, 1);

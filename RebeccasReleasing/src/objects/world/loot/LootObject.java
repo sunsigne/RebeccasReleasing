@@ -18,6 +18,8 @@ import objects.characters.living.LivingObject;
 		+ "/ les loots c'est ici ou dans une class à part que ça se gère, pas sur les ennemis")
 public abstract class LootObject extends GameObject implements ICollision {
 
+	private int time_before_lootable = 40;
+
 	public LootObject(int x, int y) {
 		super(true, x, y, OBJECTID.LOOT);
 
@@ -27,6 +29,7 @@ public abstract class LootObject extends GameObject implements ICollision {
 
 	@Override
 	public void tick() {
+		time_before_lootable--;
 	}
 
 	// collision
@@ -34,21 +37,22 @@ public abstract class LootObject extends GameObject implements ICollision {
 	@Override
 	public void collision(LivingObject living) {
 
-		if (living.isPlayer() && !living.isMotionless())
-			living.getCollisionDetector().collidingBehavior(false, this, () -> {
-				HandlerObject.getInstance().removeObject(this);
-				HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
-				SoundTask.playSound(playSoundOnPickup());
-				triggerActionOnPickup();
-			});
+		if (time_before_lootable <= 0) {
+			if (living.isPlayer() && !living.isMotionless())
+				living.getCollisionDetector().collidingBehavior(false, this, () -> {
+					HandlerObject.getInstance().removeObject(this);
+					HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
+					SoundTask.playSound(playSoundOnPickup());
+					triggerActionOnPickup();
+				});
+		}
 	}
-	
+
 	protected abstract String displayTextOnPickup();
 
 	protected abstract void triggerActionOnPickup();
-	
-	protected BufferedSound playSoundOnPickup()
-	{
+
+	protected BufferedSound playSoundOnPickup() {
 		return SoundBank.getSound(SoundBank.looting);
 	}
 

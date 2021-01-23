@@ -11,20 +11,26 @@ import objects.GameObject;
 import objects.IFacing;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
+import objects.world.loot.ILoot;
+import objects.world.loot.LootObject;
 
-public abstract class DestroyableObject extends GameObject implements IAnimation, IFacing, ICollision {
+public abstract class DestroyableObject extends GameObject implements IAnimation, IFacing, ICollision, ILoot {
 
 	private FACING facing;
 
 	protected boolean falling;
 	protected int falltime;
 
-	public DestroyableObject(int x, int y, FACING facing) {
-		super(true, x, y, OBJECTID.DESTROYABLE);
+	private boolean destroyable;
+	private LootObject loot;
+
+	public DestroyableObject(int x, int y, FACING facing, OBJECTID id) {
+		super(true, x, y, id);
 
 		this.facing = facing;
+		this.destroyable = true;
 	}
-	
+
 	// state
 
 	protected abstract boolean updatableFacing();
@@ -45,6 +51,15 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 		}
 	}
 
+	public void setDestroyable(boolean destroyable) {
+		this.destroyable = destroyable;
+	}
+
+	@Override
+	public void setLootObject(LootObject loot) {
+		this.loot = loot;
+	}
+
 	// collision
 
 	@Override
@@ -61,28 +76,31 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 
 	public void updateDestroyable(LivingObject living, FACING playerfacing) {
 
-		if (living.isPlayer())
-			refreshPlayerRendering();
+		if (destroyable) {
+			if (living.isPlayer())
+				refreshPlayerRendering();
 
-		if (!falling) {
-			setFacing(playerfacing);
+			if (!falling) {
+				setFacing(playerfacing);
 
-			int points = givePts();
-			BufferedSound mainSound = makeMainSound();
-			BufferedSound sideSound = makeSideSound();
+				int points = givePts();
+				BufferedSound mainSound = makeMainSound();
+				BufferedSound sideSound = makeSideSound();
 
-			if (living.isPlayer()) {
-				if (HandlerObject.getInstance().player.isPushed())
-					World.gui.addPoints(this, 5 * points);
-				else
-					World.gui.addPoints(this, points);
-			} else
-				World.gui.addPoints(this, 2 * points);
+				if (living.isPlayer()) {
+					if (HandlerObject.getInstance().player.isPushed())
+						World.gui.addPoints(this, 5 * points);
+					else
+						World.gui.addPoints(this, points);
+				} else
+					World.gui.addPoints(this, 2 * points);
 
-			SoundTask.playSound(1.0, mainSound);
-			SoundTask.playSound(0.5, sideSound);
+				SoundTask.playSound(1.0, mainSound);
+				SoundTask.playSound(0.5, sideSound);
 
-			fall();
+				fall();
+				if(loot != null) HandlerObject.getInstance().addObject(loot);
+			}
 		}
 	}
 

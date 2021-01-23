@@ -9,13 +9,14 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public class Desk extends DestroyableObject {
 
 	private Animation[] animation = new Animation[4];
 
 	public Desk(int x, int y, FACING facing) {
-		super(x, y, facing);
+		super(x, y, facing, OBJECTID.DESK);
 
 		w = 2 * Size.TILE;
 		h = 2 * Size.TILE;

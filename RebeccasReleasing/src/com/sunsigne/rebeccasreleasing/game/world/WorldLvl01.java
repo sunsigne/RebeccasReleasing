@@ -3,12 +3,13 @@ package com.sunsigne.rebeccasreleasing.game.world;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.game.event.EventContext;
+import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
@@ -22,6 +23,8 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Con
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
+import objects.world.destroyable.DestroyableObject;
+import objects.world.loot.tools.LootTool;
 import objects.world.puzzler.IPuzzler;
 
 public class WorldLvl01 implements ILvl {
@@ -49,7 +52,7 @@ public class WorldLvl01 implements ILvl {
 		eventFirstStep();
 		eventHereIAm();
 		eventClosedDoor();
-		eventSpawningKey();
+		eventIHadTheKey();
 		eventDoorFail1();
 		eventDoorFail2();
 		eventThatWasEasy();
@@ -69,9 +72,14 @@ public class WorldLvl01 implements ILvl {
 				return Conductor.getState() == STATE.LEVEL;
 			}
 
+			// Hide tool key lvl 1 in the plant
+			// Set to player infinite hp (so generous!)
 			// Move player to the right
 			@Override
 			public void startEvent() {
+				DestroyableObject plant = ((DestroyableObject) getMostLeftObject(OBJECTID.PLANT));
+				Tool cyan_key = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl());
+				plant.setLootObject(new LootTool(plant.getX(), plant.getY(), cyan_key));
 				World.gui.setInfinitHp(true);
 				HandlerObject.getInstance().player.setVelY(0);
 				HandlerObject.getInstance().player.setVelX(Size.TILE / 16);
@@ -82,7 +90,7 @@ public class WorldLvl01 implements ILvl {
 	private void eventHereIAm() {
 		new Event("Here I Am", new EventContext() {
 
-			// When the player took some steps
+			// When the player took a few steps
 			@Override
 			public boolean startingCondition() {
 				return HandlerObject.getInstance().player.getX() > 2400;
@@ -99,42 +107,42 @@ public class WorldLvl01 implements ILvl {
 	private void eventClosedDoor() {
 		new Event("Closed Door", new EventContext() {
 
-			// When the player is close to the first door location
+			// When the player is close to the very first door
 			@Override
 			public boolean startingCondition() {
 				return HandlerObject.getInstance().player.getX() > 3700
 						&& HandlerObject.getInstance().player.getY() < 3000;
 			}
 
+			// Prepare the dialogue in the case where the player already had the key
 			// Talk with sarah about how opening it
+			// Prepare the door for dialogue if falling
+
 			@Override
 			public void startEvent() {
-				Event event = HandlerEvent.getInstance().getEvent("Spawing Key");
-				new Chat(2, () -> event.mustOccur(true), frlvl01, englvl01);
+				Event event = HandlerEvent.getInstance().getEvent("I Had The Key");
+				EventListener listener = null;
+				if(World.gui.getCharacteristics().getTool(Tool.KEY).getLvl() > 0) listener = () -> event.mustOccur(true);
+				new Chat(2, listener, frlvl01, englvl01);
+				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
+				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event1.mustOccur(true), false);
 			}
 		});
 	}
 
-	@Todo("rendre l'apparition de l'outils + évidente ! (nouveau dessin de cutout ?)"
-			+ "éventuellemt faire loot la clef (l'idée est bonne mais il faut justifier le fait de ne pas looter l'épée ...")
-	private void eventSpawningKey() {
-		new Event("Spawing Key", new EventContext() {
+	private void eventIHadTheKey() {
+		new Event("I Had The Key", new EventContext() {
 
-			// When the event "Closed Door" has called this event
+			// When the previous chat close and if the player already had the key
 			@Override
 			public boolean startingCondition() {
 				return false;
 			}
 
-			// Give the player a key, and prepare the door for dialogue if falling
+			// Talk with sarah about how stupid Rebecca is
 			@Override
 			public void startEvent() {
-				World.gui.getCharacteristics().getTool(Tool.KEY).upgradeLvlTo(2);
-				World.gui.setRedtool(true, 0);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
-				Conductor.setState(STATE.LEVEL);
-				Event event = HandlerEvent.getInstance().getEvent("Door Fail 1");
-				getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> event.mustOccur(true), false);
+				new Chat(3, null, frlvl01, englvl01);
 			}
 		});
 	}
@@ -142,20 +150,20 @@ public class WorldLvl01 implements ILvl {
 	private void eventDoorFail1() {
 		new Event("Door Fail 1", new EventContext() {
 
-			// When the event "Spawing Key" has called this event
+			// When the player fail at opening the door
 			@Override
 			public boolean startingCondition() {
 				return false;
 			}
 
-			// Talk with sarah about tips, , and prepare the door for dialogue if falling
-			// again
+			// Talk with sarah about tips
+			// Prepare the door for dialogue if failling again
 			@Override
 			public void startEvent() {
 				moveThePlayerFutherFromDoor();
-				new Chat(3, null, frlvl01, englvl01);
+				new Chat(4, null, frlvl01, englvl01);
 				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
-				getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> event.mustOccur(true), false);
+				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
 	}
@@ -163,7 +171,7 @@ public class WorldLvl01 implements ILvl {
 	private void eventDoorFail2() {
 		new Event("Door Fail 2", new EventContext() {
 
-			// When the event "Door Fail 1" has called this event
+			// When the player fail at opening the door again
 			@Override
 			public boolean startingCondition() {
 				return false;
@@ -173,9 +181,14 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				moveThePlayerFutherFromDoor();
-				new Chat(4, null, frlvl01, englvl01);
+				new Chat(5, null, frlvl01, englvl01);
 			}
 		});
+	}
+
+	private void moveThePlayerFutherFromDoor() {
+		int playerPosX = HandlerObject.getInstance().player.getX();
+		HandlerObject.getInstance().player.setX(playerPosX - Size.TILE / 2);
 	}
 
 	private void eventThatWasEasy() {
@@ -187,13 +200,14 @@ public class WorldLvl01 implements ILvl {
 				return HandlerObject.getInstance().player.getX() > 4530;
 			}
 
+			// Besure failing-opening-door-event won't occur anymore
 			// Talk with sarah about hp and stuff
 			@Override
 			public void startEvent() {
 				HandlerEvent.getInstance().getEvent("Door Fail 1").canOccur(false);
 				HandlerEvent.getInstance().getEvent("Door Fail 2").canOccur(false);
 				// event 7 during chat
-				new Chat(5, null, frlvl01, englvl01);
+				new Chat(6, null, frlvl01, englvl01);
 			}
 		});
 	}
@@ -201,7 +215,7 @@ public class WorldLvl01 implements ILvl {
 	private void eventSpawningHp() {
 		new Event("Spawning Hp", new EventContext() {
 
-			// When the chat from "That was Easy" has called this event
+			// When the previous chat is at the middle
 			@Override
 			public boolean startingCondition() {
 				return false;
@@ -218,17 +232,17 @@ public class WorldLvl01 implements ILvl {
 	private void eventNearFoe() {
 		new Event("Near Foe", new EventContext() {
 
-			// When the player is close to the first foe location
+			// When the player is close to the very first foe
 			@Override
 			public boolean startingCondition() {
 				return HandlerObject.getInstance().player.getX() > 5720;
 			}
 
-			// Talk with sarah about how pass by
+			// Talk with sarah about how pass him
 			@Override
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("Spawing Sword");
-				new Chat(6, () -> event.mustOccur(true), frlvl01, englvl01);
+				new Chat(7, () -> event.mustOccur(true), frlvl01, englvl01);
 			}
 		});
 	}
@@ -236,32 +250,31 @@ public class WorldLvl01 implements ILvl {
 	private void eventSpawningSword() {
 		new Event("Spawing Sword", new EventContext() {
 
-			// When the event "Near Foe" has called this event
+			// When the previous chat close
 			@Override
 			public boolean startingCondition() {
 				return false;
 			}
 
-			// Give the player a sword, and prepare the door for dialogue if falling
+			// Give the player a sword
+			// and prepare the foe for dialogue if failing or winning
 			@Override
 			public void startEvent() {
 				World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeLvlTo(2);
-				World.gui.setRedtool(true, 1);
 				SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 				Conductor.setState(STATE.LEVEL);
 				Event event = HandlerEvent.getInstance().getEvent("Foe Fail");
 				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
-				getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> event.mustOccur(true), false);
-				getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> event2.mustOccur(true), true);
+				((IPuzzler) getMostLeftObject(OBJECTID.FOE)).setEventOnClose(() -> event.mustOccur(true), false);
+				((IPuzzler) getMostLeftObject(OBJECTID.FOE)).setEventOnClose(() -> event2.mustOccur(true), true);
 			}
 		});
 	}
-	
 
 	private void eventFoeFail() {
 		new Event("Foe Fail", new EventContext() {
 
-			// When the event "Spawing Sword" has called this event
+			// When the player fail at killing the foe
 			@Override
 			public boolean startingCondition() {
 				return false;
@@ -270,15 +283,15 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about tips
 			@Override
 			public void startEvent() {
-				new Chat(7, null, frlvl01, englvl01);
+				new Chat(8, null, frlvl01, englvl01);
 			}
 		});
 	}
-	
+
 	private void eventFoeSuccess() {
 		new Event("Foe Success", new EventContext() {
 
-			// When the event "Spawing Sword" has called this event
+			// When the player success at killing the foe
 			@Override
 			public boolean startingCondition() {
 				return false;
@@ -287,31 +300,23 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about your mission
 			@Override
 			public void startEvent() {
-				HandlerEvent.getInstance().getEvent("Foe Fail").canOccur(false);;
-				new Chat(8, null, frlvl01, englvl01);
+				HandlerEvent.getInstance().getEvent("Foe Fail").canOccur(false);
+				;
+				new Chat(9, null, frlvl01, englvl01);
 			}
 		});
 	}
 
-
-	// !! currently, give the wrong door (because not recalculate when puzzle
-	// solved)
-	private void moveThePlayerFutherFromDoor() {
-		int playerPosX = HandlerObject.getInstance().player.getX();
-		HandlerObject.getInstance().player.setX(playerPosX - Size.TILE / 2);
-	}
-
-	private IPuzzler getMostLeftPuzzler(OBJECTID objectID) {
-		IPuzzler object = null;
+	private GameObject getMostLeftObject(OBJECTID objectID) {
+		GameObject object = null;
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(true);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == objectID) {
-				IPuzzler tempPuzzler = (IPuzzler) tempObject;
 				if (object == null)
-					object = tempPuzzler;
-				if (!tempPuzzler.isSolved() && tempObject.getX() < ((GameObject) object).getX())
-					object = tempPuzzler;
+					object = tempObject;
+				if (tempObject.getX() < object.getX())
+					object = tempObject;
 			}
 		}
 		return object;

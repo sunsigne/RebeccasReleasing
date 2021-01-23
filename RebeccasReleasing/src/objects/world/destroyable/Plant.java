@@ -7,13 +7,14 @@ import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public class Plant extends DestroyableObject {
 
 	private Animation[] animation = new Animation[2];
 
 	public Plant(int x, int y, FACING facing) {
-		super(x, y, facing);
+		super(x, y, facing, OBJECTID.PLANT);
 
 		if(facing == FACING.UP) facing = FACING.LEFT;
 		if(facing == FACING.DOWN) facing = FACING.RIGHT;

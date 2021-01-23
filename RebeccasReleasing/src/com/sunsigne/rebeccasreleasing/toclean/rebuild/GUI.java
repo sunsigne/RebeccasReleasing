@@ -26,10 +26,6 @@ public class GUI extends GameObject {
 	private int invulnerabitilyTime;
 	private boolean isInvulnerable;
 
-	private boolean[] redtool = new boolean[2];
-	private boolean[] redMoment = new boolean[2];
-	private int redTime, redNum;
-
 	public GUI() {
 		super(false, 0, 0, OBJECTID.DISPLAYER);
 
@@ -120,14 +116,6 @@ public class GUI extends GameObject {
 		points = points - amount;
 	}
 
-	public void setRedtool(boolean beRed, int toolnum) {
-		this.redtool[toolnum] = beRed;
-		if (beRed) {
-			redNum = 20;
-			redTime = 10;
-		}
-	}
-
 	@Override
 	public void tick() {
 
@@ -135,38 +123,15 @@ public class GUI extends GameObject {
 
 		if (hp <= 0)
 			killPlayer();
-
-		tickRedTool();
 	}
 
-	@Todo("first, this function should depends on the player. Second, the player should blink or something")
+	@Todo("first, this function should depends on the player. Second, the player should blink or something. Third, the player shouln't not be invulnerable when anymore when tasking")
 	private void tickInvunerability() {
 		if (isInvulnerable) {
 			if (invulnerabitilyTime > 0)
 				invulnerabitilyTime--;
 			else {
 				isInvulnerable = false;
-			}
-		}
-	}
-
-	private void tickRedTool() {
-
-		int size = redtool.length;
-		for (int i = 0; i < size; i++) {
-
-			if (redtool[i]) {
-				if (redTime > 0) {
-					boolean flag = true;
-					if (redNum % 2 == 0)
-						flag = false;
-					redTime--;
-					redMoment[i] = flag;
-				} else if (redNum > 0) {
-					redNum--;
-					redTime = 10;
-				} else
-					setRedtool(false, i);
 			}
 		}
 	}
@@ -209,7 +174,6 @@ public class GUI extends GameObject {
 		g.drawString("" + points, x + Size.WIDHT / 2 - 50, y + 90);
 	}
 
-	@Todo("change redtool!")
 	private void drawTools(Graphics g) {
 
 		int numberofTools = CharacteristicsSaved.batterySize.length;
