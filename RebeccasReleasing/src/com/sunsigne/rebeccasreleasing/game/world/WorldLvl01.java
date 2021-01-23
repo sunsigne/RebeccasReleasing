@@ -6,9 +6,8 @@ import java.util.LinkedList;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
-import com.sunsigne.rebeccasreleasing.game.event.INeoEvent;
-import com.sunsigne.rebeccasreleasing.game.event.NeoEventBuilder;
-import com.sunsigne.rebeccasreleasing.game.event.NeoEventListener;
+import com.sunsigne.rebeccasreleasing.game.event.Event;
+import com.sunsigne.rebeccasreleasing.game.event.EventContext;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -62,7 +61,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventFirstStep() {
-		new NeoEventBuilder("First Step", new NeoEventListener() {
+		new Event("First Step", new EventContext() {
 
 			// When the level start
 			@Override
@@ -81,7 +80,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventHereIAm() {
-		new NeoEventBuilder("Here I Am", new NeoEventListener() {
+		new Event("Here I Am", new EventContext() {
 
 			// When the player took some steps
 			@Override
@@ -98,7 +97,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventClosedDoor() {
-		new NeoEventBuilder("Closed Door", new NeoEventListener() {
+		new Event("Closed Door", new EventContext() {
 
 			// When the player is close to the first door location
 			@Override
@@ -110,7 +109,7 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about how opening it
 			@Override
 			public void startEvent() {
-				INeoEvent event = HandlerEvent.getInstance().getEvent("Spawing Key");
+				Event event = HandlerEvent.getInstance().getEvent("Spawing Key");
 				new Chat(2, () -> event.mustOccur(true), frlvl01, englvl01);
 			}
 		});
@@ -119,7 +118,7 @@ public class WorldLvl01 implements ILvl {
 	@Todo("rendre l'apparition de l'outils + évidente ! (nouveau dessin de cutout ?)"
 			+ "éventuellemt faire loot la clef (l'idée est bonne mais il faut justifier le fait de ne pas looter l'épée ...")
 	private void eventSpawningKey() {
-		new NeoEventBuilder("Spawing Key", new NeoEventListener() {
+		new Event("Spawing Key", new EventContext() {
 
 			// When the event "Closed Door" has called this event
 			@Override
@@ -134,14 +133,14 @@ public class WorldLvl01 implements ILvl {
 				World.gui.setRedtool(true, 0);
 				SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 				Conductor.setState(STATE.LEVEL);
-				INeoEvent event = HandlerEvent.getInstance().getEvent("Door Fail 1");
+				Event event = HandlerEvent.getInstance().getEvent("Door Fail 1");
 				getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
 	}
 
 	private void eventDoorFail1() {
-		new NeoEventBuilder("Door Fail 1", new NeoEventListener() {
+		new Event("Door Fail 1", new EventContext() {
 
 			// When the event "Spawing Key" has called this event
 			@Override
@@ -155,14 +154,14 @@ public class WorldLvl01 implements ILvl {
 			public void startEvent() {
 				moveThePlayerFutherFromDoor();
 				new Chat(3, null, frlvl01, englvl01);
-				INeoEvent event = HandlerEvent.getInstance().getEvent("Door Fail 2");
+				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
 				getMostLeftPuzzler(OBJECTID.DOOR).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
 	}
 
 	private void eventDoorFail2() {
-		new NeoEventBuilder("Door Fail 2", new NeoEventListener() {
+		new Event("Door Fail 2", new EventContext() {
 
 			// When the event "Door Fail 1" has called this event
 			@Override
@@ -180,7 +179,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventThatWasEasy() {
-		new NeoEventBuilder("That was Easy", new NeoEventListener() {
+		new Event("That was Easy", new EventContext() {
 
 			// When the player has passed the 2 first doors
 			@Override
@@ -200,7 +199,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventSpawningHp() {
-		new NeoEventBuilder("Spawning Hp", new NeoEventListener() {
+		new Event("Spawning Hp", new EventContext() {
 
 			// When the chat from "That was Easy" has called this event
 			@Override
@@ -217,7 +216,7 @@ public class WorldLvl01 implements ILvl {
 	}
 
 	private void eventNearFoe() {
-		new NeoEventBuilder("Near Foe", new NeoEventListener() {
+		new Event("Near Foe", new EventContext() {
 
 			// When the player is close to the first foe location
 			@Override
@@ -228,14 +227,14 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about how pass by
 			@Override
 			public void startEvent() {
-				INeoEvent event = HandlerEvent.getInstance().getEvent("Spawing Sword");
+				Event event = HandlerEvent.getInstance().getEvent("Spawing Sword");
 				new Chat(6, () -> event.mustOccur(true), frlvl01, englvl01);
 			}
 		});
 	}
 
 	private void eventSpawningSword() {
-		new NeoEventBuilder("Spawing Sword", new NeoEventListener() {
+		new Event("Spawing Sword", new EventContext() {
 
 			// When the event "Near Foe" has called this event
 			@Override
@@ -250,8 +249,8 @@ public class WorldLvl01 implements ILvl {
 				World.gui.setRedtool(true, 1);
 				SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 				Conductor.setState(STATE.LEVEL);
-				INeoEvent event = HandlerEvent.getInstance().getEvent("Foe Fail");
-				INeoEvent event2 = HandlerEvent.getInstance().getEvent("Foe Success");
+				Event event = HandlerEvent.getInstance().getEvent("Foe Fail");
+				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
 				getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> event.mustOccur(true), false);
 				getMostLeftPuzzler(OBJECTID.FOE).setEventOnClose(() -> event2.mustOccur(true), true);
 			}
@@ -260,7 +259,7 @@ public class WorldLvl01 implements ILvl {
 	
 
 	private void eventFoeFail() {
-		new NeoEventBuilder("Foe Fail", new NeoEventListener() {
+		new Event("Foe Fail", new EventContext() {
 
 			// When the event "Spawing Sword" has called this event
 			@Override
@@ -277,7 +276,7 @@ public class WorldLvl01 implements ILvl {
 	}
 	
 	private void eventFoeSuccess() {
-		new NeoEventBuilder("Foe Success", new NeoEventListener() {
+		new Event("Foe Success", new EventContext() {
 
 			// When the event "Spawing Sword" has called this event
 			@Override

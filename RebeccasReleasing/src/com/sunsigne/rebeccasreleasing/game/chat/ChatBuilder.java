@@ -2,7 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.chat;
 
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.game.event.INeoEvent;
+import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.main.STATE;
@@ -138,7 +138,7 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 				sentence[line + 1] = null;
 
 			// checking for eventual event
-			INeoEvent eventOnDisplay = null;
+			Event eventOnDisplay = null;
 			String eventName = event[line];
 
 			if (event[line].indexOf("null") == -1)

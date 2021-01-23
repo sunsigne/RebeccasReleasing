@@ -2,12 +2,12 @@ package com.sunsigne.rebeccasreleasing.system.handler;
 
 import java.util.HashMap;
 
-import com.sunsigne.rebeccasreleasing.game.event.INeoEvent;
+import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 public class HandlerEvent implements ITick {
-
+	
 	// singleton
 
 	private static HandlerEvent instance = null;
@@ -20,22 +20,22 @@ public class HandlerEvent implements ITick {
 
 	// map or list
 
-	private HashMap<String, INeoEvent> handler_event_map = new HashMap<>();
+	private HashMap<String, Event> handler_event_map = new HashMap<>();
 
-	public void addObject(INeoEvent ievent) {
+	public void addObject(Event event) {
 
-		if (ievent != null)
-			handler_event_map.put(ievent.getName(), ievent);
+		if (event != null)
+			handler_event_map.put(event.getName(), event);
 	}
 
-	public INeoEvent getEvent(String name) {
+	public Event getEvent(String name) {
 		return handler_event_map.get(name);
 	}
 
-	public void removeObject(INeoEvent ievent) {
+	public void removeObject(Event event) {
 
-		if (ievent != null)
-			handler_event_map.remove(ievent.getName(), ievent);
+		if (event != null)
+			handler_event_map.remove(event.getName(), event);
 	}
 
 	public void clear() {
@@ -52,18 +52,18 @@ public class HandlerEvent implements ITick {
 
 	@Override
 	public void tick() {
-		handler_event_map.forEach((name, ievent) -> {
-			if (ievent.canOccur() && !ievent.hasOccured()) {
-				if (!ievent.mustOccur()) {
-					ievent.mustOccur(ievent.getListener().startingCondition());
+		handler_event_map.forEach((name, event) -> {
+			if (event.canOccur() && !event.hasOccured()) {
+				if (!event.mustOccur()) {
+					event.mustOccur(event.getContext().startingCondition());
 				}
-				if (ievent.mustOccur()) {
+				if (event.mustOccur()) {
 					Conductor.setState(STATE.CHATTING);
 					HandlerObject.getInstance().player.setMotionless();
-					ievent.canOccur(false);
-					ievent.hasOccured(true);
-					ievent.mustOccur(false);
-					ievent.triggerEvent();
+					event.canOccur(false);
+					event.hasOccured(true);
+					event.mustOccur(false);
+					event.triggerEvent();
 				}
 			}
 		});
