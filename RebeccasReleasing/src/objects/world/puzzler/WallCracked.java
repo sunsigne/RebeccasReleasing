@@ -90,7 +90,7 @@ public class WallCracked extends GameObject implements IPuzzler {
 
 		if (!isSolved()) {
 
-			if (hasToolLvl(Tool.KEY))
+			if (hasToolLvl(Tool.BOMB))
 				openPuzzle(living, this);
 			else
 				blockPass(living, this);

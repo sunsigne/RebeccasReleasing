@@ -66,7 +66,7 @@ public class PlayerObject extends LivingObject {
 		int facing = getFacing().getNum();
 		
 		if (isMotionless())
-			g.drawImage(texture.living_rebecca_walking[facing][0], x, y, w, h, null);
+			g.drawImage(texture.living_rebecca_walking[facing][1], x, y, w, h, null);
 		else
 			drawAnimation(g, x, y, w, h, getFacing().getNum());
 

@@ -58,7 +58,7 @@ public class Conductor {
 	@Todo("passer a un système intelligent qui determine le lvl avec la sauvegarde")
 	public static void openLvl() {
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl02();
+		ILvl level = new WorldLvl03();
 		World.currentWorld = new World(level);
 	}
 

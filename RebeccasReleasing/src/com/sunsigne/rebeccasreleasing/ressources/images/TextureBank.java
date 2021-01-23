@@ -71,7 +71,7 @@ public class TextureBank {
 	// gui
 	public BufferedImage[][] gui_battery = new BufferedImage[8][8]; // - number of charge - max charge
 	public BufferedImage[] gui_data = new BufferedImage[3]; // - state
-	public BufferedImage[] gui_tool = new BufferedImage[2]; // - state
+	public BufferedImage[] gui_tool = new BufferedImage[4]; // - state
 
 	// puzzle
 	public BufferedImage[] puzzle_bomb = new BufferedImage[10]; // - state
@@ -91,7 +91,7 @@ public class TextureBank {
 	public BufferedImage[][] destroyable_plant = new BufferedImage[2][4]; // - facing - state
 
 	// loot
-	public BufferedImage[][] loot_tool = new BufferedImage[7][2]; // - difficulty - state
+	public BufferedImage[][] loot_tool = new BufferedImage[7][4]; // - difficulty - state
 
 	// decor
 	public BufferedImage[][] decor_couch = new BufferedImage[4][4]; // - facing - length
@@ -201,7 +201,7 @@ public class TextureBank {
 			gui_data[i] = gui_data_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 4; i++) {
 			gui_tool[i] = gui_tool_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
@@ -258,7 +258,7 @@ public class TextureBank {
 		}
 
 		// loot
-		for (int j = 0; j < 2; j++) {
+		for (int j = 0; j < 4; j++) {
 			for (int i = 0; i < 7; i++) {
 				loot_tool[i][j] = loot_tool_sheet.grabImage(i, j + 1, 32, 32);
 			}

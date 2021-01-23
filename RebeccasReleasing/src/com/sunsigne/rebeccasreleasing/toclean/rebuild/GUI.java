@@ -87,8 +87,7 @@ public class GUI extends GameObject {
 	 * @param amount
 	 */
 	public void removeHp(int amount) {
-		if (!infiniteHp && !isInvulnerable)
-		{
+		if (!infiniteHp && !isInvulnerable) {
 			hp = hp - amount;
 			setInvulnerable();
 		}
@@ -139,10 +138,9 @@ public class GUI extends GameObject {
 
 		tickRedTool();
 	}
-	
+
 	@Todo("first, this function should depends on the player. Second, the player should blink or something")
-	private void tickInvunerability()
-	{
+	private void tickInvunerability() {
 		if (isInvulnerable) {
 			if (invulnerabitilyTime > 0)
 				invulnerabitilyTime--;
@@ -197,8 +195,8 @@ public class GUI extends GameObject {
 		if (!infiniteHp) {
 			g.drawImage(texture.gui_data[heart3], x + (Size.TILE_PUZZLE + Size.TILE_PUZZLE / 2), y, Size.TILE_PUZZLE,
 					Size.TILE_PUZZLE, null);
-			g.drawImage(texture.gui_data[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y, Size.TILE_PUZZLE,
-					Size.TILE_PUZZLE, null);
+			g.drawImage(texture.gui_data[heart2], x + (Size.TILE_PUZZLE / 2 + Size.TILE_PUZZLE / 4), y,
+					Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 			g.drawImage(texture.gui_data[heart1], x, y, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 		}
 	}
@@ -225,13 +223,10 @@ public class GUI extends GameObject {
 			if (currentToolLvl != 0) {
 				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
 						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
-				if (redMoment[i])
-					g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
-							Size.HEIGHT - Size.TILE_PUZZLE, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
-				g.drawImage(texture.gui_battery[currentToolLvl][savedBatterySize], x + 20 + Size.TILE_PUZZLE * (2 * i + 1),
-						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				g.drawImage(texture.gui_battery[currentToolLvl][savedBatterySize],
+						x + 20 + Size.TILE_PUZZLE * (2 * i + 1), Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE,
+						Size.TILE_PUZZLE, null);
 			}
-
 		}
 	}
 
@@ -239,7 +234,7 @@ public class GUI extends GameObject {
 	public Rectangle getBounds() {
 		return null;
 	}
-	
+
 	@Todo("put a verification : if the player is suddently tasking, he should no longer be invulnerable")
 	public void setInvulnerable() {
 		isInvulnerable = true;
