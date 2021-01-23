@@ -33,7 +33,7 @@ public class Chat extends ChatBuilder {
 		HandlerObject.getInstance().addObject(World.gui);
 		HandlerObject.getInstance().addObject(chatObject[count]);
 		if (chatObject[count].getEventOnDisplay() != null)
-			chatObject[count].getEventOnDisplay().startEvent();
+			chatObject[count].getEventOnDisplay().mustOccur(true);
 	}
 
 	private void goToNextSentence() {

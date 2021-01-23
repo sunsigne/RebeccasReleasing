@@ -9,6 +9,8 @@ import objects.IFacing.FACING;
 
 public class TextureBank {
 
+	// singleton
+	
 	private static TextureBank instance = null;
 
 	public static TextureBank getInstance() {

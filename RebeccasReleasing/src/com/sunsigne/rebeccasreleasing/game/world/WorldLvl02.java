@@ -2,8 +2,6 @@ package com.sunsigne.rebeccasreleasing.game.world;
 
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventLvl02;
-import com.sunsigne.rebeccasreleasing.game.event.IEvent;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 
 public class WorldLvl02 implements ILvl {
@@ -24,8 +22,8 @@ public class WorldLvl02 implements ILvl {
 	}
 
 	@Override
-	public IEvent getIEvent() {
-		return new EventLvl02();
+	public void loadEvent() {
+
 	}
 
 }

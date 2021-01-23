@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventLoader;
 import com.sunsigne.rebeccasreleasing.game.event.IEvent;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
@@ -20,12 +20,11 @@ import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.living.FoeObject;
+import objects.characters.living.PlayerObject;
 
 public class World implements IRender {
 
 	private ILvl ilvl;
-	private IEvent ievent;
-	private EventLoader event;
 
 	public static World currentWorld;
 
@@ -34,8 +33,7 @@ public class World implements IRender {
 
 	public World(ILvl ilvl) {
 		this.ilvl = ilvl;
-		ievent = ilvl.getIEvent();
-		event = new EventLoader(ievent);
+		ilvl.loadEvent();
 		HandlerRender.getInstance().addObject(this);
 		World.levelnum = ilvl.getLvlNumber();
 
@@ -52,16 +50,12 @@ public class World implements IRender {
 		return ilvl;
 	}
 
-	public IEvent getIEvent() {
-		return ievent;
-	}
 
 	private void loadLevel() {
 
 		MapBuilder.createLevel(ilvl.getLvlImage());
 		startGUI();
 		Conductor.setState(STATE.LEVEL);
-		event.start();
 	}
 	
 
@@ -95,9 +89,11 @@ public class World implements IRender {
 	}
 
 	public void close() {
-
+		
+		Conductor.setState(STATE.LOADING);
+		HandlerEvent.getInstance().clear();
 		GameMouseInput.getInstance().clearClickable();
-		event.clearEvent();
+		HandlerObject.getInstance().player = new PlayerObject(0, 0);
 		HandlerObject.getInstance().isPlayerExisting = false;
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);

@@ -2,16 +2,16 @@ package com.sunsigne.rebeccasreleasing.game.chat;
 
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.game.event.INeoEvent;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.IClick;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 import objects.characters.CHARA;
@@ -19,11 +19,10 @@ import objects.characters.CHARA;
 public abstract class ChatBuilder extends Clickable implements IClick {
 
 	protected static final int MAX_LINES_FOR_SAME_DIALOGUE = 255;
-	
-	protected ChatObject[] chatObject = new ChatObject[MAX_LINES_FOR_SAME_DIALOGUE];
-	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.TOTALNUM + 1];	
 
-	
+	protected ChatObject[] chatObject = new ChatObject[MAX_LINES_FOR_SAME_DIALOGUE];
+	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.TOTALNUM + 1];
+
 	/**
 	 * WARNING ! Because of the fonctions mouse.clearClickable() and
 	 * HandlerObject.getInstance().clearFront(); starting a chat would cause various
@@ -38,12 +37,12 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 		creationOfChatObjectFromChatID(chatID);
 		displayChat();
 	}
-	
+
 	@Override
 	public boolean isCameraDependant() {
 		return false;
 	}
-	
+
 	protected abstract void displayChat();
 
 	private void languageMapping(ChatMap chatMap, ChatMap... chatMaps) {
@@ -107,7 +106,7 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 		CHARA[] chara = new CHARA[size];
 		String[] sentence = new String[size + 1];
 		boolean twoSentences = false;
-		int[] event = new int[size];
+		String[] event = new String[size];
 		int gap = 0;
 
 		for (int line = 0; line < size; line++) {
@@ -121,7 +120,7 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 			// segmenting data from line
 			dataIntoLine[line] = chatIDLines[line].split(";");
 			chara[line] = CHARA.getChara(Integer.valueOf(dataIntoLine[line][3]));
-			event[line] = Integer.valueOf(dataIntoLine[line][2]);
+			event[line] = String.valueOf(dataIntoLine[line][2]).replace("\"", "");
 			sentence[line] = dataIntoLine[line][5].replace("\"", "");
 
 			// checking for next line
@@ -138,11 +137,13 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 			else
 				sentence[line + 1] = null;
 
-			//checking for eventual event
-			EventListener eventOnDisplay = null;
-			int eventNum = event[line];
-			if (eventNum != 0) eventOnDisplay = () -> World.currentWorld.getIEvent().setMustoccur(true, eventNum);
-			
+			// checking for eventual event
+			INeoEvent eventOnDisplay = null;
+			String eventName = event[line];
+
+			if (event[line].indexOf("null") == -1)
+				eventOnDisplay = HandlerEvent.getInstance().getEvent(eventName);
+
 			chatObject[line - gap] = new ChatObject(chara[line], sentence[line], sentence[line + 1], eventOnDisplay);
 			chatObject[line + 1 - gap] = null;
 		}

@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class ImageBank {
 
+	// map or list
+	
 	private static Map<ImageBank, BufferedImage> images = new HashMap<>();
 
 	// Even if this method is only used in this class, I prefere to let it public

@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.game.event.INeoEvent;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -20,7 +20,7 @@ public class ChatObject extends GameObject {
 
 	private static final int NUM_OF_SENTENCES = 2;
 
-	private EventListener eventOnDisplay;
+	private INeoEvent eventOnDisplay;
 
 	public boolean fulldisplayed;
 	private boolean[] stop = new boolean[2];
@@ -34,7 +34,7 @@ public class ChatObject extends GameObject {
 	private int pausetime;
 	private int count, index;
 
-	public ChatObject(CHARA chara, String sentence1, String sentence2, EventListener eventOnDisplay) {
+	public ChatObject(CHARA chara, String sentence1, String sentence2, INeoEvent eventOnDisplay) {
 		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.eventOnDisplay = eventOnDisplay;
@@ -65,7 +65,7 @@ public class ChatObject extends GameObject {
 
 	// state
 
-	public EventListener getEventOnDisplay() {
+	public INeoEvent getEventOnDisplay() {
 		return eventOnDisplay;
 	}
 

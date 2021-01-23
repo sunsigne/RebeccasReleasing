@@ -38,6 +38,7 @@ public class Conductor {
 	// behavior
 
 	public static void start() {
+		Conductor.setState(STATE.LOADING);
 		Game.game.start();
 		new DualChecker().start();
 		Game.game.forceLoop();
@@ -57,8 +58,9 @@ public class Conductor {
 
 	@Todo("passer a un système intelligent qui determine le lvl avec la sauvegarde")
 	public static void openLvl() {
+		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl03();
+		ILvl level = new WorldLvl01();
 		World.currentWorld = new World(level);
 	}
 

@@ -14,12 +14,6 @@ public class HandlerTick implements ITick {
 	
 	private LinkedList<ITick> handler_tick_list = new LinkedList<>();
 
-	@Override
-	public void tick() {
-		for (ITick tempTick : handler_tick_list)
-			tempTick.tick();
-	}
-
 	public void addObject(ITick tickable) {
 
 		if (tickable != null)
@@ -31,5 +25,12 @@ public class HandlerTick implements ITick {
 		if (tickable != null)
 			handler_tick_list.remove(tickable);
 	}
+	
+	@Override
+	public void tick() {
+		for (ITick tempTick : handler_tick_list)
+			tempTick.tick();
+	}
+
 
 }

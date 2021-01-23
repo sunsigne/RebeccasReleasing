@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class SoundBank {
 
+	// map or list
+	
 	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
 
 	// Even if this method is only used in this class, I prefere to let it public
