@@ -140,6 +140,7 @@ public abstract class Puzzle extends Clickable {
 			World.gui.removeHp();
 		} else if (winning)
 			SoundTask.playSound(getSuccessSound());
+		World.gui.setInvulnerable(false);
 	}
 
 	private void checkMultipleFoes(boolean winning) {

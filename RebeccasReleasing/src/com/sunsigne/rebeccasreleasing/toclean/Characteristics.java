@@ -7,10 +7,19 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 public interface Characteristics {
 
 	static final GameFile tools = new GameFile("characteristics/tools");
-
+	static final GameFile hearts = new GameFile("characteristics/hearts");
+	
 	public Tool getTool(int num);
 
-	public default Tool creationOfToolFromToolNumWithSavedData(int toolNum) {
+	public int getHp();
+
+	public void setHp(int hp);
+	
+	public int getMaxHp();
+
+	public void setMaxHp(int hp);
+	
+	public default Tool getToolFromFile(int toolNum) {
 
 		String toolLine = FileTask.read(tools, toolNum + 2);
 		// the + 2 stand here because the first line should correspond
@@ -26,6 +35,12 @@ public interface Characteristics {
 		maxLvl = Integer.valueOf(dataIntoLine[3]);
 
 		return new Tool(toolNum, currentLvl, maxLvl);
+	}
+	
+	public default int getMaxHpFromFile()
+	{
+		String heartLine = FileTask.read(hearts, 2);
+		return Integer.valueOf(heartLine);
 	}
 
 }

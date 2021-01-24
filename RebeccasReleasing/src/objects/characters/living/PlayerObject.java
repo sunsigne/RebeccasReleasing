@@ -9,6 +9,7 @@ public class PlayerObject extends LivingObject {
 
 	private Animation[] animation = new Animation[4];
 	private boolean tasking;
+	private boolean blinking;
 
 	public PlayerObject(int x, int y) {
 		super(x, y, OBJECTID.PLAYER);
@@ -52,13 +53,19 @@ public class PlayerObject extends LivingObject {
 		setTasking(false);
 		setMotionless();
 	}
+	
+	public void blink(int invulnerabitilyTime) {
+		if (invulnerabitilyTime % 4 == 0)
+			blinking = false;
+		else blinking = true;
+	}
 
 	// design
 
 	@Override
 	public void render(Graphics g) {
 
-		renderingRebecca(g);
+		if(!blinking) renderingRebecca(g);
 		drawHitbox(g);
 	}
 
