@@ -9,6 +9,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toclean.Characteristics;
 import com.sunsigne.rebeccasreleasing.toclean.verify.BonusText;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
@@ -17,7 +18,7 @@ import objects.GameObject;
 @Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\" & quand la clef apparait, on a envie de la prendre ...")
 public class GUI extends GameObject {
 
-	private CharacteristicsTemp characteristics;
+	private Characteristics characteristics;
 
 	private int fullhp, hp;
 	private int points;
@@ -29,12 +30,12 @@ public class GUI extends GameObject {
 	public GUI() {
 		super(false, 0, 0, OBJECTID.DISPLAYER);
 
-		characteristics = new CharacteristicsTemp();
+		characteristics = new Characteristics();
 		fullhp = 3;
 		setHp(fullhp);
 	}
 
-	public CharacteristicsTemp getCharacteristics() {
+	public Characteristics getCharacteristics() {
 		return characteristics;
 	}
 
@@ -176,13 +177,13 @@ public class GUI extends GameObject {
 
 	private void drawTools(Graphics g) {
 
-		int numberofTools = CharacteristicsSaved.batterySize.length;
+		int numberofTools = characteristics.tools.length;
 		int currentToolLvl = 0;
 		int savedBatterySize = 0;
 
 		for (int i = 0; i < numberofTools; i++) {
-			currentToolLvl = characteristics.getTool(i).getLvl();
-			savedBatterySize = CharacteristicsSaved.batterySize[i];
+			currentToolLvl = characteristics.getTool(i).getCurrentLvl();
+			savedBatterySize = characteristics.getTool(i).getMaxLvl();
 
 			if (currentToolLvl != 0) {
 				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),

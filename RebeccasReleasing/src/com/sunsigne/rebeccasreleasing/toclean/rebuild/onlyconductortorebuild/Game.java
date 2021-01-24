@@ -167,7 +167,7 @@ public class Game extends Canvas implements Runnable {
 		} catch (Exception e) {
 			// same problem as above but can be more annoying.
 			// Clearly, It's just better to ignore this catch as this method is called ONCE.
-			// Besides, this method get created to solve another problem, so fuck it.
+			// Besides, this method get created to solve another problem, so just fuck it.
 		}
 	}
 

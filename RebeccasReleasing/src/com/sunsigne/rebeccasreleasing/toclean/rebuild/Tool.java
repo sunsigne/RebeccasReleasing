@@ -1,7 +1,5 @@
 package com.sunsigne.rebeccasreleasing.toclean.rebuild;
 
-import com.sunsigne.rebeccasreleasing.game.world.World;
-
 public class Tool {
 
 	private int toolnum;
@@ -10,11 +8,13 @@ public class Tool {
 	public static final int BOMB = 2;
 	public static final int SEARCH = 3;
 
-	private int lvl;
+	private int currentLvl;
+	private int maxLvl;
 
-	public Tool(int toolnum, int lvl) {
+	public Tool(int toolnum, int currentLvl, int maxLvl) {
 		this.toolnum = toolnum;
-		this.lvl = lvl;
+		this.currentLvl = currentLvl;
+		this.maxLvl = maxLvl;
 	}
 	
 	public String getName()
@@ -24,6 +24,7 @@ public class Tool {
 		case 0 : return "Key";
 		case 1 : return "Sword";
 		case 2 : return "Bomb";
+		case 3 : return "Search";
 		default : return "Unknown";
 		}
 	}
@@ -33,27 +34,35 @@ public class Tool {
 		return toolnum;
 	}
 
-	public int getLvl() {
-		return lvl;
+	public int getCurrentLvl() {
+		return currentLvl;
+	}
+	
+	public int getMaxLvl() {
+		return maxLvl;
 	}
 
-	public void setLvl(int lvl) {
-		this.lvl = lvl;
+	public void setCurrentLvl(int lvl) {
+		this.currentLvl = lvl;
+	}
+	
+	public void setMaxLvl(int maxLvl) {
+		this.maxLvl = maxLvl;
 	}
 
 	public void upgradeLvlTo(int lvl) {
 
-		int currentLvl = World.gui.getCharacteristics().getTool(toolnum).getLvl();
-		int lvlMax = CharacteristicsSaved.batterySize[toolnum];
-		
 		if(currentLvl < lvl)
 		{
-			if (lvl < lvlMax)
-				setLvl(lvl);
+			if (lvl < maxLvl)
+				setCurrentLvl(lvl);
 			else 
-				setLvl(lvlMax);
+				setCurrentLvl(maxLvl);
 		}
 	
 	}
+
+
+
 
 }

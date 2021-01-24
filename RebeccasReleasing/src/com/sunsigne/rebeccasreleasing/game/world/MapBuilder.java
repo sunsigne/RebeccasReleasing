@@ -74,7 +74,7 @@ public class MapBuilder {
 				
 				//key
 				if (red == 126 && green == 126 && blue == 125)
-					handler_object.addObject(new LootTool(xx * Size.TILE, yy * Size.TILE, new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl())));
+					handler_object.addObject(new LootTool(xx * Size.TILE, yy * Size.TILE, new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0)));
 				
 				// couch
 				if (red == 64 && green == 0 && blue == 6)

@@ -38,6 +38,30 @@ public class FileTask {
 		return fileContent;
 	}
 
+	public static String read(GameFile gamefile, int lineToRead) {
+
+		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
+		Scanner scan = null;
+		String lineContent = "";
+		int count = 0;
+
+		try {
+			if (file.exists()) {
+				scan = new Scanner(file, "UTF-8");
+				while (count != lineToRead) {
+					if(lineToRead < 0) break;
+					lineContent = scan.nextLine();
+					count++;
+				}
+				scan.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return lineContent;
+	}
+
 	public static void write(GameFile gamefile, String text) {
 		File file = new File("ressources/data/" + gamefile.getFilename() + ".csv");
 		FileWriter writer = null;
@@ -63,8 +87,10 @@ public class FileTask {
 		try {
 			writer = new FileWriter(file);
 			for (int i = 0; i < size; i++) {
-				if(i != atLine)	writer.write(String.format(alllines[i] + "%n"));
-				else writer.write(String.format(text + "%n"));
+				if (i != atLine)
+					writer.write(String.format(alllines[i] + "%n"));
+				else
+					writer.write(String.format(text + "%n"));
 			}
 			writer.close();
 

@@ -8,7 +8,6 @@ import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.clickable.PuzzleCard;
-import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -142,7 +141,6 @@ public class FoeObject extends LivingObject implements IPuzzler {
 	}
 
 	public void kill() {
-		World.gui.getCharacteristics().setSureCrit(false);
 		HandlerObject.getInstance().removeObject(this);
 	}
 

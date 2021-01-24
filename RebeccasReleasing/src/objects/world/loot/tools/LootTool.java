@@ -22,7 +22,7 @@ public class LootTool extends LootObject {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.loot_tool[tool.getLvl()][tool.getToolNum()];
+		BufferedImage img = texture.loot_tool[tool.getCurrentLvl()][tool.getToolNum()];
 		g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
@@ -31,13 +31,13 @@ public class LootTool extends LootObject {
 
 	@Override
 	protected String displayTextOnPickup() {
-		return "Lvl" + " " + tool.getLvl() +  " " + tool.getName();
+		return "Lvl" + " " + tool.getCurrentLvl() +  " " + tool.getName();
 	}
 	
 	@Override
 	protected void triggerActionOnPickup() {
 
-		World.gui.getCharacteristics().getTool(tool.getToolNum()).upgradeLvlTo(tool.getLvl());
+		World.gui.getCharacteristics().getTool(tool.getToolNum()).upgradeLvlTo(tool.getCurrentLvl());
 	}
 
 

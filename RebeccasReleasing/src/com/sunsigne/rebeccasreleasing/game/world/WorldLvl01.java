@@ -78,7 +78,7 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				DestroyableObject plant = ((DestroyableObject) getMostLeftObject(OBJECTID.PLANT));
-				Tool cyan_key = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl());
+				Tool cyan_key = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 				plant.setLootObject(new LootTool(plant.getX(), plant.getY(), cyan_key));
 				World.gui.setInfinitHp(true);
 				HandlerObject.getInstance().player.setVelY(0);
@@ -122,7 +122,7 @@ public class WorldLvl01 implements ILvl {
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Had The Key");
 				EventListener listener = null;
-				if(World.gui.getCharacteristics().getTool(Tool.KEY).getLvl() > 0) listener = () -> event.mustOccur(true);
+				if(World.gui.getCharacteristics().getTool(Tool.KEY).getCurrentLvl() > 0) listener = () -> event.mustOccur(true);
 				new Chat(2, listener, frlvl01, englvl01);
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
 				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event1.mustOccur(true), false);
