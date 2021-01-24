@@ -122,7 +122,7 @@ public class WorldLvl01 implements ILvl {
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Had The Key");
 				EventListener listener = null;
-				if(World.gui.getCharacteristics().getTool(Tool.KEY).getCurrentLvl() > 0) listener = () -> event.mustOccur(true);
+				if(World.gui.getTool(Tool.KEY).getCurrentLvl() > 0) listener = () -> event.mustOccur(true);
 				new Chat(2, listener, frlvl01, englvl01);
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
 				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event1.mustOccur(true), false);
@@ -260,7 +260,7 @@ public class WorldLvl01 implements ILvl {
 			// and prepare the foe for dialogue if failing or winning
 			@Override
 			public void startEvent() {
-				World.gui.getCharacteristics().getTool(Tool.SWORD).upgradeLvlTo(2);
+				World.gui.getTool(Tool.SWORD).upgradeLvlTo(2);
 				SoundTask.playSound(SoundBank.getSound(SoundBank.popup));
 				Conductor.setState(STATE.LEVEL);
 				Event event = HandlerEvent.getInstance().getEvent("Foe Fail");

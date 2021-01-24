@@ -33,7 +33,7 @@ public interface IPuzzler extends ICollision {
 
 	public default boolean hasToolLvl(DIFFICULTY difficulty, int toolnum) {
 		boolean toolhasLvl = false;
-		Tool current_tool = World.gui.getCharacteristics().getTool(toolnum);
+		Tool current_tool = World.gui.getTool(toolnum);
 		int current_tool_lvl = current_tool.getCurrentLvl();
 		if (current_tool_lvl >= difficulty.getLvl())
 			toolhasLvl = true;

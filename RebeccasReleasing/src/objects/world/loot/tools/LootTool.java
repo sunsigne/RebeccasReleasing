@@ -37,7 +37,7 @@ public class LootTool extends LootObject {
 	@Override
 	protected void triggerActionOnPickup() {
 
-		World.gui.getCharacteristics().getTool(tool.getToolNum()).upgradeLvlTo(tool.getCurrentLvl());
+		World.gui.getTool(tool.getToolNum()).upgradeLvlTo(tool.getCurrentLvl());
 	}
 
 
