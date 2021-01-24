@@ -6,7 +6,7 @@ public class Tool {
 	public static final int KEY = 0;
 	public static final int SWORD = 1;
 	public static final int BOMB = 2;
-	public static final int SEARCH = 3;
+	public static final int GLASS = 3;
 
 	private int currentLvl;
 	private int maxLvl;
@@ -24,7 +24,7 @@ public class Tool {
 		case 0 : return "Key";
 		case 1 : return "Sword";
 		case 2 : return "Bomb";
-		case 3 : return "Search";
+		case 3 : return "Glass";
 		default : return "Unknown";
 		}
 	}

@@ -13,7 +13,7 @@ public class Characteristics {
 		tools[Tool.KEY] = creationOfToolFromToolNumWithSavedData(Tool.KEY);
 		tools[Tool.SWORD] = creationOfToolFromToolNumWithSavedData(Tool.SWORD);
 		tools[Tool.BOMB] = creationOfToolFromToolNumWithSavedData(Tool.BOMB);
-		tools[Tool.SEARCH] = creationOfToolFromToolNumWithSavedData(Tool.SEARCH);
+		tools[Tool.GLASS] = creationOfToolFromToolNumWithSavedData(Tool.GLASS);
 	}
 
 	public Tool getTool(int num) {
