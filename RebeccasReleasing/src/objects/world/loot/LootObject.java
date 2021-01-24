@@ -38,7 +38,7 @@ public abstract class LootObject extends GameObject implements ICollision {
 	public void collision(LivingObject living) {
 
 		if (time_before_lootable <= 0) {
-			if (living.isPlayer() && !living.isMotionless())
+			if (living.isPlayer())
 				living.getCollisionDetector().collidingBehavior(false, this, () -> {
 					HandlerObject.getInstance().removeObject(this);
 					HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
