@@ -118,10 +118,27 @@ public class MapBuilder {
 					handler_object.addObject(new Case(xx * Size.TILE, yy * Size.TILE));
 				if (red == 255 && green == 128 && blue == 255)
 					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
+				if (red == 255 && green == 128 && blue == 254)
+					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT));
 				if (red == 255 && green == 0 && blue == 255)
 					handler_object.addObject(new Desk(xx * Size.TILE, yy * Size.TILE, FACING.UP));
+				if (red == 255 && green == 0 && blue == 254)
+				{
+					Desk desk = new Desk(xx * Size.TILE, yy * Size.TILE, FACING.UP);
+					Tool cyan_sword = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+					desk.setLootObject(new LootTool(desk.getX(), desk.getY(), cyan_sword));
+					handler_object.addObject(desk);
+				}
+				
 				if (red == 128 && green == 255 && blue == 128)
 					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.LEFT));
+				if (red == 128 && green == 255 && blue == 127)
+				{
+					Plant plant = new Plant(xx * Size.TILE, yy * Size.TILE, FACING.LEFT);
+					Tool cyan_key = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
+					plant.setLootObject(new LootTool(plant.getX(), plant.getY(), cyan_key));
+					handler_object.addObject(plant);
+				}
 				if (red == 0 && green == 255 && blue == 128)
 					handler_object.addObject(new Plant(xx * Size.TILE, yy * Size.TILE, FACING.RIGHT));
 				if (red == 64 && green == 64 && blue == 0)
