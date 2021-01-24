@@ -6,13 +6,13 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 public interface Characteristics {
 
-	static final GameFile characteristics = new GameFile("characteristics");
+	static final GameFile tools = new GameFile("characteristics/tools");
 
 	public Tool getTool(int num);
 
 	public default Tool creationOfToolFromToolNumWithSavedData(int toolNum) {
 
-		String toolLine = FileTask.read(characteristics, toolNum + 2);
+		String toolLine = FileTask.read(tools, toolNum + 2);
 		// the + 2 stand here because the first line should correspond
 		// to tool 0 (the key) -> line 1 = tool 0 -> +1, but as the first
 		// line is descriptive, the actual data start line 2 -> +1 again
