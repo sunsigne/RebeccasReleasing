@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -32,7 +33,7 @@ public class World implements IRender {
 
 	public World(ILvl ilvl) {
 		this.ilvl = ilvl;
-		ilvl.loadEvent();
+//		ilvl.loadEvent();
 		HandlerRender.getInstance().addObject(this);
 		World.levelnum = ilvl.getLvlNumber();
 
@@ -52,7 +53,7 @@ public class World implements IRender {
 
 	private void loadLevel() {
 
-		MapBuilder.createLevel(ilvl.getLvlImage());
+		MapCreator.createLevel(ilvl.getLvlImage());
 		startGUI();
 		Conductor.setState(STATE.LEVEL);
 	}

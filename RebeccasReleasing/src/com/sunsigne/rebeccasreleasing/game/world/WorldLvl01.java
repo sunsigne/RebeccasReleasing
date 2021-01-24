@@ -44,7 +44,7 @@ public class WorldLvl01 implements ILvl {
 
 	@Override
 	public BufferedImage getLvlImage() {
-		return ImageBank.getImage(ImageBank.lvl01);
+		return ImageBank.getImage(ImageBank.lvl01big);
 	}
 
 	@Override

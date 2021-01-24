@@ -25,10 +25,6 @@ public class Computer extends GameObject implements IPuzzler {
 	private DIFFICULTY difficulty;
 	private boolean solved;
 
-	public Computer(int x, int y) {
-		this(x, y, DIFFICULTY.CYAN);
-	}
-
 	public Computer(int x, int y, DIFFICULTY difficulty) {
 		super(true, x, y + Size.TILE / 64, OBJECTID.COMPUTER);
 

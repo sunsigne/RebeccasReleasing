@@ -60,6 +60,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
+		//!! new map creator ! Lvl 02 and 03 won't work
 		ILvl level = new WorldLvl01();
 		World.currentWorld = new World(level);
 	}

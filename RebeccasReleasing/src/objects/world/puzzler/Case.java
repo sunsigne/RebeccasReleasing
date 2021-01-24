@@ -24,10 +24,6 @@ public class Case extends GameObject implements IPuzzler {
 	private DIFFICULTY difficulty;
 	private boolean solved;
 
-	public Case(int x, int y) {
-		this(x, y, DIFFICULTY.CYAN);
-	}
-
 	public Case(int x, int y, DIFFICULTY difficulty) {
 		super(true, x, y, OBJECTID.CASE);
 
