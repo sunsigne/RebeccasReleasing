@@ -2,7 +2,7 @@ package com.sunsigne.rebeccasreleasing.toclean.verify;
 
 public enum OBJECTID {
 
-	MENU,
+	LOADING, MENU,
 
 	// CHARACTERS
 	DISPLAYER, PLAYER, FOE,
