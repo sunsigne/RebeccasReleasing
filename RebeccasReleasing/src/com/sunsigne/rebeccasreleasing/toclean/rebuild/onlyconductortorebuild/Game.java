@@ -53,8 +53,8 @@ public class Game extends Canvas implements Runnable {
 	public Game() {
 
 		game = this;
-		Conductor.setState(STATE.LOADING);
 		Options.loadSavedSettings();
+		Conductor.setState(STATE.LOADING);
 		ImageBank.loadRessources();
 		SoundBank.loadRessources();
 		TextureBank.getInstance().loadRessources();
@@ -160,14 +160,14 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	void forceLoop() {
+	public void forceLoop() {
 		try {
 			tick();
 			render();
 		} catch (Exception e) {
 			// same problem as above but can be more annoying.
-			// Clearly, It's just better to ignore this catch as this method is called ONCE.
-			// Besides, this method get created to solve another problem, so just fuck it.
+			// Clearly, It's just better to ignore this catch
+			// as this method is called very rarely.
 		}
 	}
 
