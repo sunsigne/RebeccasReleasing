@@ -3,7 +3,7 @@ package com.sunsigne.rebeccasreleasing.ressources.images;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 public class Animation {
 

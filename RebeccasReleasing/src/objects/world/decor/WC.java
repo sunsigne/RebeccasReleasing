@@ -1,15 +1,17 @@
-package com.sunsigne.rebeccasreleasing.toclean.redesign;
+package objects.world.decor;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
+@Todo("redesign")
 public class WC extends GameObject implements ICollision  {
 
 	public WC(int x, int y) {

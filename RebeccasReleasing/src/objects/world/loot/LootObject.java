@@ -14,7 +14,7 @@ import objects.GameObject;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-@Todo("item to stun all ennemies"
+@Todo("item to stun all ennemies ?"
 		+ "/ les loots c'est ici ou dans une class à part que ça se gère, pas sur les ennemis")
 public abstract class LootObject extends GameObject implements ICollision {
 

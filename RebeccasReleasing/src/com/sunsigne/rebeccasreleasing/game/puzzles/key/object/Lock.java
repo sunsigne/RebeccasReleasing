@@ -3,13 +3,11 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
-@Todo("make more obvious the lock can be controlled by tyhe mouse at the start of the game")
 public class Lock extends PuzzleObject {
 
 	int ymin = 32 + Size.TILE_PUZZLE;

@@ -5,21 +5,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.Bomb;
 import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.BombObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.BombReversed;
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
 
-@Todo("difficulty : moving bomb, bigger count")
 public abstract class PuzzleBombBuilder<T> extends Puzzle {
 
 	private static BombObject[] bomb = new BombObject[4];

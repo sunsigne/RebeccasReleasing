@@ -3,8 +3,8 @@ package com.sunsigne.rebeccasreleasing.system.handler;
 import java.util.HashMap;
 
 import com.sunsigne.rebeccasreleasing.game.event.Event;
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 
 public class HandlerEvent implements ITick {
 	

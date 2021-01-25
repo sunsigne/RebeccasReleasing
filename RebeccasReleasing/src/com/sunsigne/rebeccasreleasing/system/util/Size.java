@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.main;
+package com.sunsigne.rebeccasreleasing.system.util;
 
 public final class Size {
 	

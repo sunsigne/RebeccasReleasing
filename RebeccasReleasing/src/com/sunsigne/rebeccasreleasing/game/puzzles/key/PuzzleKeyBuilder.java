@@ -12,12 +12,12 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.Key;
 import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.KeyObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.KeyReversed;
 import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.Lock;
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
 

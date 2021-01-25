@@ -1,7 +1,6 @@
 
 package com.sunsigne.rebeccasreleasing.game.puzzles.bomb.clickable;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.PuzzleBombBuilder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.Bomb;
@@ -9,7 +8,6 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 
 import objects.world.puzzler.IPuzzler;
 
-@Todo("difficulty : moving bomb, bigger count")
 public class PuzzleBomb extends PuzzleBombBuilder<Bomb> {
 
 	public PuzzleBomb(IPuzzler puzzler, DIFFICULTY difficulty) {

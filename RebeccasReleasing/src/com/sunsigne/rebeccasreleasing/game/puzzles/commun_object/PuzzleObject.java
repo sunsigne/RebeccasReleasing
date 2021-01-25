@@ -1,6 +1,6 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles.commun_object;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;

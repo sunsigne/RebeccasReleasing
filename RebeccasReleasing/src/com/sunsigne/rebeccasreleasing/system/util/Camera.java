@@ -1,6 +1,5 @@
-package com.sunsigne.rebeccasreleasing.system;
+package com.sunsigne.rebeccasreleasing.system.util;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;

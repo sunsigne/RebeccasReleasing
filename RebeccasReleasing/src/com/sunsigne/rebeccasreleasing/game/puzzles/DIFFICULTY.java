@@ -1,8 +1,6 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-
-@Todo("!! purple est une difficulté legendaire (pour les boss), à ne pas utiliser comme les autres")
+// Purple is a special difficulty, doesn't use it like other ones - use it for boss or senario pass
 public enum DIFFICULTY {
 	
 	NONE(0),

@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild;
+package com.sunsigne.rebeccasreleasing.system;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -10,28 +10,19 @@ import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.hack.PuzzleHack;
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.main.Size;
-import com.sunsigne.rebeccasreleasing.main.Window;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.system.Camera;
+import com.sunsigne.rebeccasreleasing.system.controllers.GameKeyboardInput;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.GameKeyboardInput;
+import com.sunsigne.rebeccasreleasing.system.util.Camera;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
+import com.sunsigne.rebeccasreleasing.system.util.Window;
 
-/**
- * Supervise the global running of the application. This class is the one that :
- * start the app, instance all important componants, and run the main loops
- * (including its visual interface)
- * 
- * @author casqu
- * @version 0.1
- */
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -68,9 +59,6 @@ public class Game extends Canvas implements Runnable {
 
 	// Thread
 
-	/**
-	 * Initialize and start the {@code thread}
-	 */
 	public synchronized void start() {
 		if (running)
 			return;
@@ -80,9 +68,6 @@ public class Game extends Canvas implements Runnable {
 		thread.start();
 	}
 
-	/**
-	 * Ask for the {@code  thread} to stop.
-	 */
 	public synchronized void stop() {
 		running = false;
 
@@ -93,13 +78,6 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-	/**
-	 * Main loop of the whole application : repetively casts the method
-	 * <b>tick()</b> and the method renderGame(Graphics) in <b>Render class</b>.
-	 * 
-	 * @see #tick()
-	 * @see Render#renderGame(Graphics)
-	 */
 	public void run() {
 
 		// this line ask for keyboard priority when game starts.

@@ -3,10 +3,10 @@ package com.sunsigne.rebeccasreleasing.system.controllers.mouse;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.sunsigne.rebeccasreleasing.main.STATE;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
 
 public class GameMouseInput extends MouseAdapter {
 

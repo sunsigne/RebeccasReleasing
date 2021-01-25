@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.menu.MenuObject;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
+import com.sunsigne.rebeccasreleasing.system.Game;
 
 public class OptionObject extends MenuObject {
 

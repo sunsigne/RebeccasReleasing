@@ -10,10 +10,10 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CARDTYPE;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardFolder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardObject;
-import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
-import com.sunsigne.rebeccasreleasing.system.RandomOrderGenerator;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 
 import objects.IFacing.FACING;
 import objects.characters.CHARA;

@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild;
+package com.sunsigne.rebeccasreleasing.system;
 
 import javax.swing.JOptionPane;
 
@@ -8,10 +8,9 @@ import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.game.world.WorldLvl02;
-import com.sunsigne.rebeccasreleasing.main.DualChecker;
-import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.util.DualChecker;
 
 @Todo("this class may have more responsabilities.")
 public class Conductor {

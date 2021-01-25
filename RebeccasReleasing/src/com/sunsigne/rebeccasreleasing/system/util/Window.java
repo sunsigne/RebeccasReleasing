@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.main;
+package com.sunsigne.rebeccasreleasing.system.util;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
+import com.sunsigne.rebeccasreleasing.system.Game;
 
 public class Window extends Canvas {
 

@@ -5,9 +5,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 public abstract class Clickable extends GameMouseInput implements IClick {
 

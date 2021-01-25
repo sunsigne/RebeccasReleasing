@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 public class ProcessorFolder extends ProcessorObject {
 

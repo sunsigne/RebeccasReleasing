@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.characters.living.PlayerObject;

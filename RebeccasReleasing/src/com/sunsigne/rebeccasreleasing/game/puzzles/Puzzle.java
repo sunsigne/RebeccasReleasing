@@ -7,22 +7,21 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleTimer;
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleTimerReversed;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.main.STATE;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.TimerObject;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
-@Todo("difficulty : moving bomb, bigger count, more bomb")
 public abstract class Puzzle extends Clickable {
 
 	protected TextureBank texture = TextureBank.getInstance();
@@ -45,6 +44,7 @@ public abstract class Puzzle extends Clickable {
 		open();
 	}
 
+	@Todo("A supprimer")
 	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty) {
 		this(state, puzzler, difficulty, false);
 	}
@@ -58,6 +58,7 @@ public abstract class Puzzle extends Clickable {
 		open();
 	}
 
+	@Todo("A supprimer")
 	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] mutlipleFoe, DIFFICULTY difficulty) {
 		this(state, puzzler, mutlipleFoe, difficulty, false);
 	}

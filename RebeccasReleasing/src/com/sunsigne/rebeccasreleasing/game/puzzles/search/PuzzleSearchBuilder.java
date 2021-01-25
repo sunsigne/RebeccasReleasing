@@ -10,8 +10,8 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchFolder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWord;
 import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWordObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWordReversed;
-import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.world.puzzler.IPuzzler;

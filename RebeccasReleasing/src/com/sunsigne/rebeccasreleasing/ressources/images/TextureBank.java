@@ -154,8 +154,7 @@ public class TextureBank {
 		getTextures();
 	}
 
-	@Todo("le design de la clef et du cadena font vieux, alors que celui de la porte est très moderne ..." + " "
-			+ "Le desing du canapé est trop simpliste")
+	@Todo("le design de la clef et du cadena font vieux & le desing du canapé est trop simpliste")
 	private void getTextures() {
 
 		// living

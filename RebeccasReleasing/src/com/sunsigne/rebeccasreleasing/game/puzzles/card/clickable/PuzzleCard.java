@@ -1,6 +1,5 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles.card.clickable;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.PuzzleCardBuilder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CARDTYPE;
@@ -10,7 +9,6 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
-@Todo("pour tuto : simplifier le jeu ? Il doit être plus instinctif")
 public class PuzzleCard extends PuzzleCardBuilder<Card> {
 
 	public PuzzleCard(IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty) {

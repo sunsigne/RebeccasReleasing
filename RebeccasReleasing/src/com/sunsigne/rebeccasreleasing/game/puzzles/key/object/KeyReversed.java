@@ -2,8 +2,8 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;

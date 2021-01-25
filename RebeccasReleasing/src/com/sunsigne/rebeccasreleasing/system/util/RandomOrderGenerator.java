@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.system;
+package com.sunsigne.rebeccasreleasing.system.util;
 
 import java.util.Collections;
 import java.util.LinkedList;

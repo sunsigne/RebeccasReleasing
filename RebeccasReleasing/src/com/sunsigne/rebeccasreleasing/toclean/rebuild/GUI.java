@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.Characteristics;
 import com.sunsigne.rebeccasreleasing.toclean.verify.BonusText;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;

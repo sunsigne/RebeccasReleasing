@@ -2,9 +2,9 @@ package com.sunsigne.rebeccasreleasing.game.world.mapcreator;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.redesign.Computer;
 
 import objects.world.puzzler.Case;
+import objects.world.puzzler.Computer;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.TutoDoor;
 import objects.world.puzzler.WallCracked;
