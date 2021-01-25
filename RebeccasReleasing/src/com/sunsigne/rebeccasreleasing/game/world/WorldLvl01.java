@@ -9,13 +9,10 @@ import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.game.event.EventContext;
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
@@ -23,8 +20,6 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Con
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.world.destroyable.DestroyableObject;
-import objects.world.loot.tools.LootTool;
 import objects.world.puzzler.IPuzzler;
 
 public class WorldLvl01 implements ILvl {
@@ -44,7 +39,7 @@ public class WorldLvl01 implements ILvl {
 
 	@Override
 	public BufferedImage getLvlImage() {
-		return ImageBank.getImage(ImageBank.lvl01big);
+		return ImageBank.getImage(ImageBank.lvl01);
 	}
 
 	@Override
@@ -72,14 +67,10 @@ public class WorldLvl01 implements ILvl {
 				return Conductor.getState() == STATE.LEVEL;
 			}
 
-//			// Hide tool key lvl 1 in the plant
 			// Set to player infinite hp (so generous!)
 			// Move player to the right
 			@Override
 			public void startEvent() {
-//				DestroyableObject plant = ((DestroyableObject) getMostLeftObject(OBJECTID.PLANT));
-//				Tool cyan_key = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
-//				plant.setLootObject(new LootTool(plant.getX(), plant.getY(), cyan_key));
 				World.gui.setInfinitHp(true);
 				HandlerObject.getInstance().player.setVelY(0);
 				HandlerObject.getInstance().player.setVelX(Size.TILE / 16);

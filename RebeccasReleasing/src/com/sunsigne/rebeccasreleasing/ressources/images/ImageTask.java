@@ -14,13 +14,23 @@ public class ImageTask {
 
 	private static URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
 
-	// WARNING !!! All paths in this method must have their / replaced by double \\
+	// WARNING !!! All paths in those methods must have their / replaced by double \\
 	public static BufferedImage loadImage(String ImageBank) {
+
+		return loadImage("textures", ImageBank);
+	}
+		
+	public static BufferedImage loadMapImage(String ImageBank) {
+
+		return loadImage("map", ImageBank);
+	}
+	
+	private static BufferedImage loadImage(String path0, String ImageBank) {
 
 		BufferedImage image = null;
 
 		try {
-			String path = "\\ressources\\textures\\" + ImageBank;
+			String path = "\\ressources" + "\\" + path0 + "\\" +  ImageBank;
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 			image = ImageIO.read(url);
 		} catch (Exception e) {
