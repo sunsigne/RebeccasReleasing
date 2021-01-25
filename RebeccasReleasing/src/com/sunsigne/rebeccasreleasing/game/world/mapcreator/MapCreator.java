@@ -90,15 +90,26 @@ public class MapCreator {
 
 	private static void randomizeLoot() {
 
+		// search into list, classed by their difficulty
 		for (int difficulty = 0; difficulty < 7; difficulty++) {
 			int numberOfTool = tool_list[difficulty].length;
+			if (numberOfTool == 0)
+				continue;
+
+			// search for list, classed by the type of tool
 			for (int tool = 0; tool < numberOfTool; tool++) {
 				int sizeOfList = tool_list[difficulty][tool].size();
 				if (sizeOfList == 0)
 					continue;
+
+				// take a random destroyable into the list
 				int r = new Random().nextInt(sizeOfList);
 				DestroyableObject randomDestroyable = tool_list[difficulty][tool].get(r);
+
+				// creation of the tool
 				Tool lootTool = new Tool(tool, difficulty, 0);
+
+				// set to the random destroyable, the loot tool
 				randomDestroyable
 						.setLootObject(new LootTool(randomDestroyable.getX(), randomDestroyable.getY(), lootTool));
 				tool_list[difficulty][tool].clear();
