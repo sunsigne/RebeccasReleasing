@@ -116,6 +116,8 @@ public class Computer extends GameObject implements IPuzzler {
 
 			if (hasToolLvl(Tool.KEY))
 				openPuzzle(living, this);
+			else
+				blockPass(living, this);
 		} else
 			blockPass(living, this);
 	}

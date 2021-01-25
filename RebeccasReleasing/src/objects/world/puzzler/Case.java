@@ -114,6 +114,8 @@ public class Case extends GameObject implements IPuzzler {
 
 			if (hasToolLvl(Tool.GLASS))
 				openPuzzle(living, this);
+			else
+				blockPass(living, this);
 		} else
 			blockPass(living, this);
 	}
