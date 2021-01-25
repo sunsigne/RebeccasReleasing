@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.main.Size;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
@@ -22,9 +21,14 @@ import objects.world.loot.tools.LootTool;
 public class MapCreator {
 
 	@SuppressWarnings("unchecked")
-	static List<DestroyableObject>[] cyan_tool_list = new List[2];
+	static List<DestroyableObject>[][] tool_list = new List[7][2]; // - difficulty - state
 
-	@Todo("clean that mess")
+	private static void setUpForRandomizingLoot() {
+		for (int difficulty = 0; difficulty < 7; difficulty++) {
+			Arrays.setAll(tool_list[difficulty], ArrayList::new);
+		}
+	}
+
 	public static void createLevel(BufferedImage image) {
 
 		// To remember the color used, here is the guideline I tried to follow :
@@ -34,7 +38,7 @@ public class MapCreator {
 		// Yellow for Foes (as they are both living & puzzler)
 		// Cyan for decor (because it's beautiful, right ? decor = beauty)
 		// Magenta for destroyable (because it's flashy, like important spot)
-		Arrays.setAll(cyan_tool_list, ArrayList :: new);
+		setUpForRandomizingLoot();
 		HandlerObject handler_object = HandlerObject.getInstance();
 
 		handler_object.player = new PlayerObject(0, 0);
@@ -78,28 +82,31 @@ public class MapCreator {
 				MapCreatorDestroyable.createDesk(red, green, blue, handler_object, x0, y0);
 				MapCreatorDestroyable.createPlant(red, green, blue, handler_object, x0, y0);
 
-
 			}
 		}
 
-		RandomizeLoot();
+		randomizeLoot();
 	}
 
-	private static void RandomizeLoot() {
-		
-		int numberOfList = cyan_tool_list.length;
-		for (int list = 0; list < numberOfList; list++)
-		{
-			int sizeOfList = cyan_tool_list[list].size();
-			if(sizeOfList == 0) continue;
-			int r = new Random().nextInt(sizeOfList);
-			DestroyableObject randomDestroyable = cyan_tool_list[list].get(r);
-			Tool cyan_tool = new Tool(list, DIFFICULTY.CYAN.getLvl(), 0);
-			randomDestroyable.setLootObject(new LootTool(randomDestroyable.getX(), randomDestroyable.getY(), cyan_tool));
-			cyan_tool_list[list].clear();
-		}		
+	private static void randomizeLoot() {
+
+		for (int difficulty = 0; difficulty < 7; difficulty++) {
+			int numberOfTool = tool_list[difficulty].length;
+			for (int tool = 0; tool < numberOfTool; tool++) {
+				int sizeOfList = tool_list[difficulty][tool].size();
+				if (sizeOfList == 0)
+					continue;
+				int r = new Random().nextInt(sizeOfList);
+				DestroyableObject randomDestroyable = tool_list[difficulty][tool].get(r);
+				Tool lootTool = new Tool(tool, difficulty, 0);
+				randomDestroyable
+						.setLootObject(new LootTool(randomDestroyable.getX(), randomDestroyable.getY(), lootTool));
+				tool_list[difficulty][tool].clear();
+			}
+		}
+
 	}
-	
+
 	private static void createWall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 255 && blue == 255) {
 			Wall wall = new Wall(x0, y0);

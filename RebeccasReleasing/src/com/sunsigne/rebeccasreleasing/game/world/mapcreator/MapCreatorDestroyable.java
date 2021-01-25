@@ -1,5 +1,6 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
@@ -39,22 +40,22 @@ public class MapCreatorDestroyable {
 		if (red == 255 && green == 0 && blue == 254) {
 			Desk desk = new Desk(x0, y0, FACING.LEFT);
 			handler_object.addObject(desk);
-			MapCreator.cyan_tool_list[Tool.SWORD].add(desk);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.SWORD].add(desk);
 		}
 		if (red == 255 && green == 1 && blue == 254) {
 			Desk desk = new Desk(x0, y0, FACING.RIGHT);
 			handler_object.addObject(desk);
-			MapCreator.cyan_tool_list[Tool.SWORD].add(desk);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.SWORD].add(desk);
 		}
 		if (red == 255 && green == 2 && blue == 254) {
 			Desk desk = new Desk(x0, y0, FACING.UP);
 			handler_object.addObject(desk);
-			MapCreator.cyan_tool_list[Tool.SWORD].add(desk);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.SWORD].add(desk);
 		}
 		if (red == 255 && green == 3 && blue == 254) {
 			Desk desk = new Desk(x0, y0, FACING.DOWN);
 			handler_object.addObject(desk);
-			MapCreator.cyan_tool_list[Tool.SWORD].add(desk);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.SWORD].add(desk);
 		}
 	}
 
@@ -80,12 +81,12 @@ public class MapCreatorDestroyable {
 		if (red == 254 && green == 0 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.LEFT);
 			handler_object.addObject(plant);
-			MapCreator.cyan_tool_list[Tool.KEY].add(plant);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.KEY].add(plant);
 		}
 		if (red == 254 && green == 1 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
-			MapCreator.cyan_tool_list[Tool.KEY].add(plant);
+			MapCreator.tool_list[DIFFICULTY.CYAN.getLvl()][Tool.KEY].add(plant);
 		}
 	}
 
