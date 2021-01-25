@@ -21,6 +21,7 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
+import objects.world.puzzler.Door;
 import objects.world.puzzler.IPuzzler;
 
 public class WorldLvl01 implements ILvl {
@@ -108,7 +109,6 @@ public class WorldLvl01 implements ILvl {
 			// Prepare the dialogue in the case where the player already had the key
 			// Talk with sarah about how opening it
 			// Prepare the door for dialogue if falling
-
 			@Override
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Had The Key");
@@ -117,7 +117,8 @@ public class WorldLvl01 implements ILvl {
 					listener = () -> event.mustOccur(true);
 				new Chat(2, listener, frlvl01, englvl01);
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
-				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event1.mustOccur(true), false);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
+				((IPuzzler) door).setEventOnClose(() -> event1.mustOccur(true), false);
 			}
 		});
 	}
@@ -155,7 +156,8 @@ public class WorldLvl01 implements ILvl {
 				moveThePlayerFutherFromDoor();
 				new Chat(4, null, frlvl01, englvl01);
 				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
-				((IPuzzler) getMostLeftObject(OBJECTID.DOOR)).setEventOnClose(() -> event.mustOccur(true), false);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
+				((IPuzzler) door).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
 	}
@@ -290,26 +292,9 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				HandlerEvent.getInstance().getEvent("Foe Fail").canOccur(false);
-				;
 				new Chat(10, null, frlvl01, englvl01);
 			}
 		});
-	}
-
-	@Todo("Cette methode ne me plait clairement pas, trouver un moyen élégent de retrouver un objet précis")
-	private GameObject getMostLeftObject(OBJECTID objectID) {
-		GameObject object = null;
-
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(true);
-		for (GameObject tempObject : list) {
-			if (tempObject.getId() == objectID) {
-				if (object == null)
-					object = tempObject;
-				if (tempObject.getX() < object.getX())
-					object = tempObject;
-			}
-		}
-		return object;
 	}
 
 }
