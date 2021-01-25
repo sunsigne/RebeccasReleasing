@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.main.Size;
@@ -16,6 +17,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.GUI;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Conductor;
+import com.sunsigne.rebeccasreleasing.toclean.rebuild.onlyconductortorebuild.Game;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
@@ -29,16 +31,17 @@ public class World implements IRender {
 	public static World currentWorld;
 
 	public static GUI gui = new GUI();
+	@Todo("vérifier si vraiment utile, si non, supprimer la methode getLvlNumber() de l'interface ILvl")
 	public static int levelnum;
 
 	public World(ILvl ilvl) {
 		this.ilvl = ilvl;
-//		ilvl.loadEvent();
+		ilvl.loadEvent();
 		HandlerRender.getInstance().addObject(this);
 		World.levelnum = ilvl.getLvlNumber();
 
-		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
 		loadLevel();
+		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
 	}
 
 	@Override
@@ -54,6 +57,7 @@ public class World implements IRender {
 	private void loadLevel() {
 
 		MapCreator.createLevel(ilvl.getLvlImage());
+		Game.game.forceLoop();
 		startGUI();
 		Conductor.setState(STATE.LEVEL);
 	}
