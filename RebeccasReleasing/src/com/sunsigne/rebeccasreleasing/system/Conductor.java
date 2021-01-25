@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.game.menu.LoadingScreenObject;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.game.world.WorldLvl01;
 import com.sunsigne.rebeccasreleasing.game.world.WorldLvl02;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
@@ -68,7 +69,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl02();
+		ILvl level = new WorldLvl01();
 		World.currentWorld = new World(level);
 	}
 
