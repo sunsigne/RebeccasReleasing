@@ -111,9 +111,4 @@ public class Card extends CardObject {
 		HandlerObject.getInstance().removeObject(this);
 	}
 
-	public void resetPos() {
-		x = startingX;
-		y = startingY;
-	}
-
 }

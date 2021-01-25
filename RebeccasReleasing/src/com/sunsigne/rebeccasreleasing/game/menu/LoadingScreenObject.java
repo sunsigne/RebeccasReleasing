@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.main.Size;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
@@ -20,11 +21,13 @@ public class LoadingScreenObject extends GameObject {
 	}
 
 	public void start() {
+		HandlerObject.getInstance().addObject(this);
 		running = true;
 	}
 
 	public void stop() {
 		running = false;
+		HandlerObject.getInstance().removeObject(this);
 	}
 
 	@Override

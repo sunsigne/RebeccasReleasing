@@ -65,6 +65,11 @@ public abstract class CardObject extends CommunCardObject {
 			return folder.getOrderNum() == getOrderNum() || folder.getOrderNum() == 0;
 	}
 
+	public void resetPos() {
+		x = startingX;
+		y = startingY;
+	}
+
 	// design
 
 	@Override

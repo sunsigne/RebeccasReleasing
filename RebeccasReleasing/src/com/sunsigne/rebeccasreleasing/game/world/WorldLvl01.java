@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.game.world;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.event.Event;
@@ -295,6 +296,7 @@ public class WorldLvl01 implements ILvl {
 		});
 	}
 
+	@Todo("Cette methode ne me plait clairement pas, trouver un moyen élégent de retrouver un objet précis")
 	private GameObject getMostLeftObject(OBJECTID objectID) {
 		GameObject object = null;
 

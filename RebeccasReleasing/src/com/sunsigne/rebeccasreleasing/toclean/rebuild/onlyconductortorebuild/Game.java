@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 	private static final Camera cam = new Camera();
 
 	public static final String NAME = "Rebecca's Releasing";
-	public static final boolean visibleHitbox = false;
+	public static final boolean visibleHitbox = true;
 
 	public static Game game;
 

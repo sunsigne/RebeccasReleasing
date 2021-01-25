@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.game.puzzles.search;
+package com.sunsigne.rebeccasreleasing.game.puzzles.search.object;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 public class SearchFolder extends PuzzleObject {
 
 	public SearchFolder() {
-		super(720, 800, OBJECTID.P_WORDFOLDER);
+		super(1220, 600, OBJECTID.P_WORDFOLDER);
 
 		w = Size.TILE_PUZZLE * 4;
 		h = Size.TILE_PUZZLE * 3;
@@ -18,8 +18,6 @@ public class SearchFolder extends PuzzleObject {
 
 	@Override
 	public void tick() {
-		x = 1220;
-		y = 600;
 	}
 
 	@Override

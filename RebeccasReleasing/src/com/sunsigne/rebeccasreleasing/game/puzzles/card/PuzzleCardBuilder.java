@@ -2,8 +2,6 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.card;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
@@ -14,6 +12,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardFolder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardObject;
 import com.sunsigne.rebeccasreleasing.main.STATE;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.system.RandomOrderGenerator;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.IFacing.FACING;
@@ -56,7 +55,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	private void randomOrderAttribution() {
 
-		int[] randomOrder = randomOrderGeneration(5);
+		int[] randomOrder = new RandomOrderGenerator().randomOrderGenerationFromOneTo(5);
 
 		card[0].setOrderNum(randomOrder[0]);
 		card[1].setOrderNum(randomOrder[1]);
@@ -88,31 +87,6 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 			type[4] = CARDTYPE.DEFENSE;
 
 		return type;
-	}
-
-	private int[] randomOrderGeneration(int currentNumofCard) {
-
-		int[] randomOrder = new int[currentNumofCard];
-
-		// creation of numbers from 1 to currentNumofCard
-		LinkedList<Integer> numbers = new LinkedList<>();
-		for (int i = 1; i < currentNumofCard + 1; i++) {
-			numbers.add(i);
-		}
-
-		// shuffle of the numbers
-		Random r = new Random();
-		for (int i = 0; i < currentNumofCard; i++) {
-			Collections.swap(numbers, i, r.nextInt(currentNumofCard));
-		}
-
-		// register of this new order into randomOrder.
-		for (int i = 0; i < currentNumofCard; i++) {
-			randomOrder[i] = numbers.get(0);
-			numbers.remove(0);
-		}
-
-		return randomOrder;
 	}
 
 	@Override
