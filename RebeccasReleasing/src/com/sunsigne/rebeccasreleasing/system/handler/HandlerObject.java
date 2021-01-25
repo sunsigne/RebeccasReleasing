@@ -8,6 +8,8 @@ import objects.characters.living.PlayerObject;
 
 public class HandlerObject implements ITick, IRender {
 
+	// singleton
+
 	private static HandlerObject instance = null;
 
 	public static HandlerObject getInstance() {
@@ -15,6 +17,8 @@ public class HandlerObject implements ITick, IRender {
 			instance = new HandlerObject();
 		return instance;
 	}
+
+	// map or list
 
 	private LinkedList<GameObject> handler_object_camera_dependant_list = new LinkedList<GameObject>();
 	private LinkedList<GameObject> handler_object_camera_independant_list = new LinkedList<GameObject>();
@@ -28,37 +32,11 @@ public class HandlerObject implements ITick, IRender {
 		HandlerRender.getInstance().addObject(false, this);
 	}
 
+	// state
+
 	@Override
 	public boolean isCameraDependant() {
 		return HandlerRender.getInstance().isCameraDependant();
-	}
-
-	@Override
-	public void tick() {
-
-		for (GameObject tempObject : handler_object_camera_dependant_list)
-			tempObject.tick();
-		for (GameObject tempObject : handler_object_camera_independant_list)
-			tempObject.tick();
-	}
-
-	@Override
-	public void render(Graphics g) {
-
-		if (isCameraDependant())
-			renderCameraDependant(g);
-		else
-			renderCameraIndependant(g);
-	}
-
-	private void renderCameraDependant(Graphics g) {
-		for (GameObject tempObject : handler_object_camera_dependant_list)
-			tempObject.render(g);
-	}
-
-	private void renderCameraIndependant(Graphics g) {
-		for (GameObject tempObject : handler_object_camera_independant_list)
-			tempObject.render(g);
 	}
 
 	public LinkedList<GameObject> getList(boolean cameraDependant) {
@@ -86,6 +64,15 @@ public class HandlerObject implements ITick, IRender {
 		}
 	}
 
+	public GameObject getObjectAtPos(int x, int y) {
+		for (GameObject tempObject : handler_object_camera_dependant_list) {
+			if (tempObject.getX() == x && tempObject.getY() == y) {
+				return tempObject;
+			}
+		}
+		return null;
+	}
+
 	public void clearFront() {
 		isVirusExisting = false;
 		this.handler_object_camera_independant_list.clear();
@@ -99,6 +86,36 @@ public class HandlerObject implements ITick, IRender {
 	public void clearAll() {
 		clearFront();
 		clearBack();
+	}
+
+	// behavior
+
+	@Override
+	public void tick() {
+
+		for (GameObject tempObject : handler_object_camera_dependant_list)
+			tempObject.tick();
+		for (GameObject tempObject : handler_object_camera_independant_list)
+			tempObject.tick();
+	}
+
+	@Override
+	public void render(Graphics g) {
+
+		if (isCameraDependant())
+			renderCameraDependant(g);
+		else
+			renderCameraIndependant(g);
+	}
+
+	private void renderCameraDependant(Graphics g) {
+		for (GameObject tempObject : handler_object_camera_dependant_list)
+			tempObject.render(g);
+	}
+
+	private void renderCameraIndependant(Graphics g) {
+		for (GameObject tempObject : handler_object_camera_independant_list)
+			tempObject.render(g);
 	}
 
 }
