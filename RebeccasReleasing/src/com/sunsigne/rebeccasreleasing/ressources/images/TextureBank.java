@@ -194,7 +194,7 @@ public class TextureBank {
 		for (int j = 0; j < 7; j++) {
 			for (int i = 0; i < 7; i++) {
 
-				gui_battery[i][j] = gui_battery_sheet.grabImage(i, j - 1, 32, 32);
+				gui_battery[i][j] = gui_battery_sheet.grabImage(i, j, 32, 32);
 			}
 		}
 		
