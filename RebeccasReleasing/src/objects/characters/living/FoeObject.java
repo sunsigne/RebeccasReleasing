@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
@@ -36,7 +37,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 	private FoeObject[] multipleFoe = new FoeObject[MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 
-	private LootObject loot;	
+	private LootObject loot;
 	public boolean stunned;
 	private int stuntime;
 
@@ -99,18 +100,17 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		this.solved = solved;
 		if (solved)
 			kill();
-	}	
+	}
 
 	@Override
 	public LootObject getLootObject() {
 		return loot;
-	}	
-	
+	}
+
 	@Override
 	public void setLootObject(LootObject loot) {
 		this.loot = loot;
 	}
-
 
 	public float getDistanceBetween(GameObject objectA, GameObject objectB) {
 		float distance = (float) Math
@@ -137,10 +137,13 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 		checkMultipleFoes();
 
-		if (isPlayerInSight() && !stunned)
-			movingtoPlayer();
+		if (!stunned) {
+			if (isPlayerInSight())
+				movingtoPlayer();
+//			else setMotionless();
+		}
 
-		if (stunned) {
+		else {
 			setMotionless();
 			if (stuntime > 0)
 				--stuntime;
@@ -159,6 +162,16 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		loot();
 	}
 
+	@Override
+	public void loot() {
+		if (getLootObject() != null) {
+			getLootObject().setX(x);
+			getLootObject().setY(y);
+			HandlerObject.getInstance().addObject(getLootObject());
+		}
+	}
+
+	@Todo("create a pathfinding")
 	private void movingtoPlayer() {
 		float diffX = x - HandlerObject.getInstance().player.getX();
 		float diffY = y - HandlerObject.getInstance().player.getY();
