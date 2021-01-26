@@ -1,0 +1,22 @@
+lvl 01 :
+qu'est-ce qu'une porte : porte ouverte =/= porte fermée impassable
+comment obtenir la clef : chercher la clef, retourner vers la porte
+comment ouvrir la porte (cette partie est bien avancée avec TutoDoor, mais améliorer le visuel du timer)
+la clef sert pour plusieurs portes : plusieurs portes  ouvrir
+les pv : explications RP rapide mais fin du lvl
+
+entre lvl:
+xp gagnée = amélioration : dépenser les points pour passer le lvl max de la clef à 2
+familiarisation avec l'interface : (à travailler, mais un seul choix pour le départ c'est bien)
+
+lvl 02
+les stats sont reset à chaque lvl : explications RP de sarah
+ennemis sans arme = danger : (à travailler)
+approfondissement de la clef : clef à trouver (pour aller prendre l'arme)
+comment obtenir une arme : grace à la clef -> objectif de l'action, récompense pour le joueur
+
+reste : porte lvl 2, choix d'intinéraire, approfondissement des pv (la mort)
+
+lvl 03
+
+à apprendre : pathfinding et vision des ennemis, plusieurs ennemis = danger
