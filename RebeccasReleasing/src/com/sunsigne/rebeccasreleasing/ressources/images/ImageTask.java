@@ -25,7 +25,9 @@ public class ImageTask {
 		return loadImage("map", ImageBank);
 	}
 	
-	private static BufferedImage loadImage(String path0, String ImageBank) {
+	// Even if this method is only used in this class, I prefere to let it public
+	// to make it easier for modders and devellopers in adding content
+	public static BufferedImage loadImage(String path0, String ImageBank) {
 
 		BufferedImage image = null;
 

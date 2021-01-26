@@ -7,13 +7,16 @@ import java.util.List;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
+import objects.GameObject;
 import objects.characters.living.PlayerObject;
 import objects.world.Wall;
-import objects.world.destroyable.DestroyableObject;
+import objects.world.loot.ILoot;
 import objects.world.loot.tools.LootTool;
 
 @Todo("find the key to open the exit door / pour la déco : tapis, parquet, distributeur de café, de bouffe, poubelle,"
@@ -21,7 +24,11 @@ import objects.world.loot.tools.LootTool;
 public class MapCreator {
 
 	@SuppressWarnings("unchecked")
-	static List<DestroyableObject>[][] tool_list = new List[7][2]; // - difficulty - state
+	private static List<ILoot>[][] tool_list = new List[7][2]; // - difficulty - state
+
+	public static void addToToolList(Tool tool, ILoot iloot) {
+		MapCreator.tool_list[tool.getCurrentLvl()][tool.getToolNum()].add(iloot);
+	}
 
 	private static void setUpForRandomizingLoot() {
 		for (int difficulty = 0; difficulty < 7; difficulty++) {
@@ -79,9 +86,7 @@ public class MapCreator {
 				MapCreatorDecor.createTall(red, green, blue, handler_object, x0, y0);
 
 				// destroyable - magenta
-				MapCreatorDestroyable.createDesk(red, green, blue, handler_object, x0, y0);
-				MapCreatorDestroyable.createPlant(red, green, blue, handler_object, x0, y0);
-
+				MapCreatorDestroyable.createDestroyable(red, green, blue, handler_object, x0, y0);
 			}
 		}
 
@@ -93,25 +98,26 @@ public class MapCreator {
 		// search into list, classed by their difficulty
 		for (int difficulty = 0; difficulty < 7; difficulty++) {
 			int numberOfTool = tool_list[difficulty].length;
+//			System.out.println("difficulty : " + difficulty + " / number of different tools : " + numberOfTool);
 			if (numberOfTool == 0)
 				continue;
 
 			// search for list, classed by the type of tool
 			for (int tool = 0; tool < numberOfTool; tool++) {
 				int sizeOfList = tool_list[difficulty][tool].size();
+//				System.out.println("difficulty : " + difficulty + " / tool number : " + tool + " / number of source for loot : " + sizeOfList);
 				if (sizeOfList == 0)
 					continue;
 
-				// take a random destroyable into the list
+				// take a random ILoot into the list
 				int r = new Random().nextInt(sizeOfList);
-				DestroyableObject randomDestroyable = tool_list[difficulty][tool].get(r);
-
+				ILoot randomILoot = tool_list[difficulty][tool].get(r);
+				GameObject randomILootObject = (GameObject) randomILoot;
 				// creation of the tool
 				Tool lootTool = new Tool(tool, difficulty, 0);
 
-				// set to the random destroyable, the loot tool
-				randomDestroyable
-						.setLootObject(new LootTool(randomDestroyable.getX(), randomDestroyable.getY(), lootTool));
+				// set to the random ILootObject, the loot tool
+				randomILoot.setLootObject(new LootTool(randomILootObject.getX(), randomILootObject.getY(), lootTool));
 				tool_list[difficulty][tool].clear();
 			}
 		}

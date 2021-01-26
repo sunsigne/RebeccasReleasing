@@ -56,6 +56,11 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	}
 
 	@Override
+	public LootObject getLootObject() {
+		return loot;
+	}
+	
+	@Override
 	public void setLootObject(LootObject loot) {
 		this.loot = loot;
 	}
@@ -99,13 +104,13 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 				SoundTask.playSound(0.5, sideSound);
 
 				fall();
-				if(loot != null) HandlerObject.getInstance().addObject(loot);
+				loot();
 			}
 		}
 	}
 
 	protected abstract void fall();
-
+	
 	public abstract int givePts();
 
 	public abstract BufferedSound makeMainSound();

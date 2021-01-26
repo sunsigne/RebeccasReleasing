@@ -15,9 +15,11 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
+import objects.world.loot.ILoot;
+import objects.world.loot.LootObject;
 import objects.world.puzzler.IPuzzler;
 
-public class FoeObject extends LivingObject implements IPuzzler {
+public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 	public static final int SPEED = 4 * Size.TILE / 64;
 	public static final int SIGHT_RANGE = 400 * Size.TILE / 64;
@@ -34,6 +36,7 @@ public class FoeObject extends LivingObject implements IPuzzler {
 
 	private FoeObject[] multipleFoe = new FoeObject[MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 
+	private LootObject loot;	
 	public boolean stunned;
 	private int stuntime;
 
@@ -96,7 +99,18 @@ public class FoeObject extends LivingObject implements IPuzzler {
 		this.solved = solved;
 		if (solved)
 			kill();
+	}	
+
+	@Override
+	public LootObject getLootObject() {
+		return loot;
+	}	
+	
+	@Override
+	public void setLootObject(LootObject loot) {
+		this.loot = loot;
 	}
+
 
 	public float getDistanceBetween(GameObject objectA, GameObject objectB) {
 		float distance = (float) Math
@@ -142,6 +156,7 @@ public class FoeObject extends LivingObject implements IPuzzler {
 
 	public void kill() {
 		HandlerObject.getInstance().removeObject(this);
+		loot();
 	}
 
 	private void movingtoPlayer() {

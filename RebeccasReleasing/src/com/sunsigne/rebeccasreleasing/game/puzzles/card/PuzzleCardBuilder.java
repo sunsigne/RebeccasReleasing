@@ -55,7 +55,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	private void randomOrderAttribution() {
 
-		int[] randomOrder = new RandomOrderGenerator().randomOrderGenerationFromOneTo(5);
+		int[] randomOrder = RandomOrderGenerator.randomOrderGenerationFromOneTo(5);
 
 		card[0].setOrderNum(randomOrder[0]);
 		card[1].setOrderNum(randomOrder[1]);

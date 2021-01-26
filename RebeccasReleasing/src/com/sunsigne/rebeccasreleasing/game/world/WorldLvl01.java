@@ -21,6 +21,7 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
+import objects.characters.living.FoeObject;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.IPuzzler;
 
@@ -234,6 +235,7 @@ public class WorldLvl01 implements ILvl {
 
 			// Prepare the dialogue in the case where the player don't have the sword yet
 			// Talk with sarah about how pass him
+			// Prepare the foe for dialogue if failling or winning
 			@Override
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Have No Sword");
@@ -241,6 +243,12 @@ public class WorldLvl01 implements ILvl {
 				if (World.gui.getTool(Tool.SWORD).getCurrentLvl() < 1)
 					listener = () -> event.mustOccur(true);
 				new Chat(7, listener, frlvl01, englvl01);
+				
+				Event event1 = HandlerEvent.getInstance().getEvent("Foe Fail");
+				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
+				FoeObject foe = (FoeObject) HandlerObject.getInstance().getObjectAtPos(8640, 3264);
+				((IPuzzler) foe).setEventOnClose(() -> event1.mustOccur(true), false);
+				((IPuzzler) foe).setEventOnClose(() -> event2.mustOccur(true), true);
 			}
 		});
 	}
