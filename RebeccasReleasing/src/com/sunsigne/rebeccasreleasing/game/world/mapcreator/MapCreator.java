@@ -86,6 +86,7 @@ public class MapCreator {
 				
 				// decor - cyan
 				MapCreatorDecor.createCouch(red, green, blue, handler_object, x0, y0);
+				MapCreatorDecor.createLong(red, green, blue, handler_object, x0, y0);
 				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);
 				MapCreatorDecor.createTall(red, green, blue, handler_object, x0, y0);
 

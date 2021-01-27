@@ -6,6 +6,8 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Lamp;
 import objects.IFacing.FACING;
 import objects.world.decor.Coffee;
 import objects.world.decor.Couch;
+import objects.world.decor.Counter;
+import objects.world.decor.WC;
 import objects.world.decor.Water;
 
 public class MapCreatorDecor {
@@ -75,21 +77,33 @@ public class MapCreatorDecor {
 			handler_object.addObject(couch);
 		}
 	}
+	
+	static void createLong(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 0 && green == 254 && blue == 255) {
+			Counter counter = new Counter(x0, y0);
+			handler_object.addObject(counter);
+		}
+	}
 
 	static void createSmall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 0 && green == 254 && blue == 255) {
+		if (red == 0 && green == 253 && blue == 255) {
 			Lamp lamp = new Lamp(x0, y0);
 			handler_object.addObject(lamp);
+		}
+		
+		if (red == 2 && green == 253 && blue == 255) {
+			WC wc = new WC(x0, y0);
+			handler_object.addObject(wc);
 		}
 	}
 
 	static void createTall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 0 && green == 253 && blue == 255) {
+		if (red == 0 && green == 252 && blue == 255) {
 			Water water = new Water(x0, y0);
 			handler_object.addObject(water);
 		}
 
-		if (red == 1 && green == 253 && blue == 255) {
+		if (red == 1 && green == 252 && blue == 255) {
 			Coffee coffee = new Coffee(x0, y0);
 			handler_object.addObject(coffee);
 		}

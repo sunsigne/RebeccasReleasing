@@ -59,6 +59,7 @@ public class ImageBank {
 
 	// decor
 	static final ImageBank decor_couch_sheet = new ImageBank();
+	static final ImageBank decor_long_sheet = new ImageBank();
 	static final ImageBank decor_small_sheet = new ImageBank();
 	static final ImageBank decor_tall_sheet = new ImageBank();
 	static final ImageBank decor_wall_sheet = new ImageBank();
@@ -86,6 +87,7 @@ public class ImageBank {
 	public static final ImageBank lvltest = new ImageBank();
 	public static final ImageBank lvltest_cutout = new ImageBank();
 	public static final ImageBank lvl001 = new ImageBank();
+	public static final ImageBank lvl001_cutout = new ImageBank();
 	public static final ImageBank lvl01 = new ImageBank();
 	public static final ImageBank lvl01_cutout = new ImageBank();
 	public static final ImageBank lvl02 = new ImageBank();
@@ -130,6 +132,7 @@ public class ImageBank {
 
 		// decor
 		addImage(decor_couch_sheet, ImageTask.loadImage("decor\\couch_sheet.png"));
+		addImage(decor_long_sheet, ImageTask.loadImage("decor\\long_sheet.png"));
 		addImage(decor_small_sheet, ImageTask.loadImage("decor\\small_sheet.png"));
 		addImage(decor_tall_sheet, ImageTask.loadImage("decor\\tall_sheet.png"));
 		addImage(decor_wall_sheet, ImageTask.loadImage("decor\\wall_sheet.png"));
@@ -157,6 +160,7 @@ public class ImageBank {
 		addImage(lvltest, ImageTask.loadMapImage("lvltest.png"));
 		addImage(lvltest_cutout, ImageTask.loadMapImage("lvltest_cutout.png"));
 		addImage(lvl001, ImageTask.loadMapImage("lvl001.png"));
+		addImage(lvl001_cutout, ImageTask.loadMapImage("lvl001_cutout.png"));
 		addImage(lvl01, ImageTask.loadMapImage("lvl01.png"));
 		addImage(lvl01_cutout, ImageTask.loadMapImage("lvl01_cutout.png"));
 		addImage(lvl02, ImageTask.loadMapImage("lvl02.png"));

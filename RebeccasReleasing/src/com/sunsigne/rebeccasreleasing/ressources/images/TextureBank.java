@@ -55,6 +55,7 @@ public class TextureBank {
 
 	// decor
 	private SpriteSheet decor_couch_sheet;
+	private SpriteSheet decor_long_sheet;
 	private SpriteSheet decor_small_sheet;
 	private SpriteSheet decor_tall_sheet;
 	private SpriteSheet decor_wall_sheet;
@@ -97,7 +98,8 @@ public class TextureBank {
 
 	// decor
 	public BufferedImage[][] decor_couch = new BufferedImage[4][4]; // - facing - length
-	public BufferedImage[] decor_small = new BufferedImage[2]; // - state
+	public BufferedImage[] decor_long = new BufferedImage[1]; // - state
+	public BufferedImage[] decor_small = new BufferedImage[3]; // - state
 	public BufferedImage[] decor_tall = new BufferedImage[2]; // - state
 	public BufferedImage[][] decor_wall = new BufferedImage[2][5]; // - world or puzzle - state
 
@@ -144,6 +146,7 @@ public class TextureBank {
 
 		// decor
 		decor_couch_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_couch_sheet));
+		decor_long_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_long_sheet));
 		decor_small_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_small_sheet));
 		decor_tall_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_tall_sheet));
 		decor_wall_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_wall_sheet));
@@ -280,7 +283,11 @@ public class TextureBank {
 		decor_couch[FACING.DOWN.getNum()][2] = decor_couch_sheet.grabImage(3, 2, 64, 32);
 		decor_couch[FACING.DOWN.getNum()][3] = decor_couch_sheet.grabImage(2, 3, 96, 32);
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 1; i++) {
+			decor_long[i] = decor_long_sheet.grabImage(i + 1, 1, 64, 32);
+		}
+		
+		for (int i = 0; i < 3; i++) {
 			decor_small[i] = decor_small_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
