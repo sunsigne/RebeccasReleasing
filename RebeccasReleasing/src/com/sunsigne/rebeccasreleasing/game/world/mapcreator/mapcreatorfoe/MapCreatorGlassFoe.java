@@ -7,283 +7,282 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.characters.living.FoeObject;
 
-public class MapCreatorSwordFoe {
+public class MapCreatorGlassFoe {
 
-	static void createSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		createCyanSwordFoe(red, green, blue, handler_object, x0, y0);
-		createGreenSwordFoe(red, green, blue, handler_object, x0, y0);
-		createYellowSwordFoe(red, green, blue, handler_object, x0, y0);
-		createOrangeSwordFoe(red, green, blue, handler_object, x0, y0);
-		createRedSwordFoe(red, green, blue, handler_object, x0, y0);
-		createPurpleSwordFoe(red, green, blue, handler_object, x0, y0);
+	static void createGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		createCyanGlassFoe(red, green, blue, handler_object, x0, y0);
+		createGreenGlassFoe(red, green, blue, handler_object, x0, y0);
+		createYellowGlassFoe(red, green, blue, handler_object, x0, y0);
+		createOrangeGlassFoe(red, green, blue, handler_object, x0, y0);
+		createRedGlassFoe(red, green, blue, handler_object, x0, y0);
+		createPurpleGlassFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	// Yes, this method is probably useless
-	private static void createCyanSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 1) {
+	private static void createCyanGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 1) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 2) {
+		if (red == 255 && green == 251 && blue == 2) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 3) {
+		if (red == 255 && green == 251 && blue == 3) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 4) {
+		if (red == 255 && green == 251 && blue == 4) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 5) {
+		if (red == 255 && green == 251 && blue == 5) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 6) {
+		if (red == 255 && green == 251 && blue == 6) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-	}
-
-	private static void createGreenSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 9) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-		if (red == 255 && green == 253 && blue == 10) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-		if (red == 255 && green == 253 && blue == 11) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-		if (red == 255 && green == 253 && blue == 12) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-		if (red == 255 && green == 253 && blue == 13) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
-			MapCreator.addToToolList(tool, foe);
-		}
-
-		if (red == 255 && green == 253 && blue == 14) {
-			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
-			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
 	}
 
-	private static void createYellowSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 17) {
+	private static void createGreenGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 9) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 18) {
+		if (red == 255 && green == 251 && blue == 10) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 19) {
+		if (red == 255 && green == 251 && blue == 11) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 20) {
+		if (red == 255 && green == 251 && blue == 12) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 21) {
+		if (red == 255 && green == 251 && blue == 13) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 22) {
+		if (red == 255 && green == 251 && blue == 14) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
 	}
 
-	private static void createOrangeSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 25) {
+	private static void createYellowGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 17) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 26) {
+		if (red == 255 && green == 251 && blue == 18) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 27) {
+		if (red == 255 && green == 251 && blue == 19) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 28) {
+		if (red == 255 && green == 251 && blue == 20) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 29) {
+		if (red == 255 && green == 251 && blue == 21) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 30) {
+		if (red == 255 && green == 251 && blue == 22) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
 	}
 
-	private static void createRedSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 33) {
+	private static void createOrangeGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 25) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 34) {
+		if (red == 255 && green == 251 && blue == 26) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 35) {
+		if (red == 255 && green == 251 && blue == 27) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 36) {
+		if (red == 255 && green == 251 && blue == 28) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 37) {
+		if (red == 255 && green == 251 && blue == 29) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 38) {
+		if (red == 255 && green == 251 && blue == 30) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
 	}
 
-	private static void createPurpleSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 255 && green == 253 && blue == 41) {
+	private static void createRedGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 33) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 42) {
+		if (red == 255 && green == 251 && blue == 34) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 43) {
+		if (red == 255 && green == 251 && blue == 35) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 44) {
+		if (red == 255 && green == 251 && blue == 36) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 45) {
+		if (red == 255 && green == 251 && blue == 37) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 
-		if (red == 255 && green == 253 && blue == 46) {
+		if (red == 255 && green == 251 && blue == 38) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
 			handler_object.addObject(foe);
-			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.RED.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+	}
+
+	private static void createPurpleGlassFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+		if (red == 255 && green == 251 && blue == 41) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+		if (red == 255 && green == 251 && blue == 42) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.GREEN);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+		if (red == 255 && green == 251 && blue == 43) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.YELLOW);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+		if (red == 255 && green == 251 && blue == 44) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.ORANGE);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+		if (red == 255 && green == 251 && blue == 45) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.RED);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
+			MapCreator.addToToolList(tool, foe);
+		}
+
+		if (red == 255 && green == 251 && blue == 46) {
+			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.PURPLE);
+			handler_object.addObject(foe);
+			Tool tool = new Tool(Tool.GLASS, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
 		}
 

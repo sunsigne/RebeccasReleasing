@@ -24,7 +24,7 @@ import objects.world.loot.tools.LootTool;
 public class MapCreator {
 
 	@SuppressWarnings("unchecked")
-	private static List<ILoot>[][] tool_list = new List[7][2]; // - difficulty - state
+	private static List<ILoot>[][] tool_list = new List[7][4]; // - difficulty - state
 
 	public static void addToToolList(Tool tool, ILoot iloot) {
 		MapCreator.tool_list[tool.getCurrentLvl()][tool.getToolNum()].add(iloot);
@@ -43,6 +43,7 @@ public class MapCreator {
 		// Red for People (because red = important)
 		// Green for Puzzler (as green makes me think to "thinking")
 		// Yellow for Foes (as they are both living & puzzler)
+		// Bleu for loots (opposite of foe ! Foe blocks you, loots help you)
 		// Cyan for decor (because it's beautiful, right ? decor = beauty)
 		// Magenta for destroyable (because it's flashy, like important spot)
 		setUpForRandomizingLoot();
@@ -80,6 +81,9 @@ public class MapCreator {
 				// foe - yellow
 				MapCreatorFoe.createFoe(red, green, blue, handler_object, x0, y0);
 
+				// loot - blue
+				MapCreatorLoot.createTool(red, green, blue, handler_object, x0, y0);
+				
 				// decor - cyan
 				MapCreatorDecor.createCouch(red, green, blue, handler_object, x0, y0);
 				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);

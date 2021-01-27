@@ -78,13 +78,14 @@ public class World implements IRender {
 		}
 	}
 
-	public static void makeAllFoesStupid() {
+	public static void makeAllFoesStatue() {
 
 		boolean isCameraDependant = true;
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE) {
-				((FoeObject) tempObject).setStupid(true);
+				FoeObject tempFoe = (FoeObject) tempObject; 
+				tempFoe.setStatue(true);
 			}
 		}
 	}

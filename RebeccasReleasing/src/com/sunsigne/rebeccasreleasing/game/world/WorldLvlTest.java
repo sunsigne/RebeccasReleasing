@@ -1,7 +1,6 @@
 package com.sunsigne.rebeccasreleasing.game.world;
 
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.game.event.EventContext;
@@ -9,10 +8,6 @@ import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
-
-import objects.GameObject;
-import objects.characters.living.FoeObject;
 
 public class WorldLvlTest implements ILvl {
 
@@ -45,11 +40,10 @@ public class WorldLvlTest implements ILvl {
 				return Conductor.getState() == STATE.LEVEL;
 			}
 
-			// Set to player infinite hp (so generous!)
-			// Move player to the right
+			// Turn all foes into statues
 			@Override
 			public void startEvent() {
-				World.makeAllFoesStupid();
+				World.makeAllFoesStatue();
 				Conductor.setState(STATE.LEVEL);
 				HandlerObject.getInstance().player.loadBasicState();
 			}

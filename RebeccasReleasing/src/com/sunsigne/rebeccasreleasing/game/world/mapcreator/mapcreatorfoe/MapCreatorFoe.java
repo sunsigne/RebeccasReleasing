@@ -10,6 +10,9 @@ public class MapCreatorFoe {
 	public static void createFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createNoneLootFoe(red, green, blue, handler_object, x0, y0);
 		MapCreatorKeyFoe.createKeyFoe(red, green, blue, handler_object, x0, y0);
+		MapCreatorSwordFoe.createSwordFoe(red, green, blue, handler_object, x0, y0);
+		MapCreatorBombFoe.createBombFoe(red, green, blue, handler_object, x0, y0);
+		MapCreatorGlassFoe.createGlassFoe(red, green, blue, handler_object, x0, y0);
 	}
 
 	private static void createNoneLootFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {

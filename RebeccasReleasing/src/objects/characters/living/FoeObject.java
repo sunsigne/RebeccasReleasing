@@ -40,7 +40,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	private LootObject loot;
 	public boolean stunned;
 	private int stuntime;
-	private boolean stupid;
+	private boolean statue;
 
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
@@ -136,20 +136,22 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		runAnimation(this.currentDifficulty.getLvl(), getFacing().getNum());
 		livingTickBehavior(false);
 
-		checkMultipleFoes();
+		if (!statue) {
+			checkMultipleFoes();
 
-		if (!stunned) {
-			if (isPlayerInSight() && !stupid)
-				movingtoPlayer();
+			if (!stunned) {
+				if (isPlayerInSight())
+					movingtoPlayer();
 //			else setMotionless();
-		}
+			}
 
-		else {
-			setMotionless();
-			if (stuntime > 0)
-				--stuntime;
-			else
-				stunned = false;
+			else {
+				setMotionless();
+				if (stuntime > 0)
+					--stuntime;
+				else
+					stunned = false;
+			}
 		}
 	}
 
@@ -157,13 +159,13 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		stunned = true;
 		stuntime = 30;
 	}
-	
-	public void setStupid(boolean stupid) {
-		this.stupid = stupid;
-		if(stupid)
-		{
+
+	public void setStatue(boolean statue) {
+		this.statue = statue;
+		if (statue) {
 			setMotionless();
-			setFacing(FACING.DOWN);			
+			setFacing(FACING.DOWN);
+			setDifficulty(difficulty);
 		}
 	}
 
@@ -229,6 +231,8 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 	private void renderingFoe(Graphics g) {
 		int difficulty = this.currentDifficulty.getLvl();
+		if (statue)
+			difficulty = this.difficulty.getLvl();
 		int facing = getFacing().getNum();
 
 		if (isMotionless() || !isPlayerActive())
@@ -248,12 +252,16 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	public void collision(LivingObject living) {
 
 		if (living.isPlayer()) {
-			if (!stunned) {
-				if (touchingPlayer(living) && HandlerObject.getInstance().player.isPlayerActive()) {
-					if (hasToolLvl(currentDifficulty, Tool.SWORD))
-						updatePuzzler(living);
-					else
-						pushPlayer();
+			if (statue)
+				living.getCollisionDetector().collidingBehaviorBetweenFoes(living, this);
+			else {
+				if (!stunned) {
+					if (touchingPlayer(living) && HandlerObject.getInstance().player.isPlayerActive()) {
+						if (hasToolLvl(currentDifficulty, Tool.SWORD))
+							updatePuzzler(living);
+						else
+							pushPlayer();
+					}
 				}
 			}
 
