@@ -49,13 +49,7 @@ public class WorldLvlTest implements ILvl {
 			// Move player to the right
 			@Override
 			public void startEvent() {
-				LinkedList<GameObject> list = HandlerObject.getInstance().getList(true);
-				for (GameObject tempObject : list) {
-					if (tempObject.getId() == OBJECTID.FOE) {
-						FoeObject tempFoe = (FoeObject) tempObject;
-						tempFoe.setStupid(true);
-					}
-				}
+				World.makeAllFoesStupid();
 				Conductor.setState(STATE.LEVEL);
 				HandlerObject.getInstance().player.loadBasicState();
 			}

@@ -53,7 +53,6 @@ public class World implements IRender {
 		return ilvl;
 	}
 
-
 	private void loadLevel() {
 
 		MapCreator.createLevel(ilvl.getLvlImage());
@@ -61,7 +60,6 @@ public class World implements IRender {
 		startGUI();
 		Conductor.setState(STATE.LEVEL);
 	}
-	
 
 	private static void startGUI() {
 		gui = new GUI();
@@ -80,6 +78,17 @@ public class World implements IRender {
 		}
 	}
 
+	public static void makeAllFoesStupid() {
+
+		boolean isCameraDependant = true;
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
+		for (GameObject tempObject : list) {
+			if (tempObject.getId() == OBJECTID.FOE) {
+				((FoeObject) tempObject).setStupid(true);
+			}
+		}
+	}
+
 	@Override
 	public void render(Graphics g) {
 
@@ -93,7 +102,7 @@ public class World implements IRender {
 	}
 
 	public void close() {
-		
+
 		Conductor.setState(STATE.LOADING);
 		HandlerEvent.getInstance().clear();
 		GameMouseInput.getInstance().clearClickable();
