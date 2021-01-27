@@ -106,7 +106,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 		}
 	}
 
-	public void resetWatchingDirection() {
+	private void resetWatchingDirection() {
 		watching[FACING.LEFT.getNum()] = false;
 		watching[FACING.RIGHT.getNum()] = false;
 		watching[FACING.UP.getNum()] = false;
