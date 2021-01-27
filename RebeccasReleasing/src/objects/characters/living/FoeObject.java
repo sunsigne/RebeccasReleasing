@@ -40,6 +40,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	private LootObject loot;
 	public boolean stunned;
 	private int stuntime;
+	private boolean stupid;
 
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.FOE);
@@ -138,7 +139,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		checkMultipleFoes();
 
 		if (!stunned) {
-			if (isPlayerInSight())
+			if (isPlayerInSight() && !stupid)
 				movingtoPlayer();
 //			else setMotionless();
 		}
@@ -155,6 +156,15 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	public void stun() {
 		stunned = true;
 		stuntime = 30;
+	}
+	
+	public void setStupid(boolean stupid) {
+		this.stupid = stupid;
+		if(stupid)
+		{
+			setMotionless();
+			setFacing(FACING.DOWN);			
+		}
 	}
 
 	public void kill() {
