@@ -83,6 +83,8 @@ public class ImageBank {
 	public static final ImageBank hat = new ImageBank();
 
 	// map
+	public static final ImageBank lvltest = new ImageBank();
+	public static final ImageBank lvltest_cutout = new ImageBank();
 	public static final ImageBank lvl01 = new ImageBank();
 	public static final ImageBank lvl01_cutout = new ImageBank();
 	public static final ImageBank lvl02 = new ImageBank();
@@ -151,6 +153,8 @@ public class ImageBank {
 		addImage(hat, ImageTask.loadImage("title_screen\\hat.png"));
 
 		// map
+		addImage(lvltest, ImageTask.loadMapImage("lvltest.png"));
+		addImage(lvltest_cutout, ImageTask.loadMapImage("lvltest_cutout.png"));
 		addImage(lvl01, ImageTask.loadMapImage("lvl01.png"));
 		addImage(lvl01_cutout, ImageTask.loadMapImage("lvl01_cutout.png"));
 		addImage(lvl02, ImageTask.loadMapImage("lvl02.png"));
