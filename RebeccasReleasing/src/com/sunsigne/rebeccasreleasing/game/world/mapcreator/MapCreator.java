@@ -14,6 +14,7 @@ import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.GameObject;
+import objects.IFacing.FACING;
 import objects.characters.living.PlayerObject;
 import objects.world.Wall;
 import objects.world.loot.ILoot;
@@ -85,10 +86,7 @@ public class MapCreator {
 				MapCreatorLoot.createTool(red, green, blue, handler_object, x0, y0);
 				
 				// decor - cyan
-				MapCreatorDecor.createCouch(red, green, blue, handler_object, x0, y0);
-				MapCreatorDecor.createLong(red, green, blue, handler_object, x0, y0);
 				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);
-				MapCreatorDecor.createTall(red, green, blue, handler_object, x0, y0);
 
 				// destroyable - magenta
 				MapCreatorDestroyable.createDestroyable(red, green, blue, handler_object, x0, y0);
@@ -131,7 +129,27 @@ public class MapCreator {
 
 	private static void createWall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 255 && blue == 255) {
-			Wall wall = new Wall(x0, y0);
+			Wall wall = new Wall(x0, y0, null);
+			handler_object.addObject(wall);
+		}
+		
+		if (red == 255 && green == 254 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.UP);
+			handler_object.addObject(wall);
+		}
+		
+		if (red == 255 && green == 253 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.DOWN);
+			handler_object.addObject(wall);
+		}
+		
+		if (red == 255 && green == 252 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.LEFT);
+			handler_object.addObject(wall);
+		}
+		
+		if (red == 255 && green == 251 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.RIGHT);
 			handler_object.addObject(wall);
 		}
 	}

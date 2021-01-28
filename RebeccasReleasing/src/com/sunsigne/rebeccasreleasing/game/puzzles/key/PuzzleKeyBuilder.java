@@ -56,14 +56,14 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 	@Override
 	public void createFrame() {
 		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, texture.decor_wall[1][3]));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, texture.decor_wall[3]));
 			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, texture.decor_wall[1][3]));
+					.addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[1][3]));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
 			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[1][3]));
+					.addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 
 		HandlerObject.getInstance().addObject(getTimer());
@@ -80,7 +80,7 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 			int row = 1 + new Random().nextInt(5);
 
 			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE, Size.Y0 + row * Size.TILE_PUZZLE, texture.decor_wall[1][3]));
+					.addObject(new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE, Size.Y0 + row * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 	}
 

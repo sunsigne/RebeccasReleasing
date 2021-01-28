@@ -92,7 +92,7 @@ public class PuzzleHack extends Puzzle {
 	@Override
 	public void render(Graphics g) {
 		colorRender(g, new Color(10, 10, 50, 240));
-		renderingFakeWall(g, texture.decor_wall[1][2]);
+		renderingFakeWall(g, texture.decor_wall[2]);
 
 	}
 

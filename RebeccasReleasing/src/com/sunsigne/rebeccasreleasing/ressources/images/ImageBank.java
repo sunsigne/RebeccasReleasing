@@ -58,10 +58,7 @@ public class ImageBank {
 	static final ImageBank loot_tool_sheet = new ImageBank();
 
 	// decor
-	static final ImageBank decor_couch_sheet = new ImageBank();
-	static final ImageBank decor_long_sheet = new ImageBank();
 	static final ImageBank decor_small_sheet = new ImageBank();
-	static final ImageBank decor_tall_sheet = new ImageBank();
 	static final ImageBank decor_wall_sheet = new ImageBank();
 
 	// interface
@@ -131,10 +128,7 @@ public class ImageBank {
 		addImage(loot_tool_sheet, ImageTask.loadImage("loot\\tool_sheet.png"));
 
 		// decor
-		addImage(decor_couch_sheet, ImageTask.loadImage("decor\\couch_sheet.png"));
-		addImage(decor_long_sheet, ImageTask.loadImage("decor\\long_sheet.png"));
 		addImage(decor_small_sheet, ImageTask.loadImage("decor\\small_sheet.png"));
-		addImage(decor_tall_sheet, ImageTask.loadImage("decor\\tall_sheet.png"));
 		addImage(decor_wall_sheet, ImageTask.loadImage("decor\\wall_sheet.png"));
 
 		// interface

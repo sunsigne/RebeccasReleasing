@@ -54,10 +54,7 @@ public class TextureBank {
 	private SpriteSheet loot_tool_sheet;
 
 	// decor
-	private SpriteSheet decor_couch_sheet;
-	private SpriteSheet decor_long_sheet;
 	private SpriteSheet decor_small_sheet;
-	private SpriteSheet decor_tall_sheet;
 	private SpriteSheet decor_wall_sheet;
 
 	// living
@@ -97,11 +94,8 @@ public class TextureBank {
 	public BufferedImage[][] loot_tool = new BufferedImage[7][4]; // - difficulty - state
 
 	// decor
-	public BufferedImage[][] decor_couch = new BufferedImage[4][4]; // - facing - length
-	public BufferedImage[] decor_long = new BufferedImage[1]; // - state
 	public BufferedImage[] decor_small = new BufferedImage[3]; // - state
-	public BufferedImage[] decor_tall = new BufferedImage[2]; // - state
-	public BufferedImage[][] decor_wall = new BufferedImage[2][5]; // - world or puzzle - state
+	public BufferedImage[] decor_wall = new BufferedImage[5]; // - state
 
 	// interface
 	public BufferedImage interface_chat;
@@ -145,10 +139,7 @@ public class TextureBank {
 		loot_tool_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.loot_tool_sheet));
 
 		// decor
-		decor_couch_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_couch_sheet));
-		decor_long_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_long_sheet));
 		decor_small_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_small_sheet));
-		decor_tall_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_tall_sheet));
 		decor_wall_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_wall_sheet));
 
 		// interface
@@ -270,34 +261,12 @@ public class TextureBank {
 
 		// decor
 
-		decor_couch[FACING.LEFT.getNum()][1] = ImageTask.drawMissingTexture(32, 32);
-		decor_couch[FACING.LEFT.getNum()][2] = decor_couch_sheet.grabImage(2, 3, 32, 64);
-		decor_couch[FACING.LEFT.getNum()][3] = decor_couch_sheet.grabImage(3, 2, 32, 96);
-		decor_couch[FACING.RIGHT.getNum()][1] = ImageTask.drawMissingTexture(32, 32);
-		decor_couch[FACING.RIGHT.getNum()][2] = decor_couch_sheet.grabImage(5, 3, 32, 64);
-		decor_couch[FACING.RIGHT.getNum()][3] = decor_couch_sheet.grabImage(4, 2, 32, 96);
-		decor_couch[FACING.UP.getNum()][1] = decor_couch_sheet.grabImage(1, 1, 32, 32);
-		decor_couch[FACING.UP.getNum()][2] = decor_couch_sheet.grabImage(1, 2, 64, 32);
-		decor_couch[FACING.UP.getNum()][3] = decor_couch_sheet.grabImage(1, 3, 96, 32);
-		decor_couch[FACING.DOWN.getNum()][1] = decor_couch_sheet.grabImage(6, 1, 32, 32);
-		decor_couch[FACING.DOWN.getNum()][2] = decor_couch_sheet.grabImage(3, 2, 64, 32);
-		decor_couch[FACING.DOWN.getNum()][3] = decor_couch_sheet.grabImage(2, 3, 96, 32);
-
-		for (int i = 0; i < 1; i++) {
-			decor_long[i] = decor_long_sheet.grabImage(i + 1, 1, 64, 32);
-		}
-		
 		for (int i = 0; i < 3; i++) {
 			decor_small[i] = decor_small_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
-		for (int i = 0; i < 2; i++) {
-			decor_tall[i] = decor_tall_sheet.grabImage(i + 1, 1, 32, 64);
-		}
-
 		for (int i = 0; i < 5; i++) {
-			decor_wall[0][i] = decor_wall_sheet.grabImage(i + 1, 1, 32, 32); // world
-			decor_wall[1][i] = decor_wall_sheet.grabImage(i + 1, 2, 32, 32); // puzzle
+			decor_wall[i] = decor_wall_sheet.grabImage(i + 1, 1, 32, 32); // world
 		}
 
 	}
