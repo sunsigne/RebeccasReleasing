@@ -21,11 +21,15 @@ public class TextureBank {
 
 	// living
 	private SpriteSheet living_foe_battle_sheet;
+	private SpriteSheet living_gamma_battle_sheet;
 	private SpriteSheet living_rebecca_battle_sheet;
 
 	private SpriteSheet living_foe_walking_sheet;
+	private SpriteSheet living_gamma_walking_sheet;
 	private SpriteSheet living_rebecca_walking_sheet;
 
+	private SpriteSheet living_foe_face_sheet;
+	private SpriteSheet living_gamma_face_sheet;
 	private SpriteSheet living_rebecca_face_sheet;
 	private SpriteSheet living_sarah_face_sheet;
 	
@@ -58,13 +62,17 @@ public class TextureBank {
 	private SpriteSheet decor_wall_sheet;
 
 	// living
-	public BufferedImage[][] living_foe_battle = new BufferedImage[2][9]; // - facing - state
-	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][9]; // - facing - state
-	public BufferedImage[][] living_err_battle = new BufferedImage[2][9]; // - facing - state
+	public BufferedImage[][] living_foe_battle = new BufferedImage[2][11]; // - facing - state
+	public BufferedImage[][] living_gamma_battle = new BufferedImage[2][11]; // - facing - state
+	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][11]; // - facing - state
+	public BufferedImage[][] living_err_battle = new BufferedImage[2][11]; // - facing - state
 
-	public BufferedImage[][] living_rebecca_walking = new BufferedImage[4][4]; // - facing - state
 	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
+	public BufferedImage[][] living_gamma_walking = new BufferedImage[4][4]; // - facing - state
+	public BufferedImage[][] living_rebecca_walking = new BufferedImage[4][4]; // - facing - state
 
+	public BufferedImage[] living_foe_face = new BufferedImage[1]; // - state
+	public BufferedImage[] living_gamma_face = new BufferedImage[1]; // - state
 	public BufferedImage[] living_rebecca_face = new BufferedImage[1]; // - state
 	public BufferedImage[] living_sarah_face = new BufferedImage[1]; // - state
 	
@@ -105,11 +113,15 @@ public class TextureBank {
 
 		// living
 		living_foe_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_battle_sheet));
+		living_gamma_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_battle_sheet));
 		living_rebecca_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_battle_sheet));
 
 		living_foe_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_walking_sheet));
+		living_gamma_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_walking_sheet));
 		living_rebecca_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_walking_sheet));
 
+		living_foe_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_face_sheet));
+		living_gamma_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_face_sheet));
 		living_rebecca_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_face_sheet));
 		living_sarah_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_sarah_face_sheet));
 		
@@ -152,9 +164,11 @@ public class TextureBank {
 	private void getTextures() {
 
 		// living
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 11; i++) {
 			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
+			living_gamma_battle[FACING.LEFT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_gamma_battle[FACING.RIGHT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 2, 64, 64);
 			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
 			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
@@ -162,6 +176,11 @@ public class TextureBank {
 		}
 
 		for (int i = 0; i < 4; i++) {
+			living_gamma_walking[FACING.LEFT.getNum()][i] = living_gamma_walking_sheet.grabImage(i + 1, 1, 48, 48);
+			living_gamma_walking[FACING.RIGHT.getNum()][i] = living_gamma_walking_sheet.grabImage(i + 1, 2, 48, 48);
+			living_gamma_walking[FACING.UP.getNum()][i] = living_gamma_walking_sheet.grabImage(i + 1, 3, 48, 48);
+			living_gamma_walking[FACING.DOWN.getNum()][i] = living_gamma_walking_sheet.grabImage(i + 1, 4, 48, 48);
+			
 			living_rebecca_walking[FACING.LEFT.getNum()][i] = living_rebecca_walking_sheet.grabImage(i + 1, 1, 48, 48);
 			living_rebecca_walking[FACING.RIGHT.getNum()][i] = living_rebecca_walking_sheet.grabImage(i + 1, 2, 48, 48);
 			living_rebecca_walking[FACING.UP.getNum()][i] = living_rebecca_walking_sheet.grabImage(i + 1, 3, 48, 48);
@@ -181,6 +200,8 @@ public class TextureBank {
 			}
 		}
 		
+		living_foe_face[0] = living_foe_face_sheet.grabImage(1, 1, 144, 144);
+		living_gamma_face[0] = living_gamma_face_sheet.grabImage(1, 1, 144, 144);
 		living_rebecca_face[0] = living_rebecca_face_sheet.grabImage(1, 1, 144, 144);
 		living_sarah_face[0] = living_sarah_face_sheet.grabImage(1, 1, 144, 144);
 
