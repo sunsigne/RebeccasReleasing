@@ -19,7 +19,6 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 	private FACING facing;
 	private CHARA chara;
 
-	protected int startingX, startingY;
 	private int attackTime, defenseTime;
 
 	public CardFolder(FACING facing, CHARA chara, CARDTYPE cardtype) {
@@ -35,9 +34,6 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 
 		if (facing == FACING.RIGHT)
 			x = 215;
-
-		startingX = x;
-		startingY = y;
 	}
 
 	// state
@@ -114,8 +110,8 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		}
 
 		if (defenseTime <= 0) {
-			if ((getFacing() == FACING.RIGHT && x < startingX) || (getFacing() == FACING.LEFT && x > startingX))
-				x = startingX;
+			if ((getFacing() == FACING.RIGHT && x < initX) || (getFacing() == FACING.LEFT && x > initX))
+				x = initX;
 		}
 
 	}
