@@ -75,6 +75,7 @@ public class SoundBank {
 	// other
 	// general
 	public static final SoundBank error = new SoundBank();
+	public static final SoundBank jump = new SoundBank();
 	public static final SoundBank popup = new SoundBank();
 	// talking
 	public static final SoundBank talking_rebecca = new SoundBank();
@@ -136,6 +137,7 @@ public class SoundBank {
 		// other
 		// general
 		addSound(error, new BufferedSound("sound\\other\\general\\error.wav"));
+		addSound(jump, new BufferedSound("sound\\other\\general\\jump.wav"));
 		addSound(popup, new BufferedSound("sound\\other\\general\\popup.wav"));
 		// talking
 		addSound(talking_rebecca, new BufferedSound("sound\\other\\talking\\rebecca.wav"));
