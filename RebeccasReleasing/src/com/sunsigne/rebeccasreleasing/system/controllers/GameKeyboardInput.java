@@ -24,7 +24,9 @@ public class GameKeyboardInput extends KeyAdapter {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			if (Conductor.getState() != STATE.TITLE) {
+			if (Conductor.getState() == STATE.INTRODUCTION)
+				Conductor.closeIntroduction();
+			else if (Conductor.getState() != STATE.TITLE) {
 				World.currentWorld.close();
 				new Title();
 			} else
@@ -90,7 +92,7 @@ public class GameKeyboardInput extends KeyAdapter {
 		else if (!keyPressed[FACING.LEFT.getNum()] && !keyPressed[FACING.RIGHT.getNum()])
 			HandlerObject.getInstance().player.setVelX(0);
 	}
-	
+
 	private void moveplayerbyY() {
 
 		if (keyPressed[FACING.UP.getNum()] && !keyPressed[FACING.DOWN.getNum()])
@@ -102,6 +104,5 @@ public class GameKeyboardInput extends KeyAdapter {
 		else if (!keyPressed[FACING.UP.getNum()] && !keyPressed[FACING.DOWN.getNum()])
 			HandlerObject.getInstance().player.setVelY(0);
 	}
-
 
 }

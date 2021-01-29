@@ -4,12 +4,14 @@ import javax.swing.JOptionPane;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.LoadingScreenObject;
+import com.sunsigne.rebeccasreleasing.game.menu.introduction.Introduction;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.game.world.WorldLvl001;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.util.DualChecker;
 
 @Todo("this class may have more responsabilities.")
@@ -50,8 +52,15 @@ public class Conductor {
 		Game.game.start();
 		new DualChecker().start();
 		Game.game.forceLoop();
+		new Introduction();
+	}
+	
+	public static void closeIntroduction()
+	{
+		GameMouseInput.getInstance().clearClickable();
 		new Title();
 	}
+
 
 	public static void stop() {
 		new DualChecker().stop();
