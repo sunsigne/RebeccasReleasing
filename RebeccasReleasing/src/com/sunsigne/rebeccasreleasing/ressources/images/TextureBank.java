@@ -61,10 +61,13 @@ public class TextureBank {
 	private SpriteSheet decor_small_sheet;
 	private SpriteSheet decor_wall_sheet;
 
+	//title
+	private SpriteSheet pierre_feuille_ciseaux_sheet;
+	
 	// living
 	public BufferedImage[][] living_foe_battle = new BufferedImage[2][11]; // - facing - state
 	public BufferedImage[][] living_gamma_battle = new BufferedImage[2][11]; // - facing - state
-	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][11]; // - facing - state
+	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][15]; // - facing - state
 	public BufferedImage[][] living_err_battle = new BufferedImage[2][11]; // - facing - state
 
 	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
@@ -105,6 +108,9 @@ public class TextureBank {
 	public BufferedImage[] decor_small = new BufferedImage[3]; // - state
 	public BufferedImage[] decor_wall = new BufferedImage[5]; // - state
 
+	// title
+	public BufferedImage[] pierre_feuille_ciseaux = new BufferedImage[4]; // - state
+	
 	// interface
 	public BufferedImage interface_chat;
 	
@@ -154,6 +160,9 @@ public class TextureBank {
 		decor_small_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_small_sheet));
 		decor_wall_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.decor_wall_sheet));
 
+		// title
+		pierre_feuille_ciseaux_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.pierre_feuille_ciseaux_sheet));
+		
 		// interface
 		interface_chat = ImageBank.getImage(ImageBank.interface_chat);
 		
@@ -169,10 +178,14 @@ public class TextureBank {
 			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
 			living_gamma_battle[FACING.LEFT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_gamma_battle[FACING.RIGHT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
+
 			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
 			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+		}
+		
+		for (int i = 0; i < 15; i++) {
+			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
 		}
 
 		for (int i = 0; i < 4; i++) {
@@ -290,6 +303,12 @@ public class TextureBank {
 			decor_wall[i] = decor_wall_sheet.grabImage(i + 1, 1, 32, 32); // world
 		}
 
+		// title
+		
+		for (int i = 0; i < 4; i++) {
+			pierre_feuille_ciseaux[i] = pierre_feuille_ciseaux_sheet.grabImage(i + 1, 1, 1186, 613);
+		}
+		
 	}
 
 }

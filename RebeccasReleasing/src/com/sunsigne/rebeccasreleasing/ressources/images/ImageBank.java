@@ -69,6 +69,9 @@ public class ImageBank {
 	static final ImageBank interface_chat = new ImageBank();
 
 	// title
+	static final ImageBank pierre_feuille_ciseaux_sheet = new ImageBank();
+	public static final ImageBank pierre_feuille_ciseaux_com = new ImageBank();
+	
 	public static final ImageBank title_1 = new ImageBank();
 	public static final ImageBank title_2 = new ImageBank();
 
@@ -143,6 +146,9 @@ public class ImageBank {
 		addImage(interface_chat, ImageTask.loadImage("interface\\chat.png"));
 
 		// title
+		addImage(pierre_feuille_ciseaux_sheet, ImageTask.loadImage("title_screen\\pierre_feuille_ciseaux_sheet.png"));
+		addImage(pierre_feuille_ciseaux_com, ImageTask.loadImage("title_screen\\pierre_feuille_ciseaux_com.png"));
+
 		addImage(title_1, ImageTask.loadImage("title_screen\\title_1.png"));
 		addImage(title_2, ImageTask.loadImage("title_screen\\title_2.png"));
 
