@@ -2,20 +2,26 @@ package com.sunsigne.rebeccasreleasing.game.menu.introduction;
 
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
+import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
+import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
-import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class Introduction extends Clickable {
 
+	private static final ChatMap frintroduction = new ChatMap(LANGUAGE.FRENCH, new GameFile("/dialogues/french/introduction"));
+//	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/dialogues/english/introduction"));
+	
 	public Introduction() {
 		super(STATE.INTRODUCTION);
 
-//		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
-//		HandlerObject.getInstance().addObject(new IntroductionObject());
+		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.introduction));
+		HandlerObject.getInstance().addObject(new IntroductionObject(frintroduction));
 
 	}
 
@@ -31,6 +37,7 @@ public class Introduction extends Clickable {
 
 	@Override
 	public void render(Graphics g) {
+		gradientRender(g);
 	}
 
 	@Override
