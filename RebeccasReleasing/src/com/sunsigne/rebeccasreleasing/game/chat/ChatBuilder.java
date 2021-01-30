@@ -3,9 +3,8 @@ package com.sunsigne.rebeccasreleasing.game.chat;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.event.Event;
+import com.sunsigne.rebeccasreleasing.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.ressources.FileTask;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
@@ -16,7 +15,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
 
 import objects.characters.CHARA;
 
-public abstract class ChatBuilder extends Clickable implements IClick {
+public abstract class ChatBuilder extends Clickable implements IClick, ITranslation {
 
 	protected static final int MAX_LINES_FOR_SAME_DIALOGUE = 255;
 
@@ -37,64 +36,24 @@ public abstract class ChatBuilder extends Clickable implements IClick {
 		creationOfChatObjectFromChatID(chatID);
 		displayChat();
 	}
-
+	
 	@Override
 	public boolean isCameraDependant() {
 		return false;
 	}
 
+	@Override
+	public GameFile getGameFile(int number) {
+		return gamefileFromLang[number];
+	}
+
+	@Override
+	public void setGameFile(int number, GameFile gameFile) {
+		this.gamefileFromLang[number] = gameFile;
+	}
+
 	protected abstract void displayChat();
 
-	private void languageMapping(ChatMap chatMap, ChatMap... chatMaps) {
-		int size = chatMaps.length;
-
-		textAttributionByLanguage(chatMap);
-
-		if (size != 0) {
-			for (int i = 0; i < size; i++)
-				textAttributionByLanguage(chatMaps[i]);
-		}
-	}
-
-	private void textAttributionByLanguage(ChatMap chatMap) {
-
-		LANGUAGE language = chatMap.getLanguage();
-		switch (language) {
-		case FRENCH:
-			gamefileFromLang[2] = chatMap.getGameFile();
-			break;
-		case ENGLISH:
-		default:
-			gamefileFromLang[1] = chatMap.getGameFile();
-			break;
-		}
-	}
-
-	private String readDataFromFile() {
-		switch (Options.getLanguage()) {
-		case FRENCH:
-			return verified(gamefileFromLang[2]);
-		case ENGLISH:
-		default:
-			return verified(gamefileFromLang[1]);
-		}
-	}
-
-	private String verified(GameFile gamefile) {
-		if (gamefile != null)
-			return FileTask.read(gamefile);
-
-		// if language not found, return the first valid language
-		else {
-			int size = LANGUAGE.TOTALNUM + 1;
-			for (int i = 0; i < size; i++)
-				if (gamefileFromLang[i] != null)
-					return FileTask.read(gamefileFromLang[i]);
-		}
-		Conductor.fatalError(
-				"An unknown error has occured : couldn't correcly make a link between a text and an existing Language");
-		return null;
-	}
 
 	private void creationOfChatObjectFromChatID(int chatID) {
 
