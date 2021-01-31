@@ -24,28 +24,26 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 	public CardFolder(FACING facing, CHARA chara, CARDTYPE cardtype) {
 		super(1300, 250, OBJECTID.P_CARDFOLDER, cardtype);
 
-		this.facing = facing;
+		setFacing(facing);
 		this.chara = chara;
 
-		if (facing == FACING.UP)
-			facing = FACING.LEFT;
-		if (facing == FACING.DOWN)
-			facing = FACING.RIGHT;
-
-		if (facing == FACING.RIGHT)
-			x = 215;
+		if (getFacing() == FACING.RIGHT)
+		{
+			setX(215);
+			initX = getX();
+		}
 	}
 
 	// state
 
 	@Override
-	public Animation getAnimation(int...array) {
+	public Animation getAnimation(int... array) {
 
 		int facing = array[0];
 		
 		if (animation == null)
-			animation = new Animation(12, getTextureFromChara()[facing][0], getTextureFromChara()[facing][1],
-					getTextureFromChara()[facing][2], getTextureFromChara()[facing][3]);
+			animation = new Animation(12, getTextureFromChara()[facing][7], getTextureFromChara()[facing][8],
+					getTextureFromChara()[facing][9], getTextureFromChara()[facing][10]);
 		return animation;
 	}
 
@@ -65,7 +63,11 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 
 	@Override
 	public void setFacing(FACING facing) {
-		this.facing = facing;
+		if (facing == FACING.UP)
+			this.facing = FACING.LEFT;
+		else if (facing == FACING.DOWN)
+			this.facing = FACING.RIGHT;
+		else this.facing = facing;
 	}
 
 	public void playCard(CARDTYPE type) {
@@ -140,12 +142,12 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		int h0 = 5 * Size.TILE_PUZZLE / 2;
 
 		if (attackTime > 0)
-			g.drawImage(getTextureFromChara()[getFacing().getNum()][4], x0, y0, w0, h0, null);
+			g.drawImage(getTextureFromChara()[getFacing().getNum()][15], x0, y0, w0, h0, null);
 		else if (defenseTime > 0) {
 			if (getCardtype() == CARDTYPE.DEFENSE && defenseTime < 20)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][5], x0, y0, w0, h0, null);
+				g.drawImage(getTextureFromChara()[getFacing().getNum()][16], x0, y0, w0, h0, null);
 			else if (getCardtype() == CARDTYPE.ATTACK && defenseTime < 16)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][7], x0, y0, w0, h0, null);
+				g.drawImage(getTextureFromChara()[getFacing().getNum()][18], x0, y0, w0, h0, null);
 			else
 				drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 		} else

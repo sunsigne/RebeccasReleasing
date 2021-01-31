@@ -174,7 +174,7 @@ public class ChatObject extends GameObject {
 			img = texture.living_rebecca_face[0];
 			break;
 		case SARAH:
-			img = texture.living_sarah_face[0];
+			img = texture.living_sarah_face[1][0];
 			break;
 		default:
 			img = ImageTask.drawMissingTexture();

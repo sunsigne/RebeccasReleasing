@@ -26,15 +26,20 @@ public class ImageBank {
 	static final ImageBank living_foe_battle_sheet = new ImageBank();
 	static final ImageBank living_gamma_battle_sheet = new ImageBank();
 	static final ImageBank living_rebecca_battle_sheet = new ImageBank();
+	static final ImageBank living_sarah_battle_sheet = new ImageBank();
+	static final ImageBank living_vladimir_battle_sheet = new ImageBank();
 
 	static final ImageBank living_foe_walking_sheet = new ImageBank();
 	static final ImageBank living_gamma_walking_sheet = new ImageBank();
 	static final ImageBank living_rebecca_walking_sheet = new ImageBank();
+	static final ImageBank living_sarah_walking_sheet = new ImageBank();
+	static final ImageBank living_vladimir_walking_sheet = new ImageBank();
 	
 	static final ImageBank living_foe_face_sheet = new ImageBank();
 	static final ImageBank living_gamma_face_sheet = new ImageBank();
 	static final ImageBank living_rebecca_face_sheet = new ImageBank();
-	static final ImageBank living_sarah_face_sheet = new ImageBank(); // to finish
+	static final ImageBank living_sarah_face_sheet = new ImageBank();
+	static final ImageBank living_vladimir_face_sheet = new ImageBank();
 
 	// gui
 	static final ImageBank gui_battery_sheet = new ImageBank();
@@ -71,6 +76,7 @@ public class ImageBank {
 	// title
 	static final ImageBank pierre_feuille_ciseaux_sheet = new ImageBank();
 	public static final ImageBank pierre_feuille_ciseaux_com = new ImageBank();
+	public static final ImageBank helmet_of_releasing = new ImageBank();
 	
 	public static final ImageBank title_1 = new ImageBank();
 	public static final ImageBank title_2 = new ImageBank();
@@ -103,15 +109,20 @@ public class ImageBank {
 		addImage(living_foe_battle_sheet, ImageTask.loadImage("living\\foe_battle_sheet.png"));
 		addImage(living_gamma_battle_sheet, ImageTask.loadImage("living\\gamma_battle_sheet.png"));
 		addImage(living_rebecca_battle_sheet, ImageTask.loadImage("living\\rebecca_battle_sheet.png"));
+		addImage(living_sarah_battle_sheet, ImageTask.loadImage("living\\sarah_battle_sheet.png"));
+		addImage(living_vladimir_battle_sheet, ImageTask.loadImage("living\\vladimir_battle_sheet.png"));
 
 		addImage(living_foe_walking_sheet, ImageTask.loadImage("living\\foe_walking_sheet.png"));
 		addImage(living_gamma_walking_sheet, ImageTask.loadImage("living\\gamma_walking_sheet.png"));
 		addImage(living_rebecca_walking_sheet, ImageTask.loadImage("living\\rebecca_walking_sheet.png"));
+		addImage(living_sarah_walking_sheet, ImageTask.loadImage("living\\sarah_walking_sheet.png"));
+		addImage(living_vladimir_walking_sheet, ImageTask.loadImage("living\\vladimir_walking_sheet.png"));
 
 		addImage(living_foe_face_sheet, ImageTask.loadImage("living\\foe_face_sheet.png"));
 		addImage(living_gamma_face_sheet, ImageTask.loadImage("living\\gamma_face_sheet.png"));
 		addImage(living_rebecca_face_sheet, ImageTask.loadImage("living\\rebecca_face_sheet.png"));
 		addImage(living_sarah_face_sheet, ImageTask.loadImage("living\\sarah_face_sheet.png"));
+		addImage(living_vladimir_face_sheet, ImageTask.loadImage("living\\vladimir_face_sheet.png"));
 
 		// gui
 		addImage(gui_battery_sheet, ImageTask.loadImage("gui\\battery_sheet.png"));
@@ -148,6 +159,7 @@ public class ImageBank {
 		// title
 		addImage(pierre_feuille_ciseaux_sheet, ImageTask.loadImage("title_screen\\pierre_feuille_ciseaux_sheet.png"));
 		addImage(pierre_feuille_ciseaux_com, ImageTask.loadImage("title_screen\\pierre_feuille_ciseaux_com.png"));
+		addImage(helmet_of_releasing, ImageTask.loadImage("title_screen\\helmet_of_releasing.png"));
 
 		addImage(title_1, ImageTask.loadImage("title_screen\\title_1.png"));
 		addImage(title_2, ImageTask.loadImage("title_screen\\title_2.png"));
