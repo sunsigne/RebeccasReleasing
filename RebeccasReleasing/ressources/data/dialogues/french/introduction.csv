@@ -1,4 +1,13 @@
 line_id;gap;text
-1;455;"Voici Rebecca"
-2;290;"Rebecca est contente"
-3;340;"(Elle va avoir un super pouvoir)"
+1;515;"Voici Rebecca"
+2;360;"Rebecca est contente"
+3;355;"(Elle va avoir un super pouvoir)"
+4;185;"Tout ça grâce à son casque"
+5;300;"(C'est lui qui donne des pouvoirs)"
+6;505;"Voici Vladimir"
+7;370;"Vladimir est jaloux"
+8;280;"(il veut lui aussi un super pouvoir)"
+9;430;"Alors";
+10;185;"Vladimir vole le casque !"
+// Text All thanks to her helmet & 
+case 10: // Text (That's what give super powers)

@@ -14,7 +14,10 @@ import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.util.GenerticListener;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.IFacing.FACING;
@@ -23,19 +26,22 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 
 	private Animation animation;
 	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.TOTALNUM + 1];
-	private CommunIntroductionObject[] object = new CommunIntroductionObject[1];
-
-	private float opacity = 0f;
+	private CommunIntroductionObject[] object = new CommunIntroductionObject[3];
 
 	public IntroductionObject(ChatMap chatMap, ChatMap... chatMaps) {
 		super();
 
+		setOpacity(0f);
+
 		languageMapping(chatMap, chatMaps);
 
-		for (int i = 0; i < 1; i++) {
-			object[i] = new IntroductionRebeccaObject();
-			HandlerObject.getInstance().addObject(object[i]);
+		object[0] = new IntroductionHelmetObject();
+		object[1] = new IntroductionRebeccaObject();
+		object[2] = new IntroductionVladimirObject();
+		for (CommunIntroductionObject tempobject : object) {
+			HandlerObject.getInstance().addObject(tempobject);
 		}
+		setPhaseAll(3);
 	}
 
 	// state
@@ -76,44 +82,120 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 	private void runPhase() {
 		switch (getPhase()) {
 		case 0:
-			creditBrighten();
-			break;
-		case 1:
+
+			// the credits appear
+			brightenObject(this, () -> {
+				setPhaseAll(1);
+				// the credits stay a little
+				new AutomaticTimerObject(120, () -> setPhaseAll(2));
+			});
 			break;
 		case 2:
-			creditFade();
+			// the credits desappear & Rebecca moves
+			fadeObject(this, () -> setPhaseAll(3));
 			break;
 		case 3:
-			rebeccaArrive();
+			rebeccaArrived();
 			break;
-		case 4:
+		case 8:
+			rebeccaJumped();
 			break;
-		}
+		case 10:
+			// Rebecca desappear
+			fadeObject(object[0], null);
+			fadeObject(object[1], () -> {
+				setPhaseAll(11);
+				// A little wait before Vladimir apparition
+				new AutomaticTimerObject(30, () -> setPhaseAll(12));
+			});
+			break;
+		case 12:
+			// Vladimir appear
+			brightenObject(object[2], () -> vladimirApparead());
+			break;
+		case 17 :
+			VladimirJumped();
+			break;
+/*		case 17:
+			// Vladimir desappear
+			fadeObject(object[2], () -> {
+				setPhaseAll(18);
+				// A little wait before Text apparition
+				new AutomaticTimerObject(30, () -> setPhaseAll(19));
+			});
+			break;
+*/		}
 
 	}
 
-	private void creditBrighten() {
-		if (opacity < 0.99f)
-			opacity += 0.04999f;
+	private void brightenObject(CommunIntroductionObject object, GenerticListener listener) {
+		if (object.getOpacity() < 0.99f)
+			object.setOpacity(object.getOpacity() + 0.04999f);
 		else {
-			setPhaseAll(1);
-			new AutomaticTimerObject(120, () -> setPhaseAll(2));
+			object.setOpacity(1.0f);
+			if (listener != null)
+				listener.doAction();
 		}
 	}
 
-	private void creditFade() {
-		if (opacity > 0f)
-			opacity -= 0.05f;
-		else
-			setPhaseAll(3);
+	private void fadeObject(CommunIntroductionObject object, GenerticListener listener) {
+		if (object.getOpacity() > 0f) {
+			object.setOpacity(object.getOpacity() - 0.05f);
+		} else if (listener != null)
+			listener.doAction();
 	}
 
-	private void rebeccaArrive() {
-		if (object[0].getX() >= initX + 800) {
+	private void rebeccaArrived() {
+		if (object[1].getX() >= initX + 800) {
+
+			// Text This is Rebecca
 			setPhaseAll(4);
+			// Text desappear
 			new AutomaticTimerObject(120, () -> setPhaseAll(5));
+			// Text Rebecca is happy
 			new AutomaticTimerObject(170, () -> setPhaseAll(6));
-			new AutomaticTimerObject(280, () -> setPhaseAll(7));
+			// Text (She will get a super power)
+			new AutomaticTimerObject(300, () -> setPhaseAll(7));
+			// Text desappear
+			new AutomaticTimerObject(460, () -> setPhaseAll(8));
+		}
+	}
+
+	private void rebeccaJumped() {
+		if (((IntroductionRebeccaObject) object[1]).getJumpCount() >= 4) {
+
+			// Text All thanks to her helmet & Text (That's what give super powers)
+			setPhaseAll(9);
+			// Text and Rebecca desappear
+			new AutomaticTimerObject(340, () -> setPhaseAll(10));
+		}
+	}
+
+	private void vladimirApparead() {
+		// Text This is Vladimir
+		setPhaseAll(13);
+		// Text desapear
+		new AutomaticTimerObject(120, () -> setPhaseAll(14));
+		// Text Vladimir is jealous
+		new AutomaticTimerObject(170, () -> {
+//			SoundTask.playSound(0.7f, SoundBank.getSound(SoundBank.jump));		
+			setPhaseAll(15);
+		});
+		// Text (He also want a super power)
+		new AutomaticTimerObject(300, () -> setPhaseAll(16));
+		// Vladimir jumps twice
+		new AutomaticTimerObject(440, () -> setPhaseAll(17));
+	}
+	
+	private void VladimirJumped() {
+		if (((IntroductionVladimirObject) object[2]).getJumpCount() >= 2) {
+
+			// A little wait before Vladimir leaves
+			setPhaseAll(18);
+			// Vladimir moves
+			new AutomaticTimerObject(20, () -> setPhaseAll(19));
+			// Text and Vladimir desappear
+			new AutomaticTimerObject(70, () -> setPhaseAll(20));
 		}
 	}
 
@@ -130,14 +212,10 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		case 2:
 			drawCredits(g);
 			break;
-		case 3:
-			break;
 		case 4:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
 			gametext = getGameTextFromFile(2);
 			drawText(g, gametext.getGap(), gametext.getText());
-			break;
-		case 5:
 			break;
 		case 6:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
@@ -151,12 +229,39 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 			gametext = getGameTextFromFile(4);
 			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
 			break;
+		case 9:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(5);
+			drawText(g, gametext.getGap(), gametext.getText(), FACING.UP);
+			gametext = getGameTextFromFile(6);
+			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
+			break;
+		case 13:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(7);
+			drawText(g, gametext.getGap(), gametext.getText());
+			break;
+		case 15:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(8);
+			drawText(g, gametext.getGap(), gametext.getText());
+			break;
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(8);
+			drawText(g, gametext.getGap(), gametext.getText(), FACING.UP);
+			gametext = getGameTextFromFile(9);
+			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
+			break;
 		}
 	}
 
 	private void drawCredits(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
 
 		drawAnimation(g, 360, 80, 1186, 613);
 		g2d.drawImage(ImageBank.getImage(ImageBank.pierre_feuille_ciseaux_com), 555, 750, 850, 190, null);
@@ -167,9 +272,9 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 	}
 
 	private void drawText(Graphics g, int gap, String text, FACING facing) {
-		Font font = new Font("arial", 1, 110);
+		Font font = new Font("arial", 1, 100);
 		int h0 = 0;
-		
+
 		if (facing == FACING.UP)
 			h0 = -40;
 		if (facing == FACING.DOWN) {
