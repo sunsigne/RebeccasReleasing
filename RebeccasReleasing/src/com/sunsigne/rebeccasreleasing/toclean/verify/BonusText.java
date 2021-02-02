@@ -17,6 +17,7 @@ public class BonusText extends GameObject {
 
 	public BonusText(int x, int y, String text) {
 		super(false, x, y, OBJECTID.DISPLAYER);
+		
 		this.text = text;
 		time = 40;
 		velY = -1;
