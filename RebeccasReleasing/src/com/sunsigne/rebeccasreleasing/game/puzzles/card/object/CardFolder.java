@@ -142,12 +142,12 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		int h0 = 5 * Size.TILE_PUZZLE / 2;
 
 		if (attackTime > 0)
-			g.drawImage(getTextureFromChara()[getFacing().getNum()][15], x0, y0, w0, h0, null);
+			g.drawImage(getTextureFromChara()[getFacing().getNum()][16], x0, y0, w0, h0, null);
 		else if (defenseTime > 0) {
 			if (getCardtype() == CARDTYPE.DEFENSE && defenseTime < 20)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][16], x0, y0, w0, h0, null);
+				g.drawImage(getTextureFromChara()[getFacing().getNum()][17], x0, y0, w0, h0, null);
 			else if (getCardtype() == CARDTYPE.ATTACK && defenseTime < 16)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][18], x0, y0, w0, h0, null);
+				g.drawImage(getTextureFromChara()[getFacing().getNum()][19], x0, y0, w0, h0, null);
 			else
 				drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 		} else

@@ -70,12 +70,12 @@ public class TextureBank {
 	private SpriteSheet pierre_feuille_ciseaux_sheet;
 	
 	// living
-	public BufferedImage[][] living_foe_battle = new BufferedImage[2][20]; // - facing - state
-	public BufferedImage[][] living_gamma_battle = new BufferedImage[2][20]; // - facing - state
-	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][20]; // - facing - state
-	public BufferedImage[][][] living_sarah_battle = new BufferedImage[2][2][20]; // - helmet - facing - state
-	public BufferedImage[][] living_vladimir_battle = new BufferedImage[2][20]; // - facing - state
-	public BufferedImage[][] living_err_battle = new BufferedImage[2][20]; // - facing - state
+	public BufferedImage[][] living_foe_battle = new BufferedImage[2][21]; // - facing - state
+	public BufferedImage[][] living_gamma_battle = new BufferedImage[2][21]; // - facing - state
+	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][21]; // - facing - state
+	public BufferedImage[][][] living_sarah_battle = new BufferedImage[2][2][21]; // - helmet - facing - state
+	public BufferedImage[][] living_vladimir_battle = new BufferedImage[2][21]; // - facing - state
+	public BufferedImage[][] living_err_battle = new BufferedImage[2][21]; // - facing - state
 
 	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
 	public BufferedImage[][] living_gamma_walking = new BufferedImage[4][4]; // - facing - state
@@ -188,7 +188,7 @@ public class TextureBank {
 	private void getTextures() {
 
 		// living
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 21; i++) {
 			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
 			living_gamma_battle[FACING.LEFT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 1, 64, 64);
