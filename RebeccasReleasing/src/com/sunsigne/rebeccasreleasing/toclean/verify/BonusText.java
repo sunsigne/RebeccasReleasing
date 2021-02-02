@@ -15,6 +15,11 @@ public class BonusText extends GameObject {
 	private int time;
 	private String text;
 
+	public BonusText(int x, int y, String text) {
+		super(false, x, y, OBJECTID.DISPLAYER);
+		this.text = text;
+	}
+
 	public BonusText(GameObject object, String text) {
 		super(true, object.getX(), object.getY(), OBJECTID.DISPLAYER);
 
@@ -22,7 +27,7 @@ public class BonusText extends GameObject {
 		time = 40;
 		velY = -1;
 	}
-	
+
 	// behavior
 
 	@Override
@@ -33,8 +38,8 @@ public class BonusText extends GameObject {
 			HandlerObject.getInstance().removeObject(this);
 
 	}
-	
-	//render
+
+	// render
 
 	@Override
 	public void render(Graphics g) {
@@ -46,7 +51,7 @@ public class BonusText extends GameObject {
 	}
 
 	// collision
-	
+
 	@Override
 	public Rectangle getBounds() {
 		return null;
