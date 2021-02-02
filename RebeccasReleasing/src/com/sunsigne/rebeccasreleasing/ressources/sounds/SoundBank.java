@@ -77,6 +77,7 @@ public class SoundBank {
 
 	// other
 	// general
+	public static final SoundBank pierre_feuille_ciseaux_com = new SoundBank();
 	public static final SoundBank error = new SoundBank();
 	public static final SoundBank jump = new SoundBank();
 	public static final SoundBank popup = new SoundBank();
@@ -87,6 +88,7 @@ public class SoundBank {
 	public static void loadRessources() {
 
 		// music
+		addSound(introduction, new BufferedSound("music\\3 Joys & the Truth.wav"));
 		addSound(introduction, new BufferedSound("music\\3 Joys & the Truth.wav"));
 		addSound(title_screen, new BufferedSound("music\\Hopeful Rays.wav"));
 				
@@ -141,7 +143,8 @@ public class SoundBank {
 		addSound(r_place_word, new BufferedSound("sound\\reversed\\top\\place_word.wav"));
 
 		// other
-		// general
+		// general		
+		addSound(pierre_feuille_ciseaux_com, new BufferedSound("sound\\other\\general\\pierre_feuille_ciseaux_com.wav"));
 		addSound(error, new BufferedSound("sound\\other\\general\\error.wav"));
 		addSound(jump, new BufferedSound("sound\\other\\general\\jump.wav"));
 		addSound(popup, new BufferedSound("sound\\other\\general\\popup.wav"));

@@ -20,7 +20,8 @@ public class Introduction extends Clickable {
 	public Introduction() {
 		super(STATE.INTRODUCTION);
 
-		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.introduction));
+		SoundTask.playSound(0.6, SoundBank.getSound(SoundBank.pierre_feuille_ciseaux_com));
+		new AutomaticTimerObject(150, () -> SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.introduction)));
 		HandlerObject.getInstance().addObject(new IntroductionObject(frintroduction));
 
 	}

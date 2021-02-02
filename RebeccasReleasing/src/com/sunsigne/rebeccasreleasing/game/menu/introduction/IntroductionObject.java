@@ -16,9 +16,11 @@ import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.GenerticListener;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toclean.verify.BonusText;
 
 import objects.IFacing.FACING;
 
@@ -41,7 +43,6 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		for (CommunIntroductionObject tempobject : object) {
 			HandlerObject.getInstance().addObject(tempobject);
 		}
-		setPhaseAll(3);
 	}
 
 	// state
@@ -69,6 +70,11 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		for (CommunIntroductionObject tempObject : object) {
 			tempObject.setPhase(phase);
 		}
+	}
+	
+	@Override
+	int getMaxJumpCount() {
+		return 0;
 	}
 
 	// behavior
@@ -101,30 +107,28 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 			rebeccaJumped();
 			break;
 		case 10:
-			// Rebecca desappear
-			fadeObject(object[0], null);
-			fadeObject(object[1], () -> {
-				setPhaseAll(11);
-				// A little wait before Vladimir apparition
-				new AutomaticTimerObject(30, () -> setPhaseAll(12));
-			});
+			rebeccaShownHelmet();
 			break;
 		case 12:
 			// Vladimir appear
 			brightenObject(object[2], () -> vladimirApparead());
 			break;
-		case 17 :
+		case 17:
 			VladimirJumped();
 			break;
-/*		case 17:
-			// Vladimir desappear
-			fadeObject(object[2], () -> {
-				setPhaseAll(18);
-				// A little wait before Text apparition
-				new AutomaticTimerObject(30, () -> setPhaseAll(19));
-			});
+		case 19:
+			VladimirMoved();
 			break;
-*/		}
+		case 23:
+			VladimirWillSteal();
+			break;
+		case 30:
+			VladimirLeft();
+			break;
+		case 32:
+			RebeccaLeft();
+			break;
+		}
 
 	}
 
@@ -162,13 +166,23 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 	}
 
 	private void rebeccaJumped() {
-		if (((IntroductionRebeccaObject) object[1]).getJumpCount() >= 4) {
+		if (object[1].getJumpCount() >= 4) {
 
 			// Text All thanks to her helmet & Text (That's what give super powers)
 			setPhaseAll(9);
 			// Text and Rebecca desappear
-			new AutomaticTimerObject(340, () -> setPhaseAll(10));
+			new AutomaticTimerObject(250, () -> setPhaseAll(10));
 		}
+	}
+
+	private void rebeccaShownHelmet() {
+		// Rebecca desappear
+		fadeObject(object[0], null);
+		fadeObject(object[1], () -> {
+			setPhaseAll(11);
+			// A little wait before Vladimir apparition
+			new AutomaticTimerObject(30, () -> setPhaseAll(12));
+		});
 	}
 
 	private void vladimirApparead() {
@@ -186,18 +200,89 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		// Vladimir jumps twice
 		new AutomaticTimerObject(440, () -> setPhaseAll(17));
 	}
-	
+
 	private void VladimirJumped() {
-		if (((IntroductionVladimirObject) object[2]).getJumpCount() >= 2) {
+		if (object[2].getJumpCount() >= 2) {
 
 			// A little wait before Vladimir leaves
 			setPhaseAll(18);
 			// Vladimir moves
-			new AutomaticTimerObject(20, () -> setPhaseAll(19));
-			// Text and Vladimir desappear
-			new AutomaticTimerObject(70, () -> setPhaseAll(20));
+			new AutomaticTimerObject(50, () -> setPhaseAll(19));
 		}
 	}
+
+	private void VladimirMoved() {
+		// Vladimir desappear
+		if (object[2].getX() <= initX + 200) {
+			fadeObject(object[2], () -> {
+				// A little wait before Text apparition
+				setPhaseAll(20);
+				// Text So ...
+				new AutomaticTimerObject(60, () -> setPhaseAll(21));
+				// Text desappear
+				new AutomaticTimerObject(150, () -> setPhaseAll(22));
+				// A little wait before Rebecca apparition
+				new AutomaticTimerObject(190, () -> setPhaseAll(23));
+			});
+		}
+	}
+
+	private void VladimirWillSteal() {
+		brightenObject(this, null);
+		brightenObject(object[0], null);
+		brightenObject(object[1], null);
+		brightenObject(object[2], () -> {
+			// A little wait before Vladimir moves
+			setPhaseAll(24);
+			// Vladimir move and hit
+			new AutomaticTimerObject(40, () -> 
+			{
+				object[1].jumpCount = 3;
+				setPhaseAll(25);
+			});
+			// Vladimir move back
+			new AutomaticTimerObject(50, () -> setPhaseAll(26));
+			// Vladimir stop moving
+			new AutomaticTimerObject(60, () -> setPhaseAll(27));
+			// Text desappear
+			new AutomaticTimerObject(80, () -> setPhaseAll(28));
+			// Vladimir loot the helmet
+			new AutomaticTimerObject(160, () -> 
+			{
+				lootHelmet();
+				setPhaseAll(29);
+			});
+			// Vladimir leaves
+			new AutomaticTimerObject(220, () -> setPhaseAll(30));
+		});
+	}
+	
+	private void lootHelmet()
+	{
+		SoundTask.playSound(0.7f, SoundBank.getSound(SoundBank.looting));
+		BonusText text = new BonusText(object[2].getX() + 25, object[2].getY() + 50, "+1 casque");
+		HandlerObject.getInstance().addObject(text);
+	}
+	
+	private void VladimirLeft() {
+		if (object[2].getX() >= initX + 2800) {
+			// A little wait before Rebecca wakes up
+			setPhaseAll(31);
+			// A little wait before Rebecca leaves
+			new AutomaticTimerObject(180, () -> setPhaseAll(32));
+		}
+	}
+	
+	private void RebeccaLeft() {
+		if (object[1].getX() >= initX + 2000) {
+			// Text desappear
+			setPhaseAll(33);
+			// End of the introduction
+			new AutomaticTimerObject(80, () -> Conductor.closeIntroduction());
+		}		
+	}
+
+
 
 	// render
 
@@ -256,6 +341,21 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 			gametext = getGameTextFromFile(9);
 			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
 			break;
+		case 21:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(10);
+			drawText(g, gametext.getGap(), gametext.getText());
+			break;
+		case 31:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(11);
+			drawText(g, gametext.getGap(), gametext.getText());
+			break;
+		case 32:
+			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
+			gametext = getGameTextFromFile(12);
+			drawText(g, gametext.getGap(), gametext.getText());
+			break;
 		}
 	}
 
@@ -286,5 +386,4 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 
 		g.drawString(text, 100 + gap, 240 + h0);
 	}
-
 }

@@ -7,18 +7,15 @@ import java.awt.Graphics2D;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.IFacing.FACING;
 
 class IntroductionRebeccaObject extends CommunIntroductionObject implements IAnimation {
 
-	private Animation animation;
-	private int jumpTime;
-	private int jumpCount;
+	private Animation[][] animation = new Animation[2][2]; // - facing - mood
 
-	public IntroductionRebeccaObject() {
+	IntroductionRebeccaObject() {
 		super();
 		x = -150;
 		y = initY = 520;
@@ -32,31 +29,53 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 	public Animation getAnimation(int... array) {
 
 		int facing = array[0];
+		int mood = array[1];
 
-		if (animation == null)
-			animation = new Animation(12, texture.living_rebecca_battle[facing][3],
-					texture.living_rebecca_battle[facing][4], texture.living_rebecca_battle[facing][5],
-					texture.living_rebecca_battle[facing][6]);
-		return animation;
+		if (animation[facing][mood] == null)
+			animation[facing][mood] = new Animation(12, texture.living_rebecca_battle[facing][3 + 4 * mood],
+					texture.living_rebecca_battle[facing][4 + 4 * mood], texture.living_rebecca_battle[facing][5 + 4 * mood],
+					texture.living_rebecca_battle[facing][6 + 4 * mood]);
+		return animation[facing][mood];
+	}
+	
+	private enum MOOD {
+		HAPPY(0), UNHAPPY(1);
+
+		private int num;
+
+		MOOD(int num) {
+			this.num = num;
+		}
+
+		public int getNum() {
+			return num;
+		}
 	}
 
-	public int getJumpCount() {
-		return jumpCount;
-	}
 
-	private boolean shouldJump() {
-		return jumpTime <= 0 && jumpCount < 4;
+	@Override
+	int getMaxJumpCount() {
+		return 4;
 	}
 
 	// behavior
 
 	@Override
 	public void tick() {
-		runAnimation(FACING.RIGHT.getNum());
+		runAnimations();
 		velocity();
 
 		runPhase();
 	}
+	
+
+	private void runAnimations() {
+		runAnimation(FACING.LEFT.getNum(), MOOD.HAPPY.getNum());
+		runAnimation(FACING.LEFT.getNum(), MOOD.UNHAPPY.getNum());
+		runAnimation(FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
+		runAnimation(FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
+	}
+
 
 	private void runPhase() {
 		switch (getPhase()) {
@@ -70,37 +89,20 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		case 6:
 		case 7:
 		case 8:
-			checkJumping();
-			if (shouldJump())
-				jump();
+			tryJumping(0, -4, SoundBank.getSound(SoundBank.jump), 80, 50, 20, true);
 			break;
-		case 21 : 
-			x = initX = 300;
+		case 21:
+			x = initX = 500;
+			break;
+		case 31:
+			tryJumping(0, -8, SoundBank.getSound(SoundBank.jump), 25, 15, 5, true);
+			break;
+		case 32:
+		case 33:
+			velX = 10;
 			break;
 		}
 
-	}
-
-	private void checkJumping() {
-		int speed = -4;
-		if (jumpTime > 0) {
-			jumpTime--;
-			if (jumpTime > 50)
-				velY = speed;
-			else
-				velY = -speed;
-		}
-		if (jumpTime <= 20) {
-			y = initY;
-			velY = 0;
-			if (jumpTime == 1)
-				jumpCount++;
-		}
-	}
-
-	private void jump() {
-		SoundTask.playSound(0.7f, SoundBank.getSound(SoundBank.jump));
-		jumpTime = 80;
 	}
 
 	// design
@@ -114,7 +116,7 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		case 3:
 		case 4:
 		case 5:
-			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum());
+			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		case 6:
 		case 7:
@@ -122,12 +124,32 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 			if (jumpCount < 4)
 				drawJumping(g, x, y);
 			else
-				drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum());
+				drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		case 9:
 		case 10:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
 			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][1], x, y, w, h, null);
+			break;
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
+			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][1], x, y, w, h, null);
+			break;
+		case 26:
+		case 27:
+		case 28:
+		case 29:
+		case 30:
+			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][20], x, y, w, h, null);
+			break;
+		case 31:
+			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
+			break;
+		case 32:
+			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		}
 	}
