@@ -27,7 +27,7 @@ public class Title extends Clickable {
 	private void playMusic() {
 		STATE state = Conductor.getPreviousState();
 		if (state != STATE.TITLE && state != STATE.OPTION)
-			SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
+			SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.title_screen));
 	}
 
 	@Override
