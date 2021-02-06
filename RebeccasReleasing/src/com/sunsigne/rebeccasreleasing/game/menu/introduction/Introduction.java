@@ -2,6 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.menu.introduction;
 
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
@@ -14,6 +15,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class Introduction extends Clickable {
 
+	@Todo("add the english version of the introduction")
 	private static final ChatMap frintroduction = new ChatMap(LANGUAGE.FRENCH, new GameFile("/dialogues/french/introduction"));
 //	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/dialogues/english/introduction"));
 	
