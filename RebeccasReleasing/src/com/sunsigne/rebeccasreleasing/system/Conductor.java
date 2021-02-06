@@ -52,15 +52,16 @@ public class Conductor {
 		Game.game.start();
 		new DualChecker().start();
 		Game.game.forceLoop();
-		new Introduction();
+		if (Game.skipIntro)
+			new Title();
+		else
+			new Introduction();
 	}
-	
-	public static void closeIntroduction()
-	{
+
+	public static void closeIntroduction() {
 		GameMouseInput.getInstance().clearClickable();
 		new Title();
 	}
-
 
 	public static void stop() {
 		new DualChecker().stop();

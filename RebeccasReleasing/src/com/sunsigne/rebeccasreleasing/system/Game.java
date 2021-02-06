@@ -30,6 +30,7 @@ public class Game extends Canvas implements Runnable {
 
 	public static final String NAME = "Rebecca's Releasing";
 	public static final boolean visibleHitbox = false;
+	public static final boolean skipIntro = true;
 
 	public static Game game;
 
