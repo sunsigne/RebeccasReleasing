@@ -23,11 +23,8 @@ public class SoundBank {
 
 	// music
 	public static final SoundBank introduction = new SoundBank();
-	public static final SoundBank title_screen = new SoundBank();
-	
-	public static final SoundBank soundtrack_1 = new SoundBank();
-	public static final SoundBank soundtrack_2 = new SoundBank();
-	public static final SoundBank soundtrack_3 = new SoundBank();
+	public static final SoundBank title_screen = new SoundBank();	
+	public static final SoundBank level = new SoundBank();
 
 	// sound normal
 	// world
@@ -89,12 +86,8 @@ public class SoundBank {
 
 		// music
 		addSound(introduction, new BufferedSound("music\\3 Joys & the Truth.wav"));
-		addSound(introduction, new BufferedSound("music\\3 Joys & the Truth.wav"));
 		addSound(title_screen, new BufferedSound("music\\Hopeful Rays.wav"));
-				
-		addSound(soundtrack_1, new BufferedSound("music\\soundtrack_1.wav"));
-		addSound(soundtrack_2, new BufferedSound("music\\soundtrack_2.wav"));
-		addSound(soundtrack_3, new BufferedSound("music\\soundtrack_3.wav"));
+		addSound(level, new BufferedSound("music\\Atmospheria City.wav"));		
 
 		// sound normal
 		// world

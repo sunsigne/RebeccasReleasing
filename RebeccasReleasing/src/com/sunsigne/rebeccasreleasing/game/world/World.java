@@ -41,7 +41,7 @@ public class World implements IRender {
 		World.levelnum = ilvl.getLvlNumber();
 
 		loadLevel();
-		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.soundtrack_3));
+		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.level));
 	}
 
 	@Override
