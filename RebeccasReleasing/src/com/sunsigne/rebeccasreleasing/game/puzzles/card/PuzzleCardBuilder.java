@@ -4,19 +4,20 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CARDTYPE;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardFolder;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.object.CardObject;
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 
 import objects.IFacing.FACING;
-import objects.characters.CHARA;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
@@ -89,10 +90,11 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 		return type;
 	}
 
+	@Todo("Gamma is temporary, draw Foe instead")
 	@Override
 	public void createPuzzle() {
-		attackFolder = new CardFolder(FACING.LEFT, CHARA.FOE, CARDTYPE.ATTACK);
-		defenseFolder = new CardFolder(FACING.RIGHT, CHARA.REBECCA, CARDTYPE.DEFENSE);
+		attackFolder = new CardFolder(FACING.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
+		defenseFolder = new CardFolder(FACING.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
 
 		HandlerObject.getInstance().addObject(attackFolder);
 		HandlerObject.getInstance().addObject(defenseFolder);

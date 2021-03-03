@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -35,10 +36,10 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 		int mood = array[1];
 
 		if (animation[facing][mood] == null)
-			animation[facing][mood] = new Animation(12, texture.living_vladimir_battle[facing][7 + 4 * mood],
-					texture.living_vladimir_battle[facing][8 + 4 * mood],
-					texture.living_vladimir_battle[facing][9 + 4 * mood],
-					texture.living_vladimir_battle[facing][10 + 4 * mood]);
+			animation[facing][mood] = new Animation(12, texture.getLivingBattle(CharacterBank.vladimir, facing, 6 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.vladimir, facing, 7 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.vladimir, facing, 8 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.vladimir, facing, 7 + 3 * mood));
 		return animation[facing][mood];
 	}
 
@@ -131,7 +132,7 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 		case 19:
 		case 20:
 			if (jumpCount < 2)
-				g.drawImage(texture.living_vladimir_battle[FACING.LEFT.getNum()][15], x, y, w, h, null);
+				g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, FACING.LEFT.getNum(), 12), x, y, w, h, null);
 			else {
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
 				drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
@@ -145,7 +146,7 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 			break;
 		case 25:
 		case 26:
-			g.drawImage(texture.living_vladimir_battle[FACING.LEFT.getNum()][16], x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, FACING.LEFT.getNum(), 13), x, y, w, h, null);
 			break;
 		case 27:
 		case 28:

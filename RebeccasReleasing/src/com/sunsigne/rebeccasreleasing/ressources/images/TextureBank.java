@@ -24,13 +24,9 @@ public class TextureBank {
 
 	// living
 	private SpriteSheet living_walking_sheet;
+	private SpriteSheet living_battle_sheet;
 
 	private SpriteSheet living_foe_battle_sheet;
-	private SpriteSheet living_gamma_battle_sheet;
-	private SpriteSheet living_rebecca_battle_sheet;
-	private SpriteSheet living_sarah_battle_sheet;
-	private SpriteSheet living_vladimir_battle_sheet;
-
 	private SpriteSheet living_foe_walking_sheet;
 
 	private SpriteSheet living_foe_face_sheet;
@@ -76,16 +72,12 @@ public class TextureBank {
 	private SpriteSheet pierre_feuille_ciseaux_sheet;
 
 	// living
-	private BufferedImage[][][] living_walking = new BufferedImage[10][5][3]; // - character - facing - state
+	private BufferedImage[][][] living_walking = new BufferedImage[9][5][3]; // - character - facing - state
+	private BufferedImage[][][] living_battle = new BufferedImage[9][2][18]; // - character - facing - state
 
 	public BufferedImage[][] living_foe_battle = new BufferedImage[2][21]; // - facing - state
-	public BufferedImage[][] living_gamma_battle = new BufferedImage[2][21]; // - facing - state
-	public BufferedImage[][] living_rebecca_battle = new BufferedImage[2][21]; // - facing - state
-	public BufferedImage[][][] living_sarah_battle = new BufferedImage[2][2][21]; // - helmet - facing - state
-	public BufferedImage[][] living_vladimir_battle = new BufferedImage[2][21]; // - facing - state
-	public BufferedImage[][] living_err_battle = new BufferedImage[2][21]; // - facing - state
-
 	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
+	public BufferedImage[][] living_err_battle = new BufferedImage[2][21]; // - facing - state
 
 	public BufferedImage[] living_foe_face = new BufferedImage[1]; // - state
 	public BufferedImage[] living_gamma_face = new BufferedImage[1]; // - state
@@ -137,14 +129,13 @@ public class TextureBank {
 
 		// living
 		living_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_walking_sheet));
+		living_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_battle_sheet));
 
 		living_foe_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_battle_sheet));
-		living_gamma_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_battle_sheet));
-		living_rebecca_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_battle_sheet));
-		living_sarah_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_sarah_battle_sheet));
-		living_vladimir_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_vladimir_battle_sheet));
-
 		living_foe_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_walking_sheet));
+
+
+
 
 		living_foe_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_face_sheet));
 		living_gamma_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_face_sheet));
@@ -197,6 +188,13 @@ public class TextureBank {
 		getTextures();
 	}
 
+	public BufferedImage getLivingBattle(CharacterBank characterBank, int facing, int state) {
+		BufferedImage img = ImageTask.drawMissingTexture(64, 64);
+		if (CharacterBank.getCharacter(characterBank).hasBattleAnimation())
+			img = living_battle[CharacterBank.getCharacter(characterBank).getId()][facing][state];
+		return img;
+	}
+
 	public BufferedImage getLivingWalking(CharacterBank characterBank, int facing, int state) {
 		return living_walking[CharacterBank.getCharacter(characterBank).getId()][facing][state];
 	}
@@ -207,7 +205,6 @@ public class TextureBank {
 		// living
 
 		int count = -1;
-
 		for (CharacterBank characterBank : CharacterBank.characters.keySet()) {
 			count++;
 			int col = CharacterBank.getCharacter(characterBank).getCol();
@@ -226,21 +223,29 @@ public class TextureBank {
 				living_walking[count][4/* ON THE GROUND */][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						5 + (5 * row - 5), 48, 48);
 			}
+
+			if (!CharacterBank.getCharacter(characterBank).hasBattleAnimation())
+				continue;
+
+			for (int i = 0; i < 6; i++) {
+				living_battle[count][FACING.LEFT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+						1 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.LEFT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+						2 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.LEFT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+						3 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+						4 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+						5 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+						6 + (6 * row - 6), 64, 64);
+			}
 		}
 
 		for (int i = 0; i < 21; i++) {
 			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_gamma_battle[FACING.LEFT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_gamma_battle[FACING.RIGHT.getNum()][i] = living_gamma_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_rebecca_battle[FACING.LEFT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_rebecca_battle[FACING.RIGHT.getNum()][i] = living_rebecca_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_sarah_battle[0][FACING.LEFT.getNum()][i] = living_sarah_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_sarah_battle[0][FACING.RIGHT.getNum()][i] = living_sarah_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_sarah_battle[1][FACING.LEFT.getNum()][i] = living_sarah_battle_sheet.grabImage(i + 1, 3, 64, 64);
-			living_sarah_battle[1][FACING.RIGHT.getNum()][i] = living_sarah_battle_sheet.grabImage(i + 1, 4, 64, 64);
-			living_vladimir_battle[FACING.LEFT.getNum()][i] = living_vladimir_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_vladimir_battle[FACING.RIGHT.getNum()][i] = living_vladimir_battle_sheet.grabImage(i + 1, 2, 64, 64);
 			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
 			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
 		}

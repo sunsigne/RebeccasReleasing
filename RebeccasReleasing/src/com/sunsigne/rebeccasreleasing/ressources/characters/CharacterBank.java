@@ -42,20 +42,20 @@ public class CharacterBank {
 
 		// main
 		// female
-		addCharacter(rebecca, new BufferedCharacter(1, 1));
-		addCharacter(sarah, new BufferedCharacter(2, 1));
-		addCharacter(sarah_helmet, new BufferedCharacter(3, 1));
-		addCharacter(alicia, new BufferedCharacter(4, 1));
+		addCharacter(rebecca, new BufferedCharacter(true, 1, 1));
+		addCharacter(sarah, new BufferedCharacter(true, 2, 1));
+		addCharacter(sarah_helmet, new BufferedCharacter(true, 3, 1));
+		addCharacter(alicia, new BufferedCharacter(true, 4, 1));
 		// male
-		addCharacter(vladimir, new BufferedCharacter(1, 2));
-		addCharacter(gamma, new BufferedCharacter(2, 2));
+		addCharacter(vladimir, new BufferedCharacter(true, 1, 2));
+		addCharacter(gamma, new BufferedCharacter(true, 2, 2));
 
 		// dummies
 		// female
-		addCharacter(f_01, new BufferedCharacter(1, 3));
+		addCharacter(f_01, new BufferedCharacter(false, 1, 3));
 		// male
-		addCharacter(m_01, new BufferedCharacter(1, 4));
-		addCharacter(m_02, new BufferedCharacter(2, 4));
+		addCharacter(m_01, new BufferedCharacter(false, 1, 4));
+		addCharacter(m_02, new BufferedCharacter(false, 2, 4));
 	}
 
 }

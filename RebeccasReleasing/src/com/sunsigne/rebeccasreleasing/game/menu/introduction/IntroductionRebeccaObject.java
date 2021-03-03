@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -32,12 +33,14 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		int mood = array[1];
 
 		if (animation[facing][mood] == null)
-			animation[facing][mood] = new Animation(12, texture.living_rebecca_battle[facing][3 + 4 * mood],
-					texture.living_rebecca_battle[facing][4 + 4 * mood], texture.living_rebecca_battle[facing][5 + 4 * mood],
-					texture.living_rebecca_battle[facing][6 + 4 * mood]);
+			animation[facing][mood] = new Animation(12,
+					texture.getLivingBattle(CharacterBank.rebecca, facing, 3 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.rebecca, facing, 4 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.rebecca, facing, 5 + 3 * mood),
+					texture.getLivingBattle(CharacterBank.rebecca, facing, 4 + 3 * mood));
 		return animation[facing][mood];
 	}
-	
+
 	private enum MOOD {
 		HAPPY(0), UNHAPPY(1);
 
@@ -51,7 +54,6 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 			return num;
 		}
 	}
-
 
 	@Override
 	int getMaxJumpCount() {
@@ -67,7 +69,6 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 
 		runPhase();
 	}
-	
 
 	private void runAnimations() {
 		runAnimation(FACING.LEFT.getNum(), MOOD.HAPPY.getNum());
@@ -75,7 +76,6 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		runAnimation(FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
 		runAnimation(FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
 	}
-
 
 	private void runPhase() {
 		switch (getPhase()) {
@@ -129,21 +129,21 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		case 9:
 		case 10:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][1], x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 1), x, y, w, h, null);
 			break;
 		case 22:
 		case 23:
 		case 24:
 		case 25:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][1], x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 1), x, y, w, h, null);
 			break;
 		case 26:
 		case 27:
 		case 28:
 		case 29:
 		case 30:
-			g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][20], x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 17), x, y, w, h, null);
 			break;
 		case 31:
 			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
@@ -158,7 +158,7 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		int state = 2;
 		if (y != initY)
 			state = 0;
-		g.drawImage(texture.living_rebecca_battle[FACING.RIGHT.getNum()][state], x0, y0, w, h, null);
+		g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), state), x0, y0, w, h, null);
 	}
 
 }

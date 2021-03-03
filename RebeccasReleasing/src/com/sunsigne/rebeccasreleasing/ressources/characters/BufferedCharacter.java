@@ -2,16 +2,23 @@ package com.sunsigne.rebeccasreleasing.ressources.characters;
 
 public class BufferedCharacter {
 
+	private boolean hasBattleAnimation;
 	private int col, row;
 	private int id;
 
-	public BufferedCharacter(int col, int row) {
+	public BufferedCharacter(boolean hasBattleAnimation, int col, int row) {
 
+		this.hasBattleAnimation = hasBattleAnimation;
 		this.col = col;
 		this.row = row;
 
 	}
 
+	public boolean hasBattleAnimation()
+	{
+		return hasBattleAnimation;
+	}
+	
 	public int getCol() {
 		return col;
 	}

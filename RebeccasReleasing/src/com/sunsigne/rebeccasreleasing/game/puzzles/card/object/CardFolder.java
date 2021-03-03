@@ -2,33 +2,31 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.card.object;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.IFacing;
-import objects.characters.CHARA;
 
 public class CardFolder extends CommunCardObject implements IFacing, IAnimation {
 
 	private Animation animation;
 
 	private FACING facing;
-	private CHARA chara;
+	private CharacterBank characterBank;
 
 	private int attackTime, defenseTime;
 
-	public CardFolder(FACING facing, CHARA chara, CARDTYPE cardtype) {
+	public CardFolder(FACING facing, CharacterBank characterBank, CARDTYPE cardtype) {
 		super(1300, 250, OBJECTID.P_CARDFOLDER, cardtype);
 
 		setFacing(facing);
-		this.chara = chara;
+		this.characterBank = characterBank;
 
-		if (getFacing() == FACING.RIGHT)
-		{
+		if (getFacing() == FACING.RIGHT) {
 			setX(215);
 			initX = getX();
 		}
@@ -40,20 +38,13 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 	public Animation getAnimation(int... array) {
 
 		int facing = array[0];
-		
-		if (animation == null)
-			animation = new Animation(12, getTextureFromChara()[facing][7], getTextureFromChara()[facing][8],
-					getTextureFromChara()[facing][9], getTextureFromChara()[facing][10]);
-		return animation;
-	}
 
-	private BufferedImage[][] getTextureFromChara() {
-		if (chara == CHARA.REBECCA)
-			return texture.living_rebecca_battle;
-		else if (chara == CHARA.FOE)
-			return texture.living_foe_battle;
-		else
-			return texture.living_err_battle;
+		if (animation == null)
+			animation = new Animation(12, texture.getLivingBattle(characterBank, facing, 6),
+					texture.getLivingBattle(characterBank, facing, 7),
+					texture.getLivingBattle(characterBank, facing, 8),
+					texture.getLivingBattle(characterBank, facing, 7));
+		return animation;
 	}
 
 	@Override
@@ -67,7 +58,8 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 			this.facing = FACING.LEFT;
 		else if (facing == FACING.DOWN)
 			this.facing = FACING.RIGHT;
-		else this.facing = facing;
+		else
+			this.facing = facing;
 	}
 
 	public void playCard(CARDTYPE type) {
@@ -86,7 +78,6 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		if (defenseTime <= 0)
 			defenseTime = 30;
 	}
-	
 
 	// behavior
 
@@ -142,12 +133,12 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		int h0 = 5 * Size.TILE_PUZZLE / 2;
 
 		if (attackTime > 0)
-			g.drawImage(getTextureFromChara()[getFacing().getNum()][16], x0, y0, w0, h0, null);
+			g.drawImage(texture.getLivingBattle(characterBank, getFacing().getNum(), 13), x0, y0, w0, h0, null);
 		else if (defenseTime > 0) {
 			if (getCardtype() == CARDTYPE.DEFENSE && defenseTime < 20)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][17], x0, y0, w0, h0, null);
+				g.drawImage(texture.getLivingBattle(characterBank, getFacing().getNum(), 14), x0, y0, w0, h0, null);
 			else if (getCardtype() == CARDTYPE.ATTACK && defenseTime < 16)
-				g.drawImage(getTextureFromChara()[getFacing().getNum()][19], x0, y0, w0, h0, null);
+				g.drawImage(texture.getLivingBattle(characterBank, getFacing().getNum(), 16), x0, y0, w0, h0, null);
 			else
 				drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 		} else
