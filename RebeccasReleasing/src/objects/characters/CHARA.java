@@ -22,9 +22,9 @@ public enum CHARA {
 
 		CHARA chara = null;
 
-		for (CHARA allchara : CHARA.values()) {
-			if (allchara.getNum() == num)
-				chara = allchara;
+		for (CHARA tempchara : CHARA.values()) {
+			if (tempchara.getNum() == num)
+				chara = tempchara;
 		}
 
 		return chara;
