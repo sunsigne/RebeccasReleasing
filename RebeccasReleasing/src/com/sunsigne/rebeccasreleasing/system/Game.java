@@ -10,6 +10,7 @@ import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.hack.PuzzleHack;
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -49,6 +50,7 @@ public class Game extends Canvas implements Runnable {
 		Conductor.setState(STATE.LOADING);
 		ImageBank.loadRessources();
 		SoundBank.loadRessources();
+		CharacterBank.loadRessources();
 		TextureBank.getInstance().loadRessources();
 
 		this.addKeyListener(new GameKeyboardInput());
