@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.event.Event;
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
@@ -14,7 +15,6 @@ import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
-import objects.characters.CHARA;
 
 public class ChatObject extends GameObject {
 
@@ -25,7 +25,7 @@ public class ChatObject extends GameObject {
 	public boolean fulldisplayed;
 	private boolean[] stop = new boolean[2];
 
-	private CHARA chara;
+	private CharacterBank characterBank;
 	private String[] sentence = new String[NUM_OF_SENTENCES];
 	private String[] currentText = new String[NUM_OF_SENTENCES];
 	private char[][] letter = new char[NUM_OF_SENTENCES][64];
@@ -34,11 +34,11 @@ public class ChatObject extends GameObject {
 	private int pausetime;
 	private int count, index;
 
-	public ChatObject(CHARA chara, String sentence1, String sentence2, Event eventOnDisplay) {
+	public ChatObject(CharacterBank characterBank, String sentence1, String sentence2, Event eventOnDisplay) {
 		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.eventOnDisplay = eventOnDisplay;
-		this.chara = chara;
+		this.characterBank = characterBank;
 		this.sentence[0] = sentence1;
 		this.sentence[1] = sentence2;
 		this.currentText[0] = "";
@@ -82,7 +82,7 @@ public class ChatObject extends GameObject {
 			currentText[1] = sentence[1];
 		}
 	}
-	
+
 	// behavior
 
 	@Override
@@ -140,18 +140,13 @@ public class ChatObject extends GameObject {
 	}
 
 	private void playTalkingSound() {
-		switch (chara) {
-		case REBECCA:
+
+		if (characterBank == CharacterBank.rebecca)
 			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_rebecca));
-			break;
-		case SARAH:
+		if (characterBank == CharacterBank.sarah)
 			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_sarah));
-			break;
-		default:
-			break;
-		}
 	}
-	
+
 	// design
 
 	@Override
@@ -159,27 +154,21 @@ public class ChatObject extends GameObject {
 		g.drawImage(texture.interface_chat, 0, 0, Size.WIDHT, Size.HEIGHT, null);
 
 		BufferedImage img = null;
-		img = paintingChara(chara);
+		img = paintingChara(characterBank);
 
 		g.drawImage(img, 350, y, -2 * h / 3, 2 * h / 3, null);
 
 		drawText(g);
 	}
 
-	private BufferedImage paintingChara(CHARA chara) {
-		BufferedImage img = null;
+	private BufferedImage paintingChara(CharacterBank characterBank) {
+		BufferedImage img = ImageTask.drawMissingTexture();
 
-		switch (chara) {
-		case REBECCA:
+		if (characterBank == CharacterBank.rebecca)
 			img = texture.living_rebecca_face[0];
-			break;
-		case SARAH:
+		if (characterBank == CharacterBank.sarah)
 			img = texture.living_sarah_face[1][0];
-			break;
-		default:
-			img = ImageTask.drawMissingTexture();
-			break;
-		}
+
 		return img;
 	}
 
@@ -195,7 +184,7 @@ public class ChatObject extends GameObject {
 		if (currentText[1] != null)
 			g.drawString(currentText[1], x0, y + 170);
 	}
-	
+
 	// collision
 
 	@Override

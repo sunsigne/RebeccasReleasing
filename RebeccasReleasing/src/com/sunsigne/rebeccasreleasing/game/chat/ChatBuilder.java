@@ -6,14 +6,13 @@ import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.IClick;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
-
-import objects.characters.CHARA;
 
 public abstract class ChatBuilder extends Clickable implements IClick, ITranslation {
 
@@ -36,7 +35,7 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 		creationOfChatObjectFromChatID(chatID);
 		displayChat();
 	}
-	
+
 	@Override
 	public boolean isCameraDependant() {
 		return false;
@@ -54,7 +53,6 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 
 	protected abstract void displayChat();
 
-
 	private void creationOfChatObjectFromChatID(int chatID) {
 
 		String allDataText = readDataFromFile();
@@ -62,7 +60,9 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 		int size = calculRealSizeOfChatArray(chatIDLines);
 
 		String[][] dataIntoLine = new String[size][6];
-		CHARA[] chara = new CHARA[size];
+		CharacterBank[] characterBank = new CharacterBank[size];
+		Integer[] charaCol = new Integer[size];
+		Integer[] charaRow = new Integer[size];
 		String[] sentence = new String[size + 1];
 		boolean twoSentences = false;
 		String[] event = new String[size];
@@ -78,15 +78,23 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 			}
 			// segmenting data from line
 			dataIntoLine[line] = chatIDLines[line].split(";");
-			chara[line] = CHARA.getChara(Integer.valueOf(dataIntoLine[line][3]));
+
+			charaCol[line] = Integer.valueOf(dataIntoLine[line][3]);
+			charaRow[line] = Integer.valueOf(dataIntoLine[line][4]);
+			characterBank[line] = selectCharacterFromData(charaCol[line], charaRow[line]);
+
 			event[line] = String.valueOf(dataIntoLine[line][2]).replace("\"", "");
-			sentence[line] = dataIntoLine[line][5].replace("\"", "");
+			sentence[line] = dataIntoLine[line][6].replace("\"", "");
 
 			// checking for next line
 			if (chatIDLines[line + 1] != "") {
 				dataIntoLine[line + 1] = chatIDLines[line + 1].split(";");
-				chara[line + 1] = CHARA.getChara(Integer.valueOf(dataIntoLine[line + 1][3]));
-				if (chara[line] == chara[line + 1])
+
+				charaCol[line + 1] = Integer.valueOf(dataIntoLine[line + 1][3]);
+				charaRow[line + 1] = Integer.valueOf(dataIntoLine[line + 1][4]);
+				characterBank[line + 1] = selectCharacterFromData(charaCol[line + 1], charaRow[line]);
+
+				if (characterBank[line] == characterBank[line + 1])
 					twoSentences = true;
 			}
 
@@ -103,10 +111,24 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 			if (event[line].indexOf("null") == -1)
 				eventOnDisplay = HandlerEvent.getInstance().getEvent(eventName);
 
-			chatObject[line - gap] = new ChatObject(chara[line], sentence[line], sentence[line + 1], eventOnDisplay);
+			chatObject[line - gap] = new ChatObject(characterBank[line], sentence[line], sentence[line + 1],
+					eventOnDisplay);
 			chatObject[line + 1 - gap] = null;
 		}
 
+	}
+
+	private CharacterBank selectCharacterFromData(int charaCol, int charaRol) {
+
+		for (CharacterBank tempCharacter : CharacterBank.characters.keySet()) {
+			int tempCol = CharacterBank.getCharacter(tempCharacter).getCol();
+			int tempRow = CharacterBank.getCharacter(tempCharacter).getRow();
+
+			if (tempCol == charaCol && tempRow == charaRol)
+				return tempCharacter;
+		}
+		// this should not occurs, but won't crash the game if it does
+		return null;
 	}
 
 	private String[] selectChatIdFromData(String dataText, int chatID) {

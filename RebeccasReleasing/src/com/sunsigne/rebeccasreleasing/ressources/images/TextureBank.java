@@ -5,10 +5,8 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.ressources.characters.BufferedCharacter;
 
 import objects.IFacing.FACING;
-import objects.characters.CHARA;
 
 public class TextureBank {
 
