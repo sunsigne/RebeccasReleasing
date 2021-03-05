@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.event.Event;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
@@ -26,6 +24,7 @@ public class ChatObject extends GameObject {
 	private boolean[] stop = new boolean[2];
 
 	private CharacterBank characterBank;
+	private int facialExpression;
 	private String[] sentence = new String[NUM_OF_SENTENCES];
 	private String[] currentText = new String[NUM_OF_SENTENCES];
 	private char[][] letter = new char[NUM_OF_SENTENCES][64];
@@ -34,11 +33,12 @@ public class ChatObject extends GameObject {
 	private int pausetime;
 	private int count, index;
 
-	public ChatObject(CharacterBank characterBank, String sentence1, String sentence2, Event eventOnDisplay) {
+	public ChatObject(CharacterBank characterBank, int facialExpression, String sentence1, String sentence2, Event eventOnDisplay) {
 		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.eventOnDisplay = eventOnDisplay;
 		this.characterBank = characterBank;
+		this.facialExpression = facialExpression;
 		this.sentence[0] = sentence1;
 		this.sentence[1] = sentence2;
 		this.currentText[0] = "";
@@ -153,23 +153,9 @@ public class ChatObject extends GameObject {
 	public void render(Graphics g) {
 		g.drawImage(texture.interface_chat, 0, 0, Size.WIDHT, Size.HEIGHT, null);
 
-		BufferedImage img = null;
-		img = paintingChara(characterBank);
-
-		g.drawImage(img, 350, y, -2 * h / 3, 2 * h / 3, null);
+		g.drawImage(texture.getLivingFace(characterBank, facialExpression), 350, y, -2 * h / 3, 2 * h / 3, null);
 
 		drawText(g);
-	}
-
-	private BufferedImage paintingChara(CharacterBank characterBank) {
-		BufferedImage img = ImageTask.drawMissingTexture();
-
-		if (characterBank == CharacterBank.rebecca)
-			img = texture.living_rebecca_face[0];
-		if (characterBank == CharacterBank.sarah)
-			img = texture.living_sarah_face[1][0];
-
-		return img;
 	}
 
 	private void drawText(Graphics g) {

@@ -21,22 +21,13 @@ public class TextureBank {
 	}
 
 	// living
+	private SpriteSheet living_face_sheet;
 	private SpriteSheet living_walking_sheet;
 	private SpriteSheet living_battle_sheet;
 
-	private SpriteSheet living_foe_battle_sheet;
-	private SpriteSheet living_foe_walking_sheet;
-
 	private SpriteSheet living_foe_face_sheet;
-	private SpriteSheet living_gamma_face_sheet;
-	private SpriteSheet living_rebecca_face_sheet;
-	private SpriteSheet living_sarah_face_sheet;
-	private SpriteSheet living_vladimir_face_sheet;
-
-	private SpriteSheet living_dummy_female01_face_sheet;
-	private SpriteSheet living_dummy_female02_face_sheet;
-	private SpriteSheet living_dummy_male01_face_sheet;
-	private SpriteSheet living_dummy_male02_face_sheet;
+	private SpriteSheet living_foe_walking_sheet;
+	private SpriteSheet living_foe_battle_sheet;
 
 	// gui
 	private SpriteSheet gui_battery_sheet;
@@ -70,23 +61,14 @@ public class TextureBank {
 	private SpriteSheet pierre_feuille_ciseaux_sheet;
 
 	// living
+	private BufferedImage[][] living_face = new BufferedImage[9][16]; // - character - facing - state
 	private BufferedImage[][][] living_walking = new BufferedImage[9][5][3]; // - character - facing - state
 	private BufferedImage[][][] living_battle = new BufferedImage[9][2][18]; // - character - facing - state
 
-	public BufferedImage[][] living_foe_battle = new BufferedImage[2][21]; // - facing - state
-	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
-	public BufferedImage[][] living_err_battle = new BufferedImage[2][21]; // - facing - state
-
 	public BufferedImage[] living_foe_face = new BufferedImage[1]; // - state
-	public BufferedImage[] living_gamma_face = new BufferedImage[1]; // - state
-	public BufferedImage[] living_rebecca_face = new BufferedImage[1]; // - state
-	public BufferedImage[][] living_sarah_face = new BufferedImage[2][1]; // - helmet - state
-	public BufferedImage[] living_vladimir_face = new BufferedImage[1]; // - state
-
-	public BufferedImage[] living_dummy_female01_face = new BufferedImage[1]; // - state
-	public BufferedImage[] living_dummy_female02_face = new BufferedImage[1]; // - state
-	public BufferedImage[] living_dummy_male01_face = new BufferedImage[1]; // - state
-	public BufferedImage[] living_dummy_male02_face = new BufferedImage[1]; // - state
+	public BufferedImage[][][] living_foe_walking = new BufferedImage[7][4][4]; // - difficulty - facing - state
+	public BufferedImage[][] living_foe_battle = new BufferedImage[2][21]; // - facing - state
+	public BufferedImage[][] living_err_battle = new BufferedImage[2][21]; // - facing - state
 
 	// gui
 	public BufferedImage[][] gui_battery = new BufferedImage[8][8]; // - number of charge - max charge
@@ -126,27 +108,13 @@ public class TextureBank {
 	public void loadRessources() {
 
 		// living
+		living_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_face_sheet));
 		living_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_walking_sheet));
 		living_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_battle_sheet));
 
-		living_foe_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_battle_sheet));
-		living_foe_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_walking_sheet));
-
-
-
-
 		living_foe_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_face_sheet));
-		living_gamma_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_gamma_face_sheet));
-		living_rebecca_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_rebecca_face_sheet));
-		living_sarah_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_sarah_face_sheet));
-		living_vladimir_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_vladimir_face_sheet));
-
-		living_dummy_female01_face_sheet = new SpriteSheet(
-				ImageBank.getImage(ImageBank.living_dummy_female01_face_sheet));
-		living_dummy_female02_face_sheet = new SpriteSheet(
-				ImageBank.getImage(ImageBank.living_dummy_female02_face_sheet));
-		living_dummy_male01_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_dummy_male01_face_sheet));
-		living_dummy_male02_face_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_dummy_male02_face_sheet));
+		living_foe_walking_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_walking_sheet));
+		living_foe_battle_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.living_foe_battle_sheet));
 
 		// gui
 		gui_battery_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.gui_battery_sheet));
@@ -186,15 +154,19 @@ public class TextureBank {
 		getTextures();
 	}
 
+	public BufferedImage getLivingFace(CharacterBank characterBank, int state) {
+		return living_face[CharacterBank.getCharacter(characterBank).getId()][state];
+	}
+
+	public BufferedImage getLivingWalking(CharacterBank characterBank, int facing, int state) {
+		return living_walking[CharacterBank.getCharacter(characterBank).getId()][facing][state];
+	}
+
 	public BufferedImage getLivingBattle(CharacterBank characterBank, int facing, int state) {
 		BufferedImage img = ImageTask.drawMissingTexture(64, 64);
 		if (CharacterBank.getCharacter(characterBank).hasBattleAnimation())
 			img = living_battle[CharacterBank.getCharacter(characterBank).getId()][facing][state];
 		return img;
-	}
-
-	public BufferedImage getLivingWalking(CharacterBank characterBank, int facing, int state) {
-		return living_walking[CharacterBank.getCharacter(characterBank).getId()][facing][state];
 	}
 
 	@Todo("le design de la clef et du cadena font vieux & le desing du canapé est trop simpliste")
@@ -208,6 +180,13 @@ public class TextureBank {
 			int col = CharacterBank.getCharacter(characterBank).getCol();
 			int row = CharacterBank.getCharacter(characterBank).getRow();
 			CharacterBank.getCharacter(characterBank).setId(count);
+
+			for (int i = 0; i < 4; i++) {
+				living_face[count][i] = living_face_sheet.grabImage(4 * col + i - 3, 1 + (4 * row - 4), 144, 144);
+				living_face[count][i + 4] = living_face_sheet.grabImage(4 * col + i - 3, 2 + (4 * row - 4), 144, 144);
+				living_face[count][i + 8] = living_face_sheet.grabImage(4 * col + i - 3, 3 + (4 * row - 4), 144, 144);
+				living_face[count][i + 12] = living_face_sheet.grabImage(4 * col + i - 3, 4 + (4 * row - 4), 144, 144);
+			}
 
 			for (int i = 0; i < 3; i++) {
 				living_walking[count][FACING.LEFT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
@@ -241,12 +220,7 @@ public class TextureBank {
 			}
 		}
 
-		for (int i = 0; i < 21; i++) {
-			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-		}
+		living_foe_face[0] = living_foe_face_sheet.grabImage(1, 1, 144, 144);
 
 		for (int j = 0; j < 7; j++) {
 			for (int i = 0; i < 4; i++) {
@@ -261,17 +235,12 @@ public class TextureBank {
 			}
 		}
 
-		living_foe_face[0] = living_foe_face_sheet.grabImage(1, 1, 144, 144);
-		living_gamma_face[0] = living_gamma_face_sheet.grabImage(1, 1, 144, 144);
-		living_rebecca_face[0] = living_rebecca_face_sheet.grabImage(1, 1, 144, 144);
-		living_sarah_face[0][0] = living_sarah_face_sheet.grabImage(1, 1, 144, 144);
-		living_sarah_face[1][0] = living_sarah_face_sheet.grabImage(1, 2, 144, 144);
-		living_vladimir_face[0] = living_vladimir_face_sheet.grabImage(1, 1, 144, 144);
-
-		living_dummy_female01_face[0] = living_dummy_female01_face_sheet.grabImage(1, 1, 144, 144);
-		living_dummy_female02_face[0] = living_dummy_female02_face_sheet.grabImage(1, 1, 144, 144);
-		living_dummy_male01_face[0] = living_dummy_male01_face_sheet.grabImage(1, 1, 144, 144);
-		living_dummy_male02_face[0] = living_dummy_male02_face_sheet.grabImage(1, 1, 144, 144);
+		for (int i = 0; i < 21; i++) {
+			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
+			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+		}
 
 		// gui
 		for (int j = 0; j < 7; j++) {
