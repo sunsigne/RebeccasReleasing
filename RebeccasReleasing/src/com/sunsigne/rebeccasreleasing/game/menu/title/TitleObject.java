@@ -95,7 +95,7 @@ public class TitleObject extends MenuObject {
 
 	@Override
 	public void drawHitbox(Graphics g) {
-		if (Game.visibleHitbox) {
+		if (Game.isDebugMode()) {
 			g.setColor(Color.white);
 			drawRect(g, Title.playRect);
 			drawRect(g, Title.optionsRect);

@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
@@ -23,6 +24,9 @@ public class GameKeyboardInput extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
+		if(key == KeyEvent.VK_F3)
+			Game.switchDebugMode();
+		
 		if (key == KeyEvent.VK_ESCAPE) {
 			if (Conductor.getState() == STATE.INTRODUCTION)
 				Conductor.closeIntroduction();

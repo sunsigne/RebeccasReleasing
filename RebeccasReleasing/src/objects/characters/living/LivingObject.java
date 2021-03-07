@@ -176,7 +176,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 
 	@Override
 	protected void drawHitbox(Graphics g) {
-		if (Game.visibleHitbox) {
+		if (Game.isDebugMode()) {
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.setColor(Color.white);
 			g2d.draw(getBounds());

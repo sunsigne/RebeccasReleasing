@@ -147,7 +147,7 @@ public abstract class GameObject implements ITick, IRender {
 	}
 
 	protected void drawHitbox(Graphics g) {
-		if (Game.visibleHitbox) {
+		if (Game.isDebugMode()) {
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.setColor(Color.white);
 			if (getBounds() != null)

@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private static final Camera cam = new Camera();
 
 	public static final String NAME = "Rebecca's Releasing";
-	public static final boolean visibleHitbox = false;
+	private static boolean debugMode = false;	
 	public static final boolean skipIntro = true;
 
 	public static Game game;
@@ -60,6 +60,19 @@ public class Game extends Canvas implements Runnable {
 		Conductor.start();
 	}
 
+	// State
+	
+	public static boolean isDebugMode()
+	{
+		return debugMode;
+	}
+	
+	public static void switchDebugMode()
+	{
+		if(debugMode) debugMode = false;
+		else debugMode = true;
+	}
+	
 	// Thread
 
 	public synchronized void start() {
