@@ -24,9 +24,9 @@ public class GameKeyboardInput extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		if(key == KeyEvent.VK_F3)
+		if (key == KeyEvent.VK_F3)
 			Game.switchDebugMode();
-		
+
 		if (key == KeyEvent.VK_ESCAPE) {
 			if (Conductor.getState() == STATE.INTRODUCTION)
 				Conductor.closeIntroduction();
@@ -41,13 +41,13 @@ public class GameKeyboardInput extends KeyAdapter {
 			World.currentWorld.restart();
 		}
 
-		if (key == KeyEvent.VK_Q)
+		if (leftKey(key))
 			keyPressed[FACING.LEFT.getNum()] = true;
-		if (key == KeyEvent.VK_D)
+		if (rightKey(key))
 			keyPressed[FACING.RIGHT.getNum()] = true;
-		if (key == KeyEvent.VK_Z)
+		if (upKey(key))
 			keyPressed[FACING.UP.getNum()] = true;
-		if (key == KeyEvent.VK_S)
+		if (downKey(key))
 			keyPressed[FACING.DOWN.getNum()] = true;
 
 		if (playerismovable()) {
@@ -61,19 +61,51 @@ public class GameKeyboardInput extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_Q)
+		if (leftKey(key))
 			keyPressed[FACING.LEFT.getNum()] = false;
-		if (key == KeyEvent.VK_D)
+		if (rightKey(key))
 			keyPressed[FACING.RIGHT.getNum()] = false;
-		if (key == KeyEvent.VK_Z)
+		if (upKey(key))
 			keyPressed[FACING.UP.getNum()] = false;
-		if (key == KeyEvent.VK_S)
+		if (downKey(key))
 			keyPressed[FACING.DOWN.getNum()] = false;
 
 		if (playerismovable()) {
 			moveplayerbyX();
 			moveplayerbyY();
 		}
+	}
+
+	private boolean leftKey(int key) {
+		if (key == KeyEvent.VK_Q)
+			return true;
+		if (key == KeyEvent.VK_LEFT)
+			return true;
+		return false;
+	}
+
+	private boolean rightKey(int key) {
+		if (key == KeyEvent.VK_D)
+			return true;
+		if (key == KeyEvent.VK_RIGHT)
+			return true;
+		return false;
+	}
+
+	private boolean upKey(int key) {
+		if (key == KeyEvent.VK_Z)
+			return true;
+		if (key == KeyEvent.VK_UP)
+			return true;
+		return false;
+	}
+
+	private boolean downKey(int key) {
+		if (key == KeyEvent.VK_S)
+			return true;
+		if (key == KeyEvent.VK_DOWN)
+			return true;
+		return false;
 	}
 
 	private boolean playerismovable() {
