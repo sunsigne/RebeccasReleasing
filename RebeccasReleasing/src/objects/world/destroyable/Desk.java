@@ -58,6 +58,7 @@ public class Desk extends DestroyableObject {
 
 		renderingDesk(g);
 		drawHitbox(g);
+		drawLootable(g);
 	}
 
 	private void renderingDesk(Graphics g) {

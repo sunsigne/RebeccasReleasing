@@ -10,6 +10,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.card.clickable.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
@@ -227,7 +228,16 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 		renderingFoe(g);
 		drawHitbox(g);
+		drawLootable(g);
 	}
+	
+	private void drawLootable(Graphics g) {
+		if (Game.isDebugMode()) {
+			if (loot != null)
+				loot.render(g);
+		}
+	}
+
 
 	private void renderingFoe(Graphics g) {
 		int difficulty = this.currentDifficulty.getLvl();

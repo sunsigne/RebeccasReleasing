@@ -1,9 +1,14 @@
 package objects.world.destroyable;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
@@ -59,10 +64,19 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	public LootObject getLootObject() {
 		return loot;
 	}
-	
+
 	@Override
 	public void setLootObject(LootObject loot) {
 		this.loot = loot;
+	}
+
+	// design
+
+	protected void drawLootable(Graphics g) {
+		if (Game.isDebugMode()) {
+			if (loot != null)
+				loot.render(g);
+		}
 	}
 
 	// collision
@@ -110,7 +124,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	}
 
 	protected abstract void fall();
-	
+
 	public abstract int givePts();
 
 	public abstract BufferedSound makeMainSound();

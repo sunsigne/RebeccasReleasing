@@ -61,6 +61,7 @@ public class Plant extends DestroyableObject {
 
 		renderingPlant(g);
 		drawHitbox(g);
+		drawLootable(g);
 	}
 
 	private void renderingPlant(Graphics g) {
