@@ -2,6 +2,7 @@ package objects.characters.collision;
 
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.GameObject;
@@ -28,6 +29,9 @@ public class CollisionDetector {
 	}
 
 	public void collidingBehavior(boolean isWall, GameObject tempObject, CollisionListener listener) {
+		if (living.isPlayer() && Game.isWallPassMode())
+			return;
+
 		if (living.getBounds().intersects(tempObject.getBounds())) {
 			if (isWall)
 				living.setY((tempObject.getY() - living.getHeight()));
@@ -52,10 +56,14 @@ public class CollisionDetector {
 				living.setX((tempObject.getX() - living.getWitdh()));
 			if (listener != null)
 				listener.triggerAction();
+
 		}
 	}
 
 	public void collidingBehaviorThinDecor(GameObject tempObject) {
+		if (living.isPlayer() && Game.isWallPassMode())
+			return;
+		
 		if (living.getBounds().intersects(tempObject.getBounds())) {
 			living.setY((tempObject.getY() - living.getHeight()));
 		}
