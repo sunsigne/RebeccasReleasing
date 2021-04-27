@@ -107,7 +107,7 @@ public abstract class Puzzle extends Clickable {
 
 	protected void createFrame() {
 
-		HandlerObject.getInstance().addObject(getTimer());
+//		HandlerObject.getInstance().addObject(getTimer());
 	}
 
 	protected abstract void randomGeneration();
