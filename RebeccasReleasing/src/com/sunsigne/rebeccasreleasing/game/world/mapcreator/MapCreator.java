@@ -132,26 +132,27 @@ public class MapCreator {
 			Wall wall = new Wall(x0, y0, null);
 			handler_object.addObject(wall);
 		}
-		
+				
 		if (red == 255 && green == 254 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.UP);
-			handler_object.addObject(wall);
-		}
-		
-		if (red == 255 && green == 253 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.DOWN);
-			handler_object.addObject(wall);
-		}
-		
-		if (red == 255 && green == 252 && blue == 255) {
 			Wall wall = new Wall(x0, y0, FACING.LEFT);
 			handler_object.addObject(wall);
 		}
 		
-		if (red == 255 && green == 251 && blue == 255) {
+		if (red == 255 && green == 253 && blue == 255) {
 			Wall wall = new Wall(x0, y0, FACING.RIGHT);
 			handler_object.addObject(wall);
 		}
+		
+		if (red == 255 && green == 252 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.UP);
+			handler_object.addObject(wall);
+		}
+		
+		if (red == 255 && green == 251 && blue == 255) {
+			Wall wall = new Wall(x0, y0, FACING.DOWN);
+			handler_object.addObject(wall);
+		}
+
 	}
 
 }
