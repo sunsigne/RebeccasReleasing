@@ -92,6 +92,8 @@ public class ImageBank {
 	public static final ImageBank lvl01_cutout = new ImageBank();
 	public static final ImageBank lvl02 = new ImageBank();
 	public static final ImageBank lvl02_cutout = new ImageBank();
+	public static final ImageBank lvl010 = new ImageBank();
+	public static final ImageBank lvl010_cutout = new ImageBank();
 
 	public static void loadRessources() {
 
@@ -165,6 +167,8 @@ public class ImageBank {
 		addImage(lvl01_cutout, ImageTask.loadMapImage("lvl01_cutout.png"));
 		addImage(lvl02, ImageTask.loadMapImage("lvl02.png"));
 		addImage(lvl02_cutout, ImageTask.loadMapImage("lvl02_cutout.png"));
+		addImage(lvl010, ImageTask.loadMapImage("lvl010.png"));
+		addImage(lvl010_cutout, ImageTask.loadMapImage("lvl010_cutout.png"));
 
 	}
 

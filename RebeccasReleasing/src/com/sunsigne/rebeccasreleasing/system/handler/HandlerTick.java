@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public class HandlerTick implements ITick {
 
+	// singleton
+	
 	private static HandlerTick instance = null;
 
 	public static HandlerTick getInstance() {

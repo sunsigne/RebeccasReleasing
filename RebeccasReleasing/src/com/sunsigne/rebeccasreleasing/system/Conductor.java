@@ -10,6 +10,8 @@ import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.game.world.WorldLvl001;
 import com.sunsigne.rebeccasreleasing.game.world.WorldLvl01;
+import com.sunsigne.rebeccasreleasing.game.world.WorldLvl010;
+import com.sunsigne.rebeccasreleasing.game.world.WorldLvl02;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
