@@ -93,7 +93,7 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about the mission
 			@Override
 			public void startEvent() {
-				new Chat(1, null, frlvl01, englvl01);
+				World.loadChat(new Chat(1, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -116,7 +116,7 @@ public class WorldLvl01 implements ILvl {
 				EventListener listener = null;
 				if (World.gui.getTool(Tool.KEY).getCurrentLvl() > 0)
 					listener = () -> event.mustOccur(true);
-				new Chat(2, listener, frlvl01, englvl01);
+					World.loadChat(new Chat(2, listener, frlvl01, englvl01));
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
 				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event1.mustOccur(true), false);
@@ -136,7 +136,7 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about how stupid Rebecca is
 			@Override
 			public void startEvent() {
-				new Chat(3, null, frlvl01, englvl01);
+				World.loadChat(new Chat(3, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -155,7 +155,7 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				moveThePlayerFutherFromDoor();
-				new Chat(4, null, frlvl01, englvl01);
+				World.loadChat(new Chat(4, null, frlvl01, englvl01));
 				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
 				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event.mustOccur(true), false);
@@ -176,7 +176,7 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				moveThePlayerFutherFromDoor();
-				new Chat(5, null, frlvl01, englvl01);
+				World.loadChat(new Chat(5, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -202,7 +202,7 @@ public class WorldLvl01 implements ILvl {
 				HandlerEvent.getInstance().getEvent("Door Fail 1").canOccur(false);
 				HandlerEvent.getInstance().getEvent("Door Fail 2").canOccur(false);
 				// event 7 during chat
-				new Chat(6, null, frlvl01, englvl01);
+				World.loadChat(new Chat(6, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -242,7 +242,7 @@ public class WorldLvl01 implements ILvl {
 				EventListener listener = null;
 				if (World.gui.getTool(Tool.SWORD).getCurrentLvl() < 1)
 					listener = () -> event.mustOccur(true);
-				new Chat(7, listener, frlvl01, englvl01);
+					World.loadChat(new Chat(7, listener, frlvl01, englvl01));
 				
 				Event event1 = HandlerEvent.getInstance().getEvent("Foe Fail");
 				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
@@ -265,7 +265,7 @@ public class WorldLvl01 implements ILvl {
 			// Talk with Sarah about finding it before the fight
 			@Override
 			public void startEvent() {
-				new Chat(8, null, frlvl01, englvl01);
+				World.loadChat(new Chat(8, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -282,7 +282,7 @@ public class WorldLvl01 implements ILvl {
 			// Talk with sarah about tips
 			@Override
 			public void startEvent() {
-				new Chat(9, null, frlvl01, englvl01);
+				World.loadChat(new Chat(9, null, frlvl01, englvl01));
 			}
 		});
 	}
@@ -300,7 +300,7 @@ public class WorldLvl01 implements ILvl {
 			@Override
 			public void startEvent() {
 				HandlerEvent.getInstance().getEvent("Foe Fail").canOccur(false);
-				new Chat(10, null, frlvl01, englvl01);
+				World.loadChat(new Chat(10, null, frlvl01, englvl01));
 			}
 		});
 	}

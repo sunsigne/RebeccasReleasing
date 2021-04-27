@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
@@ -27,6 +28,7 @@ import objects.characters.living.PlayerObject;
 public class World implements IRender {
 
 	private ILvl ilvl;
+	private Chat chat;
 
 	public static World currentWorld;
 
@@ -51,6 +53,19 @@ public class World implements IRender {
 
 	public ILvl getILvl() {
 		return ilvl;
+	}
+
+	public static void loadChat(Chat chat) {
+		currentWorld.chat = chat;
+	}
+
+	public static Chat getChat() {
+		return currentWorld.chat;
+	}
+	
+	public static void killChat()
+	{
+		currentWorld.chat = null;
 	}
 
 	private void loadLevel() {
@@ -112,6 +127,7 @@ public class World implements IRender {
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);
 		SoundTask.stopMusic();
+		killChat();
 	}
 
 }

@@ -36,7 +36,7 @@ public class Chat extends ChatBuilder {
 			chatObject[count].getEventOnDisplay().mustOccur(true);
 	}
 
-	private void goToNextSentence() {
+	public void goToNextSentence() {
 
 		if (chatObject[count] != null) {
 			if (!chatObject[count].isFulldisplayed())
@@ -56,6 +56,7 @@ public class Chat extends ChatBuilder {
 		GameMouseInput.getInstance().clearClickable();
 		HandlerObject.getInstance().addObject(World.gui);
 		World.stunAllFoes();
+		World.killChat();
 		Conductor.setState(STATE.LEVEL);
 		HandlerObject.getInstance().player.loadBasicState();
 		SoundTask.changeMusicVol(0.5);
