@@ -30,7 +30,8 @@ public class Game extends Canvas implements Runnable {
 	private static final Camera cam = new Camera();
 
 	public static final String NAME = "Rebecca's Releasing";
-	private static boolean debugMode = false;	
+	private static boolean debugMode = false;
+	private static boolean wallPassMode = false;	
 	public static final boolean skipIntro = true;
 
 	public static Game game;
@@ -67,10 +68,21 @@ public class Game extends Canvas implements Runnable {
 		return debugMode;
 	}
 	
+	public static boolean isWallPassMode()
+	{
+		return wallPassMode;
+	}
+	
 	public static void switchDebugMode()
 	{
 		if(debugMode) debugMode = false;
 		else debugMode = true;
+	}
+	
+	public static void switchWallPassMode()
+	{
+		if(wallPassMode) wallPassMode = false;
+		else wallPassMode = true;
 	}
 	
 	// Thread

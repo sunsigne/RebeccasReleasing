@@ -26,6 +26,9 @@ public class GameKeyboardInput extends KeyAdapter {
 
 		if (key == KeyEvent.VK_F3)
 			Game.switchDebugMode();
+		
+		if (key == KeyEvent.VK_F4)
+			Game.switchWallPassMode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			if (Conductor.getState() == STATE.INTRODUCTION)
