@@ -80,22 +80,22 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 			// segmenting data from line
 			dataIntoLine[line] = chatIDLines[line].split(";");
 
-			charaCol[line] = Integer.valueOf(dataIntoLine[line][3]);
-			charaRow[line] = Integer.valueOf(dataIntoLine[line][4]);
+			charaCol[line] = Integer.valueOf(dataIntoLine[line][2]);
+			charaRow[line] = Integer.valueOf(dataIntoLine[line][3]);
 			characterBank[line] = selectCharacterFromData(charaCol[line], charaRow[line]);
-			charaExpression[line] = Integer.valueOf(dataIntoLine[line][6]);
-			event[line] = String.valueOf(dataIntoLine[line][2]).replace("\"", "");
+			charaExpression[line] = Integer.valueOf(dataIntoLine[line][5]);
+			event[line] = String.valueOf(dataIntoLine[line][1]).replace("\"", "");
 			
-			sentence[line] = dataIntoLine[line][7].replace("\"", "");
+			sentence[line] = dataIntoLine[line][6].replace("\"", "");
 
 			// checking for next line
 			if (chatIDLines[line + 1] != "") {
 				dataIntoLine[line + 1] = chatIDLines[line + 1].split(";");
 
-				charaCol[line + 1] = Integer.valueOf(dataIntoLine[line + 1][3]);
-				charaRow[line + 1] = Integer.valueOf(dataIntoLine[line + 1][4]);
+				charaCol[line + 1] = Integer.valueOf(dataIntoLine[line + 1][2]);
+				charaRow[line + 1] = Integer.valueOf(dataIntoLine[line + 1][3]);
 				characterBank[line + 1] = selectCharacterFromData(charaCol[line + 1], charaRow[line]);
-				charaExpression[line + 1] = Integer.valueOf(dataIntoLine[line + 1][6]);
+				charaExpression[line + 1] = Integer.valueOf(dataIntoLine[line + 1][5]);
 
 				if (characterBank[line] == characterBank[line + 1])
 					twoSentences = true;
@@ -103,7 +103,7 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 
 			// if next line is the same character, the next chat has two sentences
 			if (twoSentences)
-				sentence[line + 1] = dataIntoLine[line + 1][7].replace("\"", "");
+				sentence[line + 1] = dataIntoLine[line + 1][6].replace("\"", "");
 			else
 				sentence[line + 1] = null;
 
@@ -144,7 +144,7 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 		// erase of useless lines
 		for (int i = 1; i < size; i++) {
 			String[] lineContent = chatIDLines[i].split(";");
-			if (Integer.valueOf(lineContent[1]) != chatID)
+			if (Integer.valueOf(lineContent[0]) != chatID)
 				chatIDLines[i] = "";
 		}
 		// reset to possition of lines into the array (as values should start at 0)
