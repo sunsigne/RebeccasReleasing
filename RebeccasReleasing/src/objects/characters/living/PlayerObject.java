@@ -1,10 +1,14 @@
 package objects.characters.living;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public class PlayerObject extends LivingObject {
@@ -78,11 +82,16 @@ public class PlayerObject extends LivingObject {
 	private void renderingRebecca(Graphics g) {
 		int facing = getFacing().getNum();
 
+		Graphics2D g2d = (Graphics2D) g;
+		if (Game.isWallPassMode())
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+
 		if (isMotionless())
 			g.drawImage(texture.getLivingWalking(CharacterBank.rebecca, facing, 1), x, y, w, h, null);
 		else
 			drawAnimation(g, x, y, w, h, getFacing().getNum());
 
-	}
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
+	}
 }
