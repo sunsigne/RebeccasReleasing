@@ -61,6 +61,9 @@ public class GameKeyboardInput extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
+		if (key == KeyEvent.VK_E && World.getChat() != null)
+			World.getChat().goToNextSentence();
+
 		if (leftKey(key))
 			keyPressed[FACING.LEFT.getNum()] = false;
 		if (rightKey(key))
