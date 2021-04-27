@@ -66,7 +66,7 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 					.addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 
-		HandlerObject.getInstance().addObject(getTimer());
+//		HandlerObject.getInstance().addObject(getTimer());
 	}
 
 	@Override
