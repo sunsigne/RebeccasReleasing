@@ -18,11 +18,12 @@ import objects.characters.living.LivingObject;
 		+ "/ les loots c'est ici ou dans une class à part que ça se gère, pas sur les ennemis")
 public abstract class LootObject extends GameObject implements ICollision {
 
+	protected boolean fake;
 	private int time_before_lootable = 40;
 
-	public LootObject(int x, int y) {
+	public LootObject(int x, int y, boolean fake) {
 		super(true, x, y, OBJECTID.LOOT);
-
+		this.fake = fake;
 	}
 
 	// behavior
@@ -37,14 +38,16 @@ public abstract class LootObject extends GameObject implements ICollision {
 	@Override
 	public void collision(LivingObject living) {
 
-		if (time_before_lootable <= 0) {
-			if (living.isPlayer())
-				living.getCollisionDetector().collidingBehavior(false, this, () -> {
-					HandlerObject.getInstance().removeObject(this);
-					HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
-					SoundTask.playSound(playSoundOnPickup());
-					triggerActionOnPickup();
-				});
+		if (!fake) {
+			if (time_before_lootable <= 0) {
+				if (living.isPlayer())
+					living.getCollisionDetector().collidingBehavior(false, this, () -> {
+						HandlerObject.getInstance().removeObject(this);
+						HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
+						SoundTask.playSound(playSoundOnPickup());
+						triggerActionOnPickup();
+					});
+			}
 		}
 	}
 

@@ -120,7 +120,7 @@ public class MapCreator {
 				Tool lootTool = new Tool(tool, difficulty, 0);
 
 				// set to the random ILootObject, the loot tool
-				randomILoot.setLootObject(new LootTool(randomILootObject.getX(), randomILootObject.getY(), lootTool));
+				randomILoot.setLootObject(new LootTool(randomILootObject.getX(), randomILootObject.getY(), lootTool, false));
 				tool_list[difficulty][tool].clear();
 			}
 		}

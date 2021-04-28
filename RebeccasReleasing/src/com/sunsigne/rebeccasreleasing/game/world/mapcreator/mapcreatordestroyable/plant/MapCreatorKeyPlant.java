@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.IFacing.FACING;
 import objects.world.destroyable.Plant;
+import objects.world.loot.tools.LootTool;
 
 public class MapCreatorKeyPlant {
 
@@ -27,12 +28,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 1 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 
@@ -43,12 +48,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 5 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 
@@ -59,12 +68,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 9 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 
@@ -75,12 +88,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 13 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 
@@ -90,12 +107,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 17 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 
@@ -106,12 +127,16 @@ public class MapCreatorKeyPlant {
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 		if (red == 254 && green == 21 && blue == 254) {
 			Plant plant = new Plant(x0, y0, FACING.RIGHT);
 			handler_object.addObject(plant);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, plant);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 	}
 

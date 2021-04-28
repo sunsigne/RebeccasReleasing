@@ -6,6 +6,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.characters.living.FoeObject;
+import objects.world.loot.tools.LootTool;
 
 public class MapCreatorSwordFoe {
 
@@ -25,6 +26,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 2) {
@@ -32,6 +35,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 3) {
@@ -39,6 +44,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 4) {
@@ -46,6 +53,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 5) {
@@ -53,6 +62,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 6) {
@@ -60,6 +71,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}
@@ -70,6 +83,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 10) {
@@ -77,6 +92,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 11) {
@@ -84,6 +101,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 12) {
@@ -91,6 +110,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 13) {
@@ -98,6 +119,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 14) {
@@ -105,6 +128,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}
@@ -115,6 +140,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 18) {
@@ -122,6 +149,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 19) {
@@ -129,6 +158,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 20) {
@@ -136,6 +167,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 21) {
@@ -143,6 +176,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 22) {
@@ -150,6 +185,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}
@@ -160,6 +197,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 26) {
@@ -167,6 +206,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 27) {
@@ -174,6 +215,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 28) {
@@ -181,6 +224,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 29) {
@@ -188,6 +233,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 30) {
@@ -195,6 +242,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}
@@ -205,6 +254,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 34) {
@@ -212,6 +263,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 35) {
@@ -219,6 +272,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 36) {
@@ -226,6 +281,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 37) {
@@ -233,6 +290,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 38) {
@@ -240,6 +299,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}
@@ -250,6 +311,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 42) {
@@ -257,6 +320,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 43) {
@@ -264,6 +329,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 44) {
@@ -271,6 +338,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 45) {
@@ -278,6 +347,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 		if (red == 255 && green == 253 && blue == 46) {
@@ -285,6 +356,8 @@ public class MapCreatorSwordFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.SWORD, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
+			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			handler_object.addObject(fakeTool);
 		}
 
 	}

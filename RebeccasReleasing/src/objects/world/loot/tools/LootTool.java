@@ -1,9 +1,12 @@
 package objects.world.loot.tools;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 
 import objects.world.loot.LootObject;
@@ -11,9 +14,9 @@ import objects.world.loot.LootObject;
 public class LootTool extends LootObject {
 
 	private Tool tool;
-	
-	public LootTool(int x, int y, Tool tool) {
-		super(x, y);
+
+	public LootTool(int x, int y, Tool tool, boolean fake) {
+		super(x, y, fake);
 		this.tool = tool;
 	}
 
@@ -23,24 +26,41 @@ public class LootTool extends LootObject {
 	public void render(Graphics g) {
 
 		BufferedImage img = texture.loot_tool[tool.getCurrentLvl()][tool.getToolNum()];
-		g.drawImage(img, x, y, w, h, null);
-		drawHitbox(g);
+
+		renderingTrueTool(g, img);
+		renderingFakeTool(g, img);
+	}
+
+	private void renderingTrueTool(Graphics g, BufferedImage img) {
+
+		if (!fake)
+			g.drawImage(img, x, y, w, h, null);
+	}
+
+	private void renderingFakeTool(Graphics g, BufferedImage img) {
+
+		if (Game.isDebugMode()) {
+			Graphics2D g2d = (Graphics2D) g;
+			IRender.setAlphaTo(g2d, 0.5f);
+
+			if (fake)
+				g.drawImage(img, x, y, w, h, null);
+
+			IRender.setAlphaTo(g2d, 1f);
+		}
 	}
 
 	// collision
 
 	@Override
 	protected String displayTextOnPickup() {
-		return "Lvl" + " " + tool.getCurrentLvl() +  " " + tool.getName();
+		return "Lvl" + " " + tool.getCurrentLvl() + " " + tool.getName();
 	}
-	
+
 	@Override
 	protected void triggerActionOnPickup() {
 
 		World.gui.getTool(tool.getToolNum()).upgradeLvlTo(tool.getCurrentLvl());
 	}
-
-
-
 
 }
