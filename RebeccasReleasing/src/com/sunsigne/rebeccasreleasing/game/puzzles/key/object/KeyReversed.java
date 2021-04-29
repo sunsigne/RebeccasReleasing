@@ -2,6 +2,8 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
@@ -40,15 +42,18 @@ public class KeyReversed extends KeyObject {
 
 	@Override
 	public void tick() {
-		velocity();
-		collision();
-
-		if (x < (Size.X0 + 12 * Size.TILE_PUZZLE))
-			velX--;
-		else {
-			HandlerObject.getInstance().player.puzzle.setWinning(true);
-			velX = 0;
-			goUpandDown();
+		if(Conductor.getState() == STATE.PUZZLE)
+		{
+			velocity();
+			collision();
+	
+			if (x < (Size.X0 + 12 * Size.TILE_PUZZLE))
+				velX--;
+			else {
+				HandlerObject.getInstance().player.puzzle.setWinning(true);
+				velX = 0;
+				goUpandDown();
+			}
 		}
 	}
 

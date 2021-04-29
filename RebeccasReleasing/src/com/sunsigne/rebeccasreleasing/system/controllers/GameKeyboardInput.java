@@ -26,7 +26,7 @@ public class GameKeyboardInput extends KeyAdapter {
 
 		if (key == KeyEvent.VK_F3)
 			Game.switchDebugMode();
-		
+
 		if (key == KeyEvent.VK_F4)
 			Game.switchWallPassMode();
 
@@ -42,6 +42,11 @@ public class GameKeyboardInput extends KeyAdapter {
 
 		if (key == KeyEvent.VK_R) {
 			World.currentWorld.restart();
+		}
+
+		if (key == KeyEvent.VK_E) {
+				if(Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE)
+				World.setNpcRequested(true);
 		}
 
 		if (leftKey(key))
@@ -64,8 +69,11 @@ public class GameKeyboardInput extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_E && World.getChat() != null)
-			World.getChat().goToNextSentence();
+		if (key == KeyEvent.VK_E) {
+				World.setNpcRequested(false);
+			if (World.getChat() != null)
+				World.getChat().goToNextSentence();
+		}
 
 		if (leftKey(key))
 			keyPressed[FACING.LEFT.getNum()] = false;

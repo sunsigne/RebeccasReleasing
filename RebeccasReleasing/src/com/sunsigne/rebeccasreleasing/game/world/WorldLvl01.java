@@ -49,19 +49,30 @@ public class WorldLvl01 implements ILvl {
 	@Override
 	public void loadEvent() {
 		if (!Game.isDebugMode()) {
-			eventFirstStep();
-			eventHereIAm();
-			eventClosedDoor();
-			eventIHadTheKey();
-			eventDoorFail1();
-			eventDoorFail2();
-			eventThatWasEasy();
-			eventSpawningHp();
-			eventNearFoe();
-			eventIHaveNoSword();
-			eventFoeFail();
-			eventFoeSuccess();
+			lvlEvents();
+			npcsInterraction();
 		}
+	}
+	
+	private void lvlEvents()
+	{
+		eventFirstStep();
+		eventHereIAm();
+		eventClosedDoor();
+		eventIHadTheKey();
+		eventDoorFail1();
+		eventDoorFail2();
+		eventThatWasEasy();
+		eventSpawningHp();
+		eventNearFoe();
+		eventIHaveNoSword();
+		eventFoeFail();
+		eventFoeSuccess();
+	}
+	
+	private void npcsInterraction()
+	{
+		npcSarahHello();
 	}
 
 	private void eventFirstStep() {
@@ -308,4 +319,26 @@ public class WorldLvl01 implements ILvl {
 		});
 	}
 
+	
+	/////////////////////////////////////////////////////////////////////////
+	
+
+	private void npcSarahHello() {
+		new Event("NPC Sarah Hello", new EventContext() {
+
+			// When the player success at killing the foe
+			@Override
+			public boolean startingCondition() {
+				return (HandlerObject.getInstance().player.getX() < 4450 && World.isNpcRequested());
+			}
+
+			// Talk with sarah about your mission
+			@Override
+			public void startEvent() {
+				World.loadChat(new Chat(99, null, frlvl01, englvl01));
+			}
+		});
+	}
+
+	
 }

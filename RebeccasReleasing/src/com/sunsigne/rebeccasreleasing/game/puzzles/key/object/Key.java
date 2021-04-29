@@ -3,6 +3,8 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.Todo;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
@@ -31,14 +33,17 @@ public class Key extends KeyObject {
 
 	@Override
 	public void tick() {
-		velocity();
-		collision();
+		if(Conductor.getState() == STATE.PUZZLE)
+		{
+			velocity();
+			collision();
 
-		if (isThrowing()) {
-			velY = 0;
-			velX--;
-		} else
-			goUpandDown();
+			if (isThrowing()) {
+				velY = 0;
+				velX--;
+			} else
+				goUpandDown();
+		}
 	}
 
 	// collision

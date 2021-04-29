@@ -29,6 +29,7 @@ public class World implements IRender {
 
 	private ILvl ilvl;
 	private Chat chat;
+	private boolean npcRequested;
 
 	public static World currentWorld;
 
@@ -56,16 +57,29 @@ public class World implements IRender {
 	}
 
 	public static void loadChat(Chat chat) {
-		currentWorld.chat = chat;
+		if (currentWorld != null)
+			currentWorld.chat = chat;
 	}
 
 	public static Chat getChat() {
-		return currentWorld.chat;
+		if (currentWorld != null)
+			return currentWorld.chat;
+		else
+			return null;
 	}
-	
-	public static void killChat()
-	{
-		currentWorld.chat = null;
+
+	public static void killChat() {
+		if (currentWorld != null)
+			currentWorld.chat = null;
+	}
+
+	public static boolean isNpcRequested() {
+		return (currentWorld != null ? currentWorld.npcRequested : false);
+	}
+
+	public static void setNpcRequested(boolean requested) {
+		if (currentWorld != null)
+			currentWorld.npcRequested = requested;
 	}
 
 	private void loadLevel() {
@@ -99,7 +113,7 @@ public class World implements IRender {
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE) {
-				FoeObject tempFoe = (FoeObject) tempObject; 
+				FoeObject tempFoe = (FoeObject) tempObject;
 				tempFoe.setStatue(true);
 			}
 		}

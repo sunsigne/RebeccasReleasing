@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
@@ -22,12 +24,15 @@ public class Lock extends PuzzleObject {
 
 	@Override
 	public void tick() {
-		if (GameCursor.getPos().y < ymin)
-			y = ymin;
-		else if (GameCursor.getPos().y > ymax)
-			y = ymax;
-		else
-			y = GameCursor.getPos().y;
+		if(Conductor.getState() == STATE.PUZZLE)
+		{
+			if (GameCursor.getPos().y < ymin)
+				y = ymin;
+			else if (GameCursor.getPos().y > ymax)
+				y = ymax;
+			else
+				y = GameCursor.getPos().y;
+		}
 	}
 
 	@Override

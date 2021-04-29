@@ -57,11 +57,17 @@ public class Chat extends ChatBuilder {
 		HandlerObject.getInstance().addObject(World.gui);
 		World.stunAllFoes();
 		World.killChat();
-		Conductor.setState(STATE.LEVEL);
+		setPlayState();
 		HandlerObject.getInstance().player.loadBasicState();
 		SoundTask.changeMusicVol(0.5);
 		if (eventOnClose != null)
 			eventOnClose.startEvent();
+	}
+
+	private void setPlayState() {
+		STATE state;
+		state = ((Conductor.getPreviousState() == STATE.PUZZLE) ? STATE.PUZZLE : STATE.LEVEL);
+		Conductor.setState(state);
 	}
 
 }
