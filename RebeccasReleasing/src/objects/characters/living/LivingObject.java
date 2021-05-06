@@ -152,18 +152,20 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 	}
 
 	public void pushed(int direction) {
-		isPushed = true;
-		SoundTask.playSound(SoundBank.getSound(SoundBank.push));
-		if (isPlayer())
-			World.gui.removeHp();
-		if (direction == FACING.LEFT.getNum())
-			velX = -Size.TILE / 5;
-		if (direction == FACING.RIGHT.getNum())
-			velX = Size.TILE / 5;
-		if (direction == FACING.UP.getNum())
-			velY = -Size.TILE / 5;
-		if (direction == FACING.DOWN.getNum())
-			velY = Size.TILE / 5;
+		if (!isPushed) {
+			isPushed = true;
+			SoundTask.playSound(SoundBank.getSound(SoundBank.push));
+			if (isPlayer())
+				World.gui.removeHp();
+			if (direction == FACING.LEFT.getNum())
+				velX = -Size.TILE / 5;
+			if (direction == FACING.RIGHT.getNum())
+				velX = Size.TILE / 5;
+			if (direction == FACING.UP.getNum())
+				velY = -Size.TILE / 5;
+			if (direction == FACING.DOWN.getNum())
+				velY = Size.TILE / 5;
+		}
 	}
 
 	// design
