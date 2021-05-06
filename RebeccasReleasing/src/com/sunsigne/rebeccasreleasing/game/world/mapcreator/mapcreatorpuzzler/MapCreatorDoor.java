@@ -1,15 +1,12 @@
-package com.sunsigne.rebeccasreleasing.game.world.mapcreator;
+package com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
-import objects.world.puzzler.Case;
-import objects.world.puzzler.Computer;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.TutoDoor;
-import objects.world.puzzler.WallCracked;
 
-public class MapCreatorPuzzler {
+public class MapCreatorDoor {
 
 	static void createDoor(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
@@ -89,11 +86,11 @@ public class MapCreatorPuzzler {
 
 	private static void createDoorHorizontalClosed(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
-		
+
 		if (red == 0 && green == 255 && blue == 17) {
 			Door door = new TutoDoor(x0, y0, true);
 			handler_object.addObject(door);
-		}		
+		}
 		if (red == 0 && green == 255 && blue == 18) {
 			Door door = new Door(x0, y0, true, DIFFICULTY.CYAN);
 			handler_object.addObject(door);
@@ -154,123 +151,5 @@ public class MapCreatorPuzzler {
 			handler_object.addObject(door);
 		}
 	}
-
-	public static void createWallCracked(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		if (red == 1 && green == 255 && blue == 15)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.CYAN);
-			handler_object.addObject(wallcracked);
-		}
-		
-		if (red == 1 && green == 255 && blue == 14)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.GREEN);
-			handler_object.addObject(wallcracked);
-		}
-		
-		if (red == 1 && green == 255 && blue == 13)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.YELLOW);
-			handler_object.addObject(wallcracked);
-		}
-		
-		if (red == 1 && green == 255 && blue == 12)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.ORANGE);
-			handler_object.addObject(wallcracked);
-		}
-		
-		if (red == 1 && green == 255 && blue == 11)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.RED);
-			handler_object.addObject(wallcracked);
-		}
-		
-		if (red == 1 && green == 255 && blue == 10)
-		{
-			WallCracked wallcracked = new WallCracked(x0, y0, DIFFICULTY.PURPLE);
-			handler_object.addObject(wallcracked);
-		}
-	}
-
-	public static void createCase(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		
-		if (red == 2 && green == 255 && blue == 15)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.CYAN);
-			handler_object.addObject(case0);
-		}
-		
-		if (red == 2 && green == 255 && blue == 14)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.GREEN);
-			handler_object.addObject(case0);
-		}
-		
-		if (red == 2 && green == 255 && blue == 13)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.YELLOW);
-			handler_object.addObject(case0);
-		}
-		
-		if (red == 2 && green == 255 && blue == 12)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.ORANGE);
-			handler_object.addObject(case0);
-		}
-		
-		if (red == 2 && green == 255 && blue == 11)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.RED);
-			handler_object.addObject(case0);
-		}
-		
-		if (red == 2 && green == 255 && blue == 10)
-		{
-			Case case0 = new Case(x0, y0, DIFFICULTY.PURPLE);
-			handler_object.addObject(case0);
-		}
-
-	}
-
-	public static void createComputer(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		
-		if (red == 3 && green == 255 && blue == 15)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.CYAN);
-			handler_object.addObject(computer);
-		}
-		
-		if (red == 3 && green == 255 && blue == 14)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.GREEN);
-			handler_object.addObject(computer);
-		}
-		
-		if (red == 3 && green == 255 && blue == 13)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.YELLOW);
-			handler_object.addObject(computer);
-		}
-		
-		if (red == 3 && green == 255 && blue == 12)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.ORANGE);
-			handler_object.addObject(computer);
-		}
-		
-		if (red == 3 && green == 255 && blue == 11)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.RED);
-			handler_object.addObject(computer);
-		}
-		
-		if (red == 3 && green == 255 && blue == 10)
-		{
-			Computer computer = new Computer(x0, y0, DIFFICULTY.PURPLE);
-			handler_object.addObject(computer);
-		}
-	}
-
 
 }

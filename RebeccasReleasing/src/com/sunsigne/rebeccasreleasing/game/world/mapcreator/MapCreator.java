@@ -9,6 +9,7 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
@@ -74,10 +75,7 @@ public class MapCreator {
 				MapCreatorLiving.createPlayer(red, green, blue, handler_object, x0, y0);
 
 				// puzzler - green
-				MapCreatorPuzzler.createDoor(red, green, blue, handler_object, x0, y0);
-				MapCreatorPuzzler.createWallCracked(red, green, blue, handler_object, x0, y0);
-				MapCreatorPuzzler.createCase(red, green, blue, handler_object, x0, y0);
-				MapCreatorPuzzler.createComputer(red, green, blue, handler_object, x0, y0);
+				MapCreatorPuzzler.createPuzzler(red, green, blue, handler_object, x0, y0);
 
 				// foe - yellow
 				MapCreatorFoe.createFoe(red, green, blue, handler_object, x0, y0);
