@@ -48,6 +48,7 @@ public class ImageBank {
 	static final ImageBank puzzler_computer_sheet = new ImageBank();
 	static final ImageBank puzzler_case_sheet = new ImageBank();
 	static final ImageBank puzzler_door_sheet = new ImageBank();
+	static final ImageBank puzzler_lazer_sheet = new ImageBank();
 
 	// destroyable
 	static final ImageBank destroyable_desk_sheet = new ImageBank();
@@ -123,6 +124,7 @@ public class ImageBank {
 		addImage(puzzler_computer_sheet, ImageTask.loadImage("puzzler\\computer_sheet.png"));
 		addImage(puzzler_case_sheet, ImageTask.loadImage("puzzler\\case_sheet.png"));
 		addImage(puzzler_door_sheet, ImageTask.loadImage("puzzler\\door_sheet.png"));
+		addImage(puzzler_lazer_sheet, ImageTask.loadImage("puzzler\\lazer_sheet.png"));
 
 		// destroyable
 		addImage(destroyable_desk_sheet, ImageTask.loadImage("destroyable\\desk_sheet.png"));

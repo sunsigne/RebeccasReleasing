@@ -45,6 +45,7 @@ public class TextureBank {
 	private SpriteSheet puzzler_computer_sheet;
 	private SpriteSheet puzzler_case_sheet;
 	private SpriteSheet puzzler_door_sheet;
+	private SpriteSheet puzzler_lazer_sheet;
 
 	// destroyable
 	private SpriteSheet destroyable_desk_sheet;
@@ -73,7 +74,7 @@ public class TextureBank {
 	// gui
 	public BufferedImage[][] gui_battery = new BufferedImage[8][8]; // - number of charge - max charge
 	public BufferedImage[] gui_data = new BufferedImage[3]; // - state
-	public BufferedImage[] gui_tool = new BufferedImage[4]; // - state
+	public BufferedImage[] gui_tool = new BufferedImage[5]; // - state
 
 	// puzzle
 	public BufferedImage[] puzzle_bomb = new BufferedImage[10]; // - state
@@ -87,17 +88,18 @@ public class TextureBank {
 	public BufferedImage[][] puzzler_computer = new BufferedImage[7][2]; // - difficulty - state
 	public BufferedImage[][] puzzler_case = new BufferedImage[7][2]; // - difficulty - state
 	public BufferedImage[][] puzzler_door = new BufferedImage[7][4]; // - difficulty - state
+	public BufferedImage[][][] puzzler_lazer = new BufferedImage[7][7][2]; // - difficulty - facing - state
 
 	// destroyable
 	public BufferedImage[][] destroyable_desk = new BufferedImage[4][6]; // - facing - state
 	public BufferedImage[][] destroyable_plant = new BufferedImage[2][4]; // - facing - state
 
 	// loot
-	public BufferedImage[][] loot_tool = new BufferedImage[7][4]; // - difficulty - state
+	public BufferedImage[][] loot_tool = new BufferedImage[7][5]; // - difficulty - state
 
 	// decor
 	public BufferedImage[] decor_small = new BufferedImage[3]; // - state
-	public BufferedImage[] decor_wall = new BufferedImage[5]; // - state
+	public BufferedImage[] decor_wall = new BufferedImage[6]; // - state
 
 	// title
 	public BufferedImage[] pierre_feuille_ciseaux = new BufferedImage[4]; // - state
@@ -133,6 +135,7 @@ public class TextureBank {
 		puzzler_computer_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_computer_sheet));
 		puzzler_case_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_case_sheet));
 		puzzler_door_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_door_sheet));
+		puzzler_lazer_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzler_lazer_sheet));
 
 		// destroyable
 		destroyable_desk_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.destroyable_desk_sheet));
@@ -254,7 +257,7 @@ public class TextureBank {
 			gui_data[i] = gui_data_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			gui_tool[i] = gui_tool_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
@@ -294,6 +297,13 @@ public class TextureBank {
 			puzzler_door[i][1] = puzzler_door_sheet.grabImage(2 * i, 1, 32, 64); // vertical open
 			puzzler_door[i][2] = puzzler_door_sheet.grabImage(i, 3, 64, 32); // horizontal close
 			puzzler_door[i][3] = puzzler_door_sheet.grabImage(i, 4, 64, 32); // horizontal open
+			
+			for (int j = 0; j < 6; j++) {
+				
+			puzzler_lazer[i][j][0] = puzzler_lazer_sheet.grabImage(2*i - 1, j + 1, 32, 32);
+			puzzler_lazer[i][j][1] = puzzler_lazer_sheet.grabImage(2*i, j + 1, 32, 32);
+			
+			}
 		}
 
 		// destroyable
@@ -311,7 +321,7 @@ public class TextureBank {
 		}
 
 		// loot
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 7; i++) {
 				loot_tool[i][j] = loot_tool_sheet.grabImage(i, j + 1, 32, 32);
 			}
@@ -323,7 +333,7 @@ public class TextureBank {
 			decor_small[i] = decor_small_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			decor_wall[i] = decor_wall_sheet.grabImage(i + 1, 1, 32, 32); // world
 		}
 
