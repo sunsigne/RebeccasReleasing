@@ -7,6 +7,7 @@ public class Tool {
 	public static final int SWORD = 1;
 	public static final int BOMB = 2;
 	public static final int GLASS = 3;
+	public static final int PLIERS = 4;
 
 	private int currentLvl;
 	private int maxLvl;
@@ -25,6 +26,7 @@ public class Tool {
 		case 1 : return "Sword";
 		case 2 : return "Bomb";
 		case 3 : return "Glass";
+		case 4 : return "Pliers";
 		default : return "Unknown";
 		}
 	}

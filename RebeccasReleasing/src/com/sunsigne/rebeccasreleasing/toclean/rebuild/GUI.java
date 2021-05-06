@@ -18,7 +18,7 @@ import objects.GameObject;
 @Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\" & quand la clef apparait, on a envie de la prendre ...")
 public class GUI extends GameObject implements Characteristics {
 
-	private Tool[] tools = new Tool[4];
+	private Tool[] tools = new Tool[5];
 
 	private int maxhp, hp;
 	private boolean infiniteHp;
@@ -35,6 +35,7 @@ public class GUI extends GameObject implements Characteristics {
 		tools[Tool.SWORD] = getToolFromFile(Tool.SWORD);
 		tools[Tool.BOMB] = getToolFromFile(Tool.BOMB);
 		tools[Tool.GLASS] = getToolFromFile(Tool.GLASS);
+		tools[Tool.PLIERS] = getToolFromFile(Tool.PLIERS);
 
 		setMaxHp(getMaxHpFromFile());
 		setHp(getMaxHp());
