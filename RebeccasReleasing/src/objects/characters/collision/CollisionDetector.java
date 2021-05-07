@@ -34,26 +34,26 @@ public class CollisionDetector {
 
 		if (living.getBounds().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setY((tempObject.getY() - living.getHeight()));
+				living.setY((tempObject.getY() + tempObject.getMiniY() - living.getHeight()));
 			if (listener != null)
 				listener.triggerAction();
 		}
 
 		if (living.getBoundsTop().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setY((tempObject.getY() + tempObject.getBounds().height));
+				living.setY((tempObject.getY() + tempObject.getMiniY() + tempObject.getBounds().height));
 			if (listener != null)
 				listener.triggerAction();
 		}
 		if (living.getBoundsLeft().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setX((tempObject.getX() + tempObject.getBounds().width));
+				living.setX((tempObject.getX() + tempObject.getMiniX() + tempObject.getBounds().width));
 			if (listener != null)
 				listener.triggerAction();
 		}
 		if (living.getBoundsRight().intersects(tempObject.getBounds())) {
 			if (isWall)
-				living.setX((tempObject.getX() - living.getWitdh()));
+				living.setX((tempObject.getX() + tempObject.getMiniX() - living.getWitdh()));
 			if (listener != null)
 				listener.triggerAction();
 
@@ -65,11 +65,11 @@ public class CollisionDetector {
 			return;
 		
 		if (living.getBounds().intersects(tempObject.getBounds())) {
-			living.setY((tempObject.getY() - living.getHeight()));
+			living.setY((tempObject.getY() + tempObject.getMiniY() - living.getHeight()));
 		}
 
 		if (living.getBoundsTop().intersects(tempObject.getBounds())) {
-			living.setY((tempObject.getY() + tempObject.getBounds().height));
+			living.setY((tempObject.getY() + tempObject.getMiniY() + tempObject.getBounds().height));
 		}
 	}
 

@@ -21,6 +21,7 @@ public abstract class GameObject implements ITick, IRender {
 	protected OBJECTID id;
 	protected int initX, initY;
 	protected int x, y;
+	protected int miniX, miniY;
 	protected int w, h;
 	protected int velX, velY;
 
@@ -57,11 +58,19 @@ public abstract class GameObject implements ITick, IRender {
 	public int getX() {
 		return x;
 	}
+	
+	public int getMiniX() {
+		return miniX;
+	}
 
 	public int getY() {
 		return y;
 	}
-
+	
+	public int getMiniY() {
+		return miniY;
+	}
+	
 	public void setX(int x) {
 		this.x = x;
 	}

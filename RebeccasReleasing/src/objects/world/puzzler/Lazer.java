@@ -80,11 +80,13 @@ public class Lazer extends GameObject implements IPuzzler {
 		{
 			horizontal = true;
 			h = Size.TILE/3;
+			miniY = Size.TILE/3;
 		}
 		else
 		{
 			horizontal = false;
 			w = Size.TILE/3;
+			miniX = Size.TILE/3;
 		}
 			
 	}
@@ -144,8 +146,8 @@ public class Lazer extends GameObject implements IPuzzler {
 	public Rectangle getBounds() {
 
 		if(horizontal)
-		return new Rectangle(x, y + Size.TILE/3, w, h);
-		else return new Rectangle(x + Size.TILE/3, y, w, h);
+		return new Rectangle(x, y + miniY, w, h);
+		else return new Rectangle(x + miniX, y, w, h);
 	}
 
 	@Override

@@ -18,7 +18,8 @@ public class WC extends GameObject implements ICollision  {
 		super(true, x, y, OBJECTID.DECOR);
 		
 		h = Size.TILE / 4;
-		w = Size.TILE / 2;		
+		w = Size.TILE / 2;
+		miniX = w/2;
 	}
 	
 	// behavior
@@ -50,7 +51,7 @@ public class WC extends GameObject implements ICollision  {
 	@Override
 	public Rectangle getBounds() {
 
-		return new Rectangle(x + w/2, y, w, h);
+		return new Rectangle(x + miniX, y, w, h);
 	}
 
 

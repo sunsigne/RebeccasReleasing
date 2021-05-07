@@ -43,7 +43,7 @@ public class Wall extends GameObject implements ICollision, IFacing {
 			resetSize();
 			h = h / 2;
 			w = w / 2;
-			x = x + w;
+			miniX = w;
 			break;
 		case UP:
 			resetSize();
@@ -52,7 +52,7 @@ public class Wall extends GameObject implements ICollision, IFacing {
 		case DOWN:
 			resetSize();
 			h = h / 2;
-			y = y + h;
+			miniY = h;
 			break;
 
 		}
@@ -88,7 +88,7 @@ public class Wall extends GameObject implements ICollision, IFacing {
 	@Override
 	public Rectangle getBounds() {
 
-		return new Rectangle(x, y, w, h);
+		return new Rectangle(x + miniX, y + miniY, w, h);
 	}
 
 }
