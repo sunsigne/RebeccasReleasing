@@ -25,8 +25,8 @@ public class WireObject extends PuzzleObject {
 	public WireObject(int x, int y, DIFFICULTY difficulty) {
 		super(x, y, OBJECTID.P_LAZER);
 
-		w = 1 * Size.TILE_PUZZLE;
-		h = 5 * Size.TILE_PUZZLE;
+		w = Size.TILE_PUZZLE/2;
+		h = 6 * Size.TILE_PUZZLE;
 	}
 
 	// state	
@@ -59,7 +59,7 @@ public class WireObject extends PuzzleObject {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.decor_wall[0];
+		BufferedImage img = texture.puzzle_lazer_wire[0];
 		if(!cut) g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
