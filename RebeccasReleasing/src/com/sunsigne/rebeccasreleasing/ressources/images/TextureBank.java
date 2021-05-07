@@ -39,6 +39,7 @@ public class TextureBank {
 	private SpriteSheet puzzle_card_sheet;
 	private SpriteSheet puzzle_hack_sheet;
 	private SpriteSheet puzzle_key_sheet;
+	private SpriteSheet puzzle_lazer_sheet;
 
 	// puzzler
 	private SpriteSheet puzzler_wallcracked_sheet;
@@ -81,6 +82,8 @@ public class TextureBank {
 	public BufferedImage[][] puzzle_card = new BufferedImage[3][3]; // - language - state
 	public BufferedImage[] puzzle_hack = new BufferedImage[15]; // - state
 	public BufferedImage[] puzzle_key = new BufferedImage[2]; // - state
+	public BufferedImage[] puzzle_lazer_color = new BufferedImage[36]; // - state
+	public BufferedImage[] puzzle_lazer_wire = new BufferedImage[6]; // - state
 	public BufferedImage puzzle_search;
 
 	// puzzler
@@ -128,6 +131,7 @@ public class TextureBank {
 		puzzle_card_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzle_card_sheet));
 		puzzle_hack_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzle_hack_sheet));
 		puzzle_key_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzle_key_sheet));
+		puzzle_lazer_sheet = new SpriteSheet(ImageBank.getImage(ImageBank.puzzle_lazer_sheet));
 		puzzle_search = ImageBank.getImage(ImageBank.puzzle_search);
 
 		// puzzler
@@ -282,6 +286,17 @@ public class TextureBank {
 		puzzle_key[0] = puzzle_key_sheet.grabImage(1, 1, 32, 32); // key
 		puzzle_key[1] = puzzle_key_sheet.grabImage(2, 1, 32, 32); // lock
 
+		for (int i = 0; i < 6; i++) {
+			puzzle_lazer_wire[i] = puzzle_lazer_sheet.grabImage(i + 1, 1, 16, 192);
+		}
+
+		for (int j = 0; j < 3; j++) {
+
+			for (int i = 0; i < 12; i++) {
+				puzzle_lazer_color[i + (j*12)] = puzzle_lazer_sheet.grabImage(j + 2, i + 1, 96, 16);
+			}
+		}
+
 		// puzzler
 		for (int i = 0; i < 7; i++) {
 
@@ -297,12 +312,12 @@ public class TextureBank {
 			puzzler_door[i][1] = puzzler_door_sheet.grabImage(2 * i, 1, 32, 64); // vertical open
 			puzzler_door[i][2] = puzzler_door_sheet.grabImage(i, 3, 64, 32); // horizontal close
 			puzzler_door[i][3] = puzzler_door_sheet.grabImage(i, 4, 64, 32); // horizontal open
-			
+
 			for (int j = 0; j < 6; j++) {
-				
-			puzzler_lazer[i][j][0] = puzzler_lazer_sheet.grabImage(2*i - 1, j + 1, 32, 32);
-			puzzler_lazer[i][j][1] = puzzler_lazer_sheet.grabImage(2*i, j + 1, 32, 32);
-			
+
+				puzzler_lazer[i][j][0] = puzzler_lazer_sheet.grabImage(2 * i - 1, j + 1, 32, 32);
+				puzzler_lazer[i][j][1] = puzzler_lazer_sheet.grabImage(2 * i, j + 1, 32, 32);
+
 			}
 		}
 

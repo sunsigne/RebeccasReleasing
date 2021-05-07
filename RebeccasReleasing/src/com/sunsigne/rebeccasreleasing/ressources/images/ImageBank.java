@@ -41,6 +41,7 @@ public class ImageBank {
 	static final ImageBank puzzle_card_sheet = new ImageBank();
 	static final ImageBank puzzle_hack_sheet = new ImageBank();
 	static final ImageBank puzzle_key_sheet = new ImageBank();
+	static final ImageBank puzzle_lazer_sheet = new ImageBank();
 	static final ImageBank puzzle_search = new ImageBank();
 
 	// puzzler
@@ -117,6 +118,7 @@ public class ImageBank {
 		addImage(puzzle_card_sheet, ImageTask.loadImage("puzzle\\card_sheet.png"));
 		addImage(puzzle_hack_sheet, ImageTask.loadImage("puzzle\\hack_sheet.png"));
 		addImage(puzzle_key_sheet, ImageTask.loadImage("puzzle\\key_sheet.png"));
+		addImage(puzzle_lazer_sheet, ImageTask.loadImage("puzzle\\lazer_sheet.png"));
 		addImage(puzzle_search, ImageTask.loadImage("puzzle\\search.png"));
 
 		// puzzler
