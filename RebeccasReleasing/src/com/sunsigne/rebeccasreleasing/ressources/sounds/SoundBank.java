@@ -73,6 +73,7 @@ public class SoundBank {
 	public static final SoundBank r_place_word = new SoundBank();
 
 	// other
+	public static final SoundBank nope = new SoundBank();
 	// general
 	public static final SoundBank pierre_feuille_ciseaux_com = new SoundBank();
 	public static final SoundBank error = new SoundBank();
@@ -136,6 +137,7 @@ public class SoundBank {
 		addSound(r_place_word, new BufferedSound("sound\\reversed\\top\\place_word.wav"));
 
 		// other
+		addSound(nope, new BufferedSound("sound\\nope.wav"));
 		// general		
 		addSound(pierre_feuille_ciseaux_com, new BufferedSound("sound\\other\\general\\pierre_feuille_ciseaux_com.wav"));
 		addSound(error, new BufferedSound("sound\\other\\general\\error.wav"));
