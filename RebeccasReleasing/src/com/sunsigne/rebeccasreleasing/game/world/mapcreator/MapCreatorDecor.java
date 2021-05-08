@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.game.world.mapcreator;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Lamp;
 
+import objects.world.Stairs;
 import objects.world.decor.WC;
 
 public class MapCreatorDecor {
@@ -16,6 +17,16 @@ public class MapCreatorDecor {
 		if (red == 2 && green == 253 && blue == 255) {
 			WC wc = new WC(x0, y0);
 			handler_object.addObject(wc);
+		}
+		
+		if (red == 3 && green == 253 && blue == 255) {
+			Stairs stairs = new Stairs(x0, y0, true, 1);
+			handler_object.addObject(stairs);
+		}
+		
+		if (red == 4 && green == 253 && blue == 255) {
+			Stairs stairs = new Stairs(x0, y0, false, 1);
+			handler_object.addObject(stairs);
 		}
 
 	}
