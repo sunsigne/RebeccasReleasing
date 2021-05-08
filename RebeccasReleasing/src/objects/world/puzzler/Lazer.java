@@ -158,12 +158,12 @@ public class Lazer extends GameObject implements IPuzzler {
 			if (hasToolLvl(Tool.PLIERS))
 				openPuzzle(living, this);
 			else
-/*				{
+				{
 				if (living.isPlayer()) {
 					living.getCollisionDetector().collidingBehavior(true, this, () -> pushPlayer());
 				}
-				else*/ blockPass(living, this);
-//				}
+				else blockPass(living, this);
+				}
 		}
 	}
 	
