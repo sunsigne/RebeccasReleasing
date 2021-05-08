@@ -7,15 +7,19 @@ import java.awt.Graphics2D;
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+
+import objects.world.Stairs;
 
 public class PlayerObject extends LivingObject {
 
 	private Animation[] animation = new Animation[4];
 	private boolean tasking;
 	private boolean blinking;
+
+	private Stairs takingStairs;
 
 	public PlayerObject(int x, int y) {
 		super(x, y, OBJECTID.PLAYER);
@@ -49,12 +53,31 @@ public class PlayerObject extends LivingObject {
 		this.tasking = tasking;
 	}
 
+	public Stairs getTakingStairs() {
+		return takingStairs;
+	}
+
+	public void setTakingStairs(Stairs takingStairs) {
+		this.takingStairs = takingStairs;
+	}
+
 	// behavior
 
 	@Override
 	public void tick() {
 		runAnimation(getFacing().getNum());
 		livingTickBehavior(true);
+		checkStairsProximity();
+	}
+
+	private void checkStairsProximity() {
+		if (getTakingStairs() != null) {
+			float distance = (float) Math
+					.sqrt(Math.pow(getX() - takingStairs.getX(), 2) + Math.pow(getY() - takingStairs.getY(), 2));
+			if (distance > Size.TILE)
+				setTakingStairs(null);
+		}
+
 	}
 
 	public void loadBasicState() {

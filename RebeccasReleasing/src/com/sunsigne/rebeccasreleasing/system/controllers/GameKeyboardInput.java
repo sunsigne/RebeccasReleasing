@@ -13,6 +13,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.IFacing.FACING;
+import objects.world.Stairs;
 
 @Todo("mini fleche de quete activable par une touch ou map")
 public class GameKeyboardInput extends KeyAdapter {
@@ -45,8 +46,14 @@ public class GameKeyboardInput extends KeyAdapter {
 		}
 
 		if (key == KeyEvent.VK_E) {
-				if(Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE)
-				World.setNpcRequested(true);
+			if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE) {
+				Stairs stairs = HandlerObject.getInstance().player.getTakingStairs();
+				if (stairs == null)
+					World.setNpcRequested(true);
+				else
+					stairs.take();
+			}
+
 		}
 
 		if (leftKey(key))
@@ -70,7 +77,7 @@ public class GameKeyboardInput extends KeyAdapter {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_E) {
-				World.setNpcRequested(false);
+			World.setNpcRequested(false);
 			if (World.getChat() != null)
 				World.getChat().goToNextSentence();
 		}
