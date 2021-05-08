@@ -101,7 +101,7 @@ public class TextureBank {
 	public BufferedImage[][] loot_tool = new BufferedImage[7][5]; // - difficulty - state
 
 	// decor
-	public BufferedImage[] decor_small = new BufferedImage[3]; // - state
+	public BufferedImage[] decor_small = new BufferedImage[5]; // - state
 	public BufferedImage[] decor_wall = new BufferedImage[6]; // - state
 
 	// title
@@ -344,7 +344,7 @@ public class TextureBank {
 
 		// decor
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 			decor_small[i] = decor_small_sheet.grabImage(i + 1, 1, 32, 32);
 		}
 
