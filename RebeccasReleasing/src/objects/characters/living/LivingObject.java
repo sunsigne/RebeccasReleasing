@@ -166,6 +166,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 			if (direction == FACING.DOWN.getNum())
 				velY = Size.TILE / 5;
 		}
+		else setMotionless();
 	}
 
 	// design
