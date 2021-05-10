@@ -30,6 +30,9 @@ public class GameKeyboardInput extends KeyAdapter {
 
 		if (key == KeyEvent.VK_F4)
 			Game.switchWallPassMode();
+		
+		if (key == KeyEvent.VK_F5)
+			Game.switchMultiToolMode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			if (Conductor.getState() == STATE.INTRODUCTION)

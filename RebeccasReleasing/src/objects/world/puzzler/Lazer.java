@@ -8,6 +8,7 @@ import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.clickable.PuzzleLazer;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
@@ -155,7 +156,7 @@ public class Lazer extends GameObject implements IPuzzler {
 
 		if (!isSolved()) {
 
-			if (hasToolLvl(Tool.PLIERS))
+			if (hasToolLvl(Tool.PLIERS) || Game.isMultiToolMode())
 				openPuzzle(living, this);
 			else
 				{

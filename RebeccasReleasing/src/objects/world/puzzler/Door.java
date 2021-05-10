@@ -8,6 +8,7 @@ import com.sunsigne.rebeccasreleasing.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.key.clickable.PuzzleKey;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
@@ -127,7 +128,7 @@ public class Door extends GameObject implements IPuzzler {
 
 		if (!isSolved()) {
 
-			if (hasToolLvl(Tool.KEY))
+			if (hasToolLvl(Tool.KEY) || Game.isMultiToolMode())
 				openPuzzle(living, this);
 			else
 				blockPass(living, this);

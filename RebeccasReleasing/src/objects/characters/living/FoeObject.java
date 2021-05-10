@@ -267,7 +267,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 			else {
 				if (!stunned) {
 					if (touchingPlayer(living) && HandlerObject.getInstance().player.isPlayerActive()) {
-						if (hasToolLvl(currentDifficulty, Tool.SWORD))
+						if (hasToolLvl(currentDifficulty, Tool.SWORD) || Game.isMultiToolMode())
 							updatePuzzler(living);
 						else
 							pushPlayer();

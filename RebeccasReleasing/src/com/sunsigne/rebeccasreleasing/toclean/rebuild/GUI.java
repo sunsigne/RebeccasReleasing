@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.World;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.Characteristics;
@@ -199,8 +200,8 @@ public class GUI extends GameObject implements Characteristics {
 		int currentToolMaxLvl = 0;
 
 		for (int i = 0; i < size; i++) {
-			currentToolLvl = getTool(i).getCurrentLvl();
-			currentToolMaxLvl = getTool(i).getMaxLvl();
+			currentToolLvl = Game.isMultiToolMode() ? 5 : getTool(i).getCurrentLvl();
+			currentToolMaxLvl = Game.isMultiToolMode() ? 5 : getTool(i).getMaxLvl();			
 
 			if (currentToolLvl != 0) {
 				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
