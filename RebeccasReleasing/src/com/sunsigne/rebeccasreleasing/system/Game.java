@@ -10,6 +10,7 @@ import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.game.puzzles.hack.PuzzleHack;
+import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigmaBank;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
@@ -31,7 +32,8 @@ public class Game extends Canvas implements Runnable {
 
 	public static final String NAME = "Rebecca's Releasing";
 	private static boolean debugMode = false;
-	private static boolean wallPassMode = false;	
+	private static boolean wallPassMode = false;
+	private static boolean multiToolMode = false;
 	public static final boolean skipIntro = true;
 
 	public static Game game;
@@ -53,7 +55,8 @@ public class Game extends Canvas implements Runnable {
 		SoundBank.loadRessources();
 		CharacterBank.loadRessources();
 		TextureBank.getInstance().loadRessources();
-
+		new ColorEnigmaBank().loadRessources();
+		
 		this.addKeyListener(new GameKeyboardInput());
 		this.addMouseListener(GameMouseInput.getInstance());
 		new Window(game);
@@ -73,17 +76,25 @@ public class Game extends Canvas implements Runnable {
 		return wallPassMode;
 	}
 	
+	public static boolean isMultiToolMode() {
+		return multiToolMode;
+	}
+
 	public static void switchDebugMode()
 	{
-		if(debugMode) debugMode = false;
-		else debugMode = true;
+		debugMode = debugMode ? false : true;
 	}
 	
 	public static void switchWallPassMode()
 	{
-		if(wallPassMode) wallPassMode = false;
-		else wallPassMode = true;
+		wallPassMode = wallPassMode ? false : true;
 	}
+	
+
+	public static void switchMultiToolMode() {
+		multiToolMode = multiToolMode ? false : true;
+	}
+	
 	
 	// Thread
 
@@ -223,5 +234,6 @@ public class Game extends Canvas implements Runnable {
 		else if (HandlerObject.getInstance().isVirusExisting && !cameraDependant)
 			PuzzleHack.virus.render(g);
 	}
+
 
 }
