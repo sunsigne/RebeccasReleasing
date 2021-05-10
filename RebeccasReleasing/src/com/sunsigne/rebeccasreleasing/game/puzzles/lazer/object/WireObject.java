@@ -1,36 +1,38 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 public class WireObject extends PuzzleObject {
 
+	private WIRECOLOR color;
 	private boolean exist;
 	private boolean cut;
 	
 
-	public WireObject(int x, int y, DIFFICULTY difficulty) {
+	
+
+	public WireObject(int x, int y, WIRECOLOR color) {
 		super(x, y, OBJECTID.P_LAZER);
 
+		this.color = color;
+		exist = true;
+		
 		w = Size.TILE_PUZZLE/2;
 		h = 6 * Size.TILE_PUZZLE;
 	}
 
 	// state	
 
+	public WIRECOLOR getColor() {
+		return color;
+	}
+	
 	public boolean doesExist() {
 		return exist;
 	}
@@ -59,7 +61,7 @@ public class WireObject extends PuzzleObject {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.puzzle_lazer_wire[0];
+		BufferedImage img = texture.puzzle_lazer_wire[color.getNum()];
 		if(!cut) g.drawImage(img, x, y, w, h, null);
 		drawHitbox(g);
 	}
