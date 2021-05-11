@@ -2,8 +2,6 @@
 package com.sunsigne.rebeccasreleasing.game.puzzles.lazer.clickable;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.PuzzleBombBuilder;
-import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.object.Bomb;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.PuzzleLazerBuilder;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 
@@ -17,8 +15,8 @@ public class PuzzleLazer extends PuzzleLazerBuilder {
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		for (int i = 0; i < 2; i++) {
-			if (GameMouseInput.mouseOver(mx, my, getWire(i).getRect()))
+		for (int i = 0; i < NUMBEROFWIRES; i++) {
+			if (getWire(i).doesExist() && GameMouseInput.mouseOver(mx, my, getWire(i).getRect()))
 				getWire(i).setCut(true);
 		}
 	}
@@ -28,14 +26,13 @@ public class PuzzleLazer extends PuzzleLazerBuilder {
 
 		boolean winning = true;
 
-		for (int i = 0; i < 2; i++) {
-			if (!getWire(i).isCut())
-				winning = false;
+		for (int i = 0; i < NUMBEROFWIRES; i++) {
+			if (getWire(i).isCut()) {
+				winning = getWire(i).getColor() == getColorAnswer().getColor() ? true : false;
+				setWinning(winning);
+				close();
+			}
 		}
-		setWinning(winning);
-		if (isWinning())
-			close();
 	}
-
 
 }
