@@ -17,9 +17,6 @@ public class Lock extends PuzzleObject {
 
 	public Lock(int x, int y) {
 		super(x, y, OBJECTID.P_LOCK);
-
-		w = Size.TILE_PUZZLE;
-		h = Size.TILE_PUZZLE;
 	}
 
 	@Override
