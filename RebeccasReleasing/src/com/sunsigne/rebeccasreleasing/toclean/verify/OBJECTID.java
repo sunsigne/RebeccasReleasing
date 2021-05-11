@@ -2,7 +2,7 @@ package com.sunsigne.rebeccasreleasing.toclean.verify;
 
 public enum OBJECTID {
 
-	LOADING, MENU,
+	LOADING, MENU, CURSOR,
 
 	// CHARACTERS
 	DISPLAYER, PLAYER, FOE, DUMMY,
@@ -18,6 +18,11 @@ public enum OBJECTID {
 
 	TIMER,
 	
-	P_BOMB, P_CARD, P_CARDFOLDER, P_VIRUS, P_KEY, P_LOCK, P_WORD, P_WORDFOLDER, P_LAZER, P_COLORANSWER;
+	P_BOMB,
+	P_CARD, P_CARDFOLDER,
+	P_VIRUS,
+	P_KEY, P_LOCK,
+	P_WORD, P_WORDFOLDER,
+	P_LAZER, P_COLORANSWER;
 
 }

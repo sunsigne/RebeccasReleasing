@@ -12,12 +12,14 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorAnswer;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigma;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigmaBank;
+import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.PliersCursor;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.WIRECOLOR;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.WireObject;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.STATE;
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 
@@ -34,7 +36,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 
 	public PuzzleLazerBuilder(IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
 		super(STATE.PUZZLE, puzzler, difficulty, reversed);
-
+		GameCursor.hideCursor(true);
 	}
 
 //	@SuppressWarnings("unchecked")
@@ -171,6 +173,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 			wire[i].setExist(true);
 			HandlerObject.getInstance().addObject(wire[i]);
 		}
+		HandlerObject.getInstance().addObject(new PliersCursor());
 	}
 
 	@Override
