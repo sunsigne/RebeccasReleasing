@@ -2,7 +2,6 @@ package com.sunsigne.rebeccasreleasing.ressources.images;
 
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
 
@@ -176,78 +175,11 @@ public class TextureBank {
 		return img;
 	}
 
-	@Todo("le design de la clef et du cadena font vieux & le desing du canapé est trop simpliste")
 	private void getTextures() {
 
 		// living
 
-		int count = -1;
-		for (CharacterBank characterBank : CharacterBank.characters.keySet()) {
-			count++;
-			int col = CharacterBank.getCharacter(characterBank).getCol();
-			int row = CharacterBank.getCharacter(characterBank).getRow();
-			CharacterBank.getCharacter(characterBank).setId(count);
-
-			for (int i = 0; i < 4; i++) {
-				living_face[count][i] = living_face_sheet.grabImage(4 * col + i - 3, 1 + (4 * row - 4), 144, 144);
-				living_face[count][i + 4] = living_face_sheet.grabImage(4 * col + i - 3, 2 + (4 * row - 4), 144, 144);
-				living_face[count][i + 8] = living_face_sheet.grabImage(4 * col + i - 3, 3 + (4 * row - 4), 144, 144);
-				living_face[count][i + 12] = living_face_sheet.grabImage(4 * col + i - 3, 4 + (4 * row - 4), 144, 144);
-			}
-
-			for (int i = 0; i < 3; i++) {
-				living_walking[count][FACING.LEFT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
-						1 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.RIGHT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
-						2 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.UP.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
-						3 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.DOWN.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
-						4 + (5 * row - 5), 48, 48);
-				living_walking[count][4/* ON THE GROUND */][i] = living_walking_sheet.grabImage((3 * col + i - 2),
-						5 + (5 * row - 5), 48, 48);
-			}
-
-			if (!CharacterBank.getCharacter(characterBank).hasBattleAnimation())
-				continue;
-
-			for (int i = 0; i < 6; i++) {
-				living_battle[count][FACING.LEFT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
-						1 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.LEFT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
-						2 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.LEFT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
-						3 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
-						4 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
-						5 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
-						6 + (6 * row - 6), 64, 64);
-			}
-		}
-
-		living_foe_face[0] = living_foe_face_sheet.grabImage(1, 1, 144, 144);
-
-		for (int j = 0; j < 7; j++) {
-			for (int i = 0; i < 4; i++) {
-				living_foe_walking[j][FACING.LEFT.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
-						1, 48, 48);
-				living_foe_walking[j][FACING.RIGHT.getNum()][i] = living_foe_walking_sheet
-						.grabImage(i + 1 + 4 * (j - 1), 2, 48, 48);
-				living_foe_walking[j][FACING.UP.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
-						3, 48, 48);
-				living_foe_walking[j][FACING.DOWN.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
-						4, 48, 48);
-			}
-		}
-
-		for (int i = 0; i < 21; i++) {
-			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-		}
+		getCharacterTextures();
 
 		// gui
 		for (int j = 0; j < 7; j++) {
@@ -293,7 +225,7 @@ public class TextureBank {
 		for (int j = 0; j < 3; j++) {
 
 			for (int i = 0; i < 12; i++) {
-				puzzle_lazer_color[i + (j*12)] = puzzle_lazer_sheet.grabImage(j + 2, i + 1, 96, 16);
+				puzzle_lazer_color[i + (j * 12)] = puzzle_lazer_sheet.grabImage(j + 2, i + 1, 96, 16);
 			}
 		}
 
@@ -358,6 +290,85 @@ public class TextureBank {
 			pierre_feuille_ciseaux[i] = pierre_feuille_ciseaux_sheet.grabImage(i + 1, 1, 1186, 613);
 		}
 
+	}
+
+	private void getCharacterTextures() {
+		getNPCTextures();
+		getFoesTexture();
+	}
+
+	private void getNPCTextures() {
+
+		int count = -1;
+		for (CharacterBank characterBank : CharacterBank.characters.keySet()) {
+			count++;
+			int col = CharacterBank.getCharacter(characterBank).getCol();
+			int row = CharacterBank.getCharacter(characterBank).getRow();
+			CharacterBank.getCharacter(characterBank).setId(count);
+
+			for (int i = 0; i < 4; i++) {
+				living_face[count][i] = living_face_sheet.grabImage(4 * col + i - 3, 1 + (4 * row - 4), 144, 144);
+				living_face[count][i + 4] = living_face_sheet.grabImage(4 * col + i - 3, 2 + (4 * row - 4), 144, 144);
+				living_face[count][i + 8] = living_face_sheet.grabImage(4 * col + i - 3, 3 + (4 * row - 4), 144, 144);
+				living_face[count][i + 12] = living_face_sheet.grabImage(4 * col + i - 3, 4 + (4 * row - 4), 144, 144);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				living_walking[count][FACING.LEFT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+						1 + (5 * row - 5), 48, 48);
+				living_walking[count][FACING.RIGHT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+						2 + (5 * row - 5), 48, 48);
+				living_walking[count][FACING.UP.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+						3 + (5 * row - 5), 48, 48);
+				living_walking[count][FACING.DOWN.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+						4 + (5 * row - 5), 48, 48);
+				living_walking[count][4/* ON THE GROUND */][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+						5 + (5 * row - 5), 48, 48);
+			}
+
+			if (!CharacterBank.getCharacter(characterBank).hasBattleAnimation())
+				continue;
+
+			for (int i = 0; i < 6; i++) {
+				living_battle[count][FACING.LEFT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+						1 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.LEFT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+						2 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.LEFT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+						3 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+						4 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+						5 + (6 * row - 6), 64, 64);
+				living_battle[count][FACING.RIGHT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+						6 + (6 * row - 6), 64, 64);
+			}
+		}
+	}
+
+	private void getFoesTexture() {
+
+		living_foe_face[0] = living_foe_face_sheet.grabImage(1, 1, 144, 144);
+
+		for (int j = 0; j < 7; j++) {
+			for (int i = 0; i < 4; i++) {
+				living_foe_walking[j][FACING.LEFT.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+						1, 48, 48);
+				living_foe_walking[j][FACING.RIGHT.getNum()][i] = living_foe_walking_sheet
+						.grabImage(i + 1 + 4 * (j - 1), 2, 48, 48);
+				living_foe_walking[j][FACING.UP.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+						3, 48, 48);
+				living_foe_walking[j][FACING.DOWN.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+						4, 48, 48);
+			}
+		}
+
+		for (int i = 0; i < 21; i++) {
+			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
+			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+		}
 	}
 
 }

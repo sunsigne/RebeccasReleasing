@@ -102,11 +102,11 @@ public abstract class ProcessorObject extends PuzzleObject {
 	public abstract void refresh();
 	
 	public void refreshPuzzle() {
-		Puzzle puzzle = HandlerObject.getInstance().player.puzzle;
+//		Puzzle puzzle = HandlerObject.getInstance().player.puzzle;
 		
 		HandlerObject.getInstance().clearFront();
 
-		HandlerObject.getInstance().addObject(puzzle.getTimer());
+//		HandlerObject.getInstance().addObject(puzzle.getTimer());
 		HandlerObject.getInstance().addObject(PuzzleHack.virus);
 		HandlerObject.getInstance().isVirusExisting = true;
 	}

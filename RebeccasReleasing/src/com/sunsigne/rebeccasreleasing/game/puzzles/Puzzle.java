@@ -3,9 +3,6 @@ package com.sunsigne.rebeccasreleasing.game.puzzles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleTimer;
-import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleTimerReversed;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
@@ -18,7 +15,6 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 
-import objects.TimerObject;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
@@ -31,22 +27,10 @@ public abstract class Puzzle extends Clickable {
 
 	private FoeObject[] multipleFoe = new FoeObject[FoeObject.MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 
-	protected boolean isDualFight;
-
 	private boolean reversed, winning;
-	private TimerObject timer;
 
 	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
-		super(state);
-		this.puzzler = puzzler;
-		this.difficulty = difficulty;
-		this.reversed = reversed;
-		open();
-	}
-
-	@Todo("A supprimer")
-	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty) {
-		this(state, puzzler, difficulty, false);
+		this(state, puzzler, null, difficulty, reversed);
 	}
 
 	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty, boolean reversed) {
@@ -58,41 +42,22 @@ public abstract class Puzzle extends Clickable {
 		open();
 	}
 
-	@Todo("A supprimer")
-	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] mutlipleFoe, DIFFICULTY difficulty) {
-		this(state, puzzler, mutlipleFoe, difficulty, false);
-	}
-
 	// state
 
 	public DIFFICULTY getDifficulty() {
 		return difficulty;
 	}
 
-	public void setWinning(boolean winning) {
-		this.winning = winning;
+	public boolean isReversed() {
+		return reversed;
 	}
 
 	public boolean isWinning() {
 		return winning;
 	}
 
-	public boolean isDualFight() {
-		return isDualFight;
-	}
-
-	public boolean isReversed() {
-		return reversed;
-	}
-
-	public TimerObject getTimer() {
-		if (timer == null) {
-			if (isReversed())
-				timer = new PuzzleTimerReversed(PuzzleTimer.TIME, () -> close());
-			else
-				timer = new PuzzleTimer(PuzzleTimer.TIME, () -> close());
-		}
-		return timer;
+	public void setWinning(boolean winning) {
+		this.winning = winning;
 	}
 
 	// behavior
@@ -114,7 +79,6 @@ public abstract class Puzzle extends Clickable {
 
 	protected abstract void createPuzzle();
 
-	@Todo("tous les puzzle n'ont accuellement pas de son de victoire")
 	protected abstract BufferedSound getSuccessSound();
 
 	@Override
@@ -146,21 +110,21 @@ public abstract class Puzzle extends Clickable {
 
 	private void checkMultipleFoes(boolean winning) {
 		for (int i = 0; i < FoeObject.MAX_ADDITIONAL_FOES_AT_SAME_FIGHT; i++) {
-			if (multipleFoe[i] != null)
-				multipleFoe[i].setSolved(winning);
+			if (multipleFoe != null) {
+				if (multipleFoe[i] != null)
+					multipleFoe[i].setSolved(winning);
+			}
 		}
 	}
-		
-	protected void difficultyModification(DifficultyListener listener, int... lvl)
-	{
+
+	protected void difficultyModification(DifficultyListener listener, int... lvl) {
 		int size = lvl.length;
-		for(int i = 0; i < size; i++)
-		{
-			if(getDifficulty().getLvl() == lvl[i])
+		for (int i = 0; i < size; i++) {
+			if (getDifficulty().getLvl() == lvl[i])
 				listener.modify();
 		}
 	}
-	
+
 	// design
 
 	protected void renderingFakeWall(Graphics g, BufferedImage texture) {
@@ -183,6 +147,5 @@ public abstract class Puzzle extends Clickable {
 			g.drawImage(texture, x + 13 * w, y + i * h, w, h, null);
 		}
 	}
-
 
 }

@@ -13,7 +13,7 @@ abstract class CommunIntroductionObject extends MenuObject {
 	int jumpCount;
 
 	CommunIntroductionObject() {
-		super();
+		super(null);
 	}
 
 	// state

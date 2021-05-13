@@ -8,26 +8,22 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
-public class ColorAnswer extends PuzzleObject {
+public class ColorEnigmaObject extends PuzzleObject {
 
-	private ColorEnigma enigma;
+	private ColorEnigmaMap colorEnigmaMap;
 
-	public ColorAnswer(int x, int y, ColorEnigma enigma) {
-		super(x, y, OBJECTID.P_COLORANSWER);
+	public ColorEnigmaObject(int x, int y, ColorEnigmaMap colorEnigmaMap) {
+		super(x, y, OBJECTID.P_COLORENIGMA);
 
-		this.enigma = enigma;
+		this.colorEnigmaMap = colorEnigmaMap;
 
 		w = 6 * Size.TILE_PUZZLE;
 	}
 
 	// state
 
-	public ColorEnigma getEnigma() {
-		return enigma;
-	}
-
 	public WIRECOLOR getColor() {
-		return enigma.getColor();
+		return colorEnigmaMap.getColor();
 	}
 
 	// behavior
@@ -42,7 +38,7 @@ public class ColorAnswer extends PuzzleObject {
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = enigma.getTexture();
+		BufferedImage img = colorEnigmaMap.getTexture();
 		g.drawImage(img, x, y, w, h, null);
 	}
 

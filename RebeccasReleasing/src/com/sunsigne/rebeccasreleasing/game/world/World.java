@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
@@ -34,14 +33,11 @@ public class World implements IRender {
 	public static World currentWorld;
 
 	public static GUI gui = new GUI();
-	@Todo("vérifier si vraiment utile, si non, supprimer la methode getLvlNumber() de l'interface ILvl")
-	public static int levelnum;
 
 	public World(ILvl ilvl) {
 		this.ilvl = ilvl;
 		ilvl.loadEvent();
 		HandlerRender.getInstance().addObject(this);
-		World.levelnum = ilvl.getLvlNumber();
 
 		loadLevel();
 		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.level));
@@ -104,18 +100,6 @@ public class World implements IRender {
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE)
 				((FoeObject) tempObject).stun();
-		}
-	}
-
-	public static void makeAllFoesStatue() {
-
-		boolean isCameraDependant = true;
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
-		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.FOE) {
-				FoeObject tempFoe = (FoeObject) tempObject;
-				tempFoe.setStatue(true);
-			}
 		}
 	}
 

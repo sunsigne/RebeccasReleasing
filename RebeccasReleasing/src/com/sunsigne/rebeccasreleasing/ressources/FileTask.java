@@ -49,7 +49,8 @@ public class FileTask {
 			if (file.exists()) {
 				scan = new Scanner(file, "UTF-8");
 				while (count != lineToRead) {
-					if(lineToRead < 0) break;
+					if (lineToRead < 0)
+						break;
 					lineContent = scan.nextLine();
 					count++;
 				}

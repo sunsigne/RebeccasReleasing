@@ -1,11 +1,16 @@
 package com.sunsigne.rebeccasreleasing.game.menu.title;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
+import com.sunsigne.rebeccasreleasing.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.game.menu.MenuObject;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
+import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
 
@@ -15,8 +20,8 @@ public class TitleObject extends MenuObject {
 	private double rotation;
 	private int gap;
 
-	public TitleObject() {
-		super();
+	public TitleObject(ChatMap chatMap, ChatMap... chatMaps) {
+		super(chatMap, chatMaps);
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class TitleObject extends MenuObject {
 		drawFoe(g2d);
 		drawPlayer(g2d);
 		drawTitle(g);
-		drawButtons(g);
+		drawText(g);
 
 		drawHitbox(g);
 	}
@@ -59,10 +64,11 @@ public class TitleObject extends MenuObject {
 
 	private void drawPlayer(Graphics2D g2d) {
 		g2d.rotate(Math.toRadians(rotation), 1555, 745);
-		g2d.drawImage(ImageBank.getImage(ImageBank.chest), 1070 - gap / 4, 330 - gap / 8, 880 + gap / 2, 730 + gap / 4, null);
+		g2d.drawImage(ImageBank.getImage(ImageBank.chest), 1070 - gap / 4, 330 - gap / 8, 880 + gap / 2, 730 + gap / 4,
+				null);
 		g2d.rotate(Math.toRadians(-2 * rotation), 1555, 745);
-		g2d.drawImage(ImageBank.getImage(ImageBank.arms), 1070 + gap / 4 - gap / 4, 330 - gap / 4 - gap / 8, 880 + gap / 2,
-				730 + gap / 4, null);
+		g2d.drawImage(ImageBank.getImage(ImageBank.arms), 1070 + gap / 4 - gap / 4, 330 - gap / 4 - gap / 8,
+				880 + gap / 2, 730 + gap / 4, null);
 		g2d.rotate(Math.toRadians(rotation), 1555, 745);
 		g2d.rotate(Math.toRadians(-rotation), 1425, 540);
 		g2d.drawImage(ImageBank.getImage(ImageBank.head), 1070 + gap / 8 - gap / 8, 330 - gap / 16, 860 + gap / 4,
@@ -75,22 +81,28 @@ public class TitleObject extends MenuObject {
 		g.drawImage(ImageBank.getImage(ImageBank.title_2), 470, 235 + gap / 12, 1000, 180, null);
 	}
 
-	private void drawButtons(Graphics g) {
-		switch (Options.getLanguage()) {
-		case FRENCH:
-			g.drawImage(ImageBank.getImage(ImageBank.jouer), 800, 580, 320, 70, null);
-			g.drawImage(ImageBank.getImage(ImageBank.options), 730, 750, 460, 70, null);
-			g.drawImage(ImageBank.getImage(ImageBank.quitter), 730, 920 + 10, 460, 70, null);
-			break;
+	private void drawText(Graphics g) {
 
-		case ENGLISH:
-		default:
-			g.drawImage(ImageBank.getImage(ImageBank.play), 835, 580, 250, 70, null);
-			g.drawImage(ImageBank.getImage(ImageBank.options), 730, 750, 460, 70, null);
-			g.drawImage(ImageBank.getImage(ImageBank.quit), 835, 920 + 10, 250, 70, null);
-			break;
+		GameText gametext;
+		gametext = getGameTextFromFile(2);
+		drawShadowing(g, gametext.getText(), gametext.getGap(), 787, 640); // PLAY
+		gametext = getGameTextFromFile(3);
+		drawShadowing(g, gametext.getText(), gametext.getGap(), 725, 810); // OPTIONS
+		gametext = getGameTextFromFile(4);
+		drawShadowing(g, gametext.getText(), gametext.getGap(), 725, 980 + 10); // QUIT
 
-		}
+	}
+
+	private void drawShadowing(Graphics g, String text, int gap, int x, int y) {
+		Font font = FontTask.createNewFont(BufferedFontBank.dogica_bold, 66f);
+		g.setColor(new Color(255, 163, 0, 80));
+		g.setFont(font);
+		g.drawString(text, x + 4 + gap, y + 4);
+
+		g.setColor(new Color(255, 204, 0));
+		g.setFont(font);
+		g.drawString(text, x + gap, y);
+
 	}
 
 	@Override

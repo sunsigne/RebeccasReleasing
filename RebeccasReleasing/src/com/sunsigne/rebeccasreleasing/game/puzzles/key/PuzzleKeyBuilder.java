@@ -21,7 +21,6 @@ import com.sunsigne.rebeccasreleasing.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
 
-
 public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 
 	private static KeyObject key;
@@ -36,9 +35,8 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 	protected T getKey() {
 		return (T) key;
 	}
-	
-	protected Lock getLock()
-	{
+
+	protected Lock getLock() {
 		return lock;
 	}
 
@@ -47,23 +45,24 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 			return new Key(x, y);
 		return new KeyReversed(x, y);
 	}
-	
-	protected void replaceKey(T key)
-	{
+
+	protected void replaceKey(T key) {
 		PuzzleKeyBuilder.key = (KeyObject) key;
 	}
-	
+
 	@Override
 	public void createFrame() {
 		for (int i = 0; i < 13; i++) {
-			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, texture.decor_wall[3]));
 			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0 + 7 * Size.TILE_PUZZLE, texture.decor_wall[3]));
+					.addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE, Size.Y0, texture.decor_wall[3]));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + i * Size.TILE_PUZZLE,
+					Size.Y0 + 7 * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 		for (int i = 0; i < 8; i++) {
-			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
 			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
+					.addObject(new WallPuzzle(Size.X0, Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + 13 * Size.TILE_PUZZLE,
+					Size.Y0 + i * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 
 //		HandlerObject.getInstance().addObject(getTimer());
@@ -79,8 +78,8 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 			int col = 2 + new Random().nextInt(10);
 			int row = 1 + new Random().nextInt(5);
 
-			HandlerObject.getInstance()
-					.addObject(new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE, Size.Y0 + row * Size.TILE_PUZZLE, texture.decor_wall[3]));
+			HandlerObject.getInstance().addObject(new WallPuzzle(Size.X0 + col * Size.TILE_PUZZLE,
+					Size.Y0 + row * Size.TILE_PUZZLE, texture.decor_wall[3]));
 		}
 	}
 
@@ -100,7 +99,10 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 
 	@Override
 	public BufferedSound getSuccessSound() {
-		return SoundBank.getSound(SoundBank.opening_door);
+		if (!isReversed())
+			return SoundBank.getSound(SoundBank.opening_door);
+		else
+			return SoundBank.getSound(SoundBank.nope);
 	}
 
 }

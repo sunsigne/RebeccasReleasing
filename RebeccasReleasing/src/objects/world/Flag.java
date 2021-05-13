@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.game.ScoreScreen;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
@@ -57,7 +56,7 @@ public class Flag extends GameObject implements ICollision {
 
 			living.getCollisionDetector().collidingBehavior(false, this, () -> {
 				setReached(true);
-				new ScoreScreen();
+//				new ScoreScreen();
 			});
 		}
 

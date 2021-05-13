@@ -2,6 +2,7 @@ package com.sunsigne.rebeccasreleasing.game.menu.options;
 
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
@@ -12,14 +13,18 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class Options extends Clickable {
 
+	private static final ChatMap frOptions = new ChatMap(LANGUAGE.FRENCH, new GameFile("/menu/french/options"));
+	private static final ChatMap engOptions = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/menu/english/options"));
+	
 	private static LANGUAGE language;
 	private static final GameFile options = new GameFile("options");
-	public static final int[] languageRect = { 300, 720, 360, 90 };
+	public static final int[] languageRect = { 900, 210, 730, 90 };
+	public static final int[] backRect = { 260, 810, 500, 90 };
 
 	public Options() {
 		super(STATE.OPTION);
 
-		HandlerObject.getInstance().addObject(new OptionObject());
+		HandlerObject.getInstance().addObject(new OptionObject(frOptions, engOptions));
 	}
 
 	public static void loadSavedSettings() {
@@ -28,9 +33,9 @@ public class Options extends Clickable {
 
 	@Override
 	public void mousePressed(int mx, int my) {
-		if (GameMouseInput.mouseOver(mx, my, languageRect)) {
+		if (GameMouseInput.mouseOver(mx, my, languageRect))
 			setNextLanguage();
-		} else
+		if (GameMouseInput.mouseOver(mx, my, backRect))
 			close();
 	}
 
@@ -54,7 +59,7 @@ public class Options extends Clickable {
 	private static LANGUAGE getLanguageSaved() {
 
 		LANGUAGE language;
-		try {			
+		try {
 			String languagetxt = FileTask.read(options);
 			int languagenum = Integer.valueOf(languagetxt.split("=")[1]);
 
@@ -85,7 +90,6 @@ public class Options extends Clickable {
 	@Override
 	public void render(Graphics g) {
 		gradientRender(g);
-
 	}
 
 	@Override

@@ -3,12 +3,10 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.commun_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
-@Todo("create a power where the key destroy some walls encountered (like fist and second for exemple)")
 public abstract class KeyObject extends PuzzleObject {
 
 	private static final int ymin = 5 * Size.TILE_PUZZLE / 4;

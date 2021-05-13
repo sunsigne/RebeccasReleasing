@@ -2,7 +2,6 @@ package com.sunsigne.rebeccasreleasing.game.puzzles.key.object;
 
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -10,7 +9,6 @@ import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
 import objects.GameObject;
 
-@Todo("create a power where the key destroy some walls encountered (like fist and second for exemple)")
 public class Key extends KeyObject {
 
 	private boolean throwing;

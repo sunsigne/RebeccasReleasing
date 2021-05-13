@@ -2,7 +2,10 @@ package com.sunsigne.rebeccasreleasing.game.menu.title;
 
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
+import com.sunsigne.rebeccasreleasing.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.game.menu.options.Options;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
@@ -13,6 +16,9 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class Title extends Clickable {
 
+	private static final ChatMap frTitle = new ChatMap(LANGUAGE.FRENCH, new GameFile("/menu/french/title"));
+	private static final ChatMap engTitle = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/menu/english/title"));
+	
 	public static final int[] playRect = { 780, 570, 360, 90 };
 	public static final int[] optionsRect = { 710, 740, 500, 90 };
 	public static final int[] quitRect = { 710, 920, 500, 90 };
@@ -21,7 +27,7 @@ public class Title extends Clickable {
 		super(STATE.TITLE);
 
 		playMusic();
-		HandlerObject.getInstance().addObject(new TitleObject());
+		HandlerObject.getInstance().addObject(new TitleObject(frTitle, engTitle));
 	}
 
 	private void playMusic() {

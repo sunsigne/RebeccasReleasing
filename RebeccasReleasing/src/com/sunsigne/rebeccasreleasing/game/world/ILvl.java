@@ -4,9 +4,6 @@ import java.awt.image.BufferedImage;
 
 public interface ILvl {
 
-
-	int getLvlNumber();		
-
 	BufferedImage getCutoutLvlImage();
 
 	BufferedImage getLvlImage();

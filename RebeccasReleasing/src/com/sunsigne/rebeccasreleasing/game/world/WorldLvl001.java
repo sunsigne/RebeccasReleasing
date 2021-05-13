@@ -5,11 +5,6 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 
 public class WorldLvl001 implements ILvl {
-
-	@Override
-	public int getLvlNumber() {
-		return 999;
-	}
 	
 	@Override
 	public BufferedImage getCutoutLvlImage() {

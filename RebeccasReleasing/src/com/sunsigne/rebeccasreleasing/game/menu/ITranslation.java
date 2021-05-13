@@ -13,12 +13,13 @@ public interface ITranslation {
 
 	public void setGameFile(int number, GameFile gameFile);
 
-	// use this method in the cronstructor of the class you want to be translated
-	
+	// use this method in the constructor of the class you want to be translated
+
 	public default void languageMapping(ChatMap chatMap, ChatMap... chatMaps) {
 		int size = chatMaps.length;
 
-		textAttributionByLanguage(chatMap);
+		if (chatMap != null)
+			textAttributionByLanguage(chatMap);
 
 		if (size != 0) {
 			for (int i = 0; i < size; i++)
@@ -93,22 +94,20 @@ public interface ITranslation {
 			return verified(getGameFile(1), lineToRead);
 		}
 	}
-		
-	public default GameText getGameTextFromFile(int line)
-	{
+
+	public default GameText getGameTextFromFile(int line) {
 		String dataText = readDataFromFile(line);
 		String[] dataIntoLine = new String[3];
 		int gap;
 		String text;
-				
+
 		dataIntoLine = dataText.split(";");
 		gap = Integer.valueOf(dataIntoLine[1]);
 		text = String.valueOf(dataIntoLine[2]).replace("\"", "");
 
 		GameText gametext = new GameText(gap, text);
-		
+
 		return gametext;
 	}
-
 
 }

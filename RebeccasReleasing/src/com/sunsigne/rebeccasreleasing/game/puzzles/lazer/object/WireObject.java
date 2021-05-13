@@ -14,14 +14,11 @@ public class WireObject extends PuzzleObject {
 	private boolean exist;
 	private boolean cut;
 	
-
-	
-
 	public WireObject(int x, int y, WIRECOLOR color) {
 		super(x, y, OBJECTID.P_LAZER);
 
 		this.color = color;
-		exist = true;
+		setExist(true);
 		
 		w = Size.TILE_PUZZLE/2;
 		h = 6 * Size.TILE_PUZZLE;

@@ -11,6 +11,7 @@ import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWord;
 import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWordObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.search.object.SearchWordReversed;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.STATE;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
@@ -102,7 +103,11 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 
 	@Override
 	public BufferedSound getSuccessSound() {
-		return null;
+
+		if (!isReversed())
+			return SoundBank.getSound(SoundBank.nope);
+		else
+			return SoundBank.getSound(SoundBank.nope);
 	}
 
 }

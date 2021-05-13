@@ -3,7 +3,6 @@ package com.sunsigne.rebeccasreleasing.system.controllers;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.World;
 import com.sunsigne.rebeccasreleasing.system.Conductor;
@@ -15,12 +14,10 @@ import com.sunsigne.rebeccasreleasing.system.util.Size;
 import objects.IFacing.FACING;
 import objects.world.Stairs;
 
-@Todo("mini fleche de quete activable par une touch ou map")
 public class GameKeyboardInput extends KeyAdapter {
 
 	private boolean[] keyPressed = new boolean[4];
 
-	@Todo("cliquer sur escape dans les options ou sur R en dehors d'un lvl cause un bug")
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();

@@ -2,22 +2,17 @@ package com.sunsigne.rebeccasreleasing.system;
 
 import javax.swing.JOptionPane;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.menu.LoadingScreenObject;
 import com.sunsigne.rebeccasreleasing.game.menu.introduction.Introduction;
 import com.sunsigne.rebeccasreleasing.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.game.world.ILvl;
 import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl001;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl01;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl010;
-import com.sunsigne.rebeccasreleasing.game.world.WorldLvl02;
+import com.sunsigne.rebeccasreleasing.game.world.WorldLvlTest;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.system.util.DualChecker;
 
-@Todo("this class may have more responsabilities.")
 public class Conductor {
 
 	private static final LoadingScreenObject loadingScreenObject = new LoadingScreenObject();
@@ -77,11 +72,10 @@ public class Conductor {
 		Conductor.stop();
 	}
 
-	@Todo("passer a un système intelligent qui determine le lvl avec la sauvegarde")
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl01();
+		ILvl level = new WorldLvlTest();
 		World.currentWorld = new World(level);
 	}
 

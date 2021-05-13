@@ -22,6 +22,18 @@ public class ImageBank {
 		return images.get(imageBank);
 	}
 
+	// map
+	public static final ImageBank lvltest = new ImageBank();
+	public static final ImageBank lvltest_cutout = new ImageBank();
+	public static final ImageBank lvl001 = new ImageBank();
+	public static final ImageBank lvl001_cutout = new ImageBank();
+	public static final ImageBank lvl01 = new ImageBank();
+	public static final ImageBank lvl01_cutout = new ImageBank();
+	public static final ImageBank lvl02 = new ImageBank();
+	public static final ImageBank lvl02_cutout = new ImageBank();
+	public static final ImageBank lvl010 = new ImageBank();
+	public static final ImageBank lvl010_cutout = new ImageBank();
+	
 	// living
 	static final ImageBank living_face_sheet = new ImageBank();
 	static final ImageBank living_walking_sheet = new ImageBank();
@@ -72,12 +84,8 @@ public class ImageBank {
 	
 	public static final ImageBank title_1 = new ImageBank();
 	public static final ImageBank title_2 = new ImageBank();
-
-	public static final ImageBank jouer = new ImageBank();
-	public static final ImageBank options = new ImageBank();
-	public static final ImageBank quitter = new ImageBank();
-	public static final ImageBank play = new ImageBank();
-	public static final ImageBank quit = new ImageBank();
+	
+	public static final ImageBank options_screen = new ImageBank();
 
 	public static final ImageBank chest = new ImageBank();
 	public static final ImageBank arms = new ImageBank();
@@ -85,20 +93,21 @@ public class ImageBank {
 	public static final ImageBank foe = new ImageBank();
 	public static final ImageBank hat = new ImageBank();
 
-	// map
-	public static final ImageBank lvltest = new ImageBank();
-	public static final ImageBank lvltest_cutout = new ImageBank();
-	public static final ImageBank lvl001 = new ImageBank();
-	public static final ImageBank lvl001_cutout = new ImageBank();
-	public static final ImageBank lvl01 = new ImageBank();
-	public static final ImageBank lvl01_cutout = new ImageBank();
-	public static final ImageBank lvl02 = new ImageBank();
-	public static final ImageBank lvl02_cutout = new ImageBank();
-	public static final ImageBank lvl010 = new ImageBank();
-	public static final ImageBank lvl010_cutout = new ImageBank();
 
 	public static void loadRessources() {
 
+		// map
+		addImage(lvltest, ImageTask.loadMapImage("lvltest.png"));
+		addImage(lvltest_cutout, ImageTask.loadMapImage("lvltest_cutout.png"));
+		addImage(lvl001, ImageTask.loadMapImage("lvl001.png"));
+		addImage(lvl001_cutout, ImageTask.loadMapImage("lvl001_cutout.png"));
+		addImage(lvl01, ImageTask.loadMapImage("lvl01.png"));
+		addImage(lvl01_cutout, ImageTask.loadMapImage("lvl01_cutout.png"));
+		addImage(lvl02, ImageTask.loadMapImage("lvl02.png"));
+		addImage(lvl02_cutout, ImageTask.loadMapImage("lvl02_cutout.png"));
+		addImage(lvl010, ImageTask.loadMapImage("lvl010.png"));
+		addImage(lvl010_cutout, ImageTask.loadMapImage("lvl010_cutout.png"));
+		
 		// living
 		addImage(living_face_sheet, ImageTask.loadImage("living\\face_sheet.png"));
 		addImage(living_walking_sheet, ImageTask.loadImage("living\\walking_sheet.png"));
@@ -149,30 +158,14 @@ public class ImageBank {
 
 		addImage(title_1, ImageTask.loadImage("title_screen\\title_1.png"));
 		addImage(title_2, ImageTask.loadImage("title_screen\\title_2.png"));
-
-		addImage(jouer, ImageTask.loadImage("title_screen\\jouer.png"));
-		addImage(options, ImageTask.loadImage("title_screen\\options.png"));
-		addImage(quitter, ImageTask.loadImage("title_screen\\quitter.png"));
-		addImage(play, ImageTask.loadImage("title_screen\\play.png"));
-		addImage(quit, ImageTask.loadImage("title_screen\\quit.png"));
+		
+		addImage(options_screen, ImageTask.loadImage("title_screen\\options_screen.png"));
 
 		addImage(chest, ImageTask.loadImage("title_screen\\chest.png"));
 		addImage(arms, ImageTask.loadImage("title_screen\\arms.png"));
 		addImage(head, ImageTask.loadImage("title_screen\\head.png"));
 		addImage(foe, ImageTask.loadImage("title_screen\\foe.png"));
 		addImage(hat, ImageTask.loadImage("title_screen\\hat.png"));
-
-		// map
-		addImage(lvltest, ImageTask.loadMapImage("lvltest.png"));
-		addImage(lvltest_cutout, ImageTask.loadMapImage("lvltest_cutout.png"));
-		addImage(lvl001, ImageTask.loadMapImage("lvl001.png"));
-		addImage(lvl001_cutout, ImageTask.loadMapImage("lvl001_cutout.png"));
-		addImage(lvl01, ImageTask.loadMapImage("lvl01.png"));
-		addImage(lvl01_cutout, ImageTask.loadMapImage("lvl01_cutout.png"));
-		addImage(lvl02, ImageTask.loadMapImage("lvl02.png"));
-		addImage(lvl02_cutout, ImageTask.loadMapImage("lvl02_cutout.png"));
-		addImage(lvl010, ImageTask.loadMapImage("lvl010.png"));
-		addImage(lvl010_cutout, ImageTask.loadMapImage("lvl010_cutout.png"));
 
 	}
 

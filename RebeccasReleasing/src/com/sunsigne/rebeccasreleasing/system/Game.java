@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable {
 		CharacterBank.loadRessources();
 		TextureBank.getInstance().loadRessources();
 		new ColorEnigmaBank().loadRessources();
-		
+
 		this.addKeyListener(new GameKeyboardInput());
 		this.addMouseListener(GameMouseInput.getInstance());
 		new Window(game);
@@ -65,37 +65,31 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	// State
-	
-	public static boolean isDebugMode()
-	{
+
+	public static boolean isDebugMode() {
 		return debugMode;
 	}
-	
-	public static boolean isWallPassMode()
-	{
+
+	public static boolean isWallPassMode() {
 		return wallPassMode;
 	}
-	
+
 	public static boolean isMultiToolMode() {
 		return multiToolMode;
 	}
 
-	public static void switchDebugMode()
-	{
+	public static void switchDebugMode() {
 		debugMode = debugMode ? false : true;
 	}
-	
-	public static void switchWallPassMode()
-	{
+
+	public static void switchWallPassMode() {
 		wallPassMode = wallPassMode ? false : true;
 	}
-	
 
 	public static void switchMultiToolMode() {
 		multiToolMode = multiToolMode ? false : true;
 	}
-	
-	
+
 	// Thread
 
 	public synchronized void start() {
@@ -234,6 +228,5 @@ public class Game extends Canvas implements Runnable {
 		else if (HandlerObject.getInstance().isVirusExisting && !cameraDependant)
 			PuzzleHack.virus.render(g);
 	}
-
 
 }

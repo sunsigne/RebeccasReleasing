@@ -15,6 +15,11 @@ public class ImageTask {
 	private static URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
 
 	// WARNING !!! All paths in those methods must have their / replaced by double \\
+	public static BufferedImage loadFont(String ImageBank) {
+
+		return loadImage("font", ImageBank);
+	}
+	
 	public static BufferedImage loadImage(String ImageBank) {
 
 		return loadImage("textures", ImageBank);

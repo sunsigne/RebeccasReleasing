@@ -77,34 +77,18 @@ public class GUI extends GameObject implements Characteristics {
 		this.maxhp = maxhp;
 	}
 
-	/**
-	 * Add one hp to the GUI
-	 */
 	public void addHp() {
 		addHp(1);
 	}
 
-	/**
-	 * Add hp to the GUI. Set no parameter to add only one.
-	 * 
-	 * @param amount of hp to add
-	 */
 	public void addHp(int amount) {
 		hp = hp + amount;
 	}
 
-	/**
-	 * Remove one hp to the GUI
-	 */
 	public void removeHp() {
 		removeHp(1);
 	}
 
-	/**
-	 * Remove hp to the GUI. Set no parameter to remove only one.
-	 * 
-	 * @param amount
-	 */
 	public void removeHp(int amount) {
 		if (!infiniteHp && !isInvulnerable) {
 			hp = hp - amount;
@@ -113,10 +97,7 @@ public class GUI extends GameObject implements Characteristics {
 	}
 
 	public boolean isFullHp() {
-		if (hp == maxhp)
-			return true;
-		else
-			return false;
+		return hp == maxhp ? true : false;
 	}
 
 	// pts gestion
@@ -201,7 +182,7 @@ public class GUI extends GameObject implements Characteristics {
 
 		for (int i = 0; i < size; i++) {
 			currentToolLvl = Game.isMultiToolMode() ? 5 : getTool(i).getCurrentLvl();
-			currentToolMaxLvl = Game.isMultiToolMode() ? 5 : getTool(i).getMaxLvl();			
+			currentToolMaxLvl = Game.isMultiToolMode() ? 5 : getTool(i).getMaxLvl();
 
 			if (currentToolLvl != 0) {
 				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
@@ -220,11 +201,8 @@ public class GUI extends GameObject implements Characteristics {
 
 	@Todo("put a verification : if the player is suddently tasking, he should no longer be invulnerable")
 	public void setInvulnerable(boolean invulnerable) {
-		this.isInvulnerable = invulnerable;
-		if (invulnerable)
-			invulnerabitilyTime = 30;
-		else
-			invulnerabitilyTime = 0;
+	this.isInvulnerable=invulnerable;invulnerabitilyTime=invulnerable?30:0;
+
 	}
 
 	private void killPlayer() {

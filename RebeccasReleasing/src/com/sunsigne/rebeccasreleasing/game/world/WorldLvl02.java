@@ -7,11 +7,6 @@ import com.sunsigne.rebeccasreleasing.ressources.images.ImageBank;
 public class WorldLvl02 implements ILvl {
 
 	@Override
-	public int getLvlNumber() {
-		return 2;
-	}
-	
-	@Override
 	public BufferedImage getCutoutLvlImage() {
 		return ImageBank.getImage(ImageBank.lvl02_cutout);
 	}

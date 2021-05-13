@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
@@ -16,8 +15,6 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 import objects.world.puzzler.IPuzzler;
 
-@Todo("pour tuto : carrement trop complexe, rendre la navigation et le lien cause-conséquence plus compréhensible +"
-		+ "/ difficulty : hack : processors to destroy : timer (+3sec), glue, hidder, defender (+3 clicks), antivirus (mine but deadly)")
 public class PuzzleHack extends Puzzle {
 
 	public static Virus virus;
@@ -28,8 +25,8 @@ public class PuzzleHack extends Puzzle {
 	private static ProcessorTrash trash;
 	private static ProcessorDesktop desktop;
 
-	public PuzzleHack(IPuzzler puzzler, DIFFICULTY difficulty) {
-		super(STATE.PUZZLE, puzzler, difficulty);
+	public PuzzleHack(IPuzzler puzzler, DIFFICULTY difficulty/* , boolean reversed */) {
+		super(STATE.PUZZLE, puzzler, difficulty, /* reversed */false);
 		GameCursor.hideCursor(true);
 	}
 
@@ -98,7 +95,10 @@ public class PuzzleHack extends Puzzle {
 
 	@Override
 	public BufferedSound getSuccessSound() {
-		return SoundBank.getSound(SoundBank.computer);
+		if (!isReversed())
+			return SoundBank.getSound(SoundBank.computer);
+		else
+			return SoundBank.getSound(SoundBank.nope);
 	}
 
 }

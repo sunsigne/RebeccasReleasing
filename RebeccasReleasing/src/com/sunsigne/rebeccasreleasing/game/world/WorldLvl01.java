@@ -1,9 +1,7 @@
 package com.sunsigne.rebeccasreleasing.game.world;
 
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.game.event.Event;
@@ -19,9 +17,7 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerEvent;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
 
-import objects.GameObject;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.Door;
 import objects.world.puzzler.IPuzzler;
@@ -30,11 +26,6 @@ public class WorldLvl01 implements ILvl {
 
 	private static final ChatMap frlvl01 = new ChatMap(LANGUAGE.FRENCH, new GameFile("/dialogues/french/lvl01"));
 	private static final ChatMap englvl01 = new ChatMap(LANGUAGE.ENGLISH, new GameFile("/dialogues/english/lvl01"));
-
-	@Override
-	public int getLvlNumber() {
-		return 1;
-	}
 
 	@Override
 	public BufferedImage getCutoutLvlImage() {

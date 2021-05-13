@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.sunsigne.rebeccasreleasing.Todo;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
@@ -21,8 +20,6 @@ import objects.world.Wall;
 import objects.world.loot.ILoot;
 import objects.world.loot.tools.LootTool;
 
-@Todo("find the key to open the exit door / pour la déco : tapis, parquet, distributeur de café, de bouffe, poubelle,"
-		+ " boites en cartons ou en bois, cuisines & salle de repos, toilettes, labo-chimique, débaras, vestiaires?, silo")
 public class MapCreator {
 
 	@SuppressWarnings("unchecked")

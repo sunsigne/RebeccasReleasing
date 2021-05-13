@@ -9,9 +9,9 @@ import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorAnswer;
-import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigma;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigmaBank;
+import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigmaMap;
+import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.ColorEnigmaObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.PliersCursor;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.WIRECOLOR;
 import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.object.WireObject;
@@ -30,7 +30,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 //	private static BombObject[] bomb = new BombObject[4];
 	protected static final int NUMBEROFWIRES = 4;
 	private static WireObject[] wire = new WireObject[6];
-	private static ColorAnswer answer;
+	private static ColorEnigmaObject answer;
 	private static int enigmaMinIndex = 0;
 	private static int enigmaMaxIndex = 35;
 
@@ -44,15 +44,15 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 		return wire[number];
 	}
 
-	protected ColorAnswer getColorAnswer() {
+	protected ColorEnigmaObject getColorAnswer() {
 		return answer;
 	}
 
-//	protected BombObject createBomb(int x, int y) {
+	protected WireObject createWire(int x, int y, WIRECOLOR color) {
 //		if (!isReversed())
-//			return new Bomb(x, y, getDifficulty());
-//		return new BombReversed(x, y, getDifficulty());
-//	}
+			return new WireObject(x, y, color);
+//		return new WireReversed(x, y, color);
+	}
 
 	@Override
 	public void randomGeneration() {
@@ -62,13 +62,13 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 
 		difficultyModifications();
 
-		answer = new ColorAnswer(x0, y0, randomEnigma(enigmaMinIndex, enigmaMaxIndex));
+		answer = new ColorEnigmaObject(x0, y0, randomEnigma(enigmaMinIndex, enigmaMaxIndex));
 
 		creatingWires();
 		shuffleWires(NUMBEROFWIRES);
 	}
 
-	private ColorEnigma randomEnigma(int enigmaMinIndex, int enigmaMaxIndex) {
+	private ColorEnigmaMap randomEnigma(int enigmaMinIndex, int enigmaMaxIndex) {
 		int rad = enigmaMinIndex + new Random().nextInt(enigmaMaxIndex + 1 - enigmaMinIndex);
 		return ColorEnigmaBank.index[rad];
 	}
@@ -106,12 +106,12 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 		int x0 = 352;
 		int y0 = 160;
 
-		wire[0] = new WireObject(x0, y0, WIRECOLOR.RED);
-		wire[1] = new WireObject(x0, y0, WIRECOLOR.ORANGE);
-		wire[2] = new WireObject(x0, y0, WIRECOLOR.YELLOW);
-		wire[3] = new WireObject(x0, y0, WIRECOLOR.GREEN);
-		wire[4] = new WireObject(x0, y0, WIRECOLOR.BLUE);
-		wire[5] = new WireObject(x0, y0, WIRECOLOR.PURPLE);
+		wire[0] = createWire(x0, y0, WIRECOLOR.RED);
+		wire[1] = createWire(x0, y0, WIRECOLOR.ORANGE);
+		wire[2] = createWire(x0, y0, WIRECOLOR.YELLOW);
+		wire[3] = createWire(x0, y0, WIRECOLOR.GREEN);
+		wire[4] = createWire(x0, y0, WIRECOLOR.BLUE);
+		wire[5] = createWire(x0, y0, WIRECOLOR.PURPLE);
 
 		for (int i = 0; i < 6; i++) {
 			wire[i].setExist(false);
