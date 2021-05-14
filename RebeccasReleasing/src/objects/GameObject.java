@@ -5,12 +5,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class GameObject implements ITick, IRender {
 
@@ -44,7 +46,7 @@ public abstract class GameObject implements ITick, IRender {
 	public boolean isCameraDependant() {
 		return cameraDependant;
 	}
-	
+
 	public OBJECTID getId() {
 		return id;
 	}
@@ -58,7 +60,7 @@ public abstract class GameObject implements ITick, IRender {
 	public int getX() {
 		return x;
 	}
-	
+
 	public int getMiniX() {
 		return miniX;
 	}
@@ -66,11 +68,11 @@ public abstract class GameObject implements ITick, IRender {
 	public int getY() {
 		return y;
 	}
-	
+
 	public int getMiniY() {
 		return miniY;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -89,7 +91,7 @@ public abstract class GameObject implements ITick, IRender {
 		return h;
 	}
 
-	public int[] getRect() {		
+	public int[] getRect() {
 		int[] rect = new int[4];
 		rect[0] = getBounds().x;
 		rect[1] = getBounds().y;
@@ -115,34 +117,22 @@ public abstract class GameObject implements ITick, IRender {
 	public void setVelY(int velY) {
 		this.velY = velY;
 	}
-	
+
 	protected void velocity() {
 		x = x + velX;
 		y = y + velY;
 	}
-	
-	public boolean isMotionless() {
 
-		if (velX == 0 && velY == 0)
-			return true;
-		else
-			return false;
+	public boolean isMotionless() {
+		return isMotionlessbyX() && isMotionlessbyY();
 	}
 
 	public boolean isMotionlessbyX() {
-
-		if (velX == 0)
-			return true;
-		else
-			return false;
+		return velX == 0;
 	}
 
 	public boolean isMotionlessbyY() {
-
-		if (velY == 0)
-			return true;
-		else
-			return false;
+		return velY == 0;
 	}
 
 	public void setMotionless() {
@@ -150,18 +140,26 @@ public abstract class GameObject implements ITick, IRender {
 		velY = 0;
 	}
 
+	public void add() {
+		HandlerTick.getInstance().addObject(this);
+		HandlerRender.getInstance().addObject(this);
+	}
+
+	public void remove() {
+		HandlerTick.getInstance().removeObject(this);
+		HandlerRender.getInstance().removeObject(this);
+	}
+
 	// design
 
 	public void refreshPlayerRendering() {
 	}
 
-	protected void drawHitbox(Graphics g) {
-		if (Game.isDebugMode()) {
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(Color.white);
-			if (getBounds() != null)
-				g2d.draw(getBounds());
-		}
+	public void drawHitbox(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.white);
+		if (getBounds() != null)
+			g2d.draw(getBounds());
 	}
 
 	// collision

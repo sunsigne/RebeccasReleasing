@@ -3,9 +3,9 @@ package objects.characters.living;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 @Todo("unfinished (will probably make the game crash if init)")
 public class DummyObject extends LivingObject {
@@ -66,7 +66,6 @@ public class DummyObject extends LivingObject {
 	public void render(Graphics g) {
 
 		renderingDummy(g);
-		drawHitbox(g);
 	}
 
 	private void renderingDummy(Graphics g) {

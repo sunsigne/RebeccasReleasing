@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class HandlerTick implements ITick {
 
-	// singleton
-	
+	////////// SIGNELTON ////////////
+
 	private static HandlerTick instance = null;
 
 	public static HandlerTick getInstance() {
@@ -13,7 +13,9 @@ public class HandlerTick implements ITick {
 			instance = new HandlerTick();
 		return instance;
 	}
-	
+
+	////////// MAP OR LIST ////////////
+
 	private LinkedList<ITick> handler_tick_list = new LinkedList<>();
 
 	public void addObject(ITick tickable) {
@@ -27,12 +29,13 @@ public class HandlerTick implements ITick {
 		if (tickable != null)
 			handler_tick_list.remove(tickable);
 	}
-	
+
+	////////// BEHAVIOR ////////////
+
 	@Override
 	public void tick() {
 		for (ITick tempTick : handler_tick_list)
 			tempTick.tick();
 	}
-
 
 }

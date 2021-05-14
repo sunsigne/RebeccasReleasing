@@ -2,8 +2,8 @@ package objects.characters.collision;
 
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 import objects.GameObject;
 import objects.characters.living.FoeObject;

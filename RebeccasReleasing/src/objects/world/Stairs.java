@@ -7,17 +7,17 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-public class Stairs extends GameObject implements ICollision {
+public class Stairs extends GameObject implements ICollision, IInteraction {
 
 	private boolean goesUp;
 	private int stairId;
@@ -41,12 +41,12 @@ public class Stairs extends GameObject implements ICollision {
 	
 	// behavior
 
-	public void take()
-	{
+	@Override
+	public void doAction() {
 		SoundTask.playSound(SoundBank.getSound(SoundBank.nope));
 		connectionToDualStairs();
 	}
-	
+
 	private void connectionToDualStairs() {
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
 		for (GameObject tempObject : list) {
@@ -60,8 +60,8 @@ public class Stairs extends GameObject implements ICollision {
 	}
 
 	private void teleportPlayer(Stairs dualStairs) {
-		HandlerObject.getInstance().player.setX(dualStairs.getX());
-		HandlerObject.getInstance().player.setY(dualStairs.getY());
+		HandlerObject.getInstance().getPlayer().setX(dualStairs.getX());
+		HandlerObject.getInstance().getPlayer().setY(dualStairs.getY());
 	}
 
 	@Override
@@ -76,13 +76,12 @@ public class Stairs extends GameObject implements ICollision {
 		BufferedImage img = goesUp ? texture.decor_small[3] : texture.decor_small[4];
 		g.drawImage(img, x, y, w, h, null);
 		renderingText(g);
-		drawHitbox(g);
 	}
 
 	// collision
 
 	private void renderingText(Graphics g) {
-		if (HandlerObject.getInstance().player.getTakingStairs() == this) {
+		if (HandlerObject.getInstance().getPlayer().getInteraction() == this) {
 			String text = goesUp ? "[E] Monter" : "[E] Descendre";
 			Font font = new Font("arial", 1, Size.TILE / 3);
 			g.setFont(font);
@@ -95,7 +94,7 @@ public class Stairs extends GameObject implements ICollision {
 	public void collision(LivingObject living) {
 		if (living.isPlayer()) {
 			if (living.getBounds().intersects(getBounds()))
-				HandlerObject.getInstance().player.setTakingStairs(this);
+				HandlerObject.getInstance().getPlayer().setInteraction(this);
 		}
 	}
 

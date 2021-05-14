@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.IFacing;
@@ -107,7 +107,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 				BufferedSound sideSound = makeSideSound();
 
 				if (living.isPlayer()) {
-					if (HandlerObject.getInstance().player.isPushed())
+					if (HandlerObject.getInstance().getPlayer().isPushed())
 						World.gui.addPoints(this, 5 * points);
 					else
 						World.gui.addPoints(this, points);

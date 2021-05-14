@@ -5,9 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 @Todo("pour tuto : attirer l'attention sur le timer !!")
 public abstract class TimerObject extends GameObject {

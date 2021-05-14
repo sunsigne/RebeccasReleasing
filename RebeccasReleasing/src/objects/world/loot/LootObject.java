@@ -2,13 +2,13 @@ package objects.world.loot;
 
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.verify.BonusText;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.BonusText;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;

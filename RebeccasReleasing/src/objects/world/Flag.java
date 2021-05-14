@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;
@@ -44,7 +44,6 @@ public class Flag extends GameObject implements ICollision {
 		g.setColor(Color.BLUE);
 		g.fillRect(x, y, Size.TILE, Size.TILE);
 //		g.drawImage(texture.item[2], x, y, Size.TILE, Size.TILE, null);	
-		drawHitbox(g);
 	}
 	
 	// collision

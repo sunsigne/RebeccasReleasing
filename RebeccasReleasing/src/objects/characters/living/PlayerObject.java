@@ -1,25 +1,30 @@
 package objects.characters.living;
 
 import java.awt.AlphaComposite;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
+import objects.GameObject;
+import objects.world.IInteraction;
 import objects.world.Stairs;
 
 public class PlayerObject extends LivingObject {
+
+	public static final int SPEED = Size.TILE / 9;
 
 	private Animation[] animation = new Animation[4];
 	private boolean tasking;
 	private boolean blinking;
 
-	private Stairs takingStairs;
+	private IInteraction interaction;
 
 	public PlayerObject(int x, int y) {
 		super(x, y, OBJECTID.PLAYER);
@@ -53,12 +58,12 @@ public class PlayerObject extends LivingObject {
 		this.tasking = tasking;
 	}
 
-	public Stairs getTakingStairs() {
-		return takingStairs;
+	public IInteraction getInteraction() {
+		return interaction;
 	}
 
-	public void setTakingStairs(Stairs takingStairs) {
-		this.takingStairs = takingStairs;
+	public void setInteraction(IInteraction interaction) {
+		this.interaction = interaction;
 	}
 
 	// behavior
@@ -67,15 +72,15 @@ public class PlayerObject extends LivingObject {
 	public void tick() {
 		runAnimation(getFacing().getNum());
 		livingTickBehavior(true);
-		checkStairsProximity();
+		checkInteractionProximity();
 	}
 
-	private void checkStairsProximity() {
-		if (getTakingStairs() != null) {
-			float distance = (float) Math
-					.sqrt(Math.pow(getX() - takingStairs.getX(), 2) + Math.pow(getY() - takingStairs.getY(), 2));
+	private void checkInteractionProximity() {
+		if (getInteraction() != null) {
+			float distance = (float) Math.sqrt(Math.pow(getX() - ((GameObject) interaction).getX(), 2)
+					+ Math.pow(getY() - ((GameObject) interaction).getY(), 2));
 			if (distance > Size.TILE)
-				setTakingStairs(null);
+				setInteraction(null);
 		}
 
 	}
@@ -99,7 +104,6 @@ public class PlayerObject extends LivingObject {
 
 		if (!blinking)
 			renderingRebecca(g);
-		drawHitbox(g);
 	}
 
 	private void renderingRebecca(Graphics g) {
@@ -117,4 +121,5 @@ public class PlayerObject extends LivingObject {
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
 	}
+
 }

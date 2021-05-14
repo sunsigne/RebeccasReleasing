@@ -1,13 +1,13 @@
 package objects.world.puzzler;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.system.Conductor;
-import com.sunsigne.rebeccasreleasing.system.STATE;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
+import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;
@@ -52,18 +52,18 @@ public interface IPuzzler extends ICollision {
 		if (living.isPlayer()) {
 
 			World.stunAllFoes();
-			if (!HandlerObject.getInstance().player.isTasking() && living.isPlayerActive()
+			if (!HandlerObject.getInstance().getPlayer().isTasking() && living.isPlayerActive()
 					&& Conductor.getState() != STATE.CHATTING) {
-				HandlerObject.getInstance().player.setTasking(true);
-				HandlerObject.getInstance().player.puzzle = getPuzzle();
+				HandlerObject.getInstance().getPlayer().setTasking(true);
+				HandlerObject.getInstance().getPlayer().puzzle = getPuzzle();
 			} else
 				verify();
 		}
 	}
 
 	private void verify() {
-		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().player.isMotionless())
-			HandlerObject.getInstance().player.loadBasicState();
+		if (Conductor.getState() == STATE.LEVEL && !HandlerObject.getInstance().getPlayer().isMotionless())
+			HandlerObject.getInstance().getPlayer().loadBasicState();
 	}
 
 	public Puzzle getPuzzle();

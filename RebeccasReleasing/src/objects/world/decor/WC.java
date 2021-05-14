@@ -3,9 +3,9 @@ package objects.world.decor;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.collision.ICollision;
@@ -38,7 +38,6 @@ public class WC extends GameObject implements ICollision  {
 		int h0 = Size.TILE;
 		
 		g.drawImage(texture.decor_small[2], x, y, w0, h0, null);
-		drawHitbox(g);
 	}
 	
 	// collision

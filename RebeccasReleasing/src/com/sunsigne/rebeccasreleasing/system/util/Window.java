@@ -7,7 +7,8 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Window extends Canvas {
 

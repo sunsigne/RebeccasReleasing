@@ -3,8 +3,8 @@ package objects.world;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.IFacing;
@@ -75,7 +75,6 @@ public class Wall extends GameObject implements ICollision, IFacing {
 
 	@Override
 	public void render(Graphics g) {
-		drawHitbox(g);
 	}
 
 	// collision

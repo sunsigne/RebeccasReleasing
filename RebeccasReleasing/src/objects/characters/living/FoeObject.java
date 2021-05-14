@@ -4,17 +4,17 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.Todo;
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.card.clickable.PuzzleCard;
-import com.sunsigne.rebeccasreleasing.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.clickable.PuzzleCard;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.GameObject;
 import objects.world.loot.ILoot;
@@ -122,7 +122,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	}
 
 	private boolean isPlayerInSight() {
-		float distance = getDistanceBetween(this, HandlerObject.getInstance().player);
+		float distance = getDistanceBetween(this, HandlerObject.getInstance().getPlayer());
 
 		if (distance <= SIGHT_RANGE)
 			return true;
@@ -186,8 +186,8 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 	@Todo("create a pathfinding")
 	private void movingtoPlayer() {
-		float diffX = x - HandlerObject.getInstance().player.getX();
-		float diffY = y - HandlerObject.getInstance().player.getY();
+		float diffX = x - HandlerObject.getInstance().getPlayer().getX();
+		float diffY = y - HandlerObject.getInstance().getPlayer().getY();
 		float distance = (float) Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
 
 		velX = SPEED * Math.round((-1 / distance) * diffX);
@@ -227,7 +227,6 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	public void render(Graphics g) {
 
 		renderingFoe(g);
-		drawHitbox(g);
 		drawLootable(g);
 	}
 	
@@ -266,7 +265,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 				living.getCollisionDetector().collidingBehaviorBetweenFoes(living, this);
 			else {
 				if (!stunned) {
-					if (touchingPlayer(living) && HandlerObject.getInstance().player.isPlayerActive()) {
+					if (touchingPlayer(living) && HandlerObject.getInstance().getPlayer().isPlayerActive()) {
 						if (hasToolLvl(currentDifficulty, Tool.SWORD) || Game.isMultiToolMode())
 							updatePuzzler(living);
 						else
@@ -295,7 +294,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		stun();
 		for (int direction = 0; direction < 4; direction++) {
 			if (watching[direction])
-				HandlerObject.getInstance().player.pushed(direction);
+				HandlerObject.getInstance().getPlayer().pushed(direction);
 		}
 	}
 

@@ -8,36 +8,19 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 
 public class ImageTask {
 
-	private static URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
+	private static final URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
 
-	// WARNING !!! All paths in those methods must have their / replaced by double \\
-	public static BufferedImage loadFont(String ImageBank) {
-
-		return loadImage("font", ImageBank);
-	}
-	
-	public static BufferedImage loadImage(String ImageBank) {
-
-		return loadImage("textures", ImageBank);
-	}
-		
-	public static BufferedImage loadMapImage(String ImageBank) {
-
-		return loadImage("map", ImageBank);
-	}
-	
-	// Even if this method is only used in this class, I prefere to let it public
-	// to make it easier for modders and devellopers in adding content
-	public static BufferedImage loadImage(String path0, String ImageBank) {
+	// WARNING !!! All paths in this methods must have their / replaced by double \\
+	public static BufferedImage loadImage(String path0) {
 
 		BufferedImage image = null;
 
 		try {
-			String path = "\\ressources" + "\\" + path0 + "\\" +  ImageBank;
+			String path = "\\ressources" + "\\" + path0;
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 			image = ImageIO.read(url);
 		} catch (Exception e) {
@@ -47,7 +30,7 @@ public class ImageTask {
 
 		return image;
 	}
-	
+
 	public static BufferedImage drawMissingTexture() {
 		return drawMissingTexture(32, 32);
 	}

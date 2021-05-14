@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.bomb.clickable.PuzzleBomb;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.clickable.PuzzleBomb;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.GameObject;
 import objects.characters.living.LivingObject;
@@ -75,7 +75,6 @@ public class WallCracked extends GameObject implements IPuzzler {
 		BufferedImage img = texture.puzzler_wallcracked[difficulty.getLvl()];
 		if (!isSolved())
 			g.drawImage(img, x, y, w, h, null);
-		drawHitbox(g);
 	}
 	
 	// collision

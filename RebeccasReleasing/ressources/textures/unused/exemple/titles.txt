@@ -3,12 +3,3 @@ https://fontmeme.com/fr/polices-cursives/
 title 1 : Garton, 300, Style-RobT, FFF300 (3 lines thus 1 spaces)
 title 2 : Pacifico, 300, Style-RobT, FFF300 (3 lines thus 1 spaces)
 
-
-https://fontmeme.com/polices/police-dogica/
-
-buttons : Dogicabold, 60, Ombre-S, FEFF41, EFCA33
-
-
-
-https://fontmeme.com/fr/police-league-of-legends/
-card : FrizQuadrataM, 65, DC0000 -> resize 60%

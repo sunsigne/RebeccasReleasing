@@ -5,16 +5,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.world.World;
-import com.sunsigne.rebeccasreleasing.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.system.Conductor;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.STATE;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.IFacing;
@@ -165,8 +165,8 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 				velY = -Size.TILE / 5;
 			if (direction == FACING.DOWN.getNum())
 				velY = Size.TILE / 5;
-		}
-		else setMotionless();
+		} else
+			setMotionless();
 	}
 
 	// design
@@ -178,15 +178,13 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 	}
 
 	@Override
-	protected void drawHitbox(Graphics g) {
-		if (Game.isDebugMode()) {
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(Color.white);
-			g2d.draw(getBounds());
-			g2d.draw(getBoundsTop());
-			g2d.draw(getBoundsLeft());
-			g2d.draw(getBoundsRight());
-		}
+	public void drawHitbox(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.white);
+		g2d.draw(getBounds());
+		g2d.draw(getBoundsTop());
+		g2d.draw(getBoundsLeft());
+		g2d.draw(getBoundsRight());
 	}
 
 	// collision

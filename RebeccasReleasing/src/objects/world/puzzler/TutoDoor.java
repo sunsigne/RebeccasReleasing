@@ -1,8 +1,8 @@
 package objects.world.puzzler;
 
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.key.clickable.TutoPuzzleKey;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable.TutoPuzzleKey;
 
 public class TutoDoor extends Door implements IPuzzler {
 

@@ -4,15 +4,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.game.puzzles.lazer.clickable.PuzzleLazer;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toclean.rebuild.Tool;
-import com.sunsigne.rebeccasreleasing.toclean.verify.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.clickable.PuzzleLazer;
+import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.GameObject;
 import objects.IFacing.FACING;
@@ -128,7 +128,6 @@ public class Lazer extends GameObject implements IPuzzler {
 
 		BufferedImage img = paintingLazer();
 		g.drawImage(img, x, y, Size.TILE, Size.TILE, null);
-		drawHitbox(g);
 	}
 
 	private BufferedImage paintingLazer() {
@@ -171,8 +170,8 @@ public class Lazer extends GameObject implements IPuzzler {
 
 	private void pushPlayer() {
 
-		int velX = HandlerObject.getInstance().player.getVelX();
-		int velY = HandlerObject.getInstance().player.getVelY();
+		int velX = HandlerObject.getInstance().getPlayer().getVelX();
+		int velY = HandlerObject.getInstance().getPlayer().getVelY();
 		int direction = 0;
 		
 		if(!horizontal)
@@ -187,7 +186,7 @@ public class Lazer extends GameObject implements IPuzzler {
 			else direction = FACING.DOWN.getNum();
 		}
 		
-		HandlerObject.getInstance().player.pushed(direction);
+		HandlerObject.getInstance().getPlayer().pushed(direction);
 	}
 
 
