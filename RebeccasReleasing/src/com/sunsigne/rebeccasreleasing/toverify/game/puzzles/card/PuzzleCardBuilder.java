@@ -120,9 +120,9 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 //		card[3].add();
 //		card[2].add();
 //		card[1].add();
+		HandlerObject.getInstance().addObject(card[3]);
 		HandlerObject.getInstance().addObject(card[2]);
 		HandlerObject.getInstance().addObject(card[1]);
-		HandlerObject.getInstance().addObject(card[0]);
 		
 		card[0].setExist(false);
 	}

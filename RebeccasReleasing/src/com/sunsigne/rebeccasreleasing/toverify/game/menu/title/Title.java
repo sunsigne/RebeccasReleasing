@@ -71,7 +71,7 @@ public class Title extends Clickable {
 
 	@Override
 	public void render(Graphics g) {
-//		gradientRender(g);
+		gradientRender(g);
 
 	}
 

@@ -80,7 +80,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl01();
+		ILvl level = new WorldLvl02();
 		World.currentWorld = new World(level);
 	}
 

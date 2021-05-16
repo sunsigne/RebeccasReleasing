@@ -69,5 +69,7 @@ IntroductionObject / tu ne peux pas toujours fuir, il faudra ranger cettte class
 
 ressources-map / à trier un peu
 
+Conductor / (duel start is paused)
+
 	 
 	 

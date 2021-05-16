@@ -56,7 +56,7 @@ public class GameKeyboardInput extends KeyAdapter {
 			Game.switchMultiToolMode();
 
 		if (key == KeyEvent.VK_R) {
-			if (Conductor.getState() == STATE.LEVEL && Conductor.getState() == STATE.PUZZLE && Conductor.getState() == STATE.CHATTING)
+			if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE || Conductor.getState() == STATE.CHATTING)
 				World.currentWorld.restart();
 		}
 

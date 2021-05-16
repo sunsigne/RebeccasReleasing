@@ -83,7 +83,7 @@ public class GameMouseInput extends MouseAdapter {
 			HandlerRender.getInstance().removeObject(clickable[layer]);
 			HandlerObject.getInstance().clear(false, layer);
 		}
-		clickable = null;
+		clickable = new IClick[3];
 		GameCursor.hideCursor(false);
 	}
 }

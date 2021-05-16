@@ -104,21 +104,26 @@ public class HandlerRender implements IRender {
 		this.playerPaintedAtTheEnd = playerPaintedAtTheEnd;
 	}
 
-	////////// BEHAVIOR ////////////
-
+	//////////BEHAVIOR ////////////
+	
 	// if I ever need to reversed the order of rendering, use the following loop :
 	// IRender tempRender = list.get(size - i - 1);
+	
 	@Override
 	public void render(Graphics g) {
-
 		LinkedList<IRender> list = getList(cameraDependant, cameraLayer);
-
-		for (IRender tempRender : list)
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			// size - i - 1 --> the last object is render first, then the previous one, etc.
+			IRender tempRender = list.get(size - i - 1);
 			tempRender.render(g);
-//		if (Game.isDebugMode()) {
-//			for (IRender tempRender : list)
-//				tempRender.drawHitbox(g);
-//		}
+		}
+	//	for (int i = 0; i < size; i++) {
+	//		IRender tempRender = list.get(size - i - 1);
+	//		tempRender.drawHitbox(g);
+	//}
 	}
+
+
 
 }
