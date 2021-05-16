@@ -46,7 +46,7 @@ public class SearchWord extends SearchWordObject {
 	@Override
 	protected void collision() {
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.P_WORDFOLDER) {
 				if (getBounds().intersects(tempObject.getBounds()))

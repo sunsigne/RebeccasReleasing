@@ -15,7 +15,7 @@ public class AutomaticTimerObject extends GameObject {
 	private int timeinTicks;
 
 	public AutomaticTimerObject(int timeinTicks, TimerListener listener) {
-		super(false, 0, 0, OBJECTID.TIMER);
+		super(false, 0, 0, 0, OBJECTID.TIMER);
 		this.listener = listener;
 		this.timeinTicks = timeinTicks;
 		HandlerObject.getInstance().addObject(this);

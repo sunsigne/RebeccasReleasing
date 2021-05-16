@@ -118,7 +118,7 @@ public class WorldLvl01 implements ILvl {
 					listener = () -> event.mustOccur(true);
 				World.loadChat(new Chat(2, listener, fr, eng, custom));
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
-				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(0, 4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event1.mustOccur(true), false);
 			}
 		});
@@ -157,7 +157,7 @@ public class WorldLvl01 implements ILvl {
 				moveThePlayerFutherFromDoor();
 				World.loadChat(new Chat(4, null, fr, eng, custom));
 				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
-				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(4608, 2784);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(0, 4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
@@ -246,7 +246,7 @@ public class WorldLvl01 implements ILvl {
 
 				Event event1 = HandlerEvent.getInstance().getEvent("Foe Fail");
 				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
-				FoeObject foe = (FoeObject) HandlerObject.getInstance().getObjectAtPos(8640, 3264);
+				FoeObject foe = (FoeObject) HandlerObject.getInstance().getObjectAtPos(0, 8640, 3264);
 				((IPuzzler) foe).setEventOnClose(() -> event1.mustOccur(true), false);
 				((IPuzzler) foe).setEventOnClose(() -> event2.mustOccur(true), true);
 			}

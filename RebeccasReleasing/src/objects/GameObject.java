@@ -19,6 +19,7 @@ public abstract class GameObject implements ITick, IRender {
 	protected TextureBank texture = TextureBank.getInstance();
 
 	private boolean cameraDependant;
+	private int cameraLayer;
 
 	protected OBJECTID id;
 	protected int initX, initY;
@@ -27,9 +28,10 @@ public abstract class GameObject implements ITick, IRender {
 	protected int w, h;
 	protected int velX, velY;
 
-	public GameObject(boolean cameraDependant, int x, int y, OBJECTID id) {
+	public GameObject(boolean cameraDependant, int cameraLayer, int x, int y, OBJECTID id) {
 
 		this.cameraDependant = cameraDependant;
+		this.cameraLayer = cameraLayer;
 		setX(x);
 		setY(y);
 		setID(id);
@@ -45,6 +47,11 @@ public abstract class GameObject implements ITick, IRender {
 	@Override
 	public boolean isCameraDependant() {
 		return cameraDependant;
+	}
+	
+	@Override
+	public int getCameraLayer() {
+		return cameraLayer;
 	}
 
 	public OBJECTID getId() {
@@ -138,16 +145,6 @@ public abstract class GameObject implements ITick, IRender {
 	public void setMotionless() {
 		velX = 0;
 		velY = 0;
-	}
-
-	public void add() {
-		HandlerTick.getInstance().addObject(this);
-		HandlerRender.getInstance().addObject(this);
-	}
-
-	public void remove() {
-		HandlerTick.getInstance().removeObject(this);
-		HandlerRender.getInstance().removeObject(this);
 	}
 
 	// design

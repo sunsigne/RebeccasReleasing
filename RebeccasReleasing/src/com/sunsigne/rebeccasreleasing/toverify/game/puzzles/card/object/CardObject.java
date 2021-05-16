@@ -60,7 +60,7 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 	protected boolean hasSameOrderNumThanFolder(boolean oneUnderInstead) {
 		CardFolder folder = null;
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list)
 			if (tempObject.getId() == OBJECTID.P_CARDFOLDER) {
 				folder = (CardFolder) tempObject;

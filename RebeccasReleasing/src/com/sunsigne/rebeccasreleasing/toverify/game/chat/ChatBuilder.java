@@ -42,6 +42,11 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 	}
 
 	@Override
+	public int getCameraLayer() {
+		return 1;
+	}
+
+	@Override
 	public GameFile getGameFile(int number) {
 		return gamefileFromLang[number];
 	}
@@ -85,7 +90,7 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 			characterBank[line] = selectCharacterFromData(charaCol[line], charaRow[line]);
 			charaExpression[line] = Integer.valueOf(dataIntoLine[line][5]);
 			event[line] = String.valueOf(dataIntoLine[line][1]).replace("\"", "");
-			
+
 			sentence[line] = dataIntoLine[line][6].replace("\"", "");
 
 			// checking for next line
@@ -114,8 +119,8 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 			if (event[line].indexOf("null") == -1)
 				eventOnDisplay = HandlerEvent.getInstance().getEvent(eventName);
 
-			chatObject[line - gap] = new ChatObject(characterBank[line], charaExpression[line], sentence[line], sentence[line + 1],
-					eventOnDisplay);
+			chatObject[line - gap] = new ChatObject(characterBank[line], charaExpression[line], sentence[line],
+					sentence[line + 1], eventOnDisplay);
 			chatObject[line + 1 - gap] = null;
 		}
 

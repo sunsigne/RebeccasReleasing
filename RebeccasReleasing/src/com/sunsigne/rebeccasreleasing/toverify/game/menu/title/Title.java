@@ -36,6 +36,11 @@ public class Title extends Clickable {
 //		object.add();
 		HandlerObject.getInstance().addObject(object);
 	}
+	
+	@Override
+	public int getCameraLayer() {
+		return 0;
+	}
 
 	private void playMusic() {
 		STATE state = Conductor.getPreviousState();
@@ -66,15 +71,16 @@ public class Title extends Clickable {
 
 	@Override
 	public void render(Graphics g) {
-		gradientRender(g);
+//		gradientRender(g);
 
 	}
 
 	@Override
 	public void close() {
-		GameMouseInput.getInstance().clearClickable();
-		HandlerObject.getInstance().clearFront();
+		clearClickable();
+		HandlerObject.getInstance().clear(false, 0);
 	}
+
 
 
 }

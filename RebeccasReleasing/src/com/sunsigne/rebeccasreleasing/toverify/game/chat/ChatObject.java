@@ -34,7 +34,7 @@ public class ChatObject extends GameObject {
 	private int count, index;
 
 	public ChatObject(CharacterBank characterBank, int facialExpression, String sentence1, String sentence2, Event eventOnDisplay) {
-		super(false, Size.X0, 750, OBJECTID.DISPLAYER);
+		super(false, 1, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.eventOnDisplay = eventOnDisplay;
 		this.characterBank = characterBank;

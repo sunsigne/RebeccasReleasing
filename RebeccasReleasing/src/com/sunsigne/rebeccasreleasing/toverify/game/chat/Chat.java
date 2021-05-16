@@ -29,7 +29,7 @@ public class Chat extends ChatBuilder {
 
 	@Override
 	protected void displayChat() {
-		HandlerObject.getInstance().clearFront();
+		HandlerObject.getInstance().clear(false, 1);
 		HandlerObject.getInstance().addObject(World.gui);
 		HandlerObject.getInstance().addObject(chatObject[count]);
 		if (chatObject[count].getEventOnDisplay() != null)
@@ -53,7 +53,7 @@ public class Chat extends ChatBuilder {
 
 	@Override
 	public void close() {
-		GameMouseInput.getInstance().clearClickable();
+		clearClickable();
 		HandlerObject.getInstance().addObject(World.gui);
 		World.stunAllFoes();
 		World.killChat();

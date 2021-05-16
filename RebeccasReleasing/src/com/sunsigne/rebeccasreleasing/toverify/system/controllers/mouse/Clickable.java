@@ -5,7 +5,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
@@ -13,7 +15,7 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 
 	public Clickable(STATE state) {
 		super(state);
-		GameMouseInput.clickable = this;
+		GameMouseInput.clickable[getCameraLayer()] = this;
 		HandlerRender.getInstance().addObject(this);
 	}
 
@@ -43,4 +45,13 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 		g.setColor(new Color(64, 64, 64, alpha));
 		g.fillRect(0, 0, Size.WIDHT, Size.HEIGHT);
 	}
+	
+	protected void clearClickable() {
+		
+		HandlerRender.getInstance().removeObject(clickable[getCameraLayer()]);
+		clickable[getCameraLayer()] = null;
+		HandlerObject.getInstance().clear(false, getCameraLayer());
+		GameCursor.hideCursor(false);
+	}
+
 }

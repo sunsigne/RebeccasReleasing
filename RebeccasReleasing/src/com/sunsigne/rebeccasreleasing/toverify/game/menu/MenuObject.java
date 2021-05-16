@@ -14,7 +14,7 @@ import objects.GameObject;
 public abstract class MenuObject extends GameObject implements ITranslation {
 
 	public MenuObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, 0, 0, OBJECTID.MENU);
+		super(false, 0, 0, 0, OBJECTID.MENU);
 		languageMapping(chatMap, chatMaps);
 	}
 

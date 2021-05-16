@@ -22,7 +22,6 @@ import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 import objects.GameObject;
 import objects.characters.living.FoeObject;
-import objects.characters.living.PlayerObject;
 
 public class World implements IRender {
 
@@ -45,6 +44,11 @@ public class World implements IRender {
 	@Override
 	public boolean isCameraDependant() {
 		return true;
+	}
+
+	@Override
+	public int getCameraLayer() {
+		return 0;
 	}
 
 	public ILvl getILvl() {
@@ -86,7 +90,7 @@ public class World implements IRender {
 	public static void stunAllFoes() {
 
 		boolean isCameraDependant = true;
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, 0);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE)
 				((FoeObject) tempObject).stun();
@@ -109,9 +113,10 @@ public class World implements IRender {
 
 		Conductor.setState(STATE.LOADING);
 		HandlerEvent.getInstance().clear();
-		GameMouseInput.getInstance().clearClickable();
+		GameMouseInput.getInstance().clearAllClickable();
 		HandlerObject.getInstance().resetPlayer();
 		HandlerObject.getInstance().setPlayerExisting(false);
+		HandlerObject.getInstance().setVirusExisting(false);
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);
 		SoundTask.stopMusic();

@@ -15,7 +15,7 @@ import objects.characters.living.LivingObject;
 public class WC extends GameObject implements ICollision  {
 
 	public WC(int x, int y) {
-		super(true, x, y, OBJECTID.DECOR);
+		super(true, 0, x, y, OBJECTID.DECOR);
 		
 		h = Size.TILE / 4;
 		w = Size.TILE / 2;

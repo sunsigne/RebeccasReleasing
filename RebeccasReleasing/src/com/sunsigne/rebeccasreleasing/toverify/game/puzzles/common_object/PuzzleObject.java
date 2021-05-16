@@ -8,7 +8,7 @@ import objects.GameObject;
 public abstract class PuzzleObject extends GameObject {
 
 	public PuzzleObject(int x, int y, OBJECTID id) {
-		super(false, x, y, id);
+		super(false, 0, x, y, id);
 
 		w = Size.TILE_PUZZLE;
 		h = Size.TILE_PUZZLE;

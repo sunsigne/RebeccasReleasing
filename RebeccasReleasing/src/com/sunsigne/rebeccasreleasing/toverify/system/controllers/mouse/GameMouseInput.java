@@ -14,10 +14,9 @@ import objects.GameObject;
 public class GameMouseInput extends MouseAdapter {
 
 	private static GameMouseInput instance;
-	
-	protected static IClick clickable;
 
-	
+	protected static IClick[] clickable = new IClick[3];
+
 	public GameMouseInput() {
 
 	}
@@ -25,13 +24,12 @@ public class GameMouseInput extends MouseAdapter {
 	public GameMouseInput(STATE state) {
 		Conductor.setState(state);
 	}
-		
+
 	public static GameMouseInput getInstance() {
 		if (instance == null)
 			instance = new GameMouseInput();
 		return instance;
 	}
-
 
 	// state
 
@@ -40,8 +38,12 @@ public class GameMouseInput extends MouseAdapter {
 		int mx = e.getX();
 		int my = e.getY();
 
-		if (clickable != null)
-			clickable.mousePressed(mx, my);
+		for (int layer = 2; layer >= 0; layer--) {
+			if (clickable[layer] != null) {
+				clickable[layer].mousePressed(mx, my);
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -49,8 +51,12 @@ public class GameMouseInput extends MouseAdapter {
 		int mx = e.getX();
 		int my = e.getY();
 
-		if (clickable != null)
-			clickable.mouseReleased(mx, my);
+		for (int layer = 2; layer >= 0; layer--) {
+			if (clickable[layer] != null) {
+				clickable[layer].mouseReleased(mx, my);
+				break;
+			}
+		}
 	}
 
 	public static boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
@@ -71,15 +77,13 @@ public class GameMouseInput extends MouseAdapter {
 		return false;
 	}
 
-	/**
-	 * All current clickable object are erased
-	 */
-	public void clearClickable() {
+	public void clearAllClickable() {
 
-		HandlerRender.getInstance().removeObject(clickable);
+		for (int layer = 0; layer < 3; layer++) {
+			HandlerRender.getInstance().removeObject(clickable[layer]);
+			HandlerObject.getInstance().clear(false, layer);
+		}
 		clickable = null;
-		HandlerObject.getInstance().clearFront();
 		GameCursor.hideCursor(false);
 	}
-
 }

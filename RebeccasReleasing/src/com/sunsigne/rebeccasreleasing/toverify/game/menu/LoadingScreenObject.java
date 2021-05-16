@@ -19,7 +19,7 @@ public class LoadingScreenObject extends GameObject implements ITranslation {
 	private boolean running;
 
 	public LoadingScreenObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, 0, 0, OBJECTID.LOADING);
+		super(false, 2, 0, 0, OBJECTID.LOADING);
 		languageMapping(chatMap, chatMaps);
 	}
 

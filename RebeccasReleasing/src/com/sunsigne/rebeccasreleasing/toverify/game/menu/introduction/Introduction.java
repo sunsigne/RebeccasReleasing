@@ -26,6 +26,11 @@ public class Introduction extends Clickable {
 		HandlerObject.getInstance().addObject(new IntroductionObject(fr, eng, custom));
 
 	}
+	
+	@Override
+	public int getCameraLayer() {
+		return 0;
+	}
 
 	@Override
 	public void mousePressed(int mx, int my) {

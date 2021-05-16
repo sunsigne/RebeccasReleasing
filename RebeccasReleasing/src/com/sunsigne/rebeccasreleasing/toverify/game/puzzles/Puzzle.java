@@ -44,6 +44,11 @@ public abstract class Puzzle extends Clickable {
 
 	// state
 
+	@Override
+	public int getCameraLayer() {
+		return 0;
+	}
+	
 	public DIFFICULTY getDifficulty() {
 		return difficulty;
 	}
@@ -64,7 +69,7 @@ public abstract class Puzzle extends Clickable {
 
 	public void open() {
 
-		HandlerObject.getInstance().clearFront();
+		HandlerObject.getInstance().clear(false, 0);
 		createFrame();
 		randomGeneration();
 		createPuzzle();
@@ -84,8 +89,9 @@ public abstract class Puzzle extends Clickable {
 	@Override
 	public void close() {
 
-		GameMouseInput.getInstance().clearClickable();
+		clearClickable();
 		HandlerObject.getInstance().addObject(World.gui);
+		HandlerObject.getInstance().setVirusExisting(false);
 
 		if (puzzler != null)
 			puzzler.setSolved(winning);

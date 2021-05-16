@@ -27,7 +27,7 @@ public class GUI extends GameObject implements Characteristics {
 	private boolean isInvulnerable;
 
 	public GUI() {
-		super(false, 0, 0, OBJECTID.DISPLAYER);
+		super(false, 0, 0, 0, OBJECTID.DISPLAYER);
 
 		tools[Tool.KEY] = getToolFromFile(Tool.KEY);
 		tools[Tool.SWORD] = getToolFromFile(Tool.SWORD);

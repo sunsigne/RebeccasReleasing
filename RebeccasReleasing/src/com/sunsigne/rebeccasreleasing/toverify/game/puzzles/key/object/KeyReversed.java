@@ -62,7 +62,7 @@ public class KeyReversed extends KeyObject {
 	private void collision() {
 		if (doesExist()) {
 
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 			for (GameObject tempObject : list) {
 				if (tempObject.getId() == OBJECTID.WALL && getBounds().intersects(tempObject.getBounds())) {
 					HandlerObject.getInstance().getPlayer().puzzle.close();

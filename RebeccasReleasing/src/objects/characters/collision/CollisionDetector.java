@@ -20,10 +20,12 @@ public class CollisionDetector {
 	public void update() {
 
 		boolean isCameraDependant = true;
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
-		for (GameObject tempObject : list) {
-			if (ICollision.class.isInstance(tempObject))
-				((ICollision) tempObject).collision(living);
+		for (int cameraLayer = 0; cameraLayer < 3; cameraLayer++) {
+			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, cameraLayer);
+			for (GameObject tempObject : list) {
+				if (ICollision.class.isInstance(tempObject))
+					((ICollision) tempObject).collision(living);
+			}
 		}
 
 	}
@@ -63,7 +65,7 @@ public class CollisionDetector {
 	public void collidingBehaviorThinDecor(GameObject tempObject) {
 		if (living.isPlayer() && Game.isWallPassMode())
 			return;
-		
+
 		if (living.getBounds().intersects(tempObject.getBounds())) {
 			living.setY((tempObject.getY() + tempObject.getMiniY() - living.getHeight()));
 		}

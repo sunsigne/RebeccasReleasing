@@ -69,7 +69,7 @@ public class Card extends CardObject {
 
 		boolean flag = false;
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list) {
 			if (!flag && tempObject.getId() == OBJECTID.P_CARDFOLDER) {
 				CardFolder folder = (CardFolder) tempObject;

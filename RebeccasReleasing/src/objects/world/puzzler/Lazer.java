@@ -29,7 +29,7 @@ public class Lazer extends GameObject implements IPuzzler {
 	private boolean horizontal;
 	
 	public Lazer(int x, int y, int facing, boolean solved, DIFFICULTY difficulty) {
-		super(true, x, y, OBJECTID.LAZER);
+		super(true, 0, x, y, OBJECTID.LAZER);
 
 		this.difficulty = difficulty;
 		this.solved = solved;
@@ -114,7 +114,7 @@ public class Lazer extends GameObject implements IPuzzler {
 	}
 	
 	private GameObject getObjectAtPos(int x, int y) {
-		return HandlerObject.getInstance().getObjectAtPos(x, y);
+		return HandlerObject.getInstance().getObjectAtPos(getCameraLayer(), x, y);
 	}
 	
 	@Override

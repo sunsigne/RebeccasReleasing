@@ -13,9 +13,20 @@ import objects.characters.living.PlayerObject;
 public class HandlerObject implements ITick, IRender {
 
 	public HandlerObject() {
+
+		for (int i = 0; i < 3; i++) {
+			handler_object_list[0][i] = new LinkedList<GameObject>();
+			handler_object_list[1][i] = new LinkedList<GameObject>();
+		}
+
 		HandlerTick.getInstance().addObject(this);
-		HandlerRender.getInstance().addObject(true, this);
-		HandlerRender.getInstance().addObject(false, this);
+		for (int i = 0; i < 3; i++) {
+			HandlerRender.getInstance().addObject(true, i, this);
+			HandlerRender.getInstance().addObject(false, i, this);
+		}
+
+//		HandlerRender.getInstance().addObject(true, this);
+//		HandlerRender.getInstance().addObject(false, this);
 	}
 
 	////////// SIGNELTON ////////////
@@ -30,49 +41,44 @@ public class HandlerObject implements ITick, IRender {
 
 	////////// MAP OR LIST ////////////
 
-	private LinkedList<GameObject> handler_object_camera_dependant_list = new LinkedList<GameObject>();
-	private LinkedList<GameObject> handler_object_camera_independant_list = new LinkedList<GameObject>();
+	@SuppressWarnings("unchecked")
+	private static LinkedList<GameObject>[][] handler_object_list = new LinkedList[2][3]; // - cameraDependency - layer
+	// layer 0 - hp&tools & puzzle
+	// layer 1 - dialogues
+	// layer 2 - menu
 
-	public LinkedList<GameObject> getList(boolean cameraDependant) {
-		return cameraDependant ? handler_object_camera_dependant_list : handler_object_camera_independant_list;
-	}
-
-	public GameObject getObjectAtPos(int x, int y) {
-		for (GameObject tempObject : handler_object_camera_dependant_list) {
-			if (tempObject.getX() == x && tempObject.getY() == y) {
-				return tempObject;
-			}
-		}
-		return null;
+	public LinkedList<GameObject> getList(boolean cameraDependant, int layer) {
+		int cameraDependency = cameraDependant ? 1 : 0;
+		return handler_object_list[cameraDependency][layer];
 	}
 
 	public void addObject(GameObject object) {
 		if (object != null) {
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(object.isCameraDependant());
+			LinkedList<GameObject> list = getList(object.isCameraDependant(), object.getCameraLayer());
 			list.add(object);
 		}
 	}
 
 	public void removeObject(GameObject object) {
 		if (object != null) {
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(object.isCameraDependant());
+			LinkedList<GameObject> list = getList(object.isCameraDependant(), object.getCameraLayer());
 			list.remove(object);
 		}
 	}
 
-	public void clearFront() {
-		setVirusExisting(false);
-		this.handler_object_camera_independant_list.clear();
-	}
-
-	public void clearBack() {
-		setPlayerExisting(false);
-		this.handler_object_camera_dependant_list.clear();
+	public void clear(boolean cameraDependant, int cameraLayer) {
+		getList(cameraDependant, cameraLayer).clear();
+		if (!cameraDependant && cameraLayer == 1)
+			setVirusExisting(false);
 	}
 
 	public void clearAll() {
-		clearFront();
-		clearBack();
+		setVirusExisting(false);
+		setPlayerExisting(false);
+		for (int i = 0; i < 3; i++) {
+			handler_object_list[0][i].clear();
+			handler_object_list[1][i].clear();
+		}
 	}
 
 	////////// STATE ////////////
@@ -83,6 +89,11 @@ public class HandlerObject implements ITick, IRender {
 	@Override
 	public boolean isCameraDependant() {
 		return HandlerRender.getInstance().isCameraDependant();
+	}
+
+	@Override
+	public int getCameraLayer() {
+		return HandlerRender.getInstance().getCameraLayer();
 	}
 
 	public boolean isVirusExisting() {
@@ -109,21 +120,37 @@ public class HandlerObject implements ITick, IRender {
 		player = new PlayerObject(0, 0);
 	}
 
+	public GameObject getObjectAtPos(int cameraLayer, int x, int y) {
+		for (GameObject tempObject : handler_object_list[0][cameraLayer]) {
+			if (tempObject.getX() == x && tempObject.getY() == y) {
+				return tempObject;
+			}
+		}
+		return null;
+	}
+
 	////////// BEHAVIOR ////////////
 
 	@Override
 	public void tick() {
 
-		for (GameObject tempObject : handler_object_camera_dependant_list)
-			tempObject.tick();
-		for (GameObject tempObject : handler_object_camera_independant_list)
-			tempObject.tick();
+		LinkedList<GameObject> list = null;
+		for (int cameraLayer = 0; cameraLayer < 3; cameraLayer++) {
+
+			list = getList(true, cameraLayer);
+			for (GameObject tempObject : list)
+				tempObject.tick();
+
+			list = getList(false, cameraLayer);
+			for (GameObject tempObject : list)
+				tempObject.tick();
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = getList(isCameraDependant(), getCameraLayer());
 
 		for (GameObject tempObject : list)
 			tempObject.render(g);

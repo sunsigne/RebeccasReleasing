@@ -33,6 +33,11 @@ public class Options extends Clickable {
 //		object.add();
 		HandlerObject.getInstance().addObject(object);
 	}
+	
+	@Override
+	public int getCameraLayer() {
+		return 0;
+	}
 
 	public static void loadSavedSettings() {
 		language = getLanguageSaved();
@@ -101,9 +106,9 @@ public class Options extends Clickable {
 
 	@Override
 	public void close() {
-		GameMouseInput.getInstance().clearClickable();
+		clearClickable();
 //		object.remove();
-		HandlerObject.getInstance().clearFront();
+		HandlerObject.getInstance().clear(false, 0);
 		new Title();
 	}
 

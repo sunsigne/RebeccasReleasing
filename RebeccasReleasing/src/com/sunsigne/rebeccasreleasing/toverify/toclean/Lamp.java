@@ -13,7 +13,7 @@ import objects.characters.living.LivingObject;
 public class Lamp extends GameObject implements ICollision {
 
 	public Lamp(int x, int y) {
-		super(true, x, y, OBJECTID.DECOR);
+		super(true, 0, x, y, OBJECTID.DECOR);
 	}
 
 	// behavior

@@ -55,7 +55,7 @@ public class WorldLvlTest implements ILvl {
 	public static void makeAllFoesStatue() {
 
 		boolean isCameraDependant = true;
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant);
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, 0);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE) {
 				FoeObject tempFoe = (FoeObject) tempObject;

@@ -23,7 +23,7 @@ public class Stairs extends GameObject implements ICollision, IInteraction {
 	private int stairId;
 
 	public Stairs(int x, int y, boolean goesUp, int stairId) {
-		super(true, x, y, OBJECTID.STAIRS);
+		super(true, 0, x, y, OBJECTID.STAIRS);
 
 		this.goesUp = goesUp;
 		this.stairId = stairId;
@@ -48,7 +48,7 @@ public class Stairs extends GameObject implements ICollision, IInteraction {
 	}
 
 	private void connectionToDualStairs() {
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.STAIRS)
 			{

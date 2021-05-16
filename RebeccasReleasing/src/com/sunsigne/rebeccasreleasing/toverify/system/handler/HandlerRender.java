@@ -3,12 +3,14 @@ package com.sunsigne.rebeccasreleasing.toverify.system.handler;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-
-import objects.GameObject;
-
 public class HandlerRender implements IRender {
+
+	public HandlerRender() {
+		for (int i = 0; i < 3; i++) {
+			handler_render_list[0][i] = new LinkedList<IRender>();
+			handler_render_list[1][i] = new LinkedList<IRender>();
+		}
+	}
 
 	////////// SIGNELTON ////////////
 
@@ -22,50 +24,57 @@ public class HandlerRender implements IRender {
 
 	////////// MAP OR LIST ////////////
 
-	private LinkedList<IRender> handler_render_camera_dependant_list = new LinkedList<>();
-	private LinkedList<IRender> handler_render_camera_independant_list = new LinkedList<>();
+	@SuppressWarnings("unchecked")
+	private static LinkedList<IRender>[][] handler_render_list = new LinkedList[2][3]; // - cameraDependency -
+																						// cameraLayer
+	// layer 0 - hp&tools & puzzle
+	// layer 1 - dialogues
+	// layer 2 - menu
 
-	private LinkedList<IRender> getList(boolean cameraDependant) {
-		return cameraDependant ? handler_render_camera_dependant_list : handler_render_camera_independant_list;
+	private LinkedList<IRender> getList(boolean cameraDependant, int cameraLayer) {
+		int cameraDependency = cameraDependant ? 1 : 0;
+		return handler_render_list[cameraDependency][cameraLayer];
 	}
 
 	public void addObject(IRender renderable) {
-		addObject(renderable.isCameraDependant(), renderable);
+		if (renderable != null)
+			addObject(renderable.isCameraDependant(), renderable.getCameraLayer(), renderable);
 	}
 
-	protected void addObject(boolean cameraDependant, IRender renderable) {
+	protected void addObject(boolean cameraDependant, int cameraLayer, IRender renderable) {
 		if (renderable != null) {
-			LinkedList<IRender> list = HandlerRender.getInstance().getList(cameraDependant);
+			LinkedList<IRender> list = getList(cameraDependant, cameraLayer);
 			list.add(renderable);
 		}
 	}
 
 	public void removeObject(IRender renderable) {
+		if (renderable != null)
+			removeObject(renderable.isCameraDependant(), renderable.getCameraLayer(), renderable);
+	}
+
+	protected void removeObject(boolean cameraDependant, int cameraLayer, IRender renderable) {
 		if (renderable != null) {
-			LinkedList<IRender> list = HandlerRender.getInstance().getList(renderable.isCameraDependant());
+			LinkedList<IRender> list = getList(cameraDependant, cameraLayer);
 			list.remove(renderable);
 		}
 	}
 
-	public void clearFront() {
-		HandlerObject.getInstance().setVirusExisting(false);
-		this.handler_render_camera_independant_list.clear();
-	}
-
-	public void clearBack() {
-		HandlerObject.getInstance().setPlayerExisting(false);
-		this.handler_render_camera_dependant_list.clear();
+	public void clear(boolean cameraDependant, int cameraLayer) {
+		getList(cameraDependant, cameraLayer).clear();
 	}
 
 	public void clearAll() {
-		clearFront();
-		clearBack();
+		for (int i = 0; i < 3; i++) {
+			handler_render_list[0][i].clear();
+			handler_render_list[1][i].clear();
+		}
 	}
 
 	////////// STATE ////////////
 
 	private boolean cameraDependant;
-	private boolean playerPaintedAtTheEnd;
+	private int cameraLayer;
 
 	@Override
 	public boolean isCameraDependant() {
@@ -75,6 +84,17 @@ public class HandlerRender implements IRender {
 	public void setCameraDependant(boolean cameraDependant) {
 		this.cameraDependant = cameraDependant;
 	}
+
+	@Override
+	public int getCameraLayer() {
+		return cameraLayer;
+	}
+
+	public void setCameraLayer(int cameraLayer) {
+		this.cameraLayer = cameraLayer;
+	}
+
+	private boolean playerPaintedAtTheEnd;
 
 	public boolean isPlayerPaintedAtTheEnd() {
 		return playerPaintedAtTheEnd;
@@ -86,32 +106,19 @@ public class HandlerRender implements IRender {
 
 	////////// BEHAVIOR ////////////
 
-	@Override
-	public void render(Graphics g) {
-		LinkedList<IRender> list = HandlerRender.getInstance().getList(cameraDependant);
-		int size = list.size();
-		for (int i = 0; i < size; i++) {
-			// size - i - 1 --> the last object is render first, then the previous one, and
-			// so on.
-			IRender tempRender = list.get(size - i - 1);
-			tempRender.render(g);
-		}
-	}
-/*	
+	// if I ever need to reversed the order of rendering, use the following loop :
+	// IRender tempRender = list.get(size - i - 1);
 	@Override
 	public void render(Graphics g) {
 
-		LinkedList<IRender> list = HandlerRender.getInstance().getList(cameraDependant);		
+		LinkedList<IRender> list = getList(cameraDependant, cameraLayer);
 
 		for (IRender tempRender : list)
 			tempRender.render(g);
-/*
-		if (Game.isDebugMode()) {
-			for (IRender tempRender : list)
-				tempObject.drawHitbox(g);
-		}
+//		if (Game.isDebugMode()) {
+//			for (IRender tempRender : list)
+//				tempRender.drawHitbox(g);
+//		}
 	}
-*/
-
 
 }

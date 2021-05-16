@@ -19,7 +19,7 @@ public abstract class TimerObject extends GameObject {
 	protected int timeinSec;
 
 	public TimerObject(int timeinSec, TimerListener listener) {
-		super(false, Size.WIDHT - 230, -5, OBJECTID.TIMER);
+		super(false, 0, Size.WIDHT - 230, -5, OBJECTID.TIMER);
 		this.listener = listener;
 		this.timeinSec = timeinSec;
 		ticksbySec = 60;

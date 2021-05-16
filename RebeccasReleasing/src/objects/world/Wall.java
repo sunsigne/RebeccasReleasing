@@ -16,7 +16,7 @@ public class Wall extends GameObject implements ICollision, IFacing {
 	private FACING facing;
 
 	public Wall(int x, int y, FACING facing) {
-		super(true, x, y, OBJECTID.WALL);
+		super(true, 0, x, y, OBJECTID.WALL);
 		if (facing != null)
 			setFacing(facing);
 		else

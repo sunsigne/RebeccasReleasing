@@ -33,7 +33,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 	protected int pushTime = 10;
 
 	public LivingObject(int x, int y, OBJECTID objectid) {
-		super(true, x, y, objectid);
+		super(true, 0, x, y, objectid);
 
 		watching[FACING.DOWN.getNum()] = true;
 		facing = FACING.DOWN;

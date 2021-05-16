@@ -214,24 +214,32 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, Size.WIDHT, Size.HEIGHT);
 
-		renderLayer(g, true);
-		renderLayer(g, false);
+		renderDependency(g, true);
+		renderDependency(g, false);
 
 		g.dispose();
 		bs.show();
 
 	}
 
-	private void renderLayer(Graphics g, boolean cameraDependant) {
+	private void renderDependency(Graphics g, boolean cameraDependant) {
 		Graphics2D g2d = (Graphics2D) g;
 		if (cameraDependant)
 			g2d.translate(cam.getX(), cam.getY());
 		else
 			g2d.translate(-cam.getX(), -cam.getY());
 
-		HandlerRender.getInstance().render(g);
+		renderLayers(g);
 		HandlerRender.getInstance().setCameraDependant(!cameraDependant);
 		refreshPlayerRender(g, cameraDependant);
+	}
+
+	private void renderLayers(Graphics g) {
+
+		for (int layer = 0; layer < 3; layer++) {
+			HandlerRender.getInstance().setCameraLayer(layer);
+			HandlerRender.getInstance().render(g);
+		}
 	}
 
 	private void refreshPlayerRender(Graphics g, boolean cameraDependant) {

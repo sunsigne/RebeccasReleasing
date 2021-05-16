@@ -198,7 +198,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		currentDifficulty = difficulty;
 		int count = 0;
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject != this && tempObject.getId() == OBJECTID.FOE) {
 				float distance = (float) Math

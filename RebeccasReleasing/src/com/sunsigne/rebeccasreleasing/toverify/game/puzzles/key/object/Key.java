@@ -48,7 +48,7 @@ public class Key extends KeyObject {
 	
 	private void collision() {
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.P_LOCK && getBounds().intersects(tempObject.getBounds())) {
 				HandlerObject.getInstance().getPlayer().puzzle.setWinning(true);

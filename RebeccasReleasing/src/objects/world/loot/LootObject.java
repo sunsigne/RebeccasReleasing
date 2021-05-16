@@ -22,7 +22,7 @@ public abstract class LootObject extends GameObject implements ICollision {
 	private int time_before_lootable = 40;
 
 	public LootObject(int x, int y, boolean fake) {
-		super(true, x, y, OBJECTID.LOOT);
+		super(true, 0, x, y, OBJECTID.LOOT);
 		this.fake = fake;
 	}
 

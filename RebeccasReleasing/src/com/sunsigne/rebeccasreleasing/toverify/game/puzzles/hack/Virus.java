@@ -84,7 +84,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 	public void doAction() {
 
 		try {
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant());
+			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
 			for (GameObject tempObject : list) {
 
 				if (tempObject.getId() == OBJECTID.PROCESSOR) {

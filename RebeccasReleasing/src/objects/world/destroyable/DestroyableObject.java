@@ -30,7 +30,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	private LootObject loot;
 
 	public DestroyableObject(int x, int y, FACING facing, OBJECTID id) {
-		super(true, x, y, id);
+		super(true, 0, x, y, id);
 
 		this.facing = facing;
 		this.destroyable = true;

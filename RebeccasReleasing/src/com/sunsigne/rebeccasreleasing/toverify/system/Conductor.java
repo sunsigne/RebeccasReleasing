@@ -7,10 +7,7 @@ import com.sunsigne.rebeccasreleasing.toverify.game.menu.LoadingScreenObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.introduction.Introduction;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.title.Title;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.ILvl;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.WorldLvl02;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.WorldLvlTest;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.*;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
@@ -56,7 +53,7 @@ public class Conductor {
 	public static void start() {
 		Conductor.setState(STATE.LOADING);
 		Game.getInstance().start();
-		new DualChecker().start();
+//		new DualChecker().start();
 		Game.getInstance().forceLoop();
 		if (Game.skipIntro)
 			new Title();
@@ -65,7 +62,7 @@ public class Conductor {
 	}
 
 	public static void closeIntroduction() {
-		GameMouseInput.getInstance().clearClickable();
+		GameMouseInput.getInstance().clearAllClickable();
 		new Title();
 	}
 
@@ -83,7 +80,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl02();
+		ILvl level = new WorldLvl01();
 		World.currentWorld = new World(level);
 	}
 

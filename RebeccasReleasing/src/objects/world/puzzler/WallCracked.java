@@ -23,7 +23,7 @@ public class WallCracked extends GameObject implements IPuzzler {
 	private boolean solved;
 
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {
-		super(true, x, y, OBJECTID.WALLCRACKED);
+		super(true, 0, x, y, OBJECTID.WALLCRACKED);
 
 		this.difficulty = difficulty;
 	}

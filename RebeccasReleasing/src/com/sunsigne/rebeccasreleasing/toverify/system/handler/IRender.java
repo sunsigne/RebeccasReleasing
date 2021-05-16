@@ -8,6 +8,8 @@ public interface IRender {
 
 	boolean isCameraDependant();
 
+	int getCameraLayer();
+	
 	/**
 	 * WARNING ! To actually call this method, the object whose the class implements
 	 * IRender must, somehow, be add to one of two lists in HandlerRender class
