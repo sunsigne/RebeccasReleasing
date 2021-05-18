@@ -63,7 +63,6 @@ public class PuzzleHack extends Puzzle {
 		HandlerObject.getInstance().addObject(desktop);
 		virus = new Virus();
 		HandlerObject.getInstance().addObject(virus);
-		HandlerObject.getInstance().setVirusExisting(true);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 
 class IntroductionVladimirObject extends CommunIntroductionObject implements IAnimation {
 
@@ -73,10 +73,10 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 	}
 
 	private void runAnimations() {
-		runAnimation(FACING.LEFT.getNum(), MOOD.UNHAPPY.getNum());
-		runAnimation(FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
-		runAnimation(FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
-		runAnimation(FACING.RIGHT.getNum(), MOOD.ANGRY.getNum());
+		runAnimation(DIRECTION.LEFT.getNum(), MOOD.UNHAPPY.getNum());
+		runAnimation(DIRECTION.LEFT.getNum(), MOOD.ANGRY.getNum());
+		runAnimation(DIRECTION.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
+		runAnimation(DIRECTION.RIGHT.getNum(), MOOD.ANGRY.getNum());
 	}
 
 	private void runPhase() {
@@ -121,39 +121,39 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 		case 13:
 		case 14:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.UNHAPPY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.LEFT.getNum(), MOOD.UNHAPPY.getNum());
 			break;
 		case 15:
 		case 16:
-			drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.LEFT.getNum(), MOOD.ANGRY.getNum());
 			break;
 		case 17:
 		case 18:
 		case 19:
 		case 20:
 			if (jumpCount < 2)
-				g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, FACING.LEFT.getNum(), 12), x, y, w, h, null);
+				g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, DIRECTION.LEFT.getNum(), 12), x, y, w, h, null);
 			else {
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-				drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
+				drawAnimation(g, x, y, w, h, DIRECTION.LEFT.getNum(), MOOD.ANGRY.getNum());
 			}
 			break;
 		case 22:
 		case 23:
 		case 24:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.LEFT.getNum(), MOOD.ANGRY.getNum());
 			break;
 		case 25:
 		case 26:
-			g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, FACING.LEFT.getNum(), 13), x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.vladimir, DIRECTION.LEFT.getNum(), 13), x, y, w, h, null);
 			break;
 		case 27:
 		case 28:
 		case 29:
-			drawAnimation(g, x, y, w, h, FACING.LEFT.getNum(), MOOD.ANGRY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.LEFT.getNum(), MOOD.ANGRY.getNum());
 			break;
-		case 30: drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.ANGRY.getNum());
+		case 30: drawAnimation(g, x, y, w, h, DIRECTION.RIGHT.getNum(), MOOD.ANGRY.getNum());
 			break;
 			
 		}

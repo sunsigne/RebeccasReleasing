@@ -5,27 +5,27 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
-import objects.IFacing;
-import objects.characters.collision.CollisionDetector;
+import objects.Facing.DIRECTION;
 
-public abstract class LivingObject extends GameObject implements IAnimation, IFacing {
+public abstract class LivingObject extends GameObject implements IAnimation, ICollisionDetection {
 
 	public Puzzle puzzle;
-	private CollisionDetector collisionDetector;
 
-	private FACING facing;
+	private DIRECTION facing;
 	protected boolean[] watching = new boolean[4];
 	private boolean flagX, flagY;
 
@@ -33,37 +33,28 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 	protected int pushTime = 10;
 
 	public LivingObject(int x, int y, OBJECTID objectid) {
-		super(true, 0, x, y, objectid);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, objectid);
 
-		watching[FACING.DOWN.getNum()] = true;
-		facing = FACING.DOWN;
-		collisionDetector = new CollisionDetector(this);
+		watching[DIRECTION.DOWN.getNum()] = true;
+		facing = DIRECTION.DOWN;
 	}
 
 	// state
 
-	@Override
-	public FACING getFacing() {
+
+	public DIRECTION getFacing() {
 		return facing;
 	}
 
-	@Override
-	public void setFacing(FACING facing) {
+
+	public void setFacing(DIRECTION facing) {
 		resetWatchingDirection();
 		watching[facing.getNum()] = true;
 		this.facing = facing;
 	}
 
-	public CollisionDetector getCollisionDetector() {
-		return collisionDetector;
-	}
-
 	public boolean isPushed() {
 		return isPushed;
-	}
-
-	public boolean isPlayer() {
-		return getId() == OBJECTID.PLAYER;
 	}
 
 	public boolean isPlayerActive() {
@@ -91,7 +82,6 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 			velocity();
 			pushTimer();
 		}
-		collisionDetector.update();
 	}
 
 	protected void pushTimer() {
@@ -107,10 +97,10 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 	}
 
 	private void resetWatchingDirection() {
-		watching[FACING.LEFT.getNum()] = false;
-		watching[FACING.RIGHT.getNum()] = false;
-		watching[FACING.UP.getNum()] = false;
-		watching[FACING.DOWN.getNum()] = false;
+		watching[DIRECTION.LEFT.getNum()] = false;
+		watching[DIRECTION.RIGHT.getNum()] = false;
+		watching[DIRECTION.UP.getNum()] = false;
+		watching[DIRECTION.DOWN.getNum()] = false;
 	}
 
 	// hard to complexe, but make the animation fluid and intuitive :
@@ -125,27 +115,27 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 
 		if (!flagY && velX < 0) {
 			resetWatchingDirection();
-			watching[FACING.LEFT.getNum()] = true;
-			facing = FACING.LEFT;
+			watching[DIRECTION.LEFT.getNum()] = true;
+			facing = DIRECTION.LEFT;
 			flagX = true;
 		}
 		if (!flagY && velX > 0) {
 			resetWatchingDirection();
-			watching[FACING.RIGHT.getNum()] = true;
-			facing = FACING.RIGHT;
+			watching[DIRECTION.RIGHT.getNum()] = true;
+			facing = DIRECTION.RIGHT;
 			flagX = true;
 		}
 
 		if (!flagX && velY < 0) {
 			resetWatchingDirection();
-			watching[FACING.UP.getNum()] = true;
-			facing = FACING.UP;
+			watching[DIRECTION.UP.getNum()] = true;
+			facing = DIRECTION.UP;
 			flagY = true;
 		}
 		if (!flagX && velY > 0) {
 			resetWatchingDirection();
-			watching[FACING.DOWN.getNum()] = true;
-			facing = FACING.DOWN;
+			watching[DIRECTION.DOWN.getNum()] = true;
+			facing = DIRECTION.DOWN;
 			flagY = true;
 		}
 
@@ -157,13 +147,13 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 			SoundTask.playSound(SoundBank.getSound(SoundBank.push));
 			if (isPlayer())
 				World.gui.removeHp();
-			if (direction == FACING.LEFT.getNum())
+			if (direction == DIRECTION.LEFT.getNum())
 				velX = -Size.TILE / 5;
-			if (direction == FACING.RIGHT.getNum())
+			if (direction == DIRECTION.RIGHT.getNum())
 				velX = Size.TILE / 5;
-			if (direction == FACING.UP.getNum())
+			if (direction == DIRECTION.UP.getNum())
 				velY = -Size.TILE / 5;
-			if (direction == FACING.DOWN.getNum())
+			if (direction == DIRECTION.DOWN.getNum())
 				velY = Size.TILE / 5;
 		} else
 			setMotionless();
@@ -189,8 +179,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 
 	// collision
 
-	@Override
-	public Rectangle getBounds() {
+	public Rectangle getBoundsDown() {
 		return new Rectangle(x + w / 4, y + h / 2, w / 2, h / 2);
 	}
 
@@ -204,5 +193,14 @@ public abstract class LivingObject extends GameObject implements IAnimation, IFa
 
 	public Rectangle getBoundsRight() {
 		return new Rectangle(x + 5 * w / 6, y + h / 8, w / 6, 6 * w / 8);
+	}
+	
+	////////// COLLISION ////////////
+	
+	private CollisionDetector collisionDetector = new CollisionDetector(this);
+
+	@Override
+	public CollisionDetector getCollisionDetector() {
+		return collisionDetector;
 	}
 }

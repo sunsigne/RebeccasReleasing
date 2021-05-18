@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
@@ -16,12 +18,12 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
-import objects.GameObject;
+import objects.Facing.DIRECTION;
 import objects.world.loot.ILoot;
 import objects.world.loot.LootObject;
 import objects.world.puzzler.IPuzzler;
 
-public class FoeObject extends LivingObject implements IPuzzler, ILoot {
+public class FoeObject extends LivingObject implements IPuzzler, ILoot, ICollisionReaction {
 
 	public static final int SPEED = 4 * Size.TILE / 64;
 	public static final int SIGHT_RANGE = 400 * Size.TILE / 64;
@@ -165,7 +167,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		this.statue = statue;
 		if (statue) {
 			setMotionless();
-			setFacing(FACING.DOWN);
+			setFacing(DIRECTION.DOWN);
 			setDifficulty(difficulty);
 		}
 	}
@@ -184,7 +186,6 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		}
 	}
 
-	@Todo("create a pathfinding")
 	private void movingtoPlayer() {
 		float diffX = x - HandlerObject.getInstance().getPlayer().getX();
 		float diffY = y - HandlerObject.getInstance().getPlayer().getY();
@@ -198,7 +199,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 		currentDifficulty = difficulty;
 		int count = 0;
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject != this && tempObject.getId() == OBJECTID.FOE) {
 				float distance = (float) Math
@@ -231,7 +232,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	}
 	
 	private void drawLootable(Graphics g) {
-		if (Game.isDebugMode()) {
+		if (Game.getDebugMode().getState()) {
 			if (loot != null)
 				loot.render(g);
 		}
@@ -253,41 +254,25 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 
 	// collision
 
-	public Rectangle getBigBounds() {
-		return new Rectangle(x, y, Size.TILE, Size.TILE);
-	}
-
 	@Override
-	public void collision(LivingObject living) {
+	public void collidingReaction(GameObject collidingObject) {
 
-		if (living.isPlayer()) {
+		if (collidingObject.isPlayer()) {
 			if (statue)
-				living.getCollisionDetector().collidingBehaviorBetweenFoes(living, this);
+				blockPass(collidingObject, this);
 			else {
 				if (!stunned) {
-					if (touchingPlayer(living) && HandlerObject.getInstance().getPlayer().isPlayerActive()) {
-						if (hasToolLvl(currentDifficulty, Tool.SWORD) || Game.isMultiToolMode())
-							updatePuzzler(living);
+					if (HandlerObject.getInstance().getPlayer().isPlayerActive()) {
+						if (hasToolLvl(currentDifficulty, Tool.SWORD))
+							updatePuzzler(collidingObject);
 						else
 							pushPlayer();
 					}
 				}
 			}
 
-		} else if (living != this)
-			living.getCollisionDetector().collidingBehaviorBetweenFoes(living, this);
-	}
-
-	private boolean touchingPlayer(LivingObject living) {
-		if (living.getBounds().intersects(getBigBounds()))
-			return true;
-		if (living.getBoundsTop().intersects(getBigBounds()))
-			return true;
-		if (living.getBoundsLeft().intersects(getBigBounds()))
-			return true;
-		if (living.getBoundsRight().intersects(getBigBounds()))
-			return true;
-		return false;
+		} else if (collidingObject != this)
+			blockPass(collidingObject, this);
 	}
 
 	private void pushPlayer() {
@@ -302,5 +287,6 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot {
 	public Puzzle getPuzzle() {
 		return new PuzzleCard(this, multipleFoe, currentDifficulty);
 	}
+
 
 }

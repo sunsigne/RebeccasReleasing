@@ -5,15 +5,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
-import objects.GameObject;
-
-@Todo("creer une class à part qui s'occuperait de tout la partie \"redtool\" & quand la clef apparait, on a envie de la prendre ...")
 public class GUI extends GameObject implements Characteristics {
 
 	private Tool[] tools = new Tool[5];
@@ -27,7 +25,7 @@ public class GUI extends GameObject implements Characteristics {
 	private boolean isInvulnerable;
 
 	public GUI() {
-		super(false, 0, 0, 0, OBJECTID.DISPLAYER);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DISPLAYER);
 
 		tools[Tool.KEY] = getToolFromFile(Tool.KEY);
 		tools[Tool.SWORD] = getToolFromFile(Tool.SWORD);
@@ -170,7 +168,6 @@ public class GUI extends GameObject implements Characteristics {
 		g.drawString("" + points, x + Size.WIDHT / 2 - 50, y + 90);
 	}
 
-	@Todo("le systeme doit être plus intelligent : il doit dessiner les outils sans laisser d'espace pour les outils de lvl 0")
 	private void drawTools(Graphics g) {
 
 		int size = tools.length;
@@ -178,8 +175,8 @@ public class GUI extends GameObject implements Characteristics {
 		int currentToolMaxLvl = 0;
 
 		for (int i = 0; i < size; i++) {
-			currentToolLvl = Game.isMultiToolMode() ? 5 : getTool(i).getCurrentLvl();
-			currentToolMaxLvl = Game.isMultiToolMode() ? 5 : getTool(i).getMaxLvl();
+			currentToolLvl = Game.getMultiToolMode().getState() ? 5 : getTool(i).getCurrentLvl();
+			currentToolMaxLvl = Game.getMultiToolMode().getState() ? 5 : getTool(i).getMaxLvl();
 
 			if (currentToolLvl != 0) {
 				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
@@ -196,7 +193,6 @@ public class GUI extends GameObject implements Characteristics {
 		return null;
 	}
 
-	@Todo("put a verification : if the player is suddently tasking, he should no longer be invulnerable")
 	public void setInvulnerable(boolean invulnerable) {
 	this.isInvulnerable=invulnerable;invulnerabitilyTime=invulnerable?30:0;
 

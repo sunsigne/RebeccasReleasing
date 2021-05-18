@@ -2,12 +2,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object;
 
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class Key extends KeyObject {
 
@@ -48,7 +47,7 @@ public class Key extends KeyObject {
 	
 	private void collision() {
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.P_LOCK && getBounds().intersects(tempObject.getBounds())) {
 				HandlerObject.getInstance().getPlayer().puzzle.setWinning(true);

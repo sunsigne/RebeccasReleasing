@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 import objects.characters.living.PlayerObject;
 import objects.world.IInteraction;
 
@@ -47,13 +47,13 @@ public class GameKeyboardInput extends KeyAdapter {
 	private void cheatKeyAction(int key) {
 
 		if (key == KeyEvent.VK_F3)
-			Game.switchDebugMode();
+			Game.getDebugMode().cycle();
 
 		if (key == KeyEvent.VK_F4)
-			Game.switchWallPassMode();
+			Game.getWallPassMode().cycle();
 
 		if (key == KeyEvent.VK_F5)
-			Game.switchMultiToolMode();
+			Game.getMultiToolMode().cycle();
 
 		if (key == KeyEvent.VK_R) {
 			if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE || Conductor.getState() == STATE.CHATTING)
@@ -89,13 +89,13 @@ public class GameKeyboardInput extends KeyAdapter {
 	private void directionKeyAction(int key, boolean pressed) {
 
 		if (leftKey(key))
-			keyPressed[FACING.LEFT.getNum()] = pressed;
+			keyPressed[DIRECTION.LEFT.getNum()] = pressed;
 		if (rightKey(key))
-			keyPressed[FACING.RIGHT.getNum()] = pressed;
+			keyPressed[DIRECTION.RIGHT.getNum()] = pressed;
 		if (upKey(key))
-			keyPressed[FACING.UP.getNum()] = pressed;
+			keyPressed[DIRECTION.UP.getNum()] = pressed;
 		if (downKey(key))
-			keyPressed[FACING.DOWN.getNum()] = pressed;
+			keyPressed[DIRECTION.DOWN.getNum()] = pressed;
 
 		if (playerIsMovable()) {
 			moveplayerbyY();
@@ -105,25 +105,25 @@ public class GameKeyboardInput extends KeyAdapter {
 
 	private void moveplayerbyX() {
 
-		if (keyPressed[FACING.LEFT.getNum()] && !keyPressed[FACING.RIGHT.getNum()])
+		if (keyPressed[DIRECTION.LEFT.getNum()] && !keyPressed[DIRECTION.RIGHT.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelX(-PlayerObject.SPEED);
-		else if (keyPressed[FACING.LEFT.getNum()] && keyPressed[FACING.RIGHT.getNum()])
+		else if (keyPressed[DIRECTION.LEFT.getNum()] && keyPressed[DIRECTION.RIGHT.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelX(0);
-		else if (!keyPressed[FACING.LEFT.getNum()] && keyPressed[FACING.RIGHT.getNum()])
+		else if (!keyPressed[DIRECTION.LEFT.getNum()] && keyPressed[DIRECTION.RIGHT.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelX(PlayerObject.SPEED);
-		else if (!keyPressed[FACING.LEFT.getNum()] && !keyPressed[FACING.RIGHT.getNum()])
+		else if (!keyPressed[DIRECTION.LEFT.getNum()] && !keyPressed[DIRECTION.RIGHT.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelX(0);
 	}
 
 	private void moveplayerbyY() {
 
-		if (keyPressed[FACING.UP.getNum()] && !keyPressed[FACING.DOWN.getNum()])
+		if (keyPressed[DIRECTION.UP.getNum()] && !keyPressed[DIRECTION.DOWN.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelY(-PlayerObject.SPEED);
-		else if (keyPressed[FACING.UP.getNum()] && keyPressed[FACING.DOWN.getNum()])
+		else if (keyPressed[DIRECTION.UP.getNum()] && keyPressed[DIRECTION.DOWN.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelY(0);
-		else if (!keyPressed[FACING.UP.getNum()] && keyPressed[FACING.DOWN.getNum()])
+		else if (!keyPressed[DIRECTION.UP.getNum()] && keyPressed[DIRECTION.DOWN.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelY(PlayerObject.SPEED);
-		else if (!keyPressed[FACING.UP.getNum()] && !keyPressed[FACING.DOWN.getNum()])
+		else if (!keyPressed[DIRECTION.UP.getNum()] && !keyPressed[DIRECTION.DOWN.getNum()])
 			HandlerObject.getInstance().getPlayer().setVelY(0);
 	}
 

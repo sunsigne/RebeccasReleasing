@@ -2,7 +2,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreator
 
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
-import objects.IFacing.FACING;
+import objects.Facing;
+import objects.Facing.DIRECTION;
 import objects.world.destroyable.Desk;
 
 public class MapCreatorDesk {
@@ -16,19 +17,23 @@ public class MapCreatorDesk {
 
 	private static void createNoneLootDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 0 && blue == 255) {
-			Desk desk = new Desk(x0, y0, FACING.LEFT);
+			Facing facing = new Facing(DIRECTION.LEFT);
+			Desk desk = new Desk(x0, y0, facing);
 			handler_object.addObject(desk);
 		}
 		if (red == 255 && green == 1 && blue == 255) {
-			Desk desk = new Desk(x0, y0, FACING.RIGHT);
+			Facing facing = new Facing(DIRECTION.RIGHT);
+			Desk desk = new Desk(x0, y0, facing);
 			handler_object.addObject(desk);
 		}
 		if (red == 255 && green == 2 && blue == 255) {
-			Desk desk = new Desk(x0, y0, FACING.UP);
+			Facing facing = new Facing(DIRECTION.UP);
+			Desk desk = new Desk(x0, y0, facing);
 			handler_object.addObject(desk);
 		}
 		if (red == 255 && green == 3 && blue == 255) {
-			Desk desk = new Desk(x0, y0, FACING.DOWN);
+			Facing facing = new Facing(DIRECTION.DOWN);
+			Desk desk = new Desk(x0, y0, facing);
 			handler_object.addObject(desk);
 		}
 	}

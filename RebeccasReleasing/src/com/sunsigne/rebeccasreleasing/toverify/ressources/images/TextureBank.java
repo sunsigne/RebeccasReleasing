@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.images.SpriteSheet;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 
 public class TextureBank {
 
@@ -255,15 +255,15 @@ public class TextureBank {
 		// destroyable
 
 		for (int i = 0; i < 6; i++) {
-			destroyable_desk[FACING.LEFT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 1, 64, 64);
-			destroyable_desk[FACING.RIGHT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 2, 64, 64);
-			destroyable_desk[FACING.UP.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
-			destroyable_desk[FACING.DOWN.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
+			destroyable_desk[DIRECTION.LEFT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 1, 64, 64);
+			destroyable_desk[DIRECTION.RIGHT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 2, 64, 64);
+			destroyable_desk[DIRECTION.UP.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
+			destroyable_desk[DIRECTION.DOWN.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
 		}
 
 		for (int i = 0; i < 4; i++) {
-			destroyable_plant[FACING.LEFT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 1, 64, 32);
-			destroyable_plant[FACING.RIGHT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 2, 64, 32);
+			destroyable_plant[DIRECTION.LEFT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 1, 64, 32);
+			destroyable_plant[DIRECTION.RIGHT.getNum()][i] = destroyable_plant_sheet.grabImage(i + 1, 2, 64, 32);
 		}
 
 		// loot
@@ -313,13 +313,13 @@ public class TextureBank {
 			}
 
 			for (int i = 0; i < 3; i++) {
-				living_walking[count][FACING.LEFT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+				living_walking[count][DIRECTION.LEFT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						1 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.RIGHT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+				living_walking[count][DIRECTION.RIGHT.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						2 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.UP.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+				living_walking[count][DIRECTION.UP.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						3 + (5 * row - 5), 48, 48);
-				living_walking[count][FACING.DOWN.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
+				living_walking[count][DIRECTION.DOWN.getNum()][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						4 + (5 * row - 5), 48, 48);
 				living_walking[count][4/* ON THE GROUND */][i] = living_walking_sheet.grabImage((3 * col + i - 2),
 						5 + (5 * row - 5), 48, 48);
@@ -329,17 +329,17 @@ public class TextureBank {
 				continue;
 
 			for (int i = 0; i < 6; i++) {
-				living_battle[count][FACING.LEFT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.LEFT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
 						1 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.LEFT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.LEFT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
 						2 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.LEFT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.LEFT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
 						3 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.RIGHT.getNum()][i] = living_battle_sheet.grabImage((6 * col + i - 5),
 						4 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.RIGHT.getNum()][i + 6] = living_battle_sheet.grabImage((6 * col + i - 5),
 						5 + (6 * row - 6), 64, 64);
-				living_battle[count][FACING.RIGHT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
+				living_battle[count][DIRECTION.RIGHT.getNum()][i + 12] = living_battle_sheet.grabImage((6 * col + i - 5),
 						6 + (6 * row - 6), 64, 64);
 			}
 		}
@@ -351,22 +351,22 @@ public class TextureBank {
 
 		for (int j = 0; j < 7; j++) {
 			for (int i = 0; i < 4; i++) {
-				living_foe_walking[j][FACING.LEFT.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+				living_foe_walking[j][DIRECTION.LEFT.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
 						1, 48, 48);
-				living_foe_walking[j][FACING.RIGHT.getNum()][i] = living_foe_walking_sheet
+				living_foe_walking[j][DIRECTION.RIGHT.getNum()][i] = living_foe_walking_sheet
 						.grabImage(i + 1 + 4 * (j - 1), 2, 48, 48);
-				living_foe_walking[j][FACING.UP.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+				living_foe_walking[j][DIRECTION.UP.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
 						3, 48, 48);
-				living_foe_walking[j][FACING.DOWN.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
+				living_foe_walking[j][DIRECTION.DOWN.getNum()][i] = living_foe_walking_sheet.grabImage(i + 1 + 4 * (j - 1),
 						4, 48, 48);
 			}
 		}
 
 		for (int i = 0; i < 21; i++) {
-			living_foe_battle[FACING.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
-			living_foe_battle[FACING.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_err_battle[FACING.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-			living_err_battle[FACING.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_foe_battle[DIRECTION.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
+			living_foe_battle[DIRECTION.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
+			living_err_battle[DIRECTION.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_err_battle[DIRECTION.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
 		}
 	}
 

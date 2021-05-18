@@ -7,6 +7,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 public class Chat extends ChatBuilder {
 
@@ -29,7 +30,7 @@ public class Chat extends ChatBuilder {
 
 	@Override
 	protected void displayChat() {
-		HandlerObject.getInstance().clear(false, 1);
+		HandlerObject.getInstance().clear(false, LAYER.DIALOGUE_VENT);
 		HandlerObject.getInstance().addObject(World.gui);
 		HandlerObject.getInstance().addObject(chatObject[count]);
 		if (chatObject[count].getEventOnDisplay() != null)

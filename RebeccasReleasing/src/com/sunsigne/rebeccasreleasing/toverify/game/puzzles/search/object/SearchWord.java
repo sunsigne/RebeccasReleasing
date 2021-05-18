@@ -2,12 +2,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class SearchWord extends SearchWordObject {
 
@@ -46,7 +45,7 @@ public class SearchWord extends SearchWordObject {
 	@Override
 	protected void collision() {
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.P_WORDFOLDER) {
 				if (getBounds().intersects(tempObject.getBounds()))

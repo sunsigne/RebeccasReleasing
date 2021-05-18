@@ -8,6 +8,8 @@ un boss de 10m sur 10m, comme urgot
 
 un lvl sous l'eau, un autre dans l'espace
 
+perte de contact radio ?
+
 pour un mini-jeu il faut répondre à 3 questions : 
 	- sur quoi le joueur a le contrôle (la souris) ?
 	- qu'est-ce qu'il doit faire à partir de ce controle ?

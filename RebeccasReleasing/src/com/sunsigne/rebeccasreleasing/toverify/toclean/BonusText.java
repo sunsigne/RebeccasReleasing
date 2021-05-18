@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.GameObject;
 
 public class BonusText extends GameObject {
 
@@ -16,7 +16,7 @@ public class BonusText extends GameObject {
 	private String text;
 
 	public BonusText(int x, int y, String text) {
-		super(false, 0, x, y, OBJECTID.DISPLAYER);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DISPLAYER);
 		
 		this.text = text;
 		time = 40;
@@ -24,7 +24,7 @@ public class BonusText extends GameObject {
 	}
 
 	public BonusText(GameObject object, String text) {
-		super(true, 0, object.getX(), object.getY(), OBJECTID.DISPLAYER);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, object.getX(), object.getY(), OBJECTID.DISPLAYER);
 
 		this.text = text;
 		time = 40;

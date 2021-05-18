@@ -1,9 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.system.util;
 
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 
 public class DualChecker implements ITick {

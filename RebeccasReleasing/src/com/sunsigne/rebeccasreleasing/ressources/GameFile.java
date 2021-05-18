@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toverify.ressources;
+package com.sunsigne.rebeccasreleasing.ressources;
 
 public class GameFile {
 

@@ -1,12 +1,13 @@
-package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorpuzzler;
+package com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler;
 
+import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Door;
+import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.TutoDoor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
-import objects.world.puzzler.Door;
-import objects.world.puzzler.TutoDoor;
+import objects.Facing.AXIS;
 
-public class MapCreatorDoor {
+final class MapCreatorDoor {
 
 	static void createDoor(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
@@ -20,31 +21,50 @@ public class MapCreatorDoor {
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 15) {
-			Door door = new TutoDoor(x0, y0, false);
+			AXIS axis = AXIS.VERTICAL;
+			Door door = new TutoDoor(x0, y0, axis);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 14) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.CYAN);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;			
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 13) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.GREEN);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;			
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 12) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.YELLOW);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 11) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.ORANGE);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 10) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.RED);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 9) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.PURPLE);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
 	}
@@ -53,32 +73,49 @@ public class MapCreatorDoor {
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 8) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.CYAN);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 7) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.GREEN);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 6) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.YELLOW);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 5) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.ORANGE);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 4) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.RED);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 3) {
-			Door door = new Door(x0, y0, false, DIFFICULTY.PURPLE);
+			AXIS axis = AXIS.VERTICAL;
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
@@ -88,31 +125,50 @@ public class MapCreatorDoor {
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 17) {
-			Door door = new TutoDoor(x0, y0, true);
+			AXIS axis = AXIS.HORIZONTAL;
+			Door door = new TutoDoor(x0, y0, axis);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 18) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.CYAN);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 19) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.GREEN);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 20) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.YELLOW);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 21) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.ORANGE);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 22) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.RED);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 23) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.PURPLE);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			handler_object.addObject(door);
 		}
 	}
@@ -121,35 +177,51 @@ public class MapCreatorDoor {
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 24) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.CYAN);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 25) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.GREEN);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 26) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.YELLOW);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 27) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.ORANGE);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 28) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.RED);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
+		
 		if (red == 0 && green == 255 && blue == 29) {
-			Door door = new Door(x0, y0, true, DIFFICULTY.PURPLE);
+			AXIS axis = AXIS.HORIZONTAL;
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			Door door = new Door(x0, y0, axis, difficulty);
 			door.setSolved(true);
 			handler_object.addObject(door);
 		}
 	}
-
 }

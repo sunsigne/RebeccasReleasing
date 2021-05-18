@@ -7,23 +7,22 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
-import objects.characters.collision.ICollision;
-import objects.characters.living.LivingObject;
-
-public class Stairs extends GameObject implements ICollision, IInteraction {
+public class Stairs extends GameObject implements ICollisionReaction, IInteraction {
 
 	private boolean goesUp;
 	private int stairId;
 
 	public Stairs(int x, int y, boolean goesUp, int stairId) {
-		super(true, 0, x, y, OBJECTID.STAIRS);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.STAIRS);
 
 		this.goesUp = goesUp;
 		this.stairId = stairId;
@@ -48,7 +47,7 @@ public class Stairs extends GameObject implements ICollision, IInteraction {
 	}
 
 	private void connectionToDualStairs() {
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.STAIRS)
 			{
@@ -91,9 +90,10 @@ public class Stairs extends GameObject implements ICollision, IInteraction {
 	}
 
 	@Override
-	public void collision(LivingObject living) {
-		if (living.isPlayer()) {
-			if (living.getBounds().intersects(getBounds()))
+	public void collidingReaction(GameObject collidingObject) {
+
+		if (collidingObject.isPlayer()) {
+			if (collidingObject.getBounds().intersects(getBounds()))
 				HandlerObject.getInstance().getPlayer().setInteraction(this);
 		}
 	}

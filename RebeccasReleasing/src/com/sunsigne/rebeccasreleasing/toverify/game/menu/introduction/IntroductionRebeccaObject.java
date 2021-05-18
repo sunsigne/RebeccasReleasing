@@ -10,7 +10,7 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 
 class IntroductionRebeccaObject extends CommunIntroductionObject implements IAnimation {
 
@@ -71,10 +71,10 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 	}
 
 	private void runAnimations() {
-		runAnimation(FACING.LEFT.getNum(), MOOD.HAPPY.getNum());
-		runAnimation(FACING.LEFT.getNum(), MOOD.UNHAPPY.getNum());
-		runAnimation(FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
-		runAnimation(FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
+		runAnimation(DIRECTION.LEFT.getNum(), MOOD.HAPPY.getNum());
+		runAnimation(DIRECTION.LEFT.getNum(), MOOD.UNHAPPY.getNum());
+		runAnimation(DIRECTION.RIGHT.getNum(), MOOD.HAPPY.getNum());
+		runAnimation(DIRECTION.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
 	}
 
 	private void runPhase() {
@@ -116,7 +116,7 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		case 3:
 		case 4:
 		case 5:
-			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		case 6:
 		case 7:
@@ -124,32 +124,32 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 			if (jumpCount < 4)
 				drawJumping(g, x, y);
 			else
-				drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
+				drawAnimation(g, x, y, w, h, DIRECTION.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		case 9:
 		case 10:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 1), x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, DIRECTION.RIGHT.getNum(), 1), x, y, w, h, null);
 			break;
 		case 22:
 		case 23:
 		case 24:
 		case 25:
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getOpacity()));
-			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 1), x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, DIRECTION.RIGHT.getNum(), 1), x, y, w, h, null);
 			break;
 		case 26:
 		case 27:
 		case 28:
 		case 29:
 		case 30:
-			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), 17), x, y, w, h, null);
+			g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, DIRECTION.RIGHT.getNum(), 17), x, y, w, h, null);
 			break;
 		case 31:
-			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.RIGHT.getNum(), MOOD.UNHAPPY.getNum());
 			break;
 		case 32:
-			drawAnimation(g, x, y, w, h, FACING.RIGHT.getNum(), MOOD.HAPPY.getNum());
+			drawAnimation(g, x, y, w, h, DIRECTION.RIGHT.getNum(), MOOD.HAPPY.getNum());
 			break;
 		}
 	}
@@ -158,7 +158,7 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		int state = 2;
 		if (y != initY)
 			state = 0;
-		g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, FACING.RIGHT.getNum(), state), x0, y0, w, h, null);
+		g.drawImage(texture.getLivingBattle(CharacterBank.rebecca, DIRECTION.RIGHT.getNum(), state), x0, y0, w, h, null);
 	}
 
 }

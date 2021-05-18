@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
@@ -104,11 +105,10 @@ public abstract class ProcessorObject extends PuzzleObject {
 	public void refreshPuzzle() {
 //		Puzzle puzzle = HandlerObject.getInstance().player.puzzle;
 
-		HandlerObject.getInstance().clear(false, 0);
+		HandlerObject.getInstance().clear(false, LAYER.WOLRD_GUI_PUZZLE);
 		
 //		HandlerObject.getInstance().addObject(puzzle.getTimer());
 		HandlerObject.getInstance().addObject(PuzzleHack.virus);
-		HandlerObject.getInstance().setVirusExisting(true);
 	}
 
 }

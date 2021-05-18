@@ -1,6 +1,6 @@
 package com.sunsigne.rebeccasreleasing.toverify.system.util;
 
-public interface GenerticListener {
+public interface GenericListener {
 
 	void doAction();
 }

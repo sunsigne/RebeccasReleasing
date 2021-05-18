@@ -3,13 +3,13 @@ package com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
-
-import objects.GameObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 public class GameMouseInput extends MouseAdapter {
 
@@ -79,8 +79,8 @@ public class GameMouseInput extends MouseAdapter {
 
 	public void clearAllClickable() {
 
-		for (int layer = 0; layer < 3; layer++) {
-			HandlerRender.getInstance().removeObject(clickable[layer]);
+		for (LAYER layer : LAYER.values()) {
+			HandlerRender.getInstance().removeObject(clickable[layer.getNum()]);
 			HandlerObject.getInstance().clear(false, layer);
 		}
 		clickable = new IClick[3];

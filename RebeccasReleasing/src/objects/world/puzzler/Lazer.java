@@ -1,49 +1,61 @@
 package objects.world.puzzler;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.clickable.PuzzleLazer;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
-import objects.GameObject;
-import objects.IFacing.FACING;
+import objects.Facing;
+import objects.Facing.DIRECTION;
 import objects.characters.living.LivingObject;
 
 public class Lazer extends GameObject implements IPuzzler {
 
-	private EventListener eventOnVictory, eventOnDefeat;
+	public Lazer(int x, int y, Facing facing, DIFFICULTY difficulty) {
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.LAZER);
 
-	private DIFFICULTY difficulty;
-	private boolean solved;
-	private int facing;
-
-	private boolean horizontal;
-	
-	public Lazer(int x, int y, int facing, boolean solved, DIFFICULTY difficulty) {
-		super(true, 0, x, y, OBJECTID.LAZER);
-
+		this.facing = facing;
 		this.difficulty = difficulty;
-		this.solved = solved;
 		setSize(facing);
 	}
 
-	// state
+	////////// SIZE ////////////
+
+	private Facing facing;
+
+	private void setSize(Facing facing) {
+		if (facing.isHorizontal()) {
+			h = Size.TILE / 3;
+			miniY = Size.TILE / 3;
+		}
+		if (!facing.isHorizontal()) {
+			w = Size.TILE / 3;
+			miniX = Size.TILE / 3;
+		}
+	}
+
+	////////// PUZZLE ////////////
+
+	@Override
+	public Puzzle getPuzzle() {
+		return new PuzzleLazer(this, getDifficulty());
+	}
+
+	private EventListener eventOnVictory, eventOnDefeat;
 
 	@Override
 	public EventListener getEventOnClose() {
-		if (solved)
-			return eventOnVictory;
-		else
-			return eventOnDefeat;
+		return solved ? eventOnVictory : eventOnDefeat;
 	}
 
 	@Override
@@ -53,6 +65,11 @@ public class Lazer extends GameObject implements IPuzzler {
 		else
 			this.eventOnDefeat = eventOnClose;
 	}
+
+	////////// PUZZLER ////////////
+
+	private DIFFICULTY difficulty;
+	private boolean solved;
 
 	@Override
 	public DIFFICULTY getDifficulty() {
@@ -71,57 +88,47 @@ public class Lazer extends GameObject implements IPuzzler {
 
 	@Override
 	public void setSolved(boolean solved) {
+
+		boolean flag = false;
+		if (this.solved != solved)
+			flag = true;
+
 		this.solved = solved;
-		if(solved) solveNeighbors();
+
+		if (flag)
+			updateNeighbors();
 	}
 
-	private void setSize(int facing) {
-		this.facing = facing;
-		if(facing == 0 || facing == 1 || facing == 4)
-		{
-			horizontal = true;
-			h = Size.TILE/3;
-			miniY = Size.TILE/3;
-		}
-		else
-		{
-			horizontal = false;
-			w = Size.TILE/3;
-			miniX = Size.TILE/3;
-		}
-			
-	}
-	
-	// behavior
-
-	private void solveNeighbors() {
-		GameObject firstNeighbor = horizontal ? getObjectAtPos(x - Size.TILE, y) : getObjectAtPos(x, y - Size.TILE);
-		GameObject secondNeighbor = horizontal ? getObjectAtPos(x + Size.TILE, y) : getObjectAtPos(x, y + Size.TILE);
-		Lazer firstLazer;
-		Lazer secondLazer;
-		
-		if (firstNeighbor != null && firstNeighbor.getId() == OBJECTID.LAZER)
-		{
-			firstLazer = (Lazer) firstNeighbor;
-			if(!firstLazer.isSolved()) firstLazer.setSolved(true);
-		}
-			
-		if (secondNeighbor != null && secondNeighbor.getId() == OBJECTID.LAZER)
-		{
-			secondLazer = (Lazer) secondNeighbor;
-			if(!secondLazer.isSolved()) secondLazer.setSolved(true);
-		}
-	}
-	
 	private GameObject getObjectAtPos(int x, int y) {
-		return HandlerObject.getInstance().getObjectAtPos(getCameraLayer(), x, y);
+		return HandlerObject.getInstance().getObjectAtPos(getLayer(), x, y);
 	}
-	
+
+	private void updateNeighbors() {
+
+		GameObject[] neighbors = new GameObject[2];
+
+		neighbors[0] = facing.isHorizontal() ? getObjectAtPos(x - Size.TILE, y) : getObjectAtPos(x, y - Size.TILE);
+		neighbors[1] = facing.isHorizontal() ? getObjectAtPos(x + Size.TILE, y) : getObjectAtPos(x, y + Size.TILE);
+
+		Lazer[] lazers = new Lazer[2];
+
+		for (int i = 0; i < 2; i++) {
+			if (neighbors[i] != null) {
+				if (neighbors[i].getId() == OBJECTID.LAZER) {
+					lazers[i] = (Lazer) neighbors[i];
+					lazers[i].setSolved(solved);
+				}
+			}
+		}
+	}
+
+	////////// TICK ////////////
+
 	@Override
 	public void tick() {
 	}
 
-	// design
+	////////// RENDER ////////////
 
 	@Override
 	public void render(Graphics g) {
@@ -133,66 +140,55 @@ public class Lazer extends GameObject implements IPuzzler {
 	private BufferedImage paintingLazer() {
 
 		BufferedImage img = null;
-		int difficulty = getDifficulty().getLvl();
-		int solved = isSolved() ? 1 : 0;
-		img = texture.puzzler_lazer[difficulty][facing][solved];
+		int difficultyLvl = getDifficulty().getLvl();
+
+		if (isSolved())
+			img = texture.puzzler_lazer[difficultyLvl][facing.getNum()][1];
+		else
+			img = texture.puzzler_lazer[difficultyLvl][facing.getNum()][0];
 
 		return img;
 	}
 
-	// collision
+	////////// COLLISION ////////////
 
 	@Override
-	public Rectangle getBounds() {
-
-		if(horizontal)
-		return new Rectangle(x, y + miniY, w, h);
-		else return new Rectangle(x + miniX, y, w, h);
-	}
-
-	@Override
-	public void collision(LivingObject living) {
+	public void collidingReaction(GameObject collidingObject) {
 
 		if (!isSolved()) {
 
-			if (hasToolLvl(Tool.PLIERS) || Game.isMultiToolMode())
-				openPuzzle(living, this);
-			else
-				{
-				if (living.isPlayer()) {
-					living.getCollisionDetector().collidingBehavior(true, this, () -> pushPlayer());
-				}
-				else blockPass(living, this);
-				}
+			if (collidingObject.isPlayer() && hasToolLvl(Tool.PLIERS))
+				openPuzzle(collidingObject, this);
+			else {
+				if (collidingObject.isPlayer())
+					collidingReaction(collidingObject, true, this, () -> pushPlayer());
+				else
+					blockPass(collidingObject, this);
+			}
 		}
 	}
-	
 
 	private void pushPlayer() {
 
 		int velX = HandlerObject.getInstance().getPlayer().getVelX();
 		int velY = HandlerObject.getInstance().getPlayer().getVelY();
 		int direction = 0;
-		
-		if(!horizontal)
-		{
-			if(velX > 0) direction = FACING.LEFT.getNum();
-			else direction = FACING.RIGHT.getNum();
+
+		if (!facing.isHorizontal()) {
+			if (velX > 0)
+				direction = DIRECTION.LEFT.getNum();
+			else
+				direction = DIRECTION.RIGHT.getNum();
 		}
-		
-		else
-		{
-			if(velY > 0) direction = FACING.UP.getNum();
-			else direction = FACING.DOWN.getNum();
+
+		else {
+			if (velY > 0)
+				direction = DIRECTION.UP.getNum();
+			else
+				direction = DIRECTION.DOWN.getNum();
 		}
-		
+
 		HandlerObject.getInstance().getPlayer().pushed(direction);
-	}
-
-
-	@Override
-	public Puzzle getPuzzle() {
-		return new PuzzleLazer(this, getDifficulty());
 	}
 
 }

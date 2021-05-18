@@ -1,57 +1,64 @@
-package objects.world.puzzler;
+package com.sunsigne.rebeccasreleasing.game.object.world.puzzler;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.clickable.PuzzleBomb;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
-import objects.GameObject;
-import objects.characters.living.LivingObject;
+import objects.world.puzzler.IPuzzler;
 
 public class WallCracked extends GameObject implements IPuzzler {
 
-	private EventListener eventOnVictory, eventOnDefeat;
-	
-	private DIFFICULTY difficulty;
-	private boolean solved;
-
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {
-		super(true, 0, x, y, OBJECTID.WALLCRACKED);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.WALLCRACKED);
 
 		this.difficulty = difficulty;
 	}
 
-	// state
+	////////// PUZZLE ////////////
+
+	@Override
+	public Puzzle getPuzzle() {
+		return new PuzzleBomb(this, getDifficulty());
+	}
+
+	private EventListener eventOnVictory, eventOnDefeat;
 
 	@Override
 	public EventListener getEventOnClose() {
-		if(solved) return eventOnVictory;
-		else return eventOnDefeat;
+		return solved ? eventOnVictory : eventOnDefeat;
 	}
 
 	@Override
 	public void setEventOnClose(EventListener eventOnClose, boolean onVictory) {
-		if(onVictory) this.eventOnVictory = eventOnClose;	
-		else this.eventOnDefeat = eventOnClose;
+		if (onVictory)
+			this.eventOnVictory = eventOnClose;
+		else
+			this.eventOnDefeat = eventOnClose;
 	}
-	
+
+	////////// PUZZLER ////////////
+
+	private DIFFICULTY difficulty;
+	private boolean solved;
+
 	@Override
 	public DIFFICULTY getDifficulty() {
 		return difficulty;
 	}
-	
+
 	@Override
 	public void setDifficulty(DIFFICULTY difficulty) {
 		this.difficulty = difficulty;
 	}
-	
+
 	@Override
 	public boolean isSolved() {
 		return solved;
@@ -62,44 +69,34 @@ public class WallCracked extends GameObject implements IPuzzler {
 		this.solved = solved;
 	}
 
+	////////// TICK ////////////
+
 	@Override
 	public void tick() {
-
 	}
 
-	// behavior
-	
+	////////// RENDER ////////////
+
 	@Override
 	public void render(Graphics g) {
 
-		BufferedImage img = texture.puzzler_wallcracked[difficulty.getLvl()];
+		int difficultyLvl = getDifficulty().getLvl();
+		BufferedImage img = texture.puzzler_wallcracked[difficultyLvl];
 		if (!isSolved())
 			g.drawImage(img, x, y, w, h, null);
 	}
-	
-	// collision
+
+	////////// COLLISION ////////////
 
 	@Override
-	public Rectangle getBounds() {
-
-		return new Rectangle(x, y, w, h);
-	}
-
-	@Override
-	public void collision(LivingObject living) {
+	public void collidingReaction(GameObject collidingObject) {
 
 		if (!isSolved()) {
 
-			if (hasToolLvl(Tool.BOMB) || Game.isMultiToolMode())
-				openPuzzle(living, this);
+			if (collidingObject.isPlayer() && hasToolLvl(Tool.BOMB))
+				openPuzzle(collidingObject, this);
 			else
-				blockPass(living, this);
+				blockPass(collidingObject, this);
 		}
 	}
-
-	@Override
-	public Puzzle getPuzzle() {
-		return new PuzzleBomb(this, getDifficulty());
-	}
-
 }

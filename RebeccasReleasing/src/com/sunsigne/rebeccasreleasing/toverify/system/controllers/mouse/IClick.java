@@ -1,8 +1,7 @@
 package com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.IRender;
-
-import objects.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 
 public interface IClick extends IRender {
 

@@ -4,17 +4,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public abstract class MenuObject extends GameObject implements ITranslation {
 
 	public MenuObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, 0, 0, 0, OBJECTID.MENU);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.MENU);
 		languageMapping(chatMap, chatMaps);
 	}
 

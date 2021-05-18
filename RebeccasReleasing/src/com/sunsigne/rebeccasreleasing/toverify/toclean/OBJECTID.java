@@ -2,27 +2,30 @@ package com.sunsigne.rebeccasreleasing.toverify.toclean;
 
 public enum OBJECTID {
 
-	LOADING, MENU, CURSOR,
+	LOADING, MENU, CURSOR, TIMER,
 
 	// CHARACTERS
-	DISPLAYER, PLAYER, FOE, DUMMY,
+	DISPLAYER, FOE, DUMMY,
 
 	// WORLD //
-	WALL, STAIRS, DECOR, FLAG, LOOT,
-	DESK, PLANT,
+	STAIRS, DECOR, FLAG, LOOT, DESK, PLANT,
 	// puzzler
-	CASE, COMPUTER, DOOR, LAZER, /*FOE,*/ WALLCRACKED, 
+	/* FOE, */
 
 	// PUZZLE //
 	PROCESSOR,
 
-	TIMER,
-	
-	P_BOMB,
-	P_CARD, P_CARDFOLDER,
-	P_VIRUS,
-	P_KEY, P_LOCK,
-	P_WORD, P_WORDFOLDER,
-	P_LAZER, P_COLORENIGMA;
+	P_BOMB, P_CARD, P_CARDFOLDER, P_VIRUS, P_KEY, P_LOCK, P_WORD, P_WORDFOLDER, P_LAZER, P_COLORENIGMA,
 
+	////////// CHARACTERS ////////////
+	
+	PLAYER,
+	
+	////////// WORLD ////////////
+
+	WALL,
+
+	////////// PUZZLER ////////////
+
+	CASE, COMPUTER, DOOR, LAZER, WALLCRACKED;
 }

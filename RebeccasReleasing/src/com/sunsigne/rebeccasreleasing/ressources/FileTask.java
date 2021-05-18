@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
-
 public class FileTask {
 
 	public static boolean doesExist(GameFile gamefile) {

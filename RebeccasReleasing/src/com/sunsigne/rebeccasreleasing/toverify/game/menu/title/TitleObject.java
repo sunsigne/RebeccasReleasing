@@ -5,12 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.MenuObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.font.BufferedFontBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.font.FontTask;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 

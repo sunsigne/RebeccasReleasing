@@ -9,24 +9,24 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.IFacing;
+import objects.Facing.DIRECTION;
 
-public class CardFolder extends CommunCardObject implements IFacing, IAnimation {
+public class CardFolder extends CommunCardObject implements IAnimation {
 
 	private Animation animation;
 
-	private FACING facing;
+	private DIRECTION facing;
 	private CharacterBank characterBank;
 
 	private int attackTime, defenseTime;
 
-	public CardFolder(FACING facing, CharacterBank characterBank, CARDTYPE cardtype) {
+	public CardFolder(DIRECTION facing, CharacterBank characterBank, CARDTYPE cardtype) {
 		super(1300, 250, OBJECTID.P_CARDFOLDER, cardtype);
 
-		setFacing(facing);
+		this.facing = facing;
 		this.characterBank = characterBank;
 
-		if (getFacing() == FACING.RIGHT) {
+		if (getFacing() == DIRECTION.RIGHT) {
 			setX(215);
 			initX = getX();
 		}
@@ -47,19 +47,8 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		return animation;
 	}
 
-	@Override
-	public FACING getFacing() {
+	public DIRECTION getFacing() {
 		return facing;
-	}
-
-	@Override
-	public void setFacing(FACING facing) {
-		if (facing == FACING.UP)
-			this.facing = FACING.LEFT;
-		else if (facing == FACING.DOWN)
-			this.facing = FACING.RIGHT;
-		else
-			this.facing = facing;
 	}
 
 	public void playCard(CARDTYPE type) {
@@ -92,7 +81,7 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 
 	private void playAttackAnimation() {
 		int speed = 8;
-		if (getFacing() == FACING.LEFT)
+		if (getFacing() == DIRECTION.LEFT)
 			speed = -speed;
 
 		if (attackTime > 0) {
@@ -103,7 +92,7 @@ public class CardFolder extends CommunCardObject implements IFacing, IAnimation 
 		}
 
 		if (defenseTime <= 0) {
-			if ((getFacing() == FACING.RIGHT && x < initX) || (getFacing() == FACING.LEFT && x > initX))
+			if ((getFacing() == DIRECTION.RIGHT && x < initX) || (getFacing() == DIRECTION.LEFT && x > initX))
 				x = initX;
 		}
 

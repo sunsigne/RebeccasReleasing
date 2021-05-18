@@ -1,7 +1,7 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.chat;
 
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 
 public class ChatMap {
 

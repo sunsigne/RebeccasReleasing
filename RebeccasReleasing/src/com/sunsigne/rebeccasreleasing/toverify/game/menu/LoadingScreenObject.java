@@ -5,21 +5,21 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class LoadingScreenObject extends GameObject implements ITranslation {
 
 	private boolean running;
 
 	public LoadingScreenObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, 2, 0, 0, OBJECTID.LOADING);
+		super(false, LAYER.QUIT_MENU, 0, 0, OBJECTID.LOADING);
 		languageMapping(chatMap, chatMaps);
 	}
 

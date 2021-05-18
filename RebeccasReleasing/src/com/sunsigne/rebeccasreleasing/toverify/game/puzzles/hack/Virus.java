@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
@@ -14,8 +15,6 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class Virus extends PuzzleObject implements IAnimation {
 
@@ -84,7 +83,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 	public void doAction() {
 
 		try {
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 			for (GameObject tempObject : list) {
 
 				if (tempObject.getId() == OBJECTID.PROCESSOR) {

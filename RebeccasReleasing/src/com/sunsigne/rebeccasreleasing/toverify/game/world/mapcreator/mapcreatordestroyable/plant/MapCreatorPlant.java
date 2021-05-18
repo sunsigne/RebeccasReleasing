@@ -2,7 +2,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreator
 
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
-import objects.IFacing.FACING;
+import objects.Facing;
+import objects.Facing.DIRECTION;
 import objects.world.destroyable.Plant;
 
 public class MapCreatorPlant {
@@ -18,11 +19,13 @@ public class MapCreatorPlant {
 	private static void createNoneLootPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 0 && blue == 255) {
-			Plant plant = new Plant(x0, y0, FACING.LEFT);
+			Facing facing = new Facing(DIRECTION.LEFT);
+			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
 		}
 		if (red == 254 && green == 1 && blue == 255) {
-			Plant plant = new Plant(x0, y0, FACING.RIGHT);
+			Facing facing = new Facing(DIRECTION.RIGHT);
+			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
 		}
 	}

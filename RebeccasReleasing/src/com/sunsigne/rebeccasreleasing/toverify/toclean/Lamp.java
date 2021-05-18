@@ -3,17 +3,16 @@ package com.sunsigne.rebeccasreleasing.toverify.toclean;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
-import objects.GameObject;
-import objects.characters.collision.ICollision;
 import objects.characters.living.LivingObject;
 
-@Todo("make it a destroyable")
-public class Lamp extends GameObject implements ICollision {
+public class Lamp extends GameObject implements ICollisionReaction {
 
 	public Lamp(int x, int y) {
-		super(true, 0, x, y, OBJECTID.DECOR);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DECOR);
 	}
 
 	// behavior
@@ -34,7 +33,7 @@ public class Lamp extends GameObject implements ICollision {
 	// collision
 	
 	@Override
-	public void collision(LivingObject living) {
+	public void collidingReaction(GameObject collidingObject) {
 
 	}
 

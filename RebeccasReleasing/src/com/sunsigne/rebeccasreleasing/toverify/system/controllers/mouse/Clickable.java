@@ -6,16 +6,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public abstract class Clickable extends GameMouseInput implements IClick {
 
 	public Clickable(STATE state) {
 		super(state);
-		GameMouseInput.clickable[getCameraLayer()] = this;
+		GameMouseInput.clickable[getLayer().getNum()] = this;
 		HandlerRender.getInstance().addObject(this);
 	}
 
@@ -48,9 +48,9 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 	
 	protected void clearClickable() {
 		
-		HandlerRender.getInstance().removeObject(clickable[getCameraLayer()]);
-		clickable[getCameraLayer()] = null;
-		HandlerObject.getInstance().clear(false, getCameraLayer());
+		HandlerRender.getInstance().removeObject(clickable[getLayer().getNum()]);
+		clickable[getLayer().getNum()] = null;
+		HandlerObject.getInstance().clear(false, getLayer());
 		GameCursor.hideCursor(false);
 	}
 

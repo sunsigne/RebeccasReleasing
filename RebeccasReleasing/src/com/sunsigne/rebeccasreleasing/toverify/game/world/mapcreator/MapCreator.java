@@ -6,17 +6,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.Wall;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
-import objects.GameObject;
-import objects.IFacing.FACING;
-import objects.characters.living.PlayerObject;
-import objects.world.Wall;
+import objects.Facing;
+import objects.Facing.DIRECTION;
 import objects.world.loot.ILoot;
 import objects.world.loot.tools.LootTool;
 
@@ -37,6 +37,7 @@ public class MapCreator {
 
 	public static void createLevel(BufferedImage image) {
 
+		HandlerObject handler_object = HandlerObject.getInstance();
 		// To remember the color used, here is the guideline I tried to follow :
 
 		// Red for People (because red = important)
@@ -46,11 +47,9 @@ public class MapCreator {
 		// Cyan for decor (because it's beautiful, right ? decor = beauty)
 		// Magenta for destroyable (because it's flashy, like important spot)
 		setUpForRandomizingLoot();
-		HandlerObject handler_object = HandlerObject.getInstance();
+		
 
-		HandlerObject.getInstance().resetPlayer();
-		handler_object.addObject(handler_object.getPlayer());
-		handler_object.setPlayerExisting(true);
+		createPlayer(handler_object);
 
 		int w = image.getWidth();
 		int h = image.getHeight();
@@ -91,6 +90,11 @@ public class MapCreator {
 		randomizeLoot();
 	}
 
+	private static void createPlayer(HandlerObject handler_object) {		
+		handler_object.resetPlayer();
+		handler_object.addObject(handler_object.getPlayer());
+	}
+
 	private static void randomizeLoot() {
 
 		// search into list, classed by their difficulty
@@ -124,27 +128,32 @@ public class MapCreator {
 
 	private static void createWall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 255 && blue == 255) {
-			Wall wall = new Wall(x0, y0, null);
+			Facing facing = new Facing(DIRECTION.NULL);
+			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
 				
 		if (red == 255 && green == 254 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.LEFT);
+			Facing facing = new Facing(DIRECTION.LEFT);
+			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
 		
 		if (red == 255 && green == 253 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.RIGHT);
+			Facing facing = new Facing(DIRECTION.RIGHT);
+			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
 		
 		if (red == 255 && green == 252 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.UP);
+			Facing facing = new Facing(DIRECTION.UP);
+			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
 		
 		if (red == 255 && green == 251 && blue == 255) {
-			Wall wall = new Wall(x0, y0, FACING.DOWN);
+			Facing facing = new Facing(DIRECTION.DOWN);
+			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
 

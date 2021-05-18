@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.world.loot.LootObject;
@@ -39,14 +39,13 @@ public class LootTool extends LootObject {
 
 	private void renderingFakeTool(Graphics g, BufferedImage img) {
 
-		if (Game.isDebugMode()) {
+		if (Game.getDebugMode().getState()) {
 			Graphics2D g2d = (Graphics2D) g;
-			IRender.setAlphaTo(g2d, 0.5f);
 
-			if (fake)
-				g.drawImage(img, x, y, w, h, null);
-
-			IRender.setAlphaTo(g2d, 1f);
+			IRender.setTransluant(g2d, () -> {
+				if (fake)
+					g.drawImage(img, x, y, w, h, null);
+			});
 		}
 	}
 

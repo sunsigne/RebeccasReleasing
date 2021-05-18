@@ -3,19 +3,22 @@ package objects.world.destroyable;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+
+import objects.Facing;
+import objects.Facing.DIRECTION;
 
 public class Desk extends DestroyableObject {
 
 	private Animation[] animation = new Animation[4];
 
-	public Desk(int x, int y, FACING facing) {
+	public Desk(int x, int y, Facing facing) {
 		super(x, y, facing, OBJECTID.DESK);
 
 		w = 2 * Size.TILE;
@@ -25,7 +28,7 @@ public class Desk extends DestroyableObject {
 	// state
 
 	@Override
-	protected boolean updatableFacing() {
+	protected boolean updatableDirection() {
 		return true;
 	}
 
@@ -34,7 +37,7 @@ public class Desk extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runAnimation(getFacing().getNum());
+			runAnimation(facing.getDirection().getNum());
 			falltime--;
 		}
 	}
@@ -64,32 +67,24 @@ public class Desk extends DestroyableObject {
 
 		// inital rendering
 		if (!falling)
-			g.drawImage(texture.destroyable_desk[getFacing().getNum()][0], x , y, w, h, null);
+			g.drawImage(texture.destroyable_desk[facing.getDirection().getNum()][0], x , y, w, h, null);
 	
 		// falling rendering
 		if (falling && falltime > 0)
-			drawAnimation(g, x , y, w, h, getFacing().getNum());
+			drawAnimation(g, x , y, w, h, facing.getDirection().getNum());
 		
 		// final rendering
 		if (falling && falltime <= 0)
 		{
-			g.drawImage(texture.destroyable_desk[getFacing().getNum()][5], x , y, w, h, null);	
+			g.drawImage(texture.destroyable_desk[facing.getDirection().getNum()][5], x , y, w, h, null);	
 		}
 	}
 	
 	// collision
 
 	@Override
-	public void refreshPlayerRendering() {
-		if (isHorizontal()) {
-			if (HandlerObject.getInstance().getPlayer().getY() < y + h / 4)
-				HandlerRender.getInstance().setPlayerPaintedAtTheEnd(false);
-		}
-	}
-
-	@Override
 	public Rectangle getBounds() {
-		if (isHorizontal())
+		if (facing.isHorizontal())
 			return new Rectangle(x + w / 8, y + h / 16, w - w / 4, h - h / 2);
 		else
 			return new Rectangle(x + w / 4, y + h / 16, w - w / 2, h - h / 4);

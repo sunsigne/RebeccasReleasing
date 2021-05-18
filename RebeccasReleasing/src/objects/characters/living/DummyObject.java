@@ -3,19 +3,17 @@ package objects.characters.living;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.toverify.Todo;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-@Todo("unfinished (will probably make the game crash if init)")
 public class DummyObject extends LivingObject {
 
 	private Animation[] animation = new Animation[4];
-	private BufferedImage[][] dummy_walking = new BufferedImage[4][4]; // - facing - state	
-	
+	private BufferedImage[][] dummy_walking = new BufferedImage[4][4]; // - facing - state
+
 	public DummyObject(int x, int y, boolean female, int num) {
 		super(x, y, OBJECTID.DUMMY);
-		
+
 		getDummy(female, num);
 	}
 
@@ -27,29 +25,25 @@ public class DummyObject extends LivingObject {
 		int facing = array[0];
 
 		if (animation[facing] == null) {
-			animation[facing] = new Animation(10, dummy_walking[facing][0],
-					dummy_walking[facing][1], dummy_walking[facing][2],
-					dummy_walking[facing][3]);
+			animation[facing] = new Animation(10, dummy_walking[facing][0], dummy_walking[facing][1],
+					dummy_walking[facing][2], dummy_walking[facing][3]);
 		}
 
 		return animation[facing];
-	}	
+	}
 
-	@Todo("Really ? Please ...")
 	private void getDummy(boolean female, int num) {
-		
-		if(female)
-		{
+
+		if (female) {
 //			if(num == 1) dummy_walking = texture.living_dummy_female01_walking;
 //			if(num == 2) dummy_walking = texture.living_dummy_female02_walking;
 		}
-		
-		else
-		{
+
+		else {
 //			if(num == 1) dummy_walking = texture.living_dummy_male01_walking;
 //			if(num == 2) dummy_walking = texture.living_dummy_male02_walking;
 		}
-		
+
 	}
 
 	// behavior
@@ -70,7 +64,7 @@ public class DummyObject extends LivingObject {
 
 	private void renderingDummy(Graphics g) {
 		int facing = getFacing().getNum();
-		
+
 		if (isMotionless())
 			g.drawImage(dummy_walking[facing][1], x, y, w, h, null);
 		else
@@ -78,5 +72,5 @@ public class DummyObject extends LivingObject {
 
 	}
 
-}
 
+}

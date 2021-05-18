@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toverify.ressources.font;
+package com.sunsigne.rebeccasreleasing.ressources.font;
 
 public class BufferedFontBank {
 

@@ -5,14 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class ChatObject extends GameObject {
 
@@ -34,7 +34,7 @@ public class ChatObject extends GameObject {
 	private int count, index;
 
 	public ChatObject(CharacterBank characterBank, int facialExpression, String sentence1, String sentence2, Event eventOnDisplay) {
-		super(false, 1, Size.X0, 750, OBJECTID.DISPLAYER);
+		super(false, LAYER.DIALOGUE_VENT, Size.X0, 750, OBJECTID.DISPLAYER);
 
 		this.eventOnDisplay = eventOnDisplay;
 		this.characterBank = characterBank;

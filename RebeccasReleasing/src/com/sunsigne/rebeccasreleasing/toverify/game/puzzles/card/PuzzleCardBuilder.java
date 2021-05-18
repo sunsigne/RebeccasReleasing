@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
@@ -13,14 +14,13 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CARDTYPE
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardFolder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
 
@@ -99,8 +99,8 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	@Override
 	public void createPuzzle() {
-		attackFolder = new CardFolder(FACING.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
-		defenseFolder = new CardFolder(FACING.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
+		attackFolder = new CardFolder(DIRECTION.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
+		defenseFolder = new CardFolder(DIRECTION.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
 
 //		attackFolder.add();
 //		defenseFolder.add();

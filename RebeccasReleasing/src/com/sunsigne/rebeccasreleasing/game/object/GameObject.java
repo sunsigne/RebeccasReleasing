@@ -1,83 +1,55 @@
-package objects;
+package com.sunsigne.rebeccasreleasing.game.object;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
+import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class GameObject implements ITick, IRender {
 
-	protected TextureBank texture = TextureBank.getInstance();
+	public GameObject(boolean cameraDependant, LAYER layer, int x, int y, OBJECTID id) {
+		this.id = id;
 
-	private boolean cameraDependant;
-	private int cameraLayer;
-
-	protected OBJECTID id;
-	protected int initX, initY;
-	protected int x, y;
-	protected int miniX, miniY;
-	protected int w, h;
-	protected int velX, velY;
-
-	public GameObject(boolean cameraDependant, int cameraLayer, int x, int y, OBJECTID id) {
-
-		this.cameraDependant = cameraDependant;
-		this.cameraLayer = cameraLayer;
-		setX(x);
-		setY(y);
-		setID(id);
+		this.x = x;
+		this.y = y;
 		initX = x;
 		initY = y;
 
 		w = Size.TILE;
 		h = Size.TILE;
+
+		this.cameraDependant = cameraDependant;
+		this.layer = layer;
 	}
 
-	// identity
-
-	@Override
-	public boolean isCameraDependant() {
-		return cameraDependant;
-	}
-	
-	@Override
-	public int getCameraLayer() {
-		return cameraLayer;
-	}
+	protected OBJECTID id;
 
 	public OBJECTID getId() {
 		return id;
 	}
 
-	public void setID(OBJECTID id) {
-		this.id = id;
+	public boolean isPlayer() {
+		return getId() == OBJECTID.PLAYER;
 	}
 
-	// position
+	////////// POSITION ////////////
+
+	protected int x, y;
+	protected int initX, initY;
 
 	public int getX() {
 		return x;
 	}
 
-	public int getMiniX() {
-		return miniX;
-	}
-
 	public int getY() {
 		return y;
-	}
-
-	public int getMiniY() {
-		return miniY;
 	}
 
 	public void setX(int x) {
@@ -88,7 +60,19 @@ public abstract class GameObject implements ITick, IRender {
 		this.y = y;
 	}
 
-	// size
+	protected int miniX, miniY;
+
+	public int getMiniX() {
+		return miniX;
+	}
+
+	public int getMiniY() {
+		return miniY;
+	}
+
+	////////// SIZE ////////////
+
+	protected int w, h;
 
 	public int getWitdh() {
 		return w;
@@ -107,7 +91,13 @@ public abstract class GameObject implements ITick, IRender {
 		return rect;
 	}
 
-	// velocity
+	public Rectangle getBounds() {
+		return new Rectangle(x + miniX, y + miniY, w, h);
+	}
+
+	////////// VELOCICY ////////////
+
+	protected int velX, velY;
 
 	public int getVelX() {
 		return velX;
@@ -123,11 +113,6 @@ public abstract class GameObject implements ITick, IRender {
 
 	public void setVelY(int velY) {
 		this.velY = velY;
-	}
-
-	protected void velocity() {
-		x = x + velX;
-		y = y + velY;
 	}
 
 	public boolean isMotionless() {
@@ -147,9 +132,27 @@ public abstract class GameObject implements ITick, IRender {
 		velY = 0;
 	}
 
-	// design
+	////////// TICK ////////////
 
-	public void refreshPlayerRendering() {
+	protected void velocity() {
+		x = x + velX;
+		y = y + velY;
+	}
+
+	////////// RENDER ////////////
+
+	protected TextureBank texture = TextureBank.getInstance();
+	private boolean cameraDependant;
+	private LAYER layer;
+
+	@Override
+	public boolean isCameraDependant() {
+		return cameraDependant;
+	}
+
+	@Override
+	public LAYER getLayer() {
+		return layer;
 	}
 
 	public void drawHitbox(Graphics g) {
@@ -158,9 +161,5 @@ public abstract class GameObject implements ITick, IRender {
 		if (getBounds() != null)
 			g2d.draw(getBounds());
 	}
-
-	// collision
-
-	public abstract Rectangle getBounds();
 
 }

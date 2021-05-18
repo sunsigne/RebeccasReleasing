@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
@@ -14,13 +17,11 @@ import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.GUI;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
 import objects.characters.living.FoeObject;
 
 public class World implements IRender {
@@ -47,8 +48,8 @@ public class World implements IRender {
 	}
 
 	@Override
-	public int getCameraLayer() {
-		return 0;
+	public LAYER getLayer() {
+		return LAYER.WOLRD_GUI_PUZZLE;
 	}
 
 	public ILvl getILvl() {
@@ -90,7 +91,7 @@ public class World implements IRender {
 	public static void stunAllFoes() {
 
 		boolean isCameraDependant = true;
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, 0);
+		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, LAYER.WOLRD_GUI_PUZZLE);
 		for (GameObject tempObject : list) {
 			if (tempObject.getId() == OBJECTID.FOE)
 				((FoeObject) tempObject).stun();
@@ -115,8 +116,6 @@ public class World implements IRender {
 		HandlerEvent.getInstance().clear();
 		GameMouseInput.getInstance().clearAllClickable();
 		HandlerObject.getInstance().resetPlayer();
-		HandlerObject.getInstance().setPlayerExisting(false);
-		HandlerObject.getInstance().setVirusExisting(false);
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);
 		SoundTask.stopMusic();

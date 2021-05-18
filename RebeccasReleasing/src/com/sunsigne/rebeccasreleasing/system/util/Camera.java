@@ -1,10 +1,10 @@
-package com.sunsigne.rebeccasreleasing.toverify.system.util;
+package com.sunsigne.rebeccasreleasing.system.util;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-
-import objects.GameObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Camera implements ITick {
 
@@ -12,7 +12,7 @@ public class Camera implements ITick {
 		HandlerTick.getInstance().addObject(this);
 	}
 
-	////////// STATE ////////////
+	////////// POSITION ////////////
 
 	private float x, y;
 
@@ -32,7 +32,7 @@ public class Camera implements ITick {
 		this.y = y;
 	}
 
-	////////// BEHAVIOR ////////////
+	////////// TICK ////////////
 
 	@Override
 	public void tick() {

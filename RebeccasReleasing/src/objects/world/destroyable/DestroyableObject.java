@@ -1,27 +1,28 @@
 package objects.world.destroyable;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
-import objects.IFacing;
-import objects.characters.collision.ICollision;
+import objects.Facing;
+import objects.Facing.DIRECTION;
 import objects.characters.living.LivingObject;
 import objects.world.loot.ILoot;
 import objects.world.loot.LootObject;
 
-public abstract class DestroyableObject extends GameObject implements IAnimation, IFacing, ICollision, ILoot {
+public abstract class DestroyableObject extends GameObject implements IAnimation, ICollisionReaction, ILoot {
 
-	private FACING facing;
+	protected Facing facing;
 
 	protected boolean falling;
 	protected int falltime;
@@ -29,8 +30,8 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	private boolean destroyable;
 	private LootObject loot;
 
-	public DestroyableObject(int x, int y, FACING facing, OBJECTID id) {
-		super(true, 0, x, y, id);
+	public DestroyableObject(int x, int y, Facing facing, OBJECTID id) {
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, id);
 
 		this.facing = facing;
 		this.destroyable = true;
@@ -38,21 +39,15 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 
 	// state
 
-	protected abstract boolean updatableFacing();
+	protected abstract boolean updatableDirection();
 
-	@Override
-	public FACING getFacing() {
-		return facing;
-	}
+	private void setDirection(DIRECTION playerfacing) {
+		if (updatableDirection()) {
+			boolean horizontaleToHorizontale = facing.isHorizontal() && Facing.isHorizontal(playerfacing);
+			boolean verticalToVertical = !facing.isHorizontal() && !Facing.isHorizontal(playerfacing);
 
-	@Override
-	public void setFacing(FACING facing) {
-		boolean horizontaleToHorizontale = isHorizontal() && isHorizontal(facing);
-		boolean verticalToVertical = !isHorizontal() && !isHorizontal(facing);
-
-		if (updatableFacing()) {
 			if (horizontaleToHorizontale || verticalToVertical)
-				this.facing = facing;
+				this.facing.setDirection(playerfacing);
 		}
 	}
 
@@ -73,7 +68,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	// design
 
 	protected void drawLootable(Graphics g) {
-		if (Game.isDebugMode()) {
+		if (Game.getDebugMode().getState()) {
 			if (loot != null)
 				loot.render(g);
 		}
@@ -82,31 +77,35 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	// collision
 
 	@Override
-	public void collision(LivingObject living) {
-		if (living.getBoundsLeft().intersects(getBounds()))
-			updateDestroyable(living, FACING.LEFT);
-		if (living.getBoundsRight().intersects(getBounds()))
-			updateDestroyable(living, FACING.RIGHT);
-		if (living.getBoundsTop().intersects(getBounds()))
-			updateDestroyable(living, FACING.UP);
-		if (living.getBounds().intersects(getBounds()))
-			updateDestroyable(living, FACING.DOWN);
+	public void collidingReaction(GameObject collidingObject) {
+
+		if (collidingObject instanceof LivingObject) {
+
+			if (((LivingObject) collidingObject).getBoundsLeft().intersects(getBounds()))
+				updateDestroyable(collidingObject, DIRECTION.LEFT);
+			if (((LivingObject) collidingObject).getBoundsRight().intersects(getBounds()))
+				updateDestroyable(collidingObject, DIRECTION.RIGHT);
+			if (((LivingObject) collidingObject).getBoundsTop().intersects(getBounds()))
+				updateDestroyable(collidingObject, DIRECTION.UP);
+			if (((LivingObject) collidingObject).getBounds().intersects(getBounds()))
+				updateDestroyable(collidingObject, DIRECTION.DOWN);
+		}
 	}
 
-	public void updateDestroyable(LivingObject living, FACING playerfacing) {
+	public void updateDestroyable(GameObject collidingObject, DIRECTION playerfacing) {
 
 		if (destroyable) {
-			if (living.isPlayer())
+			if (collidingObject.isPlayer())
 				refreshPlayerRendering();
 
 			if (!falling) {
-				setFacing(playerfacing);
+				setDirection(playerfacing);
 
 				int points = givePts();
 				BufferedSound mainSound = makeMainSound();
 				BufferedSound sideSound = makeSideSound();
 
-				if (living.isPlayer()) {
+				if (collidingObject.isPlayer()) {
 					if (HandlerObject.getInstance().getPlayer().isPushed())
 						World.gui.addPoints(this, 5 * points);
 					else
@@ -120,6 +119,13 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 				fall();
 				loot();
 			}
+		}
+	}
+
+	public void refreshPlayerRendering() {
+		if (facing.isHorizontal()) {
+			if (HandlerObject.getInstance().getPlayer().getY() < y + h / 4)
+				HandlerRender.getInstance().setPlayerPaintedAtTheEnd(false);
 		}
 	}
 

@@ -10,7 +10,10 @@ import java.awt.image.BufferStrategy;
 import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
+import com.sunsigne.rebeccasreleasing.system.util.Camera;
+import com.sunsigne.rebeccasreleasing.system.util.Cycloid;
 import com.sunsigne.rebeccasreleasing.system.util.Window;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.Options;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.hack.PuzzleHack;
@@ -22,8 +25,7 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.GameKeyboardInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerRender;
-import com.sunsigne.rebeccasreleasing.toverify.system.util.Camera;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Game extends Canvas implements Runnable {
@@ -42,9 +44,9 @@ public class Game extends Canvas implements Runnable {
 	private static final Camera cam = new Camera();
 
 	public static final String NAME = "Rebecca's Releasing";
-	private static boolean debugMode = false;
-	private static boolean wallPassMode = false;
-	private static boolean multiToolMode = false;
+	private static final Cycloid<Boolean> debugMode = new Cycloid<>(false, true);
+	private static final Cycloid<Boolean> wallPassMode = new Cycloid<>(false, true);
+	private static final Cycloid<Boolean> multiToolMode = new Cycloid<>(false, true);
 	public static final boolean skipIntro = true;
 
 	public static Game game;
@@ -77,28 +79,16 @@ public class Game extends Canvas implements Runnable {
 
 	// State
 
-	public static boolean isDebugMode() {
+	public static Cycloid<Boolean> getDebugMode() {
 		return debugMode;
 	}
 
-	public static boolean isWallPassMode() {
+	public static Cycloid<Boolean> getWallPassMode() {
 		return wallPassMode;
 	}
 
-	public static boolean isMultiToolMode() {
+	public static Cycloid<Boolean> getMultiToolMode() {
 		return multiToolMode;
-	}
-
-	public static void switchDebugMode() {
-		debugMode = debugMode ? false : true;
-	}
-
-	public static void switchWallPassMode() {
-		wallPassMode = wallPassMode ? false : true;
-	}
-
-	public static void switchMultiToolMode() {
-		multiToolMode = multiToolMode ? false : true;
 	}
 
 	// Thread
@@ -236,8 +226,8 @@ public class Game extends Canvas implements Runnable {
 
 	private void renderLayers(Graphics g) {
 
-		for (int layer = 0; layer < 3; layer++) {
-			HandlerRender.getInstance().setCameraLayer(layer);
+		for (LAYER layer : LAYER.values()) {
+			HandlerRender.getInstance().setLayer(layer);
 			HandlerRender.getInstance().render(g);
 		}
 	}

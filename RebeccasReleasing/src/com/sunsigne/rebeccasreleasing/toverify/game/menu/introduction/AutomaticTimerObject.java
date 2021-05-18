@@ -3,10 +3,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.menu.introduction;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
 import objects.TimerListener;
 
 public class AutomaticTimerObject extends GameObject {
@@ -15,7 +16,7 @@ public class AutomaticTimerObject extends GameObject {
 	private int timeinTicks;
 
 	public AutomaticTimerObject(int timeinTicks, TimerListener listener) {
-		super(false, 0, 0, 0, OBJECTID.TIMER);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.TIMER);
 		this.listener = listener;
 		this.timeinTicks = timeinTicks;
 		HandlerObject.getInstance().addObject(this);

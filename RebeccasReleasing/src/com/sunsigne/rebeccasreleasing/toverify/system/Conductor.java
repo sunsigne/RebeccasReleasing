@@ -2,13 +2,13 @@ package com.sunsigne.rebeccasreleasing.toverify.system;
 
 import javax.swing.JOptionPane;
 
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.LoadingScreenObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.introduction.Introduction;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.*;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;

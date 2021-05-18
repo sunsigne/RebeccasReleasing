@@ -9,15 +9,18 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
+import objects.Facing;
+import objects.Facing.DIRECTION;
+
 public class Plant extends DestroyableObject {
 
 	private Animation[] animation = new Animation[2];
 
-	public Plant(int x, int y, FACING facing) {
+	public Plant(int x, int y, Facing facing) {
 		super(x, y, facing, OBJECTID.PLANT);
 
-		if(facing == FACING.UP) facing = FACING.LEFT;
-		if(facing == FACING.DOWN) facing = FACING.RIGHT;
+		if(facing.getDirection() == DIRECTION.UP) facing.setDirection(DIRECTION.LEFT);
+		if(facing.getDirection() == DIRECTION.DOWN) facing.setDirection(DIRECTION.RIGHT);
 		
 		w = Size.TILE / 2;
 		h = Size.TILE / 2;
@@ -26,7 +29,7 @@ public class Plant extends DestroyableObject {
 	// state
 
 	@Override
-	protected boolean updatableFacing() {
+	protected boolean updatableDirection() {
 		return false;
 	}
 
@@ -35,7 +38,7 @@ public class Plant extends DestroyableObject {
 	@Override
 	public void tick() {
 		if (falltime > 0) {
-			runAnimation(getFacing().getNum());
+			runAnimation(facing.getDirection().getNum());
 			falltime--;
 		}
 	}
@@ -69,17 +72,17 @@ public class Plant extends DestroyableObject {
 		int h0 = Size.TILE;
 		int gap = 0;
 
-		if (getFacing() == FACING.LEFT)
+		if (facing.getDirection() == DIRECTION.LEFT)
 			gap = Size.TILE;
 
 		if (!falling)
-			g.drawImage(texture.destroyable_plant[getFacing().getNum()][0], x - gap, y, w0, h0, null);
+			g.drawImage(texture.destroyable_plant[facing.getDirection().getNum()][0], x - gap, y, w0, h0, null);
 
 		if (falling && falltime > 0)
-			drawAnimation(g, x - gap, y, w0, h0, getFacing().getNum());
+			drawAnimation(g, x - gap, y, w0, h0, facing.getDirection().getNum());
 
 		if (falling && falltime <= 0)
-			g.drawImage(texture.destroyable_plant[getFacing().getNum()][3], x - gap, y, w0, h0, null);
+			g.drawImage(texture.destroyable_plant[facing.getDirection().getNum()][3], x - gap, y, w0, h0, null);
 
 	}
 

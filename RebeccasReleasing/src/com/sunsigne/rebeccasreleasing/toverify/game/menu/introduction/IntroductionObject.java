@@ -6,11 +6,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
@@ -18,11 +18,11 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.util.GenerticListener;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.GenericListener;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.BonusText;
 
-import objects.IFacing.FACING;
+import objects.Facing.DIRECTION;
 
 public class IntroductionObject extends CommunIntroductionObject implements IAnimation, ITranslation {
 
@@ -121,7 +121,7 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 
 	}
 
-	private void brightenObject(CommunIntroductionObject object, GenerticListener listener) {
+	private void brightenObject(CommunIntroductionObject object, GenericListener listener) {
 		if (object.getOpacity() < 0.99f)
 			object.setOpacity(object.getOpacity() + 0.04999f);
 		else {
@@ -131,7 +131,7 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		}
 	}
 
-	private void fadeObject(CommunIntroductionObject object, GenerticListener listener) {
+	private void fadeObject(CommunIntroductionObject object, GenericListener listener) {
 		if (object.getOpacity() > 0f) {
 			object.setOpacity(object.getOpacity() - 0.05f);
 		} else if (listener != null)
@@ -299,16 +299,16 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		case 7:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
 			gametext = getGameTextFromFile(3);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.UP);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.UP);
 			gametext = getGameTextFromFile(4);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.DOWN);
 			break;
 		case 9:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
 			gametext = getGameTextFromFile(5);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.UP);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.UP);
 			gametext = getGameTextFromFile(6);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.DOWN);
 			break;
 		case 13:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
@@ -326,9 +326,9 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		case 19:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
 			gametext = getGameTextFromFile(8);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.UP);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.UP);
 			gametext = getGameTextFromFile(9);
-			drawText(g, gametext.getGap(), gametext.getText(), FACING.DOWN);
+			drawText(g, gametext.getGap(), gametext.getText(), DIRECTION.DOWN);
 			break;
 		case 21:
 			g.drawImage(texture.interface_chat, 0, -650, Size.WIDHT, Size.HEIGHT, null);
@@ -360,12 +360,12 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 		drawText(g, gap, text, null);
 	}
 
-	private void drawText(Graphics g, int gap, String text, FACING facing) {
+	private void drawText(Graphics g, int gap, String text, DIRECTION facing) {
 		int h0 = 0;
 
-		if (facing == FACING.UP)
+		if (facing == DIRECTION.UP)
 			h0 = -40;
-		if (facing == FACING.DOWN) {
+		if (facing == DIRECTION.DOWN) {
 			font = new Font("arial", 1, 70);
 			h0 = 60;
 		}

@@ -2,13 +2,12 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object;
 
 import java.util.LinkedList;
 
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.GameObject;
 
 public class KeyReversed extends KeyObject {
 
@@ -62,7 +61,7 @@ public class KeyReversed extends KeyObject {
 	private void collision() {
 		if (doesExist()) {
 
-			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getCameraLayer());
+			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 			for (GameObject tempObject : list) {
 				if (tempObject.getId() == OBJECTID.WALL && getBounds().intersects(tempObject.getBounds())) {
 					HandlerObject.getInstance().getPlayer().puzzle.close();

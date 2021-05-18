@@ -19,18 +19,16 @@ public class HandlerTick implements ITick {
 	private LinkedList<ITick> handler_tick_list = new LinkedList<>();
 
 	public void addObject(ITick tickable) {
-
 		if (tickable != null)
 			handler_tick_list.add(tickable);
 	}
 
 	public void removeObject(ITick tickable) {
-
 		if (tickable != null)
 			handler_tick_list.remove(tickable);
 	}
 
-	////////// BEHAVIOR ////////////
+	////////// TICK ////////////
 
 	@Override
 	public void tick() {

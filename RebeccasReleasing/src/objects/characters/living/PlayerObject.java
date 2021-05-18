@@ -1,20 +1,17 @@
 package objects.characters.living;
 
 import java.awt.AlphaComposite;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.sunsigne.rebeccasreleasing.toverify.Todo;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
-import objects.GameObject;
 import objects.world.IInteraction;
-import objects.world.Stairs;
 
 public class PlayerObject extends LivingObject {
 
@@ -34,7 +31,6 @@ public class PlayerObject extends LivingObject {
 
 	// state
 
-	@Todo("Put this method in a mother class for all characters")
 	@Override
 	public Animation getAnimation(int... array) {
 
@@ -110,7 +106,7 @@ public class PlayerObject extends LivingObject {
 		int facing = getFacing().getNum();
 
 		Graphics2D g2d = (Graphics2D) g;
-		if (Game.isWallPassMode())
+		if (Game.getWallPassMode().getState())
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
 
 		if (isMotionless())

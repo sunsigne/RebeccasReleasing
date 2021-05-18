@@ -13,6 +13,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.characters.living.FoeObject;
@@ -45,8 +46,8 @@ public abstract class Puzzle extends Clickable {
 	// state
 
 	@Override
-	public int getCameraLayer() {
-		return 0;
+	public LAYER getLayer() {
+		return LAYER.WOLRD_GUI_PUZZLE;
 	}
 	
 	public DIFFICULTY getDifficulty() {
@@ -69,7 +70,7 @@ public abstract class Puzzle extends Clickable {
 
 	public void open() {
 
-		HandlerObject.getInstance().clear(false, 0);
+		HandlerObject.getInstance().clear(false, LAYER.WOLRD_GUI_PUZZLE);
 		createFrame();
 		randomGeneration();
 		createPuzzle();
@@ -91,7 +92,6 @@ public abstract class Puzzle extends Clickable {
 
 		clearClickable();
 		HandlerObject.getInstance().addObject(World.gui);
-		HandlerObject.getInstance().setVirusExisting(false);
 
 		if (puzzler != null)
 			puzzler.setSolved(winning);

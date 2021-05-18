@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toverify.ressources.font;
+package com.sunsigne.rebeccasreleasing.ressources.font;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -6,7 +6,7 @@ import java.io.File;
 
 public class FontTask {
 
-	// I prefere to let it public
+	// I prefere to let this method public
 	// to make it easier for modders and devellopers in adding content
 	public static Font createNewFont(BufferedFontBank bufferedFontBank, float size) {
 
