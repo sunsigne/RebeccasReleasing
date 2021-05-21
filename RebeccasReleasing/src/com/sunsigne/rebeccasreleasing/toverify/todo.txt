@@ -40,6 +40,7 @@ simplifier les fonctions utilisant SoundBank dans SoundTask pour jouer un son
 
 ///////// A TRIER ////////////
 
+ToolBank & ToolTask / create saveRessources() and setBufferedToolIntoFile()
 Lazer / la collision avec le lazer de la part d'ennemis ne devrait elle pas les blesser ?
 GameKeyboardInput / créer des boutons pour restart le level ? pour sauvegarder et retourner à l'écran titre
 faire une version inversé du monde ET DES PUZZLES quand on est en reversed

@@ -21,7 +21,7 @@ public class ImageTask {
 
 		try {
 			String path = "\\ressources\\" + path0;
-			URL url = new File((new File(loc.toURI())).getParent().replace("\\target", "") + path).toURI().toURL();
+			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 			image = ImageIO.read(url);
 		} catch (Exception e) {
 			e.printStackTrace();

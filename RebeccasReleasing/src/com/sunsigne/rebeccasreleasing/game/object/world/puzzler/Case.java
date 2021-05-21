@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.clickable.PuzzleSearch;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;

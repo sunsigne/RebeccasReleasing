@@ -2,13 +2,13 @@ package objects.world.puzzler;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 

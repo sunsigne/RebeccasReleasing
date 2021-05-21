@@ -21,7 +21,7 @@ public class SoundTask {
 		stopMusic();
 		try {
 			String path = "\\ressources\\audio\\" + sound.getSound();
-			URL url = new File((new File(loc.toURI())).getParent().replace("\\target", "") + path).toURI().toURL();
+			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 
 			AudioInputStream music = AudioSystem.getAudioInputStream(url);
 			musicclip = AudioSystem.getClip();

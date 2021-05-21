@@ -9,12 +9,12 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.Wall;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.Facing;
@@ -28,7 +28,7 @@ public class MapCreator {
 	private static List<ILoot>[][] tool_list = new List[7][4]; // - difficulty - state
 
 	public static void addToToolList(LootTool lootTool, ILoot iloot) {
-		int lvl = lootTool.getDifficulty().getLvl();
+		int lvl = lootTool.getTool().getCurrentLvl();
 		int index = lootTool.getTool().getToolBank().getIndex();
 		MapCreator.tool_list[lvl][index].add(iloot);
 	}
@@ -121,7 +121,7 @@ public class MapCreator {
 
 				// search of ToolBank by index
 				ToolBank toolBank = null;
-				var map = ToolBank.getMap();
+				var map = ToolBank.getClonedMap();
 
 				for (ToolBank tempToolBank : map.keySet()) {
 					if (tempToolBank.getIndex() == tool)

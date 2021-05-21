@@ -1,9 +1,10 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.desk;
 
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 
 import objects.Facing;
 import objects.Facing.DIRECTION;
@@ -26,10 +27,10 @@ public class MapCreatorKeyDesk {
 		if (red == 255 && green == 0 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
-			handler_object.addObject(desk);
+			handler_object.addObject(desk);			
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			MapCreator.addToToolList(tool, desk);			
 			tool.setFake(true);
 			handler_object.addObject(tool);
 

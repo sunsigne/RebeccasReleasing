@@ -1,25 +1,16 @@
-package com.sunsigne.rebeccasreleasing.toverify.ressources.tools;
+package com.sunsigne.rebeccasreleasing.ressources.tools;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sunsigne.rebeccasreleasing.ressources.GameFile;
-import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
-import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
+public class ToolBank extends ToolIndex {
 
-public class ToolBank {
-
-	private static int maxIndex = -1;
-
+	/**
+	 * WARNING ! Creating a new ToolBank increases by one the static index of the
+	 * super class
+	 */
 	public ToolBank() {
-		maxIndex++;
-		index = maxIndex;
-	}
-
-	private int index;
-
-	public int getIndex() {
-		return index;
+		super();
 	}
 
 	////////// MAP OR LIST ////////////
@@ -38,8 +29,10 @@ public class ToolBank {
 		return tools.get(toolBank);
 	}
 
-	public static Map<ToolBank, BufferedTool> getMap() {
-		return tools;
+	public static Map<ToolBank, BufferedTool> getClonedMap() {
+		var clonedMap = new HashMap<ToolBank, BufferedTool>();
+		clonedMap.putAll(tools);
+		return clonedMap;
 	}
 
 	////////// REFERENCES ////////////
@@ -56,7 +49,6 @@ public class ToolBank {
 
 		ToolTask tooltask = new ToolTask();
 
-		// gui
 		addTool(KEY, tooltask.getBufferedToolFromFile(KEY, 2));
 		addTool(SWORD, tooltask.getBufferedToolFromFile(SWORD, 3));
 		addTool(BOMB, tooltask.getBufferedToolFromFile(BOMB, 4));

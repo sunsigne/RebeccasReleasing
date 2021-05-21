@@ -3,14 +3,14 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;

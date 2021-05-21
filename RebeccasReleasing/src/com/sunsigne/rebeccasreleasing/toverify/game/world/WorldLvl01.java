@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Door;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -12,7 +13,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.event.EventContext;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;

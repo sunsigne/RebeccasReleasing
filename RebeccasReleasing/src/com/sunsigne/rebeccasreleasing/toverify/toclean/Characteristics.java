@@ -2,8 +2,8 @@ package com.sunsigne.rebeccasreleasing.toverify.toclean;
 
 import com.sunsigne.rebeccasreleasing.ressources.FileTask;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 
 public interface Characteristics {
 

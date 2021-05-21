@@ -6,17 +6,14 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.system.util.MapCloneMaker;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class GUI extends GameObject implements Characteristics {
@@ -34,7 +31,7 @@ public class GUI extends GameObject implements Characteristics {
 	public GUI() {
 		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DISPLAYER);
 
-		tools = MapCloneMaker.clone(ToolBank.getMap());
+		tools = ToolBank.getClonedMap();
 
 		setMaxHp(getMaxHpFromFile());
 		setHp(getMaxHp());

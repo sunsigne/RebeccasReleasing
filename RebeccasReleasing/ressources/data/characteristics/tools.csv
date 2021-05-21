@@ -1,6 +1,6 @@
 tool_num;tool_name;current_lvl;max_lvl
 2;KEY;0;2
 3;SWORD;0;1
-4;BOMB;1;1
+4;BOMB;0;1
 5;GLASS;0;1
 6;PLIERS;0;1

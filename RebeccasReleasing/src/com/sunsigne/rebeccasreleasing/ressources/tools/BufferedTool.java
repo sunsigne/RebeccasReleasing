@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toverify.ressources.tools;
+package com.sunsigne.rebeccasreleasing.ressources.tools;
 
 import java.awt.image.BufferedImage;
 
@@ -33,7 +33,7 @@ public class BufferedTool {
 		return currentLvl;
 	}
 
-	public void setCurrentLvl(int lvl) {
+	private void setCurrentLvl(int lvl) {
 		this.currentLvl = lvl;
 	}
 
@@ -49,7 +49,6 @@ public class BufferedTool {
 			else
 				setCurrentLvl(maxLvl);
 		}
-
 	}
 
 	////////// RENDER ////////////

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
@@ -37,6 +38,7 @@ public class World implements IRender {
 		this.ilvl = ilvl;
 		ilvl.loadEvent();
 		HandlerRender.getInstance().addObject(this);
+		ToolBank.loadRessources();
 
 		loadLevel();
 		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.level));
