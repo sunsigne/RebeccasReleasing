@@ -4,8 +4,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.PuzzleKeyBuilder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.Key;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 
 import objects.world.puzzler.IPuzzler;
 

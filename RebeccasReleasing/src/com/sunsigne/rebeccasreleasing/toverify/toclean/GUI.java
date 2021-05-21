@@ -4,17 +4,24 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.system.util.MapCloneMaker;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class GUI extends GameObject implements Characteristics {
 
-	private Tool[] tools = new Tool[5];
+	private Map<ToolBank, BufferedTool> tools = new HashMap<>();
 
 	private int maxhp, hp;
 	private boolean infiniteHp;
@@ -27,11 +34,7 @@ public class GUI extends GameObject implements Characteristics {
 	public GUI() {
 		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DISPLAYER);
 
-		tools[Tool.KEY] = getToolFromFile(Tool.KEY);
-		tools[Tool.SWORD] = getToolFromFile(Tool.SWORD);
-		tools[Tool.BOMB] = getToolFromFile(Tool.BOMB);
-		tools[Tool.GLASS] = getToolFromFile(Tool.GLASS);
-		tools[Tool.PLIERS] = getToolFromFile(Tool.PLIERS);
+		tools = MapCloneMaker.clone(ToolBank.getMap());
 
 		setMaxHp(getMaxHpFromFile());
 		setHp(getMaxHp());
@@ -39,9 +42,13 @@ public class GUI extends GameObject implements Characteristics {
 
 	// state
 
+	public Map<ToolBank, BufferedTool> getMap() {
+		return tools;
+	}
+
 	@Override
-	public Tool getTool(int num) {
-		return tools[num];
+	public BufferedTool getTool(ToolBank toolBank) {
+		return tools.get(toolBank);
 	}
 
 	// hp gestion
@@ -170,20 +177,23 @@ public class GUI extends GameObject implements Characteristics {
 
 	private void drawTools(Graphics g) {
 
-		int size = tools.length;
 		int currentToolLvl = 0;
 		int currentToolMaxLvl = 0;
+		int count = 0;
 
-		for (int i = 0; i < size; i++) {
-			currentToolLvl = Game.getMultiToolMode().getState() ? 5 : getTool(i).getCurrentLvl();
-			currentToolMaxLvl = Game.getMultiToolMode().getState() ? 5 : getTool(i).getMaxLvl();
+		for (ToolBank tempToolBank : tools.keySet()) {
+			BufferedTool tempTool = tools.get(tempToolBank);
+			currentToolLvl = Conductor.getDebugMode().getMultiToolMode().getState() ? 5 : tempTool.getCurrentLvl();
+			currentToolMaxLvl = Conductor.getDebugMode().getMultiToolMode().getState() ? 5 : tempTool.getMaxLvl();
 
 			if (currentToolLvl != 0) {
-				g.drawImage(texture.gui_tool[i], x + 20 + i * (2 * Size.TILE_PUZZLE + 10),
+				g.drawImage(tempTool.getTexture(), x + 20 + count * (2 * Size.TILE_PUZZLE + 10),
 						Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
 				g.drawImage(texture.gui_battery[currentToolLvl][currentToolMaxLvl],
-						x + 20 + Size.TILE_PUZZLE * (2 * i + 1), Size.HEIGHT - Size.TILE_PUZZLE - 20, Size.TILE_PUZZLE,
-						Size.TILE_PUZZLE, null);
+						x + 20 + Size.TILE_PUZZLE * (2 * count + 1), Size.HEIGHT - Size.TILE_PUZZLE - 20,
+						Size.TILE_PUZZLE, Size.TILE_PUZZLE, null);
+				if (tempTool.getCurrentLvl() > 0)
+					count++;
 			}
 		}
 	}
@@ -194,7 +204,8 @@ public class GUI extends GameObject implements Characteristics {
 	}
 
 	public void setInvulnerable(boolean invulnerable) {
-	this.isInvulnerable=invulnerable;invulnerabitilyTime=invulnerable?30:0;
+		this.isInvulnerable = invulnerable;
+		invulnerabitilyTime = invulnerable ? 30 : 0;
 
 	}
 

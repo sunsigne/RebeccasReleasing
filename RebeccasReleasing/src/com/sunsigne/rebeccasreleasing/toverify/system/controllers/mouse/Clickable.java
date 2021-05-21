@@ -6,9 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public abstract class Clickable extends GameMouseInput implements IClick {

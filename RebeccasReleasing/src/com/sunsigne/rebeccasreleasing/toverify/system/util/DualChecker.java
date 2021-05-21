@@ -4,7 +4,7 @@ import com.sunsigne.rebeccasreleasing.ressources.FileTask;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 
 public class DualChecker implements ITick {
 

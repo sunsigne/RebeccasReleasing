@@ -1,8 +1,8 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler;
 
 import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Computer;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 final class MapCreatorComputer {
 

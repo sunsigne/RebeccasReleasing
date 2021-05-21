@@ -1,17 +1,12 @@
-package com.sunsigne.rebeccasreleasing.toverify.system.handler;
+package com.sunsigne.rebeccasreleasing.system.handler;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
-import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
-import com.sunsigne.rebeccasreleasing.system.handler.IRender;
-import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.hack.PuzzleHack;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 import objects.characters.living.PlayerObject;
 
@@ -29,6 +24,24 @@ public class HandlerObject implements ITick, IRender {
 			HandlerRender.getInstance().addObject(true, layer, this);
 			HandlerRender.getInstance().addObject(false, layer, this);
 		}
+	}
+
+	private PlayerObject player = new PlayerObject(0, 0);
+
+	public PlayerObject getPlayer() {
+		return player;
+	}
+
+	public boolean isPlayerExisting() {
+		for (LAYER allLayer : LAYER.values()) {
+			if (getList(true, allLayer).contains(player))
+				return true;
+		}
+		return false;
+	}
+
+	public void resetPlayer() {
+		player = new PlayerObject(0, 0);
 	}
 
 	////////// SIGNELTON ////////////
@@ -53,14 +66,14 @@ public class HandlerObject implements ITick, IRender {
 
 	public void addObject(GameObject object) {
 		if (object != null) {
-			LinkedList<GameObject> list = getList(object.isCameraDependant(), object.getLayer());
+			var list = getList(object.isCameraDependant(), object.getLayer());
 			list.add(object);
 		}
 	}
 
 	public void removeObject(GameObject object) {
 		if (object != null) {
-			LinkedList<GameObject> list = getList(object.isCameraDependant(), object.getLayer());
+			var list = getList(object.isCameraDependant(), object.getLayer());
 			list.remove(object);
 		}
 	}
@@ -76,49 +89,6 @@ public class HandlerObject implements ITick, IRender {
 		}
 	}
 
-	////////// STATE ////////////
-
-	private PlayerObject player = new PlayerObject(0, 0);
-
-	@Override
-	public boolean isCameraDependant() {
-		return HandlerRender.getInstance().isCameraDependant();
-	}
-
-	@Override
-	public LAYER getLayer() {
-		return HandlerRender.getInstance().getLayer();
-	}
-
-	public boolean isVirusExisting() {
-		for (LAYER allLayer : LAYER.values()) {
-			if (getList(true, allLayer).contains(PuzzleHack.virus))
-				return true;
-			if (getList(true, allLayer).contains(PuzzleHack.virus))
-				return true;
-		}
-		return false;
-	}
-
-	public boolean isPlayerExisting() {
-		for (LAYER allLayer : LAYER.values()) {
-			if (getList(true, allLayer).contains(player))
-				return true;
-			if (getList(true, allLayer).contains(player))
-				return true;
-		}
-		return false;
-	}
-
-	public PlayerObject getPlayer() {
-		return player;
-	}
-
-	public void resetPlayer() {
-		removeObject(player);
-		player = new PlayerObject(0, 0);
-	}
-
 	public GameObject getObjectAtPos(LAYER layer, int x, int y) {
 		for (GameObject tempObject : handler_object_list[1][layer.getNum()]) {
 			if (tempObject.getX() == x && tempObject.getY() == y) {
@@ -128,7 +98,7 @@ public class HandlerObject implements ITick, IRender {
 		return null;
 	}
 
-	////////// BEHAVIOR ////////////
+	////////// TICK ////////////
 
 	@Override
 	public void tick() {
@@ -152,15 +122,27 @@ public class HandlerObject implements ITick, IRender {
 		}
 	}
 
+	////////// RENDER ////////////
+
+	@Override
+	public boolean isCameraDependant() {
+		return HandlerRender.getInstance().isCameraDependant();
+	}
+
+	@Override
+	public LAYER getLayer() {
+		return HandlerRender.getInstance().getLayer();
+	}
+
 	@Override
 	public void render(Graphics g) {
 
-		LinkedList<GameObject> list = getList(isCameraDependant(), getLayer());
+		var list = getList(isCameraDependant(), getLayer());
 
 		for (GameObject tempObject : list)
 			tempObject.render(g);
 
-		if (Game.getDebugMode().getState()) {
+		if (Conductor.getDebugMode().getHitboxMode().getState()) {
 			for (GameObject tempObject : list)
 				tempObject.drawHitbox(g);
 		}

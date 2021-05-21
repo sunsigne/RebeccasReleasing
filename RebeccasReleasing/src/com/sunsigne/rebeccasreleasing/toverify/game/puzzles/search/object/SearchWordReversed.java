@@ -1,9 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 public class SearchWordReversed extends SearchWordObject {
 

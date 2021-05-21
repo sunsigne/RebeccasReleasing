@@ -4,13 +4,14 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
@@ -68,7 +69,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	// design
 
 	protected void drawLootable(Graphics g) {
-		if (Game.getDebugMode().getState()) {
+		if (Conductor.getDebugMode().getHitboxMode().getState()) {
 			if (loot != null)
 				loot.render(g);
 		}
@@ -125,7 +126,7 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	public void refreshPlayerRendering() {
 		if (facing.isHorizontal()) {
 			if (HandlerObject.getInstance().getPlayer().getY() < y + h / 4)
-				HandlerRender.getInstance().setPlayerPaintedAtTheEnd(false);
+				HandlerRender.getInstance().setPlayerRenderingRefreshed(false);
 		}
 	}
 

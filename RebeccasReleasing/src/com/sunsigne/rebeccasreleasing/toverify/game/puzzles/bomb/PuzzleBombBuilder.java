@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.Bomb;
@@ -13,7 +14,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombReve
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
@@ -72,12 +72,12 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public BufferedSound getSuccessSound() {
+	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.getSound(SoundBank.explosion_big);
+			return SoundBank.explosion_big;
 		else
-			return SoundBank.getSound(SoundBank.r_explosion_big);
+			return SoundBank.r_explosion_big;
 	}
 
 }

@@ -6,12 +6,12 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.MenuObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 
 public class OptionObject extends MenuObject implements ITranslation {
 

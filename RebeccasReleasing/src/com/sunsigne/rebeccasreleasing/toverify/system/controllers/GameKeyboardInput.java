@@ -3,12 +3,12 @@ package com.sunsigne.rebeccasreleasing.toverify.system.controllers;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.title.Title;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 
 import objects.Facing.DIRECTION;
 import objects.characters.living.PlayerObject;
@@ -47,16 +47,18 @@ public class GameKeyboardInput extends KeyAdapter {
 	private void cheatKeyAction(int key) {
 
 		if (key == KeyEvent.VK_F3)
-			Game.getDebugMode().cycle();
+			Conductor.getDebugMode().getHitboxMode().cycle();
+//			Game.getHitboxMode().cycle();
 
 		if (key == KeyEvent.VK_F4)
-			Game.getWallPassMode().cycle();
+			Conductor.getDebugMode().getWallPassMode().cycle();
 
 		if (key == KeyEvent.VK_F5)
-			Game.getMultiToolMode().cycle();
+			Conductor.getDebugMode().getMultiToolMode().cycle();
 
 		if (key == KeyEvent.VK_R) {
-			if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE || Conductor.getState() == STATE.CHATTING)
+			if (Conductor.getState() == STATE.LEVEL || Conductor.getState() == STATE.PUZZLE
+					|| Conductor.getState() == STATE.CHATTING)
 				World.currentWorld.restart();
 		}
 

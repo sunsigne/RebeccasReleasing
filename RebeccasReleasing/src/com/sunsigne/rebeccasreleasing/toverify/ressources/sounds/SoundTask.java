@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.system.Game;
 
 public class SoundTask {
 
@@ -21,7 +21,7 @@ public class SoundTask {
 		stopMusic();
 		try {
 			String path = "\\ressources\\audio\\" + sound.getSound();
-			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
+			URL url = new File((new File(loc.toURI())).getParent().replace("\\target", "") + path).toURI().toURL();
 
 			AudioInputStream music = AudioSystem.getAudioInputStream(url);
 			musicclip = AudioSystem.getClip();

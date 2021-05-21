@@ -8,10 +8,10 @@ import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.clickable.PuzzleSearch;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.world.puzzler.IPuzzler;
 
@@ -106,7 +106,7 @@ public class Case extends GameObject implements IPuzzler {
 
 		if (!isSolved()) {
 
-			if (collidingObject.isPlayer() && hasToolLvl(Tool.GLASS))
+			if (collidingObject.isPlayer() && hasToolLvl(ToolBank.GLASS))
 				openPuzzle(collidingObject, this);
 			else
 				blockPass(collidingObject, this);

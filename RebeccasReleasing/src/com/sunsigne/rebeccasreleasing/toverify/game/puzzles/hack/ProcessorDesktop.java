@@ -3,7 +3,7 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.hack;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class ProcessorDesktop extends ProcessorObject {
 

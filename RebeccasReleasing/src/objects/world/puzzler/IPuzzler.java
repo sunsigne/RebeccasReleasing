@@ -2,16 +2,15 @@ package objects.world.puzzler;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 
 import objects.characters.living.PlayerObject;
 
@@ -31,17 +30,17 @@ public interface IPuzzler extends ICollisionReaction {
 
 	public Puzzle getPuzzle();
 
-	public default boolean hasToolLvl(int toolnum) {
-		if (Game.getMultiToolMode().getState())
+	public default boolean hasToolLvl(ToolBank toolBank) {
+		if (Conductor.getDebugMode().getMultiToolMode().getState())
 			return true;
-		return hasToolLvl(getDifficulty(), toolnum);
+		return hasToolLvl(getDifficulty(), toolBank);
 	}
 
-	public default boolean hasToolLvl(DIFFICULTY difficulty, int toolnum) {
-		if (Game.getMultiToolMode().getState())
+	public default boolean hasToolLvl(DIFFICULTY difficulty, ToolBank toolBank) {
+		if (Conductor.getDebugMode().getMultiToolMode().getState())
 			return true;
 		boolean toolhasLvl = false;
-		Tool current_tool = World.gui.getTool(toolnum);
+		BufferedTool current_tool = World.gui.getTool(toolBank);
 		int current_tool_lvl = current_tool.getCurrentLvl();
 		if (current_tool_lvl >= difficulty.getLvl())
 			toolhasLvl = true;

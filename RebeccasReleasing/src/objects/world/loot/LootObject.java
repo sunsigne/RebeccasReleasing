@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.BonusText;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -17,8 +17,11 @@ public abstract class LootObject extends GameObject implements ICollisionReactio
 	protected boolean fake;
 	private int time_before_lootable = 40;
 
-	public LootObject(int x, int y, boolean fake) {
+	public LootObject(int x, int y) {
 		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.LOOT);
+	}
+
+	public void setFake(boolean fake) {
 		this.fake = fake;
 	}
 

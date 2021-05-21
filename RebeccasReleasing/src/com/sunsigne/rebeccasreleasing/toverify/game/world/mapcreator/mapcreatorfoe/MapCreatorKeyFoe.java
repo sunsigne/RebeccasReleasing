@@ -1,9 +1,8 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorfoe;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.characters.living.FoeObject;
 import objects.world.loot.tools.LootTool;
@@ -11,21 +10,22 @@ import objects.world.loot.tools.LootTool;
 public class MapCreatorKeyFoe {
 
 	static void createKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		createCyanKeyFoe(red, green, blue, handler_object, x0, y0);
-		createGreenKeyFoe(red, green, blue, handler_object, x0, y0);
-		createYellowKeyFoe(red, green, blue, handler_object, x0, y0);
-		createOrangeKeyFoe(red, green, blue, handler_object, x0, y0);
-		createRedKeyFoe(red, green, blue, handler_object, x0, y0);
-		createPurpleKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createCyanKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createGreenKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createYellowKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createOrangeKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createRedKeyFoe(red, green, blue, handler_object, x0, y0);
+//		createPurpleKeyFoe(red, green, blue, handler_object, x0, y0);
 	}
-
+/*
 	private static void createCyanKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 1) {
 			FoeObject foe = new FoeObject(x0, y0, DIFFICULTY.CYAN);
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -34,7 +34,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -43,7 +44,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -52,7 +54,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -61,7 +64,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -70,7 +74,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -82,7 +87,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -91,7 +97,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -100,7 +107,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -109,7 +117,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -118,7 +127,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -127,7 +137,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -139,7 +150,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -148,7 +160,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -157,7 +170,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -166,7 +180,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -175,7 +190,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -184,7 +200,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -196,7 +213,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -205,7 +223,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -214,7 +233,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -223,7 +243,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -232,7 +253,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -241,7 +263,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -253,7 +276,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -262,7 +286,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -271,7 +296,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -280,7 +306,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -289,7 +316,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -298,7 +326,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -310,7 +339,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -319,7 +349,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -328,7 +359,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -337,7 +369,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -346,7 +379,8 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
@@ -355,10 +389,11 @@ public class MapCreatorKeyFoe {
 			handler_object.addObject(foe);
 			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
 			MapCreator.addToToolList(tool, foe);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
+			LootTool fakeTool = new LootTool(x0, y0, tool);
+			fakeTool.setFake(true);
 			handler_object.addObject(fakeTool);
 		}
 
 	}
-
+*/
 }

@@ -3,9 +3,9 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class SearchWord extends SearchWordObject {

@@ -3,16 +3,18 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
@@ -49,7 +51,7 @@ public abstract class Puzzle extends Clickable {
 	public LAYER getLayer() {
 		return LAYER.WOLRD_GUI_PUZZLE;
 	}
-	
+
 	public DIFFICULTY getDifficulty() {
 		return difficulty;
 	}
@@ -85,7 +87,7 @@ public abstract class Puzzle extends Clickable {
 
 	protected abstract void createPuzzle();
 
-	protected abstract BufferedSound getSuccessSound();
+	protected abstract SoundBank getSuccessSound();
 
 	@Override
 	public void close() {
@@ -110,7 +112,7 @@ public abstract class Puzzle extends Clickable {
 				SoundTask.playSound(SoundBank.getSound(SoundBank.r_fail));
 			World.gui.removeHp();
 		} else if (winning)
-			SoundTask.playSound(getSuccessSound());
+			SoundTask.playSound(SoundBank.getSound(getSuccessSound()));
 		World.gui.setInvulnerable(false);
 	}
 

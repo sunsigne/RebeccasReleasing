@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.WallPuzzle;
@@ -16,7 +17,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.Lock;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
@@ -98,11 +98,11 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public BufferedSound getSuccessSound() {
+	public SoundBank getSuccessSound() {
 		if (!isReversed())
-			return SoundBank.getSound(SoundBank.opening_door);
+			return SoundBank.opening_door;
 		else
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 	}
 
 }

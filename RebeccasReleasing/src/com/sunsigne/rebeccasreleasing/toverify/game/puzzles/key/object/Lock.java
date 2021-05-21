@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 

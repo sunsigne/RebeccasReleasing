@@ -5,9 +5,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
@@ -106,7 +107,7 @@ public class PlayerObject extends LivingObject {
 		int facing = getFacing().getNum();
 
 		Graphics2D g2d = (Graphics2D) g;
-		if (Game.getWallPassMode().getState())
+		if (Conductor.getDebugMode().getWallPassMode().getState())
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
 
 		if (isMotionless())

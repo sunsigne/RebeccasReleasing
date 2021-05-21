@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.toverify.system;
+package com.sunsigne.rebeccasreleasing.system;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -10,25 +10,24 @@ import java.awt.image.BufferStrategy;
 import java.util.ConcurrentModificationException;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
 import com.sunsigne.rebeccasreleasing.system.util.Camera;
-import com.sunsigne.rebeccasreleasing.system.util.Cycloid;
-import com.sunsigne.rebeccasreleasing.system.util.Window;
-import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.hack.PuzzleHack;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEnigmaBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.controllers.GameKeyboardInput;
-import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Game extends Canvas implements Runnable {
+
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "Rebecca's Releasing";
+	private static final Camera cam = new Camera();
+
+	public static void main(String args[]) {
+		instance = new Game();
+		Conductor.startApp();
+	}
 
 	////////// SIGNELTON ////////////
 
@@ -38,60 +37,10 @@ public class Game extends Canvas implements Runnable {
 		return instance;
 	}
 
-	////////// SIGNELTON ////////////
-
-	private static final long serialVersionUID = 1L;
-	private static final Camera cam = new Camera();
-
-	public static final String NAME = "Rebecca's Releasing";
-	private static final Cycloid<Boolean> debugMode = new Cycloid<>(false, true);
-	private static final Cycloid<Boolean> wallPassMode = new Cycloid<>(false, true);
-	private static final Cycloid<Boolean> multiToolMode = new Cycloid<>(false, true);
-	public static final boolean skipIntro = true;
-
-	public static Game game;
+	////////// THREAD ////////////
 
 	private Thread thread;
 	private boolean running;
-
-	public static void main(String args[]) {
-
-		new Game();
-	}
-
-	public Game() {
-
-		instance = this;
-		Options.loadSavedSettings();
-		Conductor.setState(STATE.LOADING);
-		ImageBank.loadRessources();
-		SoundBank.loadRessources();
-		CharacterBank.loadRessources();
-		TextureBank.getInstance().loadRessources();
-		new ColorEnigmaBank().loadRessources();
-
-		this.addKeyListener(new GameKeyboardInput());
-		this.addMouseListener(GameMouseInput.getInstance());
-		new Window(instance);
-
-		Conductor.start();
-	}
-
-	// State
-
-	public static Cycloid<Boolean> getDebugMode() {
-		return debugMode;
-	}
-
-	public static Cycloid<Boolean> getWallPassMode() {
-		return wallPassMode;
-	}
-
-	public static Cycloid<Boolean> getMultiToolMode() {
-		return multiToolMode;
-	}
-
-	// Thread
 
 	public synchronized void start() {
 		if (running)
@@ -111,6 +60,8 @@ public class Game extends Canvas implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
+	////////// MAIN LOOP ////////////
 
 	public void run() {
 
@@ -183,14 +134,19 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	////////// TICK ////////////
+
 	private void tick() {
+		HandlerRender.getInstance().setPlayerRenderingRefreshed(true);
+
 		Point pos = MouseInfo.getPointerInfo().getLocation();
 		GameCursor.setPos(pos);
 
-		HandlerRender.getInstance().setPlayerPaintedAtTheEnd(true);
 		HandlerTick.getInstance().tick();
 
 	}
+
+	////////// RENDER ////////////
 
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
@@ -220,8 +176,9 @@ public class Game extends Canvas implements Runnable {
 			g2d.translate(-cam.getX(), -cam.getY());
 
 		renderLayers(g);
+		if (cameraDependant)
+			refreshPlayerRendering(g);
 		HandlerRender.getInstance().setCameraDependant(!cameraDependant);
-		refreshPlayerRender(g, cameraDependant);
 	}
 
 	private void renderLayers(Graphics g) {
@@ -232,15 +189,10 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-	private void refreshPlayerRender(Graphics g, boolean cameraDependant) {
+	private void refreshPlayerRendering(Graphics g) {
+		if (HandlerObject.getInstance().isPlayerExisting() && HandlerRender.getInstance().isPlayerRenderingRefreshed())
+			HandlerObject.getInstance().getPlayer().render(g);
 
-		if (cameraDependant) {
-			if (HandlerObject.getInstance().isPlayerExisting() && HandlerRender.getInstance().isPlayerPaintedAtTheEnd())
-				HandlerObject.getInstance().getPlayer().render(g);
-		} else {
-			if (HandlerObject.getInstance().isVirusExisting())
-				PuzzleHack.virus.render(g);
-		}
 	}
 
 }

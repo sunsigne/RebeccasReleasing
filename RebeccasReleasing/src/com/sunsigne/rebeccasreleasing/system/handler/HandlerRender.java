@@ -39,9 +39,9 @@ public class HandlerRender implements IRender {
 			addObject(renderable.isCameraDependant(), renderable.getLayer(), renderable);
 	}
 
-	/*protected*/public void addObject(boolean cameraDependant, LAYER layer, IRender renderable) {
+	protected void addObject(boolean cameraDependant, LAYER layer, IRender renderable) {
 		if (renderable != null) {
-			LinkedList<IRender> list = getList(cameraDependant, layer);
+			var list = getList(cameraDependant, layer);
 			list.add(renderable);
 		}
 	}
@@ -51,9 +51,9 @@ public class HandlerRender implements IRender {
 			removeObject(renderable.isCameraDependant(), renderable.getLayer(), renderable);
 	}
 
-	/*protected*/public void removeObject(boolean cameraDependant, LAYER layer, IRender renderable) {
+	protected void removeObject(boolean cameraDependant, LAYER layer, IRender renderable) {
 		if (renderable != null) {
-			LinkedList<IRender> list = getList(cameraDependant, layer);
+			var list = getList(cameraDependant, layer);
 			list.remove(renderable);
 		}
 	}
@@ -69,7 +69,7 @@ public class HandlerRender implements IRender {
 		}
 	}
 
-	////////// STATE ////////////
+	////////// RENDER ////////////
 
 	private boolean cameraDependant;
 	private LAYER layer;
@@ -92,21 +92,19 @@ public class HandlerRender implements IRender {
 		this.layer = layer;
 	}
 
-	private boolean playerPaintedAtTheEnd;
+	private boolean playerRenderingRefreshed;
 
-	public boolean isPlayerPaintedAtTheEnd() {
-		return playerPaintedAtTheEnd;
+	public boolean isPlayerRenderingRefreshed() {
+		return playerRenderingRefreshed;
 	}
 
-	public void setPlayerPaintedAtTheEnd(boolean playerPaintedAtTheEnd) {
-		this.playerPaintedAtTheEnd = playerPaintedAtTheEnd;
+	public void setPlayerRenderingRefreshed(boolean playerRenderingRefreshed) {
+		this.playerRenderingRefreshed = playerRenderingRefreshed;
 	}
-
-	////////// RENDER ////////////
 
 	@Override
 	public void render(Graphics g) {
-		LinkedList<IRender> list = getList(cameraDependant, layer);
+		var list = getList(cameraDependant, layer);
 		int size = list.size();
 		for (int i = 0; i < size; i++) {
 			// size - i - 1 --> the last object is render first, then the previous one, and

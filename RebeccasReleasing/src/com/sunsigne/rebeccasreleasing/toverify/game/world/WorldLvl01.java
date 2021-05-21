@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Door;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
@@ -11,14 +12,12 @@ import com.sunsigne.rebeccasreleasing.toverify.game.event.EventContext;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.characters.living.FoeObject;
 import objects.world.puzzler.IPuzzler;
@@ -41,7 +40,7 @@ public class WorldLvl01 implements ILvl {
 
 	@Override
 	public void loadEvent() {
-		if (!Game.getDebugMode().getState()) {
+		if (!Conductor.getDebugMode().getHitboxMode().getState()) {
 			lvlEvents();
 		}
 	}
@@ -115,7 +114,7 @@ public class WorldLvl01 implements ILvl {
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Had The Key");
 				EventListener listener = null;
-				if (World.gui.getTool(Tool.KEY).getCurrentLvl() > 0)
+				if (World.gui.getTool(ToolBank.KEY).getCurrentLvl() > 0)
 					listener = () -> event.mustOccur(true);
 				World.loadChat(new Chat(2, listener, fr, eng, custom));
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
@@ -241,7 +240,7 @@ public class WorldLvl01 implements ILvl {
 			public void startEvent() {
 				Event event = HandlerEvent.getInstance().getEvent("I Have No Sword");
 				EventListener listener = null;
-				if (World.gui.getTool(Tool.SWORD).getCurrentLvl() < 1)
+				if (World.gui.getTool(ToolBank.SWORD).getCurrentLvl() < 1)
 					listener = () -> event.mustOccur(true);
 				World.loadChat(new Chat(7, listener, fr, eng, custom));
 

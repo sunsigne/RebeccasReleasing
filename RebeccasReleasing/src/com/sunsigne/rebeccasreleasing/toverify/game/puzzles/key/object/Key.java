@@ -3,9 +3,9 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class Key extends KeyObject {

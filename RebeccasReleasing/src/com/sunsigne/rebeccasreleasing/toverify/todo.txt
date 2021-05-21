@@ -2,17 +2,17 @@
 
 ////////// IMPORTANT ////////////
 
-Mettre entre parenthèse PLAYER dans OBJECTID pour vérifier où il est casté (et remplacer par isPlayer() )
 Computer / à redesigner et resizer ! Mention spécial pour l'abération dans le constructeur
 
-HandlerObject / le rendu du virus a un gros défaut : il passe derrière les textures ... A corriger
+Le rendu du virus a un gros défaut : il passe derrière les textures ... A corriger
 
 DummyObject / cette classe est pour le moment, une honte. Probablement buggé en plus, à retravailler complètement
-Conductor / (duel start is paused)
+Conductor & DebugMode / (duel start is paused & skipIntro is true)
 
 
 ////////// PUZZLE ////////////
 
+ChatObject & FileTask / utiliser un StringBuilder avec append() au lieu d'un String, c'est du scandale de ne pas le faire !
 CollisionDetector / deux entités vivantes ne sont pas raccord sur leurs hitbox respectives, à corriger !
 Puzzle / Cette classe doit être intégrallement rangée
 
@@ -36,6 +36,7 @@ Options - OptionObject / travailler sur l'estétic de l'écran (et le gap des mots
 SoundBank + ImageBank / vérifier le rangement
 le package objects / changer son emplacement
 TOOLS ENUM / utiliser la même technique que dans LANGUAGES pour avoir le nombre total d'outils
+simplifier les fonctions utilisant SoundBank dans SoundTask pour jouer un son
 
 ///////// A TRIER ////////////
 
@@ -100,5 +101,10 @@ LootObject / les loots devraient peut-être se gérer ici ? au lieu de sur les obj
 
 
 PlayerObject : la method GetAnimation pourrait être dans une classe mère pour tous les personnages ?
+
+///////// COMPLIQUé MAIS COOL ////////////
+
+créer une espèce de fenêtre d'ouverture (grace à des interfaces) pour permettre le chargement de nouvelles textures et nouveaux son
+(dans la classe Conductor) afin d'aider les moddeurs et dévellopeurs à rajouter du contenu.
 
 	 

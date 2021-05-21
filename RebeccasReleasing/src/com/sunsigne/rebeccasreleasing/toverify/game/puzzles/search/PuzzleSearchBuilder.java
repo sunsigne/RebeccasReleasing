@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchFolder;
@@ -13,7 +14,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.Search
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 import objects.world.puzzler.IPuzzler;
 
@@ -102,12 +102,12 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public BufferedSound getSuccessSound() {
+	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 		else
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 	}
 
 }

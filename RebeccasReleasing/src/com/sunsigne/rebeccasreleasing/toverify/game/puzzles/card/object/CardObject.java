@@ -10,11 +10,11 @@ import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class CardObject extends CommunCardObject implements ITranslation {

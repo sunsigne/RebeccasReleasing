@@ -9,11 +9,13 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.Wall;
 import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.BufferedTool;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.Facing;
 import objects.Facing.DIRECTION;
@@ -25,8 +27,10 @@ public class MapCreator {
 	@SuppressWarnings("unchecked")
 	private static List<ILoot>[][] tool_list = new List[7][4]; // - difficulty - state
 
-	public static void addToToolList(Tool tool, ILoot iloot) {
-		MapCreator.tool_list[tool.getCurrentLvl()][tool.getToolNum()].add(iloot);
+	public static void addToToolList(LootTool lootTool, ILoot iloot) {
+		int lvl = lootTool.getDifficulty().getLvl();
+		int index = lootTool.getTool().getToolBank().getIndex();
+		MapCreator.tool_list[lvl][index].add(iloot);
 	}
 
 	private static void setUpForRandomizingLoot() {
@@ -47,7 +51,6 @@ public class MapCreator {
 		// Cyan for decor (because it's beautiful, right ? decor = beauty)
 		// Magenta for destroyable (because it's flashy, like important spot)
 		setUpForRandomizingLoot();
-		
 
 		createPlayer(handler_object);
 
@@ -78,7 +81,7 @@ public class MapCreator {
 
 				// loot - blue
 				MapCreatorLoot.createTool(red, green, blue, handler_object, x0, y0);
-				
+
 				// decor - cyan
 				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);
 
@@ -90,7 +93,7 @@ public class MapCreator {
 		randomizeLoot();
 	}
 
-	private static void createPlayer(HandlerObject handler_object) {		
+	private static void createPlayer(HandlerObject handler_object) {
 		handler_object.resetPlayer();
 		handler_object.addObject(handler_object.getPlayer());
 	}
@@ -98,29 +101,40 @@ public class MapCreator {
 	private static void randomizeLoot() {
 
 		// search into list, classed by their difficulty
-		for (int difficulty = 0; difficulty < 7; difficulty++) {
-			int numberOfTool = tool_list[difficulty].length;
+		for (int lvl = 0; lvl < 7; lvl++) {
+			int numberOfTool = tool_list[lvl].length;
 //			System.out.println("difficulty : " + difficulty + " / number of different tools : " + numberOfTool);
 			if (numberOfTool == 0)
 				continue;
 
 			// search for list, classed by the type of tool
 			for (int tool = 0; tool < numberOfTool; tool++) {
-				int sizeOfList = tool_list[difficulty][tool].size();
+				int sizeOfList = tool_list[lvl][tool].size();
 //				System.out.println("difficulty : " + difficulty + " / tool number : " + tool + " / number of source for loot : " + sizeOfList);
 				if (sizeOfList == 0)
 					continue;
 
 				// take a random ILoot into the list
 				int r = new Random().nextInt(sizeOfList);
-				ILoot randomILoot = tool_list[difficulty][tool].get(r);
+				ILoot randomILoot = tool_list[lvl][tool].get(r);
 				GameObject randomILootObject = (GameObject) randomILoot;
+
+				// search of ToolBank by index
+				ToolBank toolBank = null;
+				var map = ToolBank.getMap();
+
+				for (ToolBank tempToolBank : map.keySet()) {
+					if (tempToolBank.getIndex() == tool)
+						toolBank = tempToolBank;
+				}
+
 				// creation of the tool
-				Tool lootTool = new Tool(tool, difficulty, 0);
+				LootTool lootTool = new LootTool(randomILootObject.getX(), randomILootObject.getY(), toolBank,
+						DIFFICULTY.getDifficulty(lvl));
 
 				// set to the random ILootObject, the loot tool
-				randomILoot.setLootObject(new LootTool(randomILootObject.getX(), randomILootObject.getY(), lootTool, false));
-				tool_list[difficulty][tool].clear();
+				randomILoot.setLootObject(lootTool);
+				tool_list[lvl][tool].clear();
 			}
 		}
 
@@ -132,25 +146,25 @@ public class MapCreator {
 			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
-				
+
 		if (red == 255 && green == 254 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
-		
+
 		if (red == 255 && green == 253 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
-		
+
 		if (red == 255 && green == 252 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.UP);
 			Wall wall = new Wall(x0, y0, facing);
 			handler_object.addObject(wall);
 		}
-		
+
 		if (red == 255 && green == 251 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.DOWN);
 			Wall wall = new Wall(x0, y0, facing);

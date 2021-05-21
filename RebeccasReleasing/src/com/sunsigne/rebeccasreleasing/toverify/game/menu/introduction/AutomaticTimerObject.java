@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 

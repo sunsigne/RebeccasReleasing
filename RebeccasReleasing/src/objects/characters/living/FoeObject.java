@@ -1,22 +1,20 @@
 package objects.characters.living;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.clickable.PuzzleCard;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.Facing.DIRECTION;
 import objects.world.loot.ILoot;
@@ -232,7 +230,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot, ICollisi
 	}
 	
 	private void drawLootable(Graphics g) {
-		if (Game.getDebugMode().getState()) {
+		if (Conductor.getDebugMode().getHitboxMode().getState()) {
 			if (loot != null)
 				loot.render(g);
 		}
@@ -263,7 +261,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot, ICollisi
 			else {
 				if (!stunned) {
 					if (HandlerObject.getInstance().getPlayer().isPlayerActive()) {
-						if (hasToolLvl(currentDifficulty, Tool.SWORD))
+						if (hasToolLvl(currentDifficulty, ToolBank.SWORD))
 							updatePuzzler(collidingObject);
 						else
 							pushPlayer();

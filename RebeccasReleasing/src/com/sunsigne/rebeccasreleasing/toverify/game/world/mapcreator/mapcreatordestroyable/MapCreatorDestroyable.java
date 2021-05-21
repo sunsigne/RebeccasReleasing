@@ -1,8 +1,8 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.desk.MapCreatorDesk;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.plant.MapCreatorPlant;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 public class MapCreatorDestroyable {
 

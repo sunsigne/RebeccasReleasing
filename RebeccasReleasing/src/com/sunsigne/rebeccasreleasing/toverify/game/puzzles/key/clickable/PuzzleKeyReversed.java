@@ -1,12 +1,12 @@
 
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.PuzzleKeyBuilder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.KeyReversed;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 
 import objects.world.puzzler.IPuzzler;
 

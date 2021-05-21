@@ -1,6 +1,6 @@
 package objects.world.loot;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public interface ILoot {
 

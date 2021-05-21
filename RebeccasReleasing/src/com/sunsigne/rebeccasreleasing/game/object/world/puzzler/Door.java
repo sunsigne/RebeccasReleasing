@@ -8,10 +8,10 @@ import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable.PuzzleKey;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
 
 import objects.Facing.AXIS;
 import objects.world.puzzler.IPuzzler;
@@ -128,7 +128,7 @@ public class Door extends GameObject implements IPuzzler {
 
 		if (!isSolved()) {
 
-			if (collidingObject.isPlayer() && hasToolLvl(Tool.KEY))
+			if (collidingObject.isPlayer() && hasToolLvl(ToolBank.KEY))
 				openPuzzle(collidingObject, this);
 			else
 				blockPass(collidingObject, this);

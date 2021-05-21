@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
@@ -18,7 +19,6 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBa
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 
 import objects.Facing.DIRECTION;
 import objects.characters.living.FoeObject;
@@ -164,12 +164,12 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public BufferedSound getSuccessSound() {
+	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 		else
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 	}
 
 }

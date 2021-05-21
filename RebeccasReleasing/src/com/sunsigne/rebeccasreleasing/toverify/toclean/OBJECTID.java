@@ -5,12 +5,10 @@ public enum OBJECTID {
 	LOADING, MENU, CURSOR, TIMER,
 
 	// CHARACTERS
-	DISPLAYER, FOE, DUMMY,
+	DISPLAYER, DUMMY, FOE,
 
 	// WORLD //
 	STAIRS, DECOR, FLAG, LOOT, DESK, PLANT,
-	// puzzler
-	/* FOE, */
 
 	// PUZZLE //
 	PROCESSOR,
@@ -20,7 +18,7 @@ public enum OBJECTID {
 	////////// CHARACTERS ////////////
 	
 	PLAYER,
-	
+
 	////////// WORLD ////////////
 
 	WALL,

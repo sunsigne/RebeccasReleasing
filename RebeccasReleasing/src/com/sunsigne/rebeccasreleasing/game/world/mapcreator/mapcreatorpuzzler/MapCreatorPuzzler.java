@@ -1,6 +1,6 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 
 public class MapCreatorPuzzler {
 

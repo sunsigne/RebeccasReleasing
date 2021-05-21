@@ -8,7 +8,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
+import com.sunsigne.rebeccasreleasing.system.Game;
 
 public class ImageTask {
 
@@ -21,7 +21,7 @@ public class ImageTask {
 
 		try {
 			String path = "\\ressources\\" + path0;
-			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
+			URL url = new File((new File(loc.toURI())).getParent().replace("\\target", "") + path).toURI().toURL();
 			image = ImageIO.read(url);
 		} catch (Exception e) {
 			e.printStackTrace();

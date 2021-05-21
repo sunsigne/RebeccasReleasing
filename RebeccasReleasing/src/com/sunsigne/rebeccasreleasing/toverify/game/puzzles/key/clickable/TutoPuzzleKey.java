@@ -3,9 +3,9 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable;
 
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.WallPuzzle;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;

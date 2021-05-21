@@ -1,11 +1,9 @@
 package com.sunsigne.rebeccasreleasing.game.object.collision;
 
-import java.util.LinkedList;
-
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 import objects.characters.living.LivingObject;
@@ -24,7 +22,7 @@ public class CollisionDetector implements ITick {
 		boolean cameraDependant = collidingObject.isCameraDependant();
 		LAYER layer = collidingObject.getLayer();
 
-		LinkedList<GameObject> list = HandlerObject.getInstance().getList(cameraDependant, layer);
+		var list = HandlerObject.getInstance().getList(cameraDependant, layer);
 		for (GameObject tempObject : list) {
 			if (collidingObject != tempObject && isColliding(tempObject))
 				((ICollisionReaction) tempObject).collidingReaction(collidingObject);
@@ -48,7 +46,7 @@ public class CollisionDetector implements ITick {
 
 				LivingObject livingObject = (LivingObject) collidingObject;
 				// collidingObject is a wallpass player
-				if (livingObject.isPlayer() && Game.getWallPassMode().getState())
+				if (livingObject.isPlayer() && Conductor.getDebugMode().getWallPassMode().getState())
 					return false;
 				// complex hitbox checking
 				if (livingObject.getBoundsLeft().intersects(tempObject.getBounds()))

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEnigmaBank;
@@ -18,9 +19,8 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WIRECOL
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WireObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.world.puzzler.IPuzzler;
@@ -183,12 +183,12 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 	}
 
 	@Override
-	public BufferedSound getSuccessSound() {
+	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 		else
-			return SoundBank.getSound(SoundBank.nope);
+			return SoundBank.nope;
 	}
 
 }

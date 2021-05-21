@@ -1,9 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.plant;
 
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Tool;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.tools.ToolBank;
 
 import objects.Facing;
 import objects.Facing.DIRECTION;
@@ -28,19 +28,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 1 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.CYAN.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
@@ -50,19 +52,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 5 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.GREEN.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
@@ -72,19 +76,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 9 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.YELLOW.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
@@ -94,19 +100,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 13 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.ORANGE.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
@@ -115,19 +123,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 17 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.RED.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.RED;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
@@ -137,19 +147,21 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 		if (red == 254 && green == 21 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			Tool tool = new Tool(Tool.KEY, DIFFICULTY.PURPLE.getLvl(), 0);
+			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
+			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
 			MapCreator.addToToolList(tool, plant);
-			LootTool fakeTool = new LootTool(x0, y0, tool, true);
-			handler_object.addObject(fakeTool);
+			tool.setFake(true);
+			handler_object.addObject(tool);
 		}
 	}
 
