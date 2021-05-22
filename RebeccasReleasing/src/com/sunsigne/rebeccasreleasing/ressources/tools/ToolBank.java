@@ -6,8 +6,8 @@ import java.util.Map;
 public class ToolBank extends ToolIndex {
 
 	/**
-	 * WARNING ! Creating a new ToolBank increases by one the static index of the
-	 * super class
+	 * WARNING ! calling a new ToolBank() increases by one the static maxIndex of the
+	 * super class, increasing the TotalNumOfTools by one.
 	 */
 	public ToolBank() {
 		super();
@@ -29,10 +29,10 @@ public class ToolBank extends ToolIndex {
 		return tools.get(toolBank);
 	}
 
-	public static Map<ToolBank, BufferedTool> getClonedMap() {
-		var clonedMap = new HashMap<ToolBank, BufferedTool>();
-		clonedMap.putAll(tools);
-		return clonedMap;
+	public static Map<ToolBank, BufferedTool> copyMap() {
+		var copyMap = new HashMap<ToolBank, BufferedTool>();
+		copyMap.putAll(tools);
+		return copyMap;
 	}
 
 	////////// REFERENCES ////////////

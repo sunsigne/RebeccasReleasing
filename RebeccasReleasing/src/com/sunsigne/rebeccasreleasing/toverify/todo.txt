@@ -32,6 +32,7 @@ Computer / l'outils de l'ordinateur n'est pas créé, c'est actuellement la clef q
 
 ////////// FACILE ////////////
 
+GUI / le mutlitool est vilant XD faut en créer un spécial ou arranger ça ^^
 Options - OptionObject / travailler sur l'estétic de l'écran (et le gap des mots) !
 SoundBank + ImageBank / vérifier le rangement
 le package objects / changer son emplacement

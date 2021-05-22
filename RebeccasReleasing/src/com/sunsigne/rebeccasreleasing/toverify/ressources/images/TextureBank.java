@@ -257,7 +257,7 @@ public class TextureBank {
 		for (int i = 0; i < 6; i++) {
 			destroyable_desk[DIRECTION.LEFT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 1, 64, 64);
 			destroyable_desk[DIRECTION.RIGHT.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 2, 64, 64);
-			destroyable_desk[DIRECTION.UP.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
+			destroyable_desk[DIRECTION.UP.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 3, 64, 64);
 			destroyable_desk[DIRECTION.DOWN.getNum()][i] = destroyable_desk_sheet.grabImage(i + 1, 4, 64, 64);
 		}
 

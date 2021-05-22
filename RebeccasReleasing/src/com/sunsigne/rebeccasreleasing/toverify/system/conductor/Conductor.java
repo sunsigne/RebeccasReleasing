@@ -111,7 +111,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		SoundTask.stopMusic();
-		ILvl level = new WorldLvl01();
+		ILvl level = new WorldLvlTest();
 		World.currentWorld = new World(level);
 	}
 

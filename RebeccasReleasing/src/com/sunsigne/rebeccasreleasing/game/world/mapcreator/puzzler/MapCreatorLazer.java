@@ -1,4 +1,4 @@
-package com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler;
+package com.sunsigne.rebeccasreleasing.game.world.mapcreator.puzzler;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;

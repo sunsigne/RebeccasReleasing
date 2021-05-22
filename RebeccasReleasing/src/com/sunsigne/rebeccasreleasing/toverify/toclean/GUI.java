@@ -18,26 +18,21 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class GUI extends GameObject implements Characteristics {
 
-	private Map<ToolBank, BufferedTool> tools = new HashMap<>();
-
-	private int maxhp, hp;
-	private boolean infiniteHp;
-
-	private int points;
-
 	private int invulnerabitilyTime;
 	private boolean isInvulnerable;
 
 	public GUI() {
 		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DISPLAYER);
 
-		tools = ToolBank.getClonedMap();
+		tools = ToolBank.copyMap();
 
 		setMaxHp(getMaxHpFromFile());
 		setHp(getMaxHp());
 	}
 
-	// state
+	////////// TOOLS ////////////
+
+	private Map<ToolBank, BufferedTool> tools = new HashMap<>();
 
 	public Map<ToolBank, BufferedTool> getMap() {
 		return tools;
@@ -48,7 +43,10 @@ public class GUI extends GameObject implements Characteristics {
 		return tools.get(toolBank);
 	}
 
-	// hp gestion
+	////////// HP ////////////
+
+	private int maxhp, hp;
+	private boolean infiniteHp;
 
 	public void setInfinitHp(boolean infiniteHp) {
 		if (infiniteHp)
@@ -101,6 +99,8 @@ public class GUI extends GameObject implements Characteristics {
 
 	// pts gestion
 
+	private int points;
+	
 	public int getPoints() {
 		return points;
 	}

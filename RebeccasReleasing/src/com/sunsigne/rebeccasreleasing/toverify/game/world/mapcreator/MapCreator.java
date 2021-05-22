@@ -8,13 +8,14 @@ import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.Wall;
-import com.sunsigne.rebeccasreleasing.game.world.mapcreator.mapcreatorpuzzler.MapCreatorPuzzler;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.destroyable.MapCreatorDestroyable;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.foe.MapCreatorFoe;
+import com.sunsigne.rebeccasreleasing.game.world.mapcreator.puzzler.MapCreatorPuzzler;
 import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.ressources.tools.ToolIndex;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatordestroyable.MapCreatorDestroyable;
-import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.mapcreatorfoe.MapCreatorFoe;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.Facing;
@@ -25,7 +26,7 @@ import objects.world.loot.tools.LootTool;
 public class MapCreator {
 
 	@SuppressWarnings("unchecked")
-	private static List<ILoot>[][] tool_list = new List[7][4]; // - difficulty - state
+	private static List<ILoot>[][] tool_list = new List[7][ToolIndex.getTotalNumOfTools()]; // - difficulty - number of tools
 
 	public static void addToToolList(LootTool lootTool, ILoot iloot) {
 		int lvl = lootTool.getTool().getCurrentLvl();
@@ -121,7 +122,7 @@ public class MapCreator {
 
 				// search of ToolBank by index
 				ToolBank toolBank = null;
-				var map = ToolBank.getClonedMap();
+				var map = ToolBank.copyMap();
 
 				for (ToolBank tempToolBank : map.keySet()) {
 					if (tempToolBank.getIndex() == tool)
