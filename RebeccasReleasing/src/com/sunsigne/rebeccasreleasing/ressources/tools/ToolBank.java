@@ -6,8 +6,8 @@ import java.util.Map;
 public class ToolBank extends ToolIndex {
 
 	/**
-	 * WARNING ! calling a new ToolBank() increases by one the static maxIndex of the
-	 * super class, increasing the TotalNumOfTools by one.
+	 * WARNING ! calling a new ToolBank() increases by one the TotalNumOfTools of
+	 * the super class.
 	 */
 	public ToolBank() {
 		super();

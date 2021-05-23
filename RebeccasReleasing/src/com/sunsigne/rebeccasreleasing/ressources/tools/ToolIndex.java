@@ -2,15 +2,15 @@ package com.sunsigne.rebeccasreleasing.ressources.tools;
 
 public class ToolIndex {
 
-	private static int maxIndex = -1;
+	private static int TotalNumOfTools;
 
 	public static int getTotalNumOfTools() {
-		return maxIndex + 1;
+		return TotalNumOfTools;
 	};
 	
 	public ToolIndex() {
-		maxIndex++;
-		index = maxIndex;
+		index = TotalNumOfTools;
+		TotalNumOfTools++;
 	}
 
 	private int index;
