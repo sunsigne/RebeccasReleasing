@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 
 final class MapCreatorWallCracked {
 
-	static void createWallCracked(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createWallCracked(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		if (red == 1 && green == 255 && blue == 15) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;

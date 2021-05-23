@@ -3,11 +3,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.chat;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
@@ -30,7 +30,7 @@ public abstract class ChatBuilder extends Clickable implements IClick, ITranslat
 	public ChatBuilder(int chatID, ChatMap chatMap, ChatMap... chatMaps) {
 		super(STATE.CHATTING);
 
-		SoundTask.changeMusicVol(0.2);
+		new SoundTask().changeMusicVol(0.2);
 		languageMapping(chatMap, chatMaps);
 
 		creationOfChatObjectFromChatID(chatID);

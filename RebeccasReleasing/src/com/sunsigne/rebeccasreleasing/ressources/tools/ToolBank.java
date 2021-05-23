@@ -35,7 +35,7 @@ public class ToolBank extends ToolIndex {
 		return copyMap;
 	}
 
-	////////// REFERENCES ////////////
+	////////// BANK ////////////
 
 	public static final ToolBank KEY = new ToolBank();
 	public static final ToolBank SWORD = new ToolBank();

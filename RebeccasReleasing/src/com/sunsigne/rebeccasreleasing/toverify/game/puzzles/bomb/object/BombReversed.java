@@ -3,10 +3,10 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 
 public class BombReversed extends BombObject {
 
@@ -56,14 +56,14 @@ public class BombReversed extends BombObject {
 		if (isExploding() && boomtime == 30) {
 			count = 1;
 			boomtime--;
-			SoundTask.playSound(SoundBank.getSound(SoundBank.r_explosion_medium));
+			new SoundTask().playSound(SoundBank.r_explosion_medium);
 			setExploding(false);
 		}
 
 		else if (boomtime < 0) {
 			if (count < totalcount) {
 				count = count + 1;
-				SoundTask.playSound(SoundBank.getSound(SoundBank.r_explosion_little));
+				new SoundTask().playSound(SoundBank.r_explosion_little);
 			}
 		}
 

@@ -6,10 +6,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -142,9 +142,9 @@ public class ChatObject extends GameObject {
 	private void playTalkingSound() {
 
 		if (characterBank == CharacterBank.rebecca)
-			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_rebecca));
+			new SoundTask().playSound(0.2, SoundBank.talking_rebecca);
 		if (characterBank == CharacterBank.sarah)
-			SoundTask.playSound(0.2, SoundBank.getSound(SoundBank.talking_sarah));
+			new SoundTask().playSound(0.2, SoundBank.talking_sarah);
 	}
 
 	// design

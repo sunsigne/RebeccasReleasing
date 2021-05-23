@@ -8,11 +8,11 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
@@ -144,7 +144,7 @@ public abstract class LivingObject extends GameObject implements IAnimation, ICo
 	public void pushed(int direction) {
 		if (!isPushed) {
 			isPushed = true;
-			SoundTask.playSound(SoundBank.getSound(SoundBank.push));
+			new SoundTask().playSound(SoundBank.push);
 			if (isPlayer())
 				World.gui.removeHp();
 			if (direction == DIRECTION.LEFT.getNum())

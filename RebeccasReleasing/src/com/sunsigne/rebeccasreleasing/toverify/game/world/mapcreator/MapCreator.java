@@ -75,10 +75,10 @@ public class MapCreator {
 				MapCreatorLiving.createPlayer(red, green, blue, handler_object, x0, y0);
 
 				// puzzler - green
-				MapCreatorPuzzler.createPuzzler(red, green, blue, handler_object, x0, y0);
+				new MapCreatorPuzzler().createPuzzler(red, green, blue, handler_object, x0, y0);
 
 				// foe - yellow
-				MapCreatorFoe.createFoe(red, green, blue, handler_object, x0, y0);
+				new MapCreatorFoe().createFoe(red, green, blue, handler_object, x0, y0);
 
 				// loot - blue
 				MapCreatorLoot.createTool(red, green, blue, handler_object, x0, y0);
@@ -87,7 +87,7 @@ public class MapCreator {
 				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);
 
 				// destroyable - magenta
-				MapCreatorDestroyable.createDestroyable(red, green, blue, handler_object, x0, y0);
+				new MapCreatorDestroyable().createDestroyable(red, green, blue, handler_object, x0, y0);
 			}
 		}
 

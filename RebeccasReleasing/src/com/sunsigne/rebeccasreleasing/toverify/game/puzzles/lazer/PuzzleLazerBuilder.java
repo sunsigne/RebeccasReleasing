@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
@@ -17,7 +18,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEn
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.PliersCursor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WIRECOLOR;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WireObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
@@ -36,7 +36,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 
 	public PuzzleLazerBuilder(IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
 		super(STATE.PUZZLE, puzzler, difficulty, reversed);
-		GameCursor.hideCursor(true);
+		new GameCursor().hideCursor(true);
 	}
 
 //	@SuppressWarnings("unchecked")

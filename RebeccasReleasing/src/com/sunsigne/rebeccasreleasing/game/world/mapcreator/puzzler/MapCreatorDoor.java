@@ -9,7 +9,7 @@ import objects.Facing.AXIS;
 
 final class MapCreatorDoor {
 
-	static void createDoor(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createDoor(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createDoorVerticalClosed(red, green, blue, handler_object, x0, y0);
 		createDoorVerticalOpen(red, green, blue, handler_object, x0, y0);
@@ -17,7 +17,7 @@ final class MapCreatorDoor {
 		createDoorHorizontalOpen(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createDoorVerticalClosed(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createDoorVerticalClosed(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 15) {
@@ -69,7 +69,7 @@ final class MapCreatorDoor {
 		}
 	}
 
-	private static void createDoorVerticalOpen(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createDoorVerticalOpen(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 8) {
@@ -121,7 +121,7 @@ final class MapCreatorDoor {
 		}
 	}
 
-	private static void createDoorHorizontalClosed(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createDoorHorizontalClosed(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 17) {
@@ -173,7 +173,7 @@ final class MapCreatorDoor {
 		}
 	}
 
-	private static void createDoorHorizontalOpen(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createDoorHorizontalOpen(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 0 && green == 255 && blue == 24) {

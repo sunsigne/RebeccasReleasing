@@ -82,7 +82,7 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 	private void runPhase() {
 		switch (getPhase()) {
 		case 17:
-			tryJumping(0, -8, SoundBank.getSound(SoundBank.jump), 25, 15, 5, true);
+			tryJumping(0, -8, SoundBank.jump, 25, 15, 5, true);
 			break;
 		case 19:
 		case 20:

@@ -32,6 +32,9 @@ Computer / l'outils de l'ordinateur n'est pas créé, c'est actuellement la clef q
 
 ////////// FACILE ////////////
 
+CardBuidler / Utiliser Supplier<Integer> pour les r
+loadRessources devrait être une implementation ;)
+Rebaptiser le jeu en "Reversed Rebecca"
 GUI / le mutlitool est vilant XD faut en créer un spécial ou arranger ça ^^
 Options - OptionObject / travailler sur l'estétic de l'écran (et le gap des mots) !
 SoundBank + ImageBank / vérifier le rangement

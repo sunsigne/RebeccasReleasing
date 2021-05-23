@@ -6,9 +6,9 @@ import java.io.File;
 
 public class FontTask {
 
-	// I prefere to let this method public
-	// to make it easier for modders and devellopers in adding content
-	public static Font createNewFont(BufferedFontBank bufferedFontBank, float size) {
+	// I prefere to let this method public to make it easier
+	// for modders and devellopers in adding content
+	public Font createNewFont(BufferedFontBank bufferedFontBank, float size) {
 
 		Font font = null;
 

@@ -20,7 +20,7 @@ public interface Characteristics {
 	public void setMaxHp(int hp);
 
 	public default int getMaxHpFromFile() {
-		String heartLine = FileTask.read(hearts, 2);
+		String heartLine = new FileTask().read(hearts, 2);
 		return Integer.valueOf(heartLine);
 	}
 

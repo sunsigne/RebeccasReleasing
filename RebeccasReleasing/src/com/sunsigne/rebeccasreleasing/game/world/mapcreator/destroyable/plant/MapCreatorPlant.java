@@ -8,18 +8,18 @@ import objects.world.destroyable.Plant;
 
 public class MapCreatorPlant {
 
-	public static void createPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	public void createPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createEmptyPlant(red, green, blue, handler_object, x0, y0);
-		MapCreatorKeyPlant.createKeyPlant(red, green, blue, handler_object, x0, y0);
-		MapCreatorSwordPlant.createSwordPlant(red, green, blue, handler_object, x0, y0);
-		MapCreatorBombPlant.createBombPlant(red, green, blue, handler_object, x0, y0);
-		MapCreatorGlassPlant.createGlassPlant(red, green, blue, handler_object, x0, y0);
-		MapCreatorPliersPlant.createPliersPlant(red, green, blue, handler_object, x0, y0);
+		new MapCreatorKeyPlant().createKeyPlant(red, green, blue, handler_object, x0, y0);
+		new MapCreatorSwordPlant().createSwordPlant(red, green, blue, handler_object, x0, y0);
+		new MapCreatorBombPlant().createBombPlant(red, green, blue, handler_object, x0, y0);
+		new MapCreatorGlassPlant().createGlassPlant(red, green, blue, handler_object, x0, y0);
+		new MapCreatorPliersPlant().createPliersPlant(red, green, blue, handler_object, x0, y0);
 
 	}
 
-	private static void createEmptyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createEmptyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 0 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.LEFT);

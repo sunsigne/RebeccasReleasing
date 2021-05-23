@@ -3,9 +3,11 @@ package com.sunsigne.rebeccasreleasing.toverify.ressources.sounds;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+
 public class SoundBank {
 
-	// map or list
+	////////// MAP OR LIST ////////////
 	
 	private static Map<SoundBank, BufferedSound> sounds = new HashMap<>();
 
@@ -21,6 +23,8 @@ public class SoundBank {
 		return sounds.get(soundBank);
 	}
 
+	////////// BANK ////////////
+	
 	// music
 	public static final SoundBank introduction = new SoundBank();
 	public static final SoundBank title_screen = new SoundBank();	
@@ -83,6 +87,8 @@ public class SoundBank {
 	public static final SoundBank talking_rebecca = new SoundBank();
 	public static final SoundBank talking_sarah = new SoundBank();
 
+	////////// RESSOURCES ////////////
+	
 	public static void loadRessources() {
 
 		// music

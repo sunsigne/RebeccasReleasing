@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
@@ -13,7 +14,6 @@ import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
@@ -41,7 +41,7 @@ public class World implements IRender {
 		ToolBank.loadRessources();
 
 		loadLevel();
-		SoundTask.playMusic(0.5, SoundBank.getSound(SoundBank.level));
+		new SoundTask().playMusic(0.5, SoundBank.level);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class World implements IRender {
 		HandlerObject.getInstance().resetPlayer();
 		HandlerObject.getInstance().clearAll();
 		HandlerRender.getInstance().removeObject(this);
-		SoundTask.stopMusic();
+		new SoundTask().stopMusic();
 		killChat();
 	}
 

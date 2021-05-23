@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 
 final class MapCreatorComputer {
 
-	static void createComputer(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createComputer(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		if (red == 3 && green == 255 && blue == 15) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;

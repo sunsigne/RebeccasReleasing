@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
@@ -14,7 +15,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.Key;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.KeyObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.KeyReversed;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.object.Lock;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -28,7 +28,7 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 
 	public PuzzleKeyBuilder(IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
 		super(STATE.PUZZLE, puzzler, difficulty, reversed);
-		GameCursor.hideCursor(true);
+		new GameCursor().hideCursor(true);
 	}
 
 	@SuppressWarnings("unchecked")

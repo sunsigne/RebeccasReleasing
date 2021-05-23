@@ -5,11 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 
@@ -27,7 +27,7 @@ public class PuzzleHack extends Puzzle {
 
 	public PuzzleHack(IPuzzler puzzler, DIFFICULTY difficulty/* , boolean reversed */) {
 		super(STATE.PUZZLE, puzzler, difficulty, /* reversed */false);
-		GameCursor.hideCursor(true);
+		new GameCursor().hideCursor(true);
 	}
 
 	@Override

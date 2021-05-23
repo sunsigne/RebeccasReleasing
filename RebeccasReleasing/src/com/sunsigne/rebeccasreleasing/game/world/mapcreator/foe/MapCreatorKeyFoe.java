@@ -10,7 +10,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorKeyFoe {
 
-	static void createKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createCyanKeyFoe(red, green, blue, handler_object, x0, y0);
 		createGreenKeyFoe(red, green, blue, handler_object, x0, y0);
 		createYellowKeyFoe(red, green, blue, handler_object, x0, y0);
@@ -19,7 +19,7 @@ public class MapCreatorKeyFoe {
 		createPurpleKeyFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -93,7 +93,7 @@ public class MapCreatorKeyFoe {
 		}
 	}
 
-	private static void createGreenKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 9) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -167,7 +167,7 @@ public class MapCreatorKeyFoe {
 		}
 	}
 
-	private static void createYellowKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createYellowKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 17) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -241,7 +241,7 @@ public class MapCreatorKeyFoe {
 		}
 	}
 
-	private static void createOrangeKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createOrangeKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 25) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -315,7 +315,7 @@ public class MapCreatorKeyFoe {
 		}
 	}
 
-	private static void createRedKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 33) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -389,7 +389,7 @@ public class MapCreatorKeyFoe {
 		}
 	}
 
-	private static void createPurpleKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPurpleKeyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 254 && blue == 41) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);

@@ -6,13 +6,13 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
@@ -52,7 +52,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 	public void tick() {
 		runAnimation();
 
-		Point mouse = GameCursor.getPos();
+		Point mouse = new GameCursor().getPos();
 
 		if (mouse.y < ymin)
 			y = ymin;
@@ -121,12 +121,12 @@ public class Virus extends PuzzleObject implements IAnimation {
 		if (!isClicking() && getBounds().intersects(tempObject.getBounds())) {
 			if (processorObject.isLocked()) {
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.fail));
+				new SoundTask().playSound(SoundBank.fail);
 				updateLocker(processorObject);
 			} else {
 				processorObject.delete();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
+				new SoundTask().playSound(SoundBank.virus_bite);
 				updateLocker(processorObject);
 			}
 
@@ -140,10 +140,10 @@ public class Virus extends PuzzleObject implements IAnimation {
 			if (!processorObject.isLocked()) {
 				processorObject.open();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_explore));
+				new SoundTask().playSound(SoundBank.virus_explore);
 			} else {
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.fail));
+				new SoundTask().playSound(SoundBank.fail);
 			}
 		}
 	}
@@ -155,12 +155,12 @@ public class Virus extends PuzzleObject implements IAnimation {
 			if (trash.isEmpty()) {
 				trash.delete();
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
+				new SoundTask().playSound(SoundBank.virus_bite);
 			}
 			if (!trash.isEmpty()) {
 				trash.setEmpty(true);
 				setClicking(true);
-				SoundTask.playSound(SoundBank.getSound(SoundBank.virus_bite));
+				new SoundTask().playSound(SoundBank.virus_bite);
 			}
 		}
 	}

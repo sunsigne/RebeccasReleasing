@@ -2,10 +2,10 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object;
 
 import java.awt.Graphics;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 
 public class Bomb extends BombObject {
 
@@ -34,7 +34,7 @@ public class Bomb extends BombObject {
 		if (count == 0) {
 			count--;
 			setExploding(true);
-			SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_medium));
+			new SoundTask().playSound(SoundBank.explosion_medium);
 		}
 
 		if (isExploding()) {
@@ -50,7 +50,7 @@ public class Bomb extends BombObject {
 
 	public void removeCount() {
 		if (count > 0) {
-			SoundTask.playSound(SoundBank.getSound(SoundBank.explosion_little));
+			new SoundTask().playSound(SoundBank.explosion_little);
 			count = count - 1;
 		}
 	}

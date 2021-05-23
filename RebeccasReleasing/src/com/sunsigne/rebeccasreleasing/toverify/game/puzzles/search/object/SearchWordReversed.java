@@ -1,9 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 
 public class SearchWordReversed extends SearchWordObject {
 
@@ -17,12 +17,12 @@ public class SearchWordReversed extends SearchWordObject {
 	
 	@Override
 	public void placeWord() {
-		setX(GameCursor.getPos().x);
-		setY(GameCursor.getPos().y);
+		setX(new GameCursor().getPos().x);
+		setY(new GameCursor().getPos().y);
 		setExist(true);
 		setDragged(true);
 		HandlerObject.getInstance().addObject(this);
-		SoundTask.playSound(0.6, SoundBank.getSound(SoundBank.r_place_word));
+		new SoundTask().playSound(0.6, SoundBank.r_place_word);
 	}
 
 	// collision

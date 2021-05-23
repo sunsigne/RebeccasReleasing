@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 		HandlerRender.getInstance().setPlayerRenderingRefreshed(true);
 
 		Point pos = MouseInfo.getPointerInfo().getLocation();
-		GameCursor.setPos(pos);
+		new GameCursor().setPos(pos);
 
 		HandlerTick.getInstance().tick();
 

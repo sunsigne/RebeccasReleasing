@@ -101,7 +101,7 @@ public class TitleObject extends MenuObject {
 
 	////////// LANGUAGE ////////////
 
-	private final Font font = FontTask.createNewFont(BufferedFontBank.dogica_bold, 66f);
+	private final Font font = new FontTask().createNewFont(BufferedFontBank.dogica_bold, 66f);
 
 	private void drawTranslatableText(Graphics g) {
 		GameText gametext;

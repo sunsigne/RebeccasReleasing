@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomOrderGenerator {
 	
-	public static int[] randomOrderGenerationFromOneTo(int max) {
+	public int[] randomOrderGenerationFromOneTo(int max) {
 
 		int[] randomOrder = new int[max];
 

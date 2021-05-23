@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 
 final class MapCreatorCase {
 
-	static void createCase(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createCase(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		if (red == 2 && green == 255 && blue == 15) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;

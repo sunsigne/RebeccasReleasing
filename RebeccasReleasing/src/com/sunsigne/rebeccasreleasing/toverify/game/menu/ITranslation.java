@@ -34,14 +34,14 @@ public interface ITranslation {
 
 	private String verified(GameFile gamefile, int lineToRead) {
 		if (gamefile != null)
-			return FileTask.read(gamefile, lineToRead);
+			return new FileTask().read(gamefile, lineToRead);
 
 		// if language not found, return the first valid language
 		else {
 			int size = LANGUAGE.getTotalLanguages() + 1;
 			for (int i = 0; i < size; i++)
 				if (getGameFile(i) != null)
-					return FileTask.read(getGameFile(i), lineToRead);
+					return new FileTask().read(getGameFile(i), lineToRead);
 		}
 		Conductor.fatalError(
 				"An unknown error has occured : couldn't correcly make a link between a text and an existing Language");

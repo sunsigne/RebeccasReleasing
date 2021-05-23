@@ -14,25 +14,28 @@ public class DualChecker implements ITick {
 	
 	@Override
 	public void tick() {
+		
+		FileTask fileTask = new FileTask();
+		
 		if (!hasbeenchecked) {
-			if (!FileTask.doesExist(dualcheck))
-				FileTask.write(dualcheck, "true");
+			if (!fileTask.doesExist(dualcheck))
+				fileTask.write(dualcheck, "true");
 			else {
-				String dualcheckertxt = FileTask.read(dualcheck);
+				String dualcheckertxt = fileTask.read(dualcheck);
 				boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 				if (!dualcheckerboolean) {
-					FileTask.write(dualcheck, "true");
+					fileTask.write(dualcheck, "true");
 					Conductor.fatalError("An error has occured. Please try again");
 				}
 			}
 			hasbeenchecked = true;
 		}
 
-		String dualcheckertxt = FileTask.read(dualcheck);
+		String dualcheckertxt = fileTask.read(dualcheck);
 		boolean dualcheckerboolean = Boolean.parseBoolean(dualcheckertxt);
 
-		if (dualcheckerboolean || !FileTask.doesExist(dualcheck) && !closing)
-			FileTask.write(dualcheck, "false");
+		if (dualcheckerboolean || !fileTask.doesExist(dualcheck) && !closing)
+			fileTask.write(dualcheck, "false");
 	}
 
 	public void start() {
@@ -43,7 +46,7 @@ public class DualChecker implements ITick {
 	public void stop()
 	{
 		closing = true;
-		FileTask.delete(DualChecker.dualcheck);
+		new FileTask().delete(DualChecker.dualcheck);
 	}
 
 }

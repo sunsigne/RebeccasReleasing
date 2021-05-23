@@ -32,7 +32,7 @@ public class Animation {
 
 			currentImg = images[0];
 		} else
-			currentImg = ImageTask.drawMissingTexture();
+			currentImg = new ImageTask().drawMissingTexture();
 	}
 
 	void runAnimation() {

@@ -3,10 +3,10 @@ package objects.world.destroyable;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -102,12 +102,12 @@ public class Desk extends DestroyableObject {
 	}
 
 	@Override
-	public BufferedSound makeMainSound() {
-		return SoundBank.getSound(SoundBank.hit_defense);
+	public SoundBank makeMainSound() {
+		return SoundBank.hit_defense;
 	}
 
 	@Override
-	public BufferedSound makeSideSound() {
+	public SoundBank makeSideSound() {
 		return null;
 	}
 

@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -16,7 +17,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardFolder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 
@@ -63,7 +63,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
 	private void randomOrderAttribution() {
 
-		int[] randomOrder = RandomOrderGenerator.randomOrderGenerationFromOneTo(5);
+		int[] randomOrder = new RandomOrderGenerator().randomOrderGenerationFromOneTo(5);
 
 		card[0].setOrderNum(randomOrder[0]);
 		card[1].setOrderNum(randomOrder[1]);

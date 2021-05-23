@@ -76,60 +76,62 @@ public class ImageBank {
 
 	public static void loadRessources() {
 
+		ImageTask imageTask = new ImageTask();
+		
 		loadMap();
-		loadLiving();
-
+		loadLiving();		
+		
 		// gui
-		addImage(gui_battery_sheet, ImageTask.loadImage("textures\\gui\\battery_sheet.png"));
-		addImage(gui_data_sheet, ImageTask.loadImage("textures\\gui\\data_sheet.png"));
-		addImage(gui_tool_sheet, ImageTask.loadImage("textures\\gui\\tool_sheet.png"));
+		addImage(gui_battery_sheet, imageTask.loadImage("textures\\gui\\battery_sheet.png"));
+		addImage(gui_data_sheet, imageTask.loadImage("textures\\gui\\data_sheet.png"));
+		addImage(gui_tool_sheet, imageTask.loadImage("textures\\gui\\tool_sheet.png"));
 
 		// puzzle
-		addImage(puzzle_bomb_sheet, ImageTask.loadImage("textures\\puzzle\\bomb_sheet.png"));
-		addImage(puzzle_card_sheet, ImageTask.loadImage("textures\\puzzle\\card_sheet.png"));
-		addImage(puzzle_hack_sheet, ImageTask.loadImage("textures\\puzzle\\hack_sheet.png"));
-		addImage(puzzle_key_sheet, ImageTask.loadImage("textures\\puzzle\\key_sheet.png"));
-		addImage(puzzle_lazer_sheet, ImageTask.loadImage("textures\\puzzle\\lazer_sheet.png"));
-		addImage(puzzle_search, ImageTask.loadImage("textures\\puzzle\\search.png"));
+		addImage(puzzle_bomb_sheet, imageTask.loadImage("textures\\puzzle\\bomb_sheet.png"));
+		addImage(puzzle_card_sheet, imageTask.loadImage("textures\\puzzle\\card_sheet.png"));
+		addImage(puzzle_hack_sheet, imageTask.loadImage("textures\\puzzle\\hack_sheet.png"));
+		addImage(puzzle_key_sheet, imageTask.loadImage("textures\\puzzle\\key_sheet.png"));
+		addImage(puzzle_lazer_sheet, imageTask.loadImage("textures\\puzzle\\lazer_sheet.png"));
+		addImage(puzzle_search, imageTask.loadImage("textures\\puzzle\\search.png"));
 
 		// puzzler
-		addImage(puzzler_wallcracked_sheet, ImageTask.loadImage("textures\\puzzler\\wallcracked_sheet.png"));
-		addImage(puzzler_computer_sheet, ImageTask.loadImage("textures\\puzzler\\computer_sheet.png"));
-		addImage(puzzler_case_sheet, ImageTask.loadImage("textures\\puzzler\\case_sheet.png"));
-		addImage(puzzler_door_sheet, ImageTask.loadImage("textures\\puzzler\\door_sheet.png"));
-		addImage(puzzler_lazer_sheet, ImageTask.loadImage("textures\\puzzler\\lazer_sheet.png"));
+		addImage(puzzler_wallcracked_sheet, imageTask.loadImage("textures\\puzzler\\wallcracked_sheet.png"));
+		addImage(puzzler_computer_sheet, imageTask.loadImage("textures\\puzzler\\computer_sheet.png"));
+		addImage(puzzler_case_sheet, imageTask.loadImage("textures\\puzzler\\case_sheet.png"));
+		addImage(puzzler_door_sheet, imageTask.loadImage("textures\\puzzler\\door_sheet.png"));
+		addImage(puzzler_lazer_sheet, imageTask.loadImage("textures\\puzzler\\lazer_sheet.png"));
 
 		// destroyable
-		addImage(destroyable_desk_sheet, ImageTask.loadImage("textures\\destroyable\\desk_sheet.png"));
-		addImage(destroyable_plant_sheet, ImageTask.loadImage("textures\\destroyable\\plant_sheet.png"));
+		addImage(destroyable_desk_sheet, imageTask.loadImage("textures\\destroyable\\desk_sheet.png"));
+		addImage(destroyable_plant_sheet, imageTask.loadImage("textures\\destroyable\\plant_sheet.png"));
 
 		// loot
-		addImage(loot_tool_sheet, ImageTask.loadImage("textures\\loot\\tool_sheet.png"));
+		addImage(loot_tool_sheet, imageTask.loadImage("textures\\loot\\tool_sheet.png"));
 
 		// decor
-		addImage(decor_small_sheet, ImageTask.loadImage("textures\\decor\\small_sheet.png"));
-		addImage(decor_wall_sheet, ImageTask.loadImage("textures\\decor\\wall_sheet.png"));
+		addImage(decor_small_sheet, imageTask.loadImage("textures\\decor\\small_sheet.png"));
+		addImage(decor_wall_sheet, imageTask.loadImage("textures\\decor\\wall_sheet.png"));
 
 		// interface
-		addImage(interface_chat, ImageTask.loadImage("textures\\interface\\chat.png"));
+		addImage(interface_chat, imageTask.loadImage("textures\\interface\\chat.png"));
 
 		// title
 		addImage(pierre_feuille_ciseaux_sheet,
-				ImageTask.loadImage("textures\\title_screen\\pierre_feuille_ciseaux_sheet.png"));
+				imageTask.loadImage("textures\\title_screen\\pierre_feuille_ciseaux_sheet.png"));
 		addImage(pierre_feuille_ciseaux_com,
-				ImageTask.loadImage("textures\\title_screen\\pierre_feuille_ciseaux_com.png"));
-		addImage(helmet_of_releasing, ImageTask.loadImage("textures\\title_screen\\helmet_of_releasing.png"));
+				imageTask.loadImage("textures\\title_screen\\pierre_feuille_ciseaux_com.png"));
+		addImage(helmet_of_releasing, imageTask.loadImage("textures\\title_screen\\helmet_of_releasing.png"));
 
-		addImage(title_1, ImageTask.loadImage("textures\\title_screen\\title_1.png"));
-		addImage(title_2, ImageTask.loadImage("textures\\title_screen\\title_2.png"));
+		addImage(title_1, imageTask.loadImage("textures\\title_screen\\title_1.png"));
+		addImage(title_2, imageTask.loadImage("textures\\title_screen\\title_2.png"));
 
-		addImage(options_screen, ImageTask.loadImage("textures\\title_screen\\options_screen.png"));
+		addImage(options_screen, imageTask.loadImage("textures\\title_screen\\options_screen.png"));
 
-		addImage(chest, ImageTask.loadImage("textures\\title_screen\\chest.png"));
-		addImage(arms, ImageTask.loadImage("textures\\title_screen\\arms.png"));
-		addImage(head, ImageTask.loadImage("textures\\title_screen\\head.png"));
-		addImage(foe, ImageTask.loadImage("textures\\title_screen\\foe.png"));
-		addImage(hat, ImageTask.loadImage("textures\\title_screen\\hat.png"));
+		addImage(chest, imageTask.loadImage("textures\\title_screen\\chest.png"));
+		addImage(arms, imageTask.loadImage("textures\\title_screen\\arms.png"));
+		addImage(head, imageTask.loadImage("textures\\title_screen\\head.png"));
+		addImage(foe, imageTask.loadImage("textures\\title_screen\\foe.png"));
+		addImage(hat, imageTask.loadImage("textures\\title_screen\\hat.png"));
 
 	}
 
@@ -144,13 +146,16 @@ public class ImageBank {
 	static final ImageBank living_foe_battle_sheet = new ImageBank();
 
 	private static void loadLiving() {
-		addImage(living_face_sheet, ImageTask.loadImage("textures\\living\\face_sheet.png"));
-		addImage(living_walking_sheet, ImageTask.loadImage("textures\\living\\walking_sheet.png"));
-		addImage(living_battle_sheet, ImageTask.loadImage("textures\\living\\battle_sheet.png"));
+		
+		ImageTask imageTask = new ImageTask();
+		
+		addImage(living_face_sheet, imageTask.loadImage("textures\\living\\face_sheet.png"));
+		addImage(living_walking_sheet, imageTask.loadImage("textures\\living\\walking_sheet.png"));
+		addImage(living_battle_sheet, imageTask.loadImage("textures\\living\\battle_sheet.png"));
 
-		addImage(living_foe_face_sheet, ImageTask.loadImage("textures\\living\\foe_face_sheet.png"));
-		addImage(living_foe_walking_sheet, ImageTask.loadImage("textures\\living\\foe_walking_sheet.png"));
-		addImage(living_foe_battle_sheet, ImageTask.loadImage("textures\\living\\foe_battle_sheet.png"));
+		addImage(living_foe_face_sheet, imageTask.loadImage("textures\\living\\foe_face_sheet.png"));
+		addImage(living_foe_walking_sheet, imageTask.loadImage("textures\\living\\foe_walking_sheet.png"));
+		addImage(living_foe_battle_sheet, imageTask.loadImage("textures\\living\\foe_battle_sheet.png"));
 	}
 
 	////////// MAPS ////////////
@@ -163,14 +168,17 @@ public class ImageBank {
 	public static final ImageBank[] lvlTest = { new ImageBank(), new ImageBank() };
 
 	private static void loadMap() {
-		addImage(lvl01[FULL_MAP], ImageTask.loadImage("map\\lvl01.png"));
-		addImage(lvl01[CUTOUT_MAP], ImageTask.loadImage("map\\lvl01_cutout.png"));
+		
+		ImageTask imageTask = new ImageTask();
+		
+		addImage(lvl01[FULL_MAP], imageTask.loadImage("map\\lvl01.png"));
+		addImage(lvl01[CUTOUT_MAP], imageTask.loadImage("map\\lvl01_cutout.png"));
 
-		addImage(lvl02[FULL_MAP], ImageTask.loadImage("map\\lvl02.png"));
-		addImage(lvl02[CUTOUT_MAP], ImageTask.loadImage("map\\lvl02_cutout.png"));
+		addImage(lvl02[FULL_MAP], imageTask.loadImage("map\\lvl02.png"));
+		addImage(lvl02[CUTOUT_MAP], imageTask.loadImage("map\\lvl02_cutout.png"));
 
-		addImage(lvlTest[FULL_MAP], ImageTask.loadImage("map\\lvltest.png"));
-		addImage(lvlTest[CUTOUT_MAP], ImageTask.loadImage("map\\lvltest_cutout.png"));
+		addImage(lvlTest[FULL_MAP], imageTask.loadImage("map\\lvltest.png"));
+		addImage(lvlTest[CUTOUT_MAP], imageTask.loadImage("map\\lvltest_cutout.png"));
 	}
 
 }

@@ -89,13 +89,13 @@ class IntroductionRebeccaObject extends CommunIntroductionObject implements IAni
 		case 6:
 		case 7:
 		case 8:
-			tryJumping(0, -4, SoundBank.getSound(SoundBank.jump), 80, 50, 20, true);
+			tryJumping(0, -4, SoundBank.jump, 80, 50, 20, true);
 			break;
 		case 21:
 			x = initX = 500;
 			break;
 		case 31:
-			tryJumping(0, -8, SoundBank.getSound(SoundBank.jump), 25, 15, 5, true);
+			tryJumping(0, -8, SoundBank.jump, 25, 15, 5, true);
 			break;
 		case 32:
 		case 33:

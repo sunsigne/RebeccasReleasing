@@ -19,8 +19,8 @@ public class PliersCursor extends PuzzleObject {
 
 	@Override
 	public void tick() {
-		x = GameCursor.getPos().x - 95;
-		y = GameCursor.getPos().y - 20;
+		x = new GameCursor().getPos().x - 95;
+		y = new GameCursor().getPos().y - 20;
 	}
 
 	@Override

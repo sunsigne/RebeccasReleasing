@@ -51,7 +51,7 @@ public class OptionObject extends MenuObject implements ITranslation {
 
 	////////// LANGUAGE ////////////
 
-	private final Font font = FontTask.createNewFont(BufferedFontBank.dogica_bold, 60f);
+	private final Font font = new FontTask().createNewFont(BufferedFontBank.dogica_bold, 60f);
 
 	private void drawTranslatableText(Graphics g) {
 		GameText gametext;

@@ -4,13 +4,13 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
-import com.sunsigne.rebeccasreleasing.system.Game;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -103,8 +103,8 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 				setDirection(playerfacing);
 
 				int points = givePts();
-				BufferedSound mainSound = makeMainSound();
-				BufferedSound sideSound = makeSideSound();
+				SoundBank mainSound = makeMainSound();
+				SoundBank sideSound = makeSideSound();
 
 				if (collidingObject.isPlayer()) {
 					if (HandlerObject.getInstance().getPlayer().isPushed())
@@ -114,8 +114,8 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 				} else
 					World.gui.addPoints(this, 2 * points);
 
-				SoundTask.playSound(1.0, mainSound);
-				SoundTask.playSound(0.5, sideSound);
+				new SoundTask().playSound(1.0, mainSound);
+				new SoundTask().playSound(0.5, sideSound);
 
 				fall();
 				loot();
@@ -134,8 +134,8 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 
 	public abstract int givePts();
 
-	public abstract BufferedSound makeMainSound();
+	public abstract SoundBank makeMainSound();
 
-	public abstract BufferedSound makeSideSound();
+	public abstract SoundBank makeSideSound();
 
 }

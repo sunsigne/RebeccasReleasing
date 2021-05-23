@@ -9,11 +9,11 @@ import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 
 public class ToolTask implements ITranslation {
 
-	private static final GameFile loc = new GameFile("data/characteristics/tools");
+	private final GameFile loc = new GameFile("data/characteristics/tools");
 
-	private static final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/tool"));
-	private static final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/tool"));
-	private static final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/tool"));
+	private final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/tool"));
+	private final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/tool"));
+	private final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/tool"));
 
 	public ToolTask() {
 		languageMapping(fr, eng, custom);
@@ -21,7 +21,7 @@ public class ToolTask implements ITranslation {
 
 	public BufferedTool getBufferedToolFromFile(ToolBank toolBank, int line) {
 
-		String toolLine = FileTask.read(loc, line);
+		String toolLine = new FileTask().read(loc, line);
 		GameText gametext = getGameTextFromFile(line);
 
 		String[] dataIntoLine = new String[4];

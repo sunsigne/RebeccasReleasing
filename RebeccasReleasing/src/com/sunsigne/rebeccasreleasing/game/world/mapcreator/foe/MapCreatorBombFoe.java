@@ -10,7 +10,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorBombFoe {
 
-	static void createBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createCyanBombFoe(red, green, blue, handler_object, x0, y0);
 		createGreenBombFoe(red, green, blue, handler_object, x0, y0);
 		createYellowBombFoe(red, green, blue, handler_object, x0, y0);
@@ -19,7 +19,7 @@ public class MapCreatorBombFoe {
 		createPurpleBombFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -93,7 +93,7 @@ public class MapCreatorBombFoe {
 		}
 	}
 
-	private static void createGreenBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 9) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -167,7 +167,7 @@ public class MapCreatorBombFoe {
 		}
 	}
 
-	private static void createYellowBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createYellowBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 17) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -241,7 +241,7 @@ public class MapCreatorBombFoe {
 		}
 	}
 
-	private static void createOrangeBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createOrangeBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 25) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -315,7 +315,7 @@ public class MapCreatorBombFoe {
 		}
 	}
 
-	private static void createRedBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 33) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -389,7 +389,7 @@ public class MapCreatorBombFoe {
 		}
 	}
 
-	private static void createPurpleBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPurpleBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 41) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);

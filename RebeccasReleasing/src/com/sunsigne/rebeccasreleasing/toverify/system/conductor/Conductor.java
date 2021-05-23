@@ -3,6 +3,7 @@ package com.sunsigne.rebeccasreleasing.toverify.system.conductor;
 import javax.swing.JOptionPane;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.conductor.DebugMode;
@@ -20,7 +21,6 @@ import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBa
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.GameKeyboardInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
@@ -103,14 +103,14 @@ public class Conductor {
 	}
 
 	public static void fatalError(String errorOccured) {
-		SoundTask.playSound(SoundBank.getSound(SoundBank.error));
+		new SoundTask().playSound(SoundBank.error);
 		JOptionPane.showMessageDialog(null, errorOccured);
 		Conductor.stop();
 	}
 
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
-		SoundTask.stopMusic();
+		new SoundTask().stopMusic();
 		ILvl level = new WorldLvlTest();
 		World.currentWorld = new World(level);
 	}

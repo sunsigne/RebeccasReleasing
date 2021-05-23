@@ -9,9 +9,9 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -42,7 +42,7 @@ public class Stairs extends GameObject implements ICollisionReaction, IInteracti
 
 	@Override
 	public void doAction() {
-		SoundTask.playSound(SoundBank.getSound(SoundBank.nope));
+		new SoundTask().playSound(SoundBank.nope);
 		connectionToDualStairs();
 	}
 

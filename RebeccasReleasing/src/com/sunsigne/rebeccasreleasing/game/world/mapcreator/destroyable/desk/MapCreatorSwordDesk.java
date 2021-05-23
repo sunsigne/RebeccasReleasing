@@ -12,7 +12,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorSwordDesk {
 
-	static void createSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createCyanSwordDesk(red, green, blue, handler_object, x0, y0);
 		createGreenSwordDesk(red, green, blue, handler_object, x0, y0);
@@ -22,7 +22,7 @@ public class MapCreatorSwordDesk {
 		createPurpleSwordDesk(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createCyanSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 0 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -70,7 +70,7 @@ public class MapCreatorSwordDesk {
 		}
 	}
 
-	private static void createGreenSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createGreenSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 4 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -118,7 +118,7 @@ public class MapCreatorSwordDesk {
 		}
 	}
 
-	private static void createYellowSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createYellowSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 8 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -166,7 +166,7 @@ public class MapCreatorSwordDesk {
 		}
 	}
 
-	private static void createOrangeSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createOrangeSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 12 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -214,7 +214,7 @@ public class MapCreatorSwordDesk {
 		}
 	}
 
-	private static void createRedSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 16 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -261,7 +261,7 @@ public class MapCreatorSwordDesk {
 		}
 	}
 
-	private static void createPurpleSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createPurpleSwordDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 20 && blue == 253) {
 			Facing facing = new Facing(DIRECTION.LEFT);

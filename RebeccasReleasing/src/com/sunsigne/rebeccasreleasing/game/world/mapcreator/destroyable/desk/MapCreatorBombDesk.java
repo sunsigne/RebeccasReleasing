@@ -12,7 +12,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorBombDesk {
 
-	static void createBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createCyanBombDesk(red, green, blue, handler_object, x0, y0);
 		createGreenBombDesk(red, green, blue, handler_object, x0, y0);
@@ -22,7 +22,7 @@ public class MapCreatorBombDesk {
 		createPurpleBombDesk(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createCyanBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 0 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -70,7 +70,7 @@ public class MapCreatorBombDesk {
 		}
 	}
 
-	private static void createGreenBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createGreenBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 4 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -118,7 +118,7 @@ public class MapCreatorBombDesk {
 		}
 	}
 
-	private static void createYellowBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createYellowBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 8 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -166,7 +166,7 @@ public class MapCreatorBombDesk {
 		}
 	}
 
-	private static void createOrangeBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createOrangeBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 12 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -214,7 +214,7 @@ public class MapCreatorBombDesk {
 		}
 	}
 
-	private static void createRedBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 16 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -261,7 +261,7 @@ public class MapCreatorBombDesk {
 		}
 	}
 
-	private static void createPurpleBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createPurpleBombDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 20 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);

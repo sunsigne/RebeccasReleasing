@@ -170,7 +170,7 @@ public class TextureBank {
 	}
 
 	public BufferedImage getLivingBattle(CharacterBank characterBank, int facing, int state) {
-		BufferedImage img = ImageTask.drawMissingTexture(64, 64);
+		BufferedImage img = new ImageTask().drawMissingTexture(64, 64);
 		if (CharacterBank.getCharacter(characterBank).hasBattleAnimation())
 			img = living_battle[CharacterBank.getCharacter(characterBank).getId()][facing][state];
 		return img;
@@ -365,8 +365,8 @@ public class TextureBank {
 		for (int i = 0; i < 21; i++) {
 			living_foe_battle[DIRECTION.LEFT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 1, 64, 64);
 			living_foe_battle[DIRECTION.RIGHT.getNum()][i] = living_foe_battle_sheet.grabImage(i + 1, 2, 64, 64);
-			living_err_battle[DIRECTION.LEFT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
-			living_err_battle[DIRECTION.RIGHT.getNum()][i] = ImageTask.drawMissingTexture(64, 64);
+			living_err_battle[DIRECTION.LEFT.getNum()][i] = new ImageTask().drawMissingTexture(64, 64);
+			living_err_battle[DIRECTION.RIGHT.getNum()][i] = new ImageTask().drawMissingTexture(64, 64);
 		}
 	}
 

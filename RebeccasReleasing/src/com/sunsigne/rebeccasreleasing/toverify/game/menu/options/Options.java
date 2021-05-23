@@ -77,7 +77,7 @@ public class Options extends Clickable {
 
 	private static void registerNewLanguage() {
 		int languagevalue = language.getState().getNum();
-		FileTask.write(options, "LANGUAGE=" + languagevalue);
+		new FileTask().write(options, "LANGUAGE=" + languagevalue);
 	}
 
 	public static LANGUAGE getLanguage() {
@@ -88,7 +88,7 @@ public class Options extends Clickable {
 
 		LANGUAGE language;
 		try {
-			String languagetxt = FileTask.read(options);
+			String languagetxt = new FileTask().read(options);
 			int languagenum = Integer.valueOf(languagetxt.split("=")[1]);
 
 			language = LANGUAGE.getLanguage(languagenum);

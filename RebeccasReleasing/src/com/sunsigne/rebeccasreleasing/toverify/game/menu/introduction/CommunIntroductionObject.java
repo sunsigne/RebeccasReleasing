@@ -1,8 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.menu.introduction;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.MenuObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 
 abstract class CommunIntroductionObject extends MenuObject {
 
@@ -46,13 +47,13 @@ abstract class CommunIntroductionObject extends MenuObject {
 
 	// behavior
 
-	void tryJumping(int velX, int velY, BufferedSound sound, int jumpTime,  int stateFallingAtJumpTimeEgal, int stopMovingAtJumpTimeEgal,
+	void tryJumping(int velX, int velY, SoundBank sound, int jumpTime,  int stateFallingAtJumpTimeEgal, int stopMovingAtJumpTimeEgal,
 			boolean heightBeforeEgalHeightAfter) {
 		calculJumping(velX, velY, stateFallingAtJumpTimeEgal, stopMovingAtJumpTimeEgal, heightBeforeEgalHeightAfter);
 		if (shouldJump())
 		{
 			this.jumpTime = jumpTime;
-			SoundTask.playSound(0.4f, sound);			
+			new SoundTask().playSound(0.4f, sound);			
 		}
 	}
 

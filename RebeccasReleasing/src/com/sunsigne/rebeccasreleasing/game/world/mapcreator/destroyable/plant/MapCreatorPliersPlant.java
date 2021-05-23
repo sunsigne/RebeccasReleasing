@@ -12,7 +12,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorPliersPlant {
 
-	static void createPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createCyanPliersPlant(red, green, blue, handler_object, x0, y0);
 		createGreenPliersPlant(red, green, blue, handler_object, x0, y0);
@@ -22,7 +22,7 @@ public class MapCreatorPliersPlant {
 		createPurplePliersPlant(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 254 && green == 0 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
@@ -47,7 +47,7 @@ public class MapCreatorPliersPlant {
 		}
 	}
 
-	private static void createGreenPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createGreenPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 4 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -73,7 +73,7 @@ public class MapCreatorPliersPlant {
 		}
 	}
 
-	private static void createYellowPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createYellowPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 8 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -99,7 +99,7 @@ public class MapCreatorPliersPlant {
 		}
 	}
 
-	private static void createOrangePliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createOrangePliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 12 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -125,7 +125,7 @@ public class MapCreatorPliersPlant {
 		}
 	}
 
-	private static void createRedPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedPliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 254 && green == 16 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
@@ -150,7 +150,7 @@ public class MapCreatorPliersPlant {
 		}
 	}
 
-	private static void createPurplePliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createPurplePliersPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 20 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);

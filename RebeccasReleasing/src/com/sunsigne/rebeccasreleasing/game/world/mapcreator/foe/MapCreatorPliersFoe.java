@@ -10,7 +10,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorPliersFoe {
 
-	static void createPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createCyanPliersFoe(red, green, blue, handler_object, x0, y0);
 		createGreenPliersFoe(red, green, blue, handler_object, x0, y0);
 		createYellowPliersFoe(red, green, blue, handler_object, x0, y0);
@@ -19,7 +19,7 @@ public class MapCreatorPliersFoe {
 		createPurplePliersFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -93,7 +93,7 @@ public class MapCreatorPliersFoe {
 		}
 	}
 
-	private static void createGreenPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 9) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -167,7 +167,7 @@ public class MapCreatorPliersFoe {
 		}
 	}
 
-	private static void createYellowPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createYellowPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 17) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -241,7 +241,7 @@ public class MapCreatorPliersFoe {
 		}
 	}
 
-	private static void createOrangePliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createOrangePliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 25) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -315,7 +315,7 @@ public class MapCreatorPliersFoe {
 		}
 	}
 
-	private static void createRedPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedPliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 33) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -389,7 +389,7 @@ public class MapCreatorPliersFoe {
 		}
 	}
 
-	private static void createPurplePliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPurplePliersFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 250 && blue == 41) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);

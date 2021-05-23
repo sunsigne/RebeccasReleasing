@@ -22,12 +22,12 @@ public class Lock extends PuzzleObject {
 	@Override
 	public void tick() {
 		if (Conductor.getState() == STATE.PUZZLE) {
-			if (GameCursor.getPos().y < ymin)
+			if (new GameCursor().getPos().y < ymin)
 				y = ymin;
-			else if (GameCursor.getPos().y > ymax)
+			else if (new GameCursor().getPos().y > ymax)
 				y = ymax;
 			else
-				y = GameCursor.getPos().y;
+				y = new GameCursor().getPos().y;
 		}
 	}
 

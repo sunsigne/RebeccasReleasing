@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 public class FileTask {
 
-	public static boolean doesExist(GameFile gamefile) {
+	public boolean doesExist(GameFile gamefile) {
 		File file = new File("ressources/" + gamefile.getFilename() + ".csv");
 		return file.exists();
 	}
 
-	public static String read(GameFile gamefile) {
+	public String read(GameFile gamefile) {
 
 		return read(gamefile, 0);
 	}
 
-	public static String read(GameFile gamefile, int lineToRead) {
+	public String read(GameFile gamefile, int lineToRead) {
 
 		File file = new File("ressources/" + gamefile.getFilename() + ".csv");
 		Scanner scan = null;
@@ -58,11 +58,11 @@ public class FileTask {
 		return content;
 	}
 
-	public static void write(GameFile gamefile, String text) {
+	public void write(GameFile gamefile, String text) {
 		write(gamefile, text, 0);
 	}
 
-	public static void write(GameFile gamefile, String text, int lineToReplace) {
+	public void write(GameFile gamefile, String text, int lineToReplace) {
 		File file = new File("ressources/" + gamefile.getFilename() + ".csv");
 		String fileContent = read(gamefile);
 		String[] alllines = fileContent.split(System.getProperty("line.separator"));
@@ -95,7 +95,7 @@ public class FileTask {
 		}
 	}
 
-	public static void delete(GameFile gamefile) {
+	public void delete(GameFile gamefile) {
 		File file = new File("ressources/" + gamefile.getFilename() + ".csv");
 		if (file.exists())
 			file.delete();

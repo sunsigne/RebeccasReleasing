@@ -12,10 +12,10 @@ import com.sunsigne.rebeccasreleasing.system.Game;
 
 public class ImageTask {
 
-	private static final URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
+	private final URL loc = Game.class.getProtectionDomain().getCodeSource().getLocation();
 
 	// WARNING !!! All paths in this methods must have their / replaced by double \\
-	public static BufferedImage loadImage(String path0) {
+	public BufferedImage loadImage(String path0) {
 
 		BufferedImage image = null;
 
@@ -31,11 +31,11 @@ public class ImageTask {
 		return image;
 	}
 
-	public static BufferedImage drawMissingTexture() {
+	public BufferedImage drawMissingTexture() {
 		return drawMissingTexture(32, 32);
 	}
 
-	public static BufferedImage drawMissingTexture(int width, int height) {
+	public BufferedImage drawMissingTexture(int width, int height) {
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = img.createGraphics();

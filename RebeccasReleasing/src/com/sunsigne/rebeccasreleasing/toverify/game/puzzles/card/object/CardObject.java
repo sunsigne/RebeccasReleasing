@@ -132,7 +132,7 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 	////////// LANGUAGE ////////////
 
 	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.getTotalLanguages() + 1];
-	private Font font = FontTask.createNewFont(BufferedFontBank.frizQuadrataTT, 45f);
+	private Font font = new FontTask().createNewFont(BufferedFontBank.frizQuadrataTT, 45f);
 
 	@Override
 	public GameFile getGameFile(int number) {

@@ -51,7 +51,7 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 		HandlerRender.getInstance().removeObject(clickable[getLayer().getNum()]);
 		clickable[getLayer().getNum()] = null;
 		HandlerObject.getInstance().clear(false, getLayer());
-		GameCursor.hideCursor(false);
+		new GameCursor().hideCursor(false);
 	}
 
 }

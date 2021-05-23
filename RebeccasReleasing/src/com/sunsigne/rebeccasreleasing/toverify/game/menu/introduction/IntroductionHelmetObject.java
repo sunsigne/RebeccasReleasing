@@ -61,7 +61,7 @@ class IntroductionHelmetObject extends CommunIntroductionObject {
 		case 26:
 		case 27:
 		case 28:
-			tryJumping(6, -6, SoundBank.getSound(SoundBank.hit_critical), 80, 50, 5, false);
+			tryJumping(6, -6, SoundBank.hit_critical, 80, 50, 5, false);
 			break;
 		case 29:
 			setVisible(false);

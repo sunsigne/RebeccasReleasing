@@ -121,8 +121,8 @@ public abstract class SearchWordObject extends PuzzleObject {
 		if (!isDragged())
 			velocity();
 		if (isDragged()) {
-			x = (int) GameCursor.getPos().x - Size.TILE_PUZZLE;
-			y = (int) GameCursor.getPos().y - Size.TILE_PUZZLE / 2;
+			x = (int) new GameCursor().getPos().x - Size.TILE_PUZZLE;
+			y = (int) new GameCursor().getPos().y - Size.TILE_PUZZLE / 2;
 		}
 		goUpandDown();
 		goLeftandRight();

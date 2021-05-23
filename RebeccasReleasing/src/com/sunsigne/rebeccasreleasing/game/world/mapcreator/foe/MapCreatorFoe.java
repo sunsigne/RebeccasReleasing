@@ -7,16 +7,16 @@ import objects.characters.living.FoeObject;
 
 public class MapCreatorFoe {
 
-	public static void createFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	public void createFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createEmptyFoe(red, green, blue, handler_object, x0, y0);
-		MapCreatorKeyFoe.createKeyFoe(red, green, blue, handler_object, x0, y0);
-		MapCreatorSwordFoe.createSwordFoe(red, green, blue, handler_object, x0, y0);
-		MapCreatorBombFoe.createBombFoe(red, green, blue, handler_object, x0, y0);
-		MapCreatorGlassFoe.createGlassFoe(red, green, blue, handler_object, x0, y0);
-		MapCreatorPliersFoe.createPliersFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorKeyFoe().createKeyFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorSwordFoe().createSwordFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorBombFoe().createBombFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorGlassFoe().createGlassFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorPliersFoe().createPliersFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createEmptyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createEmptyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 255 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);

@@ -10,7 +10,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorSwordFoe {
 
-	static void createSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createCyanSwordFoe(red, green, blue, handler_object, x0, y0);
 		createGreenSwordFoe(red, green, blue, handler_object, x0, y0);
 		createYellowSwordFoe(red, green, blue, handler_object, x0, y0);
@@ -19,7 +19,7 @@ public class MapCreatorSwordFoe {
 		createPurpleSwordFoe(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -93,7 +93,7 @@ public class MapCreatorSwordFoe {
 		}
 	}
 
-	private static void createGreenSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 9) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -167,7 +167,7 @@ public class MapCreatorSwordFoe {
 		}
 	}
 
-	private static void createYellowSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createYellowSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 17) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -241,7 +241,7 @@ public class MapCreatorSwordFoe {
 		}
 	}
 
-	private static void createOrangeSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createOrangeSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 25) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -315,7 +315,7 @@ public class MapCreatorSwordFoe {
 		}
 	}
 
-	private static void createRedSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 33) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
@@ -389,7 +389,7 @@ public class MapCreatorSwordFoe {
 		}
 	}
 
-	private static void createPurpleSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPurpleSwordFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 253 && blue == 41) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);

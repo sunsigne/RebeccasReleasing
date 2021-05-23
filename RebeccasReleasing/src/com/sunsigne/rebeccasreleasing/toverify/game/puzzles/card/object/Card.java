@@ -3,11 +3,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class Card extends CardObject {
@@ -46,8 +46,8 @@ public class Card extends CardObject {
 		goUpward();
 
 		if (isDragged()) {
-			x = GameCursor.getPos().x - w / 2;
-			y = GameCursor.getPos().y - h / 2;
+			x = new GameCursor().getPos().x - w / 2;
+			y = new GameCursor().getPos().y - h / 2;
 		}
 		collision();
 	}
@@ -98,11 +98,11 @@ public class Card extends CardObject {
 		setExist(false);
 
 		if (getCardtype() == CARDTYPE.ATTACK)
-			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
+			new SoundTask().playSound(SoundBank.hit_critical);
 		if (getCardtype() == CARDTYPE.DEFENSE)
-			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_defense));
+			new SoundTask().playSound(SoundBank.hit_defense);
 		if (getCardtype() == CARDTYPE.CRITICAL) {
-			SoundTask.playSound(SoundBank.getSound(SoundBank.hit_critical));
+			new SoundTask().playSound(SoundBank.hit_critical);
 			{
 				HandlerObject.getInstance().getPlayer().puzzle.setWinning(true);
 				HandlerObject.getInstance().getPlayer().puzzle.close();

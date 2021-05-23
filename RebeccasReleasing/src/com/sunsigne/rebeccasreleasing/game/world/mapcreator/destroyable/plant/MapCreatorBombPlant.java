@@ -12,7 +12,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorBombPlant {
 
-	static void createBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createCyanBombPlant(red, green, blue, handler_object, x0, y0);
 		createGreenBombPlant(red, green, blue, handler_object, x0, y0);
@@ -22,7 +22,7 @@ public class MapCreatorBombPlant {
 		createPurpleBombPlant(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 254 && green == 0 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
@@ -47,7 +47,7 @@ public class MapCreatorBombPlant {
 		}
 	}
 
-	private static void createGreenBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createGreenBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 4 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -73,7 +73,7 @@ public class MapCreatorBombPlant {
 		}
 	}
 
-	private static void createYellowBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createYellowBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 8 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -99,7 +99,7 @@ public class MapCreatorBombPlant {
 		}
 	}
 
-	private static void createOrangeBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createOrangeBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 12 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -125,7 +125,7 @@ public class MapCreatorBombPlant {
 		}
 	}
 
-	private static void createRedBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 254 && green == 16 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
@@ -150,7 +150,7 @@ public class MapCreatorBombPlant {
 		}
 	}
 
-	private static void createPurpleBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createPurpleBombPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 254 && green == 20 && blue == 252) {
 			Facing facing = new Facing(DIRECTION.LEFT);

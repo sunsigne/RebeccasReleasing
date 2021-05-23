@@ -12,7 +12,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorKeyDesk {
 
-	static void createKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createCyanKeyDesk(red, green, blue, handler_object, x0, y0);
 		createGreenKeyDesk(red, green, blue, handler_object, x0, y0);
@@ -22,7 +22,7 @@ public class MapCreatorKeyDesk {
 		createPurpleKeyDesk(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createCyanKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 0 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -70,7 +70,7 @@ public class MapCreatorKeyDesk {
 		}
 	}
 
-	private static void createGreenKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 4 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -117,7 +117,7 @@ public class MapCreatorKeyDesk {
 		}
 	}
 
-	private static void createYellowKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createYellowKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 8 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -165,7 +165,7 @@ public class MapCreatorKeyDesk {
 		}
 	}
 
-	private static void createOrangeKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createOrangeKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 12 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
@@ -213,7 +213,7 @@ public class MapCreatorKeyDesk {
 		}
 	}
 
-	private static void createRedKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 16 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -260,7 +260,7 @@ public class MapCreatorKeyDesk {
 		}
 	}
 
-	private static void createPurpleKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createPurpleKeyDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 		if (red == 255 && green == 20 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);

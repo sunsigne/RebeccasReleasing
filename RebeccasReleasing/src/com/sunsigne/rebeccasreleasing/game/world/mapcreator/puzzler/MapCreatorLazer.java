@@ -10,7 +10,7 @@ import objects.world.puzzler.Lazer;
 
 final class MapCreatorLazer {
 
-	static void createLazer(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createLazer(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 
 		createLazerLeftRunning(red, green, blue, handler_object, x0, y0);
 		createLazerRightRunning(red, green, blue, handler_object, x0, y0);
@@ -27,7 +27,7 @@ final class MapCreatorLazer {
 		createLazerHorizontalSolved(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createLazerLeftRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerLeftRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 48) {
@@ -73,7 +73,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerRightRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerRightRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 42) {
@@ -119,7 +119,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerUpRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerUpRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 36) {
@@ -165,7 +165,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerDownRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerDownRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 30) {
@@ -211,7 +211,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerVerticalRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerVerticalRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 18) {
@@ -257,7 +257,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerHorizontalRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerHorizontalRunning(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 24) {
@@ -303,7 +303,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerLeftSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerLeftSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 49) {
@@ -355,7 +355,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerRightSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerRightSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 55) {
@@ -407,7 +407,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerUpSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerUpSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 61) {
@@ -459,7 +459,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerDownSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerDownSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 67) {
@@ -511,7 +511,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerVerticalSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerVerticalSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 79) {
@@ -563,7 +563,7 @@ final class MapCreatorLazer {
 		}
 	}
 
-	private static void createLazerHorizontalSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
+	private void createLazerHorizontalSolved(int red, int green, int blue, HandlerObject handler_object, int x0,
 			int y0) {
 
 		if (red == 4 && green == 255 && blue == 73) {

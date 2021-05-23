@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.BonusText;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -43,7 +43,7 @@ public abstract class LootObject extends GameObject implements ICollisionReactio
 					collidingReaction(collidingObject, false, this, () -> {
 						HandlerObject.getInstance().removeObject(this);
 						HandlerObject.getInstance().addObject(new BonusText(this, displayTextOnPickup()));
-						SoundTask.playSound(playSoundOnPickup());
+						new SoundTask().playSound(playSoundOnPickup());
 						triggerActionOnPickup();
 					});
 			}
@@ -54,8 +54,8 @@ public abstract class LootObject extends GameObject implements ICollisionReactio
 
 	protected abstract void triggerActionOnPickup();
 
-	protected BufferedSound playSoundOnPickup() {
-		return SoundBank.getSound(SoundBank.looting);
+	protected SoundBank playSoundOnPickup() {
+		return SoundBank.looting;
 	}
 
 	@Override
