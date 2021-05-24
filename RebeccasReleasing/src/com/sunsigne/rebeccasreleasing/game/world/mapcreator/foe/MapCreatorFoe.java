@@ -2,18 +2,19 @@ package com.sunsigne.rebeccasreleasing.game.world.mapcreator.foe;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
 
 import objects.characters.living.FoeObject;
 
 public class MapCreatorFoe {
 
-	public void createFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	public void createFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator, int x0, int y0) {
 		createEmptyFoe(red, green, blue, handler_object, x0, y0);
-		new MapCreatorKeyFoe().createKeyFoe(red, green, blue, handler_object, x0, y0);
-		new MapCreatorSwordFoe().createSwordFoe(red, green, blue, handler_object, x0, y0);
-		new MapCreatorBombFoe().createBombFoe(red, green, blue, handler_object, x0, y0);
-		new MapCreatorGlassFoe().createGlassFoe(red, green, blue, handler_object, x0, y0);
-		new MapCreatorPliersFoe().createPliersFoe(red, green, blue, handler_object, x0, y0);
+		new MapCreatorKeyFoe().createKeyFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorSwordFoe().createSwordFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorBombFoe().createBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorGlassFoe().createGlassFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorPliersFoe().createPliersFoe(red, green, blue, handler_object, mapcreator, x0, y0);
 	}
 
 	private void createEmptyFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {

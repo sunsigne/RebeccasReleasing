@@ -6,14 +6,12 @@ import java.io.File;
 
 public class FontTask {
 
-	// I prefere to let this method public to make it easier
-	// for modders and devellopers in adding content
-	public Font createNewFont(BufferedFontBank bufferedFontBank, float size) {
+	public Font createNewFont(FontBank fontBank, float size) {
 
 		Font font = null;
 
 		try {
-			File file = new File("ressources\\font\\" + bufferedFontBank.getFontName() + ".ttf");
+			File file = new File("ressources\\font\\" + new FontBank().getFont(fontBank).getFontName() + ".ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(size);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(font);

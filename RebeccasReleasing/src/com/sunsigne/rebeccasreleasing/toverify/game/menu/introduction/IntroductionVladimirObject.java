@@ -4,10 +4,10 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 import objects.Facing.DIRECTION;
@@ -82,7 +82,7 @@ class IntroductionVladimirObject extends CommunIntroductionObject implements IAn
 	private void runPhase() {
 		switch (getPhase()) {
 		case 17:
-			tryJumping(0, -8, SoundBank.jump, 25, 15, 5, true);
+			tryJumping(0, -8, SoundBank.PLAYER_JUMP, 25, 15, 5, true);
 			break;
 		case 19:
 		case 20:

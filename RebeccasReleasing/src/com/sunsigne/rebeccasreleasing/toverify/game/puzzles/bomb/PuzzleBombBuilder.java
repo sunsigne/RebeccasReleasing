@@ -6,13 +6,13 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.Bomb;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombReversed;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
@@ -75,9 +75,9 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.explosion_big;
+			return SoundBank.EXPLOSION_BIG;
 		else
-			return SoundBank.r_explosion_big;
+			return SoundBank.REVERSED_EXPLOSION_BIG;
 	}
 
 }

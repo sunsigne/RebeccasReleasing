@@ -4,8 +4,8 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 class IntroductionHelmetObject extends CommunIntroductionObject {
@@ -61,7 +61,7 @@ class IntroductionHelmetObject extends CommunIntroductionObject {
 		case 26:
 		case 27:
 		case 28:
-			tryJumping(6, -6, SoundBank.hit_critical, 80, 50, 5, false);
+			tryJumping(6, -6, SoundBank.HIT_BIG, 80, 50, 5, false);
 			break;
 		case 29:
 			setVisible(false);

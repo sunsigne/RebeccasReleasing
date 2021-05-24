@@ -32,6 +32,8 @@ Computer / l'outils de l'ordinateur n'est pas créé, c'est actuellement la clef q
 
 ////////// FACILE ////////////
 
+ToolBank & ToolIndex / faire en sorte de changer le constructeur pour pouvoir instancier
+cette classe et en faire une instance de Ressources (pour le constructeur)
 CardBuidler / Utiliser Supplier<Integer> pour les r
 loadRessources devrait être une implementation ;)
 Rebaptiser le jeu en "Reversed Rebecca"
@@ -41,9 +43,11 @@ SoundBank + ImageBank / vérifier le rangement
 le package objects / changer son emplacement
 TOOLS ENUM / utiliser la même technique que dans LANGUAGES pour avoir le nombre total d'outils
 simplifier les fonctions utilisant SoundBank dans SoundTask pour jouer un son
+SoundBank / remplacer les nope par des vrais sons
 
 ///////// A TRIER ////////////
 
+faire en sorte que toutes les choses statics qui n'ont pas besoin de l'être, ne le soit plus ^^
 ToolBank & ToolTask / create saveRessources() and setBufferedToolIntoFile()
 Lazer / la collision avec le lazer de la part d'ennemis ne devrait elle pas les blesser ?
 GameKeyboardInput / créer des boutons pour restart le level ? pour sauvegarder et retourner à l'écran titre

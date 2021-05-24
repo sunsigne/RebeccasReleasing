@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
-import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -132,7 +132,7 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 	////////// LANGUAGE ////////////
 
 	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.getTotalLanguages() + 1];
-	private Font font = new FontTask().createNewFont(BufferedFontBank.frizQuadrataTT, 45f);
+	private Font font = new FontTask().createNewFont(FontBank.FRIZQUADRATATT, 45f);
 
 	@Override
 	public GameFile getGameFile(int number) {

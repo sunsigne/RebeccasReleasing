@@ -5,7 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
+import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFont;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -101,7 +102,7 @@ public class TitleObject extends MenuObject {
 
 	////////// LANGUAGE ////////////
 
-	private final Font font = new FontTask().createNewFont(BufferedFontBank.dogica_bold, 66f);
+	private final Font font = new FontTask().createNewFont(FontBank.DOGICA_BOLD, 66f);
 
 	private void drawTranslatableText(Graphics g) {
 		GameText gametext;

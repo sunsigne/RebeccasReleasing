@@ -1,9 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.menu.introduction;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.MenuObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 
 abstract class CommunIntroductionObject extends MenuObject {
 

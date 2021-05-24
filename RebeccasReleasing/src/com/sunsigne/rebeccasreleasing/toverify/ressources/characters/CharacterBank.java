@@ -9,8 +9,7 @@ public class CharacterBank {
 
 	public static Map<CharacterBank, BufferedCharacter> characters = new HashMap<>();
 
-	// Even if this method is only used in this class, I prefere to let it public
-	// to make it easier for modders and devellopers in adding content
+	// public for devs
 	public static void addCharacter(CharacterBank characterBank, BufferedCharacter bufferedCharacter) {
 
 		if (bufferedCharacter != null)

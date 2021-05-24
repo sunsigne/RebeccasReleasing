@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
@@ -13,7 +14,6 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
@@ -41,7 +41,7 @@ public class World implements IRender {
 		ToolBank.loadRessources();
 
 		loadLevel();
-		new SoundTask().playMusic(0.5, SoundBank.level);
+		new SoundTask().playMusic(0.5, SoundBank.MUSIC_LEVEL);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class World implements IRender {
 
 	private void loadLevel() {
 
-		MapCreator.createLevel(ilvl.getLvlImage());
+		new MapCreator().createLevel(ilvl.getLvlImage());
 		Game.getInstance().forceLoop();
 		startGUI();
 		Conductor.setState(STATE.LEVEL);

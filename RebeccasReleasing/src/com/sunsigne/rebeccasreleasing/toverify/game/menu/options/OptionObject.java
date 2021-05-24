@@ -4,9 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import com.sunsigne.rebeccasreleasing.ressources.font.BufferedFontBank;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
-import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
@@ -51,7 +50,7 @@ public class OptionObject extends MenuObject implements ITranslation {
 
 	////////// LANGUAGE ////////////
 
-	private final Font font = new FontTask().createNewFont(BufferedFontBank.dogica_bold, 60f);
+	private final Font font = new FontTask().createNewFont(FontBank.DOGICA_BOLD, 60f);
 
 	private void drawTranslatableText(Graphics g) {
 		GameText gametext;

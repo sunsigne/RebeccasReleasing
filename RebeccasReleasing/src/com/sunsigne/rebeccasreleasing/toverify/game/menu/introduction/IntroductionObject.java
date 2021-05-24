@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -16,7 +17,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.GenericListener;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -248,7 +248,7 @@ public class IntroductionObject extends CommunIntroductionObject implements IAni
 	
 	private void lootHelmet()
 	{
-		new SoundTask().playSound(0.7f, SoundBank.looting);
+		new SoundTask().playSound(0.7f, SoundBank.PLAYER_LOOT);
 		BonusText text = new BonusText(object[2].getX() + 25, object[2].getY() + 50, "+1 casque");
 		HandlerObject.getInstance().addObject(text);
 	}

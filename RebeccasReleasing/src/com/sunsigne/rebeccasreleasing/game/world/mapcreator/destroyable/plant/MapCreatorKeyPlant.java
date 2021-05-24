@@ -12,25 +12,27 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorKeyPlant {
 
-	void createKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator, int x0,
+			int y0) {
 
-		createCyanKeyPlant(red, green, blue, handler_object, x0, y0);
-		createGreenKeyPlant(red, green, blue, handler_object, x0, y0);
-		createYellowKeyPlant(red, green, blue, handler_object, x0, y0);
-		createOrangeKeyPlant(red, green, blue, handler_object, x0, y0);
-		createRedKeyPlant(red, green, blue, handler_object, x0, y0);
-		createPurpleKeyPlant(red, green, blue, handler_object, x0, y0);
+		createCyanKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
+		createGreenKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
+		createYellowKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
+		createOrangeKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
+		createRedKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
+		createPurpleKeyPlant(red, green, blue, handler_object, mapcreator, x0, y0);
 	}
 
-	private void createCyanKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 0 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -38,25 +40,25 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createGreenKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createGreenKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 4 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -64,25 +66,25 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createYellowKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createYellowKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 8 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -90,25 +92,25 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createOrangeKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createOrangeKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 12 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -116,24 +118,25 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createRedKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 16 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -141,25 +144,25 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createPurpleKeyPlant(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createPurpleKeyPlant(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 254 && green == 20 && blue == 254) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -167,10 +170,10 @@ public class MapCreatorKeyPlant {
 			Facing facing = new Facing(DIRECTION.RIGHT);
 			Plant plant = new Plant(x0, y0, facing);
 			handler_object.addObject(plant);
-			
+
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
-			MapCreator.addToToolList(tool, plant);
+			mapcreator.addToToolList(tool, plant);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}

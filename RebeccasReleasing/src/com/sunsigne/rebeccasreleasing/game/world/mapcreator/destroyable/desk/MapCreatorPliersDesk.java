@@ -12,18 +12,19 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorPliersDesk {
 
-	void createPliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createPliersDesk(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator, int x0,
+			int y0) {
 
-		createCyanPliersDesk(red, green, blue, handler_object, x0, y0);
-		createGreenPliersDesk(red, green, blue, handler_object, x0, y0);
-		createYellowPliersDesk(red, green, blue, handler_object, x0, y0);
-		createOrangePliersDesk(red, green, blue, handler_object, x0, y0);
-		createRedPliersDesk(red, green, blue, handler_object, x0, y0);
-		createPurplePliersDesk(red, green, blue, handler_object, x0, y0);
+		createCyanPliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		createGreenPliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		createYellowPliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		createOrangePliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		createRedPliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		createPurplePliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
 	}
 
-	private void createCyanPliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createCyanPliersDesk(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 0 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -31,7 +32,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -42,7 +43,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -53,7 +54,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -64,14 +65,14 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createGreenPliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createGreenPliersDesk(int red, int green, int blue, HandlerObject handler_object,
+			MapCreator mapcreator, int x0, int y0) {
 		if (red == 255 && green == 4 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -79,7 +80,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -90,7 +91,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -101,7 +102,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -112,14 +113,14 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createYellowPliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createYellowPliersDesk(int red, int green, int blue, HandlerObject handler_object,
+			MapCreator mapcreator, int x0, int y0) {
 		if (red == 255 && green == 8 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -127,7 +128,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -138,7 +139,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -149,7 +150,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -160,14 +161,14 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createOrangePliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createOrangePliersDesk(int red, int green, int blue, HandlerObject handler_object,
+			MapCreator mapcreator, int x0, int y0) {
 		if (red == 255 && green == 12 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -175,7 +176,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -186,7 +187,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -197,7 +198,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -208,13 +209,14 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createRedPliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedPliersDesk(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 16 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -222,7 +224,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -233,7 +235,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -244,7 +246,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -255,14 +257,14 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createPurplePliersDesk(int red, int green, int blue, HandlerObject handler_object, int x0,
-			int y0) {
+	private void createPurplePliersDesk(int red, int green, int blue, HandlerObject handler_object,
+			MapCreator mapcreator, int x0, int y0) {
 		if (red == 255 && green == 20 && blue == 250) {
 			Facing facing = new Facing(DIRECTION.LEFT);
 			Desk desk = new Desk(x0, y0, facing);
@@ -270,7 +272,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -281,7 +283,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -292,7 +294,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -303,7 +305,7 @@ public class MapCreatorPliersDesk {
 
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);
-			MapCreator.addToToolList(tool, desk);
+			mapcreator.addToToolList(tool, desk);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}

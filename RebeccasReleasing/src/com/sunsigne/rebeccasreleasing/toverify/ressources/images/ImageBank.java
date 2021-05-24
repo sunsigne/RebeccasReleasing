@@ -12,8 +12,7 @@ public class ImageBank {
 
 	private static Map<ImageBank, BufferedImage> images = new HashMap<>();
 
-	// Even if this method is only used in this class, I prefere to let it public
-	// to make it easier for modders and devellopers in adding content
+	// public for devs
 	public static void addImage(ImageBank imageBank, BufferedImage bufferedImage) {
 
 		if (bufferedImage != null)

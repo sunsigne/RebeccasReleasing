@@ -1,6 +1,7 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.destroyable.desk;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
 
 import objects.Facing;
 import objects.Facing.DIRECTION;
@@ -8,14 +9,14 @@ import objects.world.destroyable.Desk;
 
 public class MapCreatorDesk {
 
-	public void createDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	public void createDesk(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator, int x0, int y0) {
 
 		createEmptyDesk(red, green, blue, handler_object, x0, y0);
-		new MapCreatorKeyDesk().createKeyDesk(red, green, blue, handler_object, x0, y0);
-		new MapCreatorSwordDesk().createSwordDesk(red, green, blue, handler_object, x0, y0);
-		new MapCreatorBombDesk().createBombDesk(red, green, blue, handler_object, x0, y0);
-		new MapCreatorGlassDesk().createGlassDesk(red, green, blue, handler_object, x0, y0);
-		new MapCreatorPliersDesk().createPliersDesk(red, green, blue, handler_object, x0, y0);
+		new MapCreatorKeyDesk().createKeyDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorSwordDesk().createSwordDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorBombDesk().createBombDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorGlassDesk().createGlassDesk(red, green, blue, handler_object, mapcreator, x0, y0);
+		new MapCreatorPliersDesk().createPliersDesk(red, green, blue, handler_object, mapcreator, x0, y0);
 	}
 
 	private void createEmptyDesk(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {

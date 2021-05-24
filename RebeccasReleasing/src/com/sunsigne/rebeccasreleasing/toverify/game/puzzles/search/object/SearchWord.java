@@ -3,9 +3,9 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class SearchWord extends SearchWordObject {
@@ -35,7 +35,7 @@ public class SearchWord extends SearchWordObject {
 			setExist(false);
 			setStable(true);
 			HandlerObject.getInstance().removeObject(this);
-			new SoundTask().playSound(0.6, SoundBank.place_word);
+			new SoundTask().playSound(0.6, SoundBank.TOP_SECRET);
 		} else
 			HandlerObject.getInstance().getPlayer().puzzle.close();
 	}

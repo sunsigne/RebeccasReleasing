@@ -28,19 +28,19 @@ public class MapCreator {
 	@SuppressWarnings("unchecked")
 	private static List<ILoot>[][] tool_list = new List[7][ToolIndex.getTotalNumOfTools()]; // - difficulty - number of tools
 
-	public static void addToToolList(LootTool lootTool, ILoot iloot) {
+	public void addToToolList(LootTool lootTool, ILoot iloot) {
 		int lvl = lootTool.getTool().getCurrentLvl();
 		int index = lootTool.getTool().getToolBank().getIndex();
 		MapCreator.tool_list[lvl][index].add(iloot);
 	}
 
-	private static void setUpForRandomizingLoot() {
+	private void setUpForRandomizingLoot() {
 		for (int difficulty = 0; difficulty < 7; difficulty++) {
 			Arrays.setAll(tool_list[difficulty], ArrayList::new);
 		}
 	}
 
-	public static void createLevel(BufferedImage image) {
+	public void createLevel(BufferedImage image) {
 
 		HandlerObject handler_object = HandlerObject.getInstance();
 		// To remember the color used, here is the guideline I tried to follow :
@@ -72,34 +72,34 @@ public class MapCreator {
 				createWall(red, green, blue, handler_object, x0, y0);
 
 				// living - red
-				MapCreatorLiving.createPlayer(red, green, blue, handler_object, x0, y0);
+				new MapCreatorLiving().createPlayer(red, green, blue, handler_object, x0, y0);
 
 				// puzzler - green
 				new MapCreatorPuzzler().createPuzzler(red, green, blue, handler_object, x0, y0);
 
 				// foe - yellow
-				new MapCreatorFoe().createFoe(red, green, blue, handler_object, x0, y0);
+				new MapCreatorFoe().createFoe(red, green, blue, handler_object, this, x0, y0);
 
 				// loot - blue
-				MapCreatorLoot.createTool(red, green, blue, handler_object, x0, y0);
+				new MapCreatorLoot().createTool(red, green, blue, handler_object, x0, y0);
 
 				// decor - cyan
-				MapCreatorDecor.createSmall(red, green, blue, handler_object, x0, y0);
+				new MapCreatorDecor().createSmall(red, green, blue, handler_object, x0, y0);
 
 				// destroyable - magenta
-				new MapCreatorDestroyable().createDestroyable(red, green, blue, handler_object, x0, y0);
+				new MapCreatorDestroyable().createDestroyable(red, green, blue, handler_object, this, x0, y0);
 			}
 		}
 
 		randomizeLoot();
 	}
 
-	private static void createPlayer(HandlerObject handler_object) {
+	private void createPlayer(HandlerObject handler_object) {
 		handler_object.resetPlayer();
 		handler_object.addObject(handler_object.getPlayer());
 	}
 
-	private static void randomizeLoot() {
+	private void randomizeLoot() {
 
 		// search into list, classed by their difficulty
 		for (int lvl = 0; lvl < 7; lvl++) {
@@ -141,7 +141,7 @@ public class MapCreator {
 
 	}
 
-	private static void createWall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createWall(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 255 && green == 255 && blue == 255) {
 			Facing facing = new Facing(DIRECTION.NULL);
 			Wall wall = new Wall(x0, y0, facing);

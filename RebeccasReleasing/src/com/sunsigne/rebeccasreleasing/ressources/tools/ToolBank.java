@@ -17,8 +17,7 @@ public class ToolBank extends ToolIndex {
 
 	private static Map<ToolBank, BufferedTool> tools = new HashMap<>();
 
-	// Even if this method is only used in this class, I prefere to let it public
-	// to make it easier for modders and devellopers in adding content
+	// public for devs
 	public static void addTool(ToolBank toolBank, BufferedTool bufferedTool) {
 
 		if (bufferedTool != null)

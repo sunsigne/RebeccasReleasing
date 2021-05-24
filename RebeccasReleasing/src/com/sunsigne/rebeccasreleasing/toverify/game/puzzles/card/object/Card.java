@@ -3,11 +3,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class Card extends CardObject {
@@ -98,11 +98,11 @@ public class Card extends CardObject {
 		setExist(false);
 
 		if (getCardtype() == CARDTYPE.ATTACK)
-			new SoundTask().playSound(SoundBank.hit_critical);
+			new SoundTask().playSound(SoundBank.HIT_BIG);
 		if (getCardtype() == CARDTYPE.DEFENSE)
-			new SoundTask().playSound(SoundBank.hit_defense);
+			new SoundTask().playSound(SoundBank.HIT_LITTLE);
 		if (getCardtype() == CARDTYPE.CRITICAL) {
-			new SoundTask().playSound(SoundBank.hit_critical);
+			new SoundTask().playSound(SoundBank.HIT_BIG);
 			{
 				HandlerObject.getInstance().getPlayer().puzzle.setWinning(true);
 				HandlerObject.getInstance().getPlayer().puzzle.close();

@@ -9,7 +9,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 
 public class SoundTask {
 
@@ -47,7 +46,7 @@ public class SoundTask {
 
 		stopMusic();
 		try {
-			String path = "\\ressources\\audio\\" + SoundBank.getSound(sound).getSound();
+			String path = "\\ressources\\audio\\" + new SoundBank().getSound(sound).getSound();
 			URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 
 			AudioInputStream music = AudioSystem.getAudioInputStream(url);
@@ -74,7 +73,7 @@ public class SoundTask {
 
 		if (sound != null) {
 			try {
-				String path = "\\ressources\\audio\\" + SoundBank.getSound(sound).getSound();
+				String path = "\\ressources\\audio\\" + new SoundBank().getSound(sound).getSound();
 				URL url = new File((new File(loc.toURI())).getParent() + path).toURI().toURL();
 
 				AudioInputStream clip = AudioSystem.getAudioInputStream(url);
@@ -84,6 +83,7 @@ public class SoundTask {
 				soundclip.start();
 			} catch (Exception e) {
 				e.printStackTrace();
+				playSound(SoundBank.NOPE);
 			}
 		}
 	}

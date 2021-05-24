@@ -1,12 +1,18 @@
 package com.sunsigne.rebeccasreleasing.toverify.system.conductor;
 
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.Ressource;
+import com.sunsigne.rebeccasreleasing.ressources.font.FontBank;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.conductor.DebugMode;
+import com.sunsigne.rebeccasreleasing.system.handler.ITick;
 import com.sunsigne.rebeccasreleasing.system.util.Cycloid;
 import com.sunsigne.rebeccasreleasing.system.util.Window;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
@@ -20,7 +26,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.world.*;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.GameKeyboardInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
@@ -29,7 +34,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.DualChecker;
 public class Conductor {
 
 	public static final boolean skipIntro = true;
-	
+
 	private static final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/menu"));
 	private static final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/menu"));
 	private static final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/menu"));
@@ -64,12 +69,21 @@ public class Conductor {
 
 	}
 
+	////////// RESSOURCES ////////////
+
+	private static LinkedList<Ressource> ressources_list = new LinkedList<>();
+
 	public static void startApp() {
-		Options.loadSavedSettings();
+
 		Conductor.setState(STATE.LOADING);
-		
+
+		addAllRessources();
+		loadBareMinimumRessources();
+		loadRessources();
+
+		Options.loadSavedSettings();
+
 		ImageBank.loadRessources();
-		SoundBank.loadRessources();
 		CharacterBank.loadRessources();
 		TextureBank.getInstance().loadRessources();
 		new ColorEnigmaBank().loadRessources();
@@ -79,6 +93,22 @@ public class Conductor {
 		new Window(Game.getInstance());
 
 		start();
+	}
+
+	private static void addAllRessources() {
+		ressources_list.add(new FontBank());
+//		ressources_list.add(new ImageBank());
+		ressources_list.add(new SoundBank());
+	}
+
+	private static void loadBareMinimumRessources() {
+		for (Ressource tempRessource : ressources_list)
+			tempRessource.loadBareMinimumRessources();
+	}
+
+	private static void loadRessources() {
+		for (Ressource tempRessource : ressources_list)
+			tempRessource.loadRessources();
 	}
 
 	public static void start() {
@@ -103,7 +133,7 @@ public class Conductor {
 	}
 
 	public static void fatalError(String errorOccured) {
-		new SoundTask().playSound(SoundBank.error);
+		new SoundTask().playSound(SoundBank.ERROR);
 		JOptionPane.showMessageDialog(null, errorOccured);
 		Conductor.stop();
 	}
@@ -111,7 +141,7 @@ public class Conductor {
 	public static void openLvl() {
 		Conductor.setState(STATE.LOADING);
 		new SoundTask().stopMusic();
-		ILvl level = new WorldLvlTest();
+		ILvl level = new WorldLvl02();
 		World.currentWorld = new World(level);
 	}
 

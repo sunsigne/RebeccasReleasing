@@ -10,24 +10,26 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorBombFoe {
 
-	void createBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
-		createCyanBombFoe(red, green, blue, handler_object, x0, y0);
-		createGreenBombFoe(red, green, blue, handler_object, x0, y0);
-		createYellowBombFoe(red, green, blue, handler_object, x0, y0);
-		createOrangeBombFoe(red, green, blue, handler_object, x0, y0);
-		createRedBombFoe(red, green, blue, handler_object, x0, y0);
-		createPurpleBombFoe(red, green, blue, handler_object, x0, y0);
+	void createBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator, int x0,
+			int y0) {
+		createCyanBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		createGreenBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		createYellowBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		createOrangeBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		createRedBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
+		createPurpleBombFoe(red, green, blue, handler_object, mapcreator, x0, y0);
 	}
 
-	private void createCyanBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createCyanBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 1) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -36,10 +38,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -48,10 +50,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -60,10 +62,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -72,10 +74,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -84,24 +86,25 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createGreenBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGreenBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 9) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -110,10 +113,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -122,10 +125,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -134,10 +137,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -146,10 +149,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -158,24 +161,25 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.GREEN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createYellowBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createYellowBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 17) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -184,10 +188,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -196,10 +200,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -208,10 +212,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -220,10 +224,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -232,24 +236,25 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.YELLOW;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createOrangeBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createOrangeBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 25) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -258,10 +263,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -270,10 +275,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -282,10 +287,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -294,10 +299,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -306,24 +311,25 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.ORANGE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createRedBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createRedBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 33) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -332,10 +338,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -344,10 +350,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -356,10 +362,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -368,10 +374,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -380,24 +386,25 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.RED;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
 	}
 
-	private void createPurpleBombFoe(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPurpleBombFoe(int red, int green, int blue, HandlerObject handler_object, MapCreator mapcreator,
+			int x0, int y0) {
 		if (red == 255 && green == 252 && blue == 41) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -406,10 +413,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -418,10 +425,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.YELLOW;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -430,10 +437,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.ORANGE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -442,10 +449,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.RED;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}
@@ -454,10 +461,10 @@ public class MapCreatorBombFoe {
 			DIFFICULTY difficulty = DIFFICULTY.PURPLE;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
-			
+
 			difficulty = DIFFICULTY.PURPLE;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
-			MapCreator.addToToolList(tool, foe);
+			mapcreator.addToToolList(tool, foe);
 			tool.setFake(true);
 			handler_object.addObject(tool);
 		}

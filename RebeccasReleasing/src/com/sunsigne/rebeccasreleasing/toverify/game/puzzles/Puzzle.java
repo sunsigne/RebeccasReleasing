@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
@@ -107,9 +107,9 @@ public abstract class Puzzle extends Clickable {
 
 		if (!winning) {
 			if (!reversed)
-				new SoundTask().playSound(SoundBank.fail);
+				new SoundTask().playSound(SoundBank.PLAYER_FAIL);
 			else
-				new SoundTask().playSound(SoundBank.r_fail);
+				new SoundTask().playSound(SoundBank.REVERSED_PLAYER_FAIL);
 			World.gui.removeHp();
 		} else if (winning)
 			new SoundTask().playSound(getSuccessSound());

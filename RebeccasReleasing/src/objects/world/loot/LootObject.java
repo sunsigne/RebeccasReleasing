@@ -5,9 +5,9 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.BonusText;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
@@ -55,7 +55,7 @@ public abstract class LootObject extends GameObject implements ICollisionReactio
 	protected abstract void triggerActionOnPickup();
 
 	protected SoundBank playSoundOnPickup() {
-		return SoundBank.looting;
+		return SoundBank.PLAYER_LOOT;
 	}
 
 	@Override

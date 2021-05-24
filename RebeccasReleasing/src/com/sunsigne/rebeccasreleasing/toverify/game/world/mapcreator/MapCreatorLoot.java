@@ -8,7 +8,7 @@ import objects.world.loot.tools.LootTool;
 
 public class MapCreatorLoot {
 
-	static void createTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	void createTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		createKeyTool(red, green, blue, handler_object, x0, y0);
 		createSwordTool(red, green, blue, handler_object, x0, y0);
 		createBombTool(red, green, blue, handler_object, x0, y0);
@@ -16,7 +16,7 @@ public class MapCreatorLoot {
 		createPliersTool(red, green, blue, handler_object, x0, y0);
 	}
 
-	private static void createKeyTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createKeyTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 0 && green == 1 && blue == 255) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.KEY, difficulty);
@@ -55,7 +55,7 @@ public class MapCreatorLoot {
 
 	}
 
-	private static void createSwordTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createSwordTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 1 && green == 1 && blue == 255) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.SWORD, difficulty);
@@ -94,7 +94,7 @@ public class MapCreatorLoot {
 
 	}
 
-	private static void createBombTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createBombTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 2 && green == 1 && blue == 255) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.BOMB, difficulty);
@@ -133,7 +133,7 @@ public class MapCreatorLoot {
 
 	}
 	
-	private static void createGlassTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createGlassTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 3 && green == 1 && blue == 255) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.GLASS, difficulty);
@@ -171,7 +171,7 @@ public class MapCreatorLoot {
 		}
 	}
 	
-	private static void createPliersTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
+	private void createPliersTool(int red, int green, int blue, HandlerObject handler_object, int x0, int y0) {
 		if (red == 4 && green == 1 && blue == 255) {
 			DIFFICULTY difficulty = DIFFICULTY.CYAN;
 			LootTool tool = new LootTool(x0, y0, ToolBank.PLIERS, difficulty);

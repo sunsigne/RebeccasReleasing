@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
@@ -18,7 +19,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEn
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.PliersCursor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WIRECOLOR;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WireObject;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -186,9 +186,9 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.nope;
+			return SoundBank.NOPE;
 		else
-			return SoundBank.nope;
+			return SoundBank.NOPE;
 	}
 
 }

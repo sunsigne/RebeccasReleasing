@@ -4,12 +4,12 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
@@ -45,7 +45,7 @@ public class Title extends Clickable {
 	private void playMusic() {
 		STATE state = Conductor.getPreviousState();
 		if (state != STATE.TITLE && state != STATE.OPTION)
-			new SoundTask().playMusic(0.5, SoundBank.title_screen);
+			new SoundTask().playMusic(0.5, SoundBank.MUSIC_TITLE);
 	}
 
 	@Override

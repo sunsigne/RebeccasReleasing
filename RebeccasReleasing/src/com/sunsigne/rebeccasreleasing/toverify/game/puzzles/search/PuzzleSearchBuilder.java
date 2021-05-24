@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
@@ -12,7 +13,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.Search
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWord;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWordObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWordReversed;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 
 import objects.world.puzzler.IPuzzler;
@@ -105,9 +105,9 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 	public SoundBank getSuccessSound() {
 
 		if (!isReversed())
-			return SoundBank.nope;
+			return SoundBank.NOPE;
 		else
-			return SoundBank.nope;
+			return SoundBank.NOPE;
 	}
 
 }

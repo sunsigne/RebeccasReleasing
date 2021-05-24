@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
@@ -107,12 +107,12 @@ public class Plant extends DestroyableObject {
 
 	@Override
 	public SoundBank makeMainSound() {
-		return SoundBank.poterie;
+		return SoundBank.POT;
 	}
 
 	@Override
 	public SoundBank makeSideSound() {
-		return SoundBank.hit_defense;
+		return SoundBank.HIT_LITTLE;
 	}
 
 }

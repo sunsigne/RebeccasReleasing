@@ -6,11 +6,11 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
+import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.toverify.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 
 import objects.world.puzzler.IPuzzler;
@@ -95,9 +95,9 @@ public class PuzzleHack extends Puzzle {
 	@Override
 	public SoundBank getSuccessSound() {
 		if (!isReversed())
-			return SoundBank.computer;
+			return SoundBank.SHORT_CIRCUIT;
 		else
-			return SoundBank.nope;
+			return SoundBank.NOPE;
 	}
 
 }
