@@ -1,13 +1,12 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.clickable;
 
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.PuzzleCardBuilder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CARDTYPE;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.Card;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-
-import objects.characters.living.FoeObject;
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleCard extends PuzzleCardBuilder<Card> {
 

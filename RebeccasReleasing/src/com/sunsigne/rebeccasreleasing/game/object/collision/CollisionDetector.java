@@ -3,10 +3,9 @@ package com.sunsigne.rebeccasreleasing.game.object.collision;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-
-import objects.characters.living.LivingObject;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.LivingObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 
 public class CollisionDetector implements ITick {
 

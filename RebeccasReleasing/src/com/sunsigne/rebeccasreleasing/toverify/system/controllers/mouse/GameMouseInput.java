@@ -7,9 +7,9 @@ import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 public class GameMouseInput extends MouseAdapter {
 

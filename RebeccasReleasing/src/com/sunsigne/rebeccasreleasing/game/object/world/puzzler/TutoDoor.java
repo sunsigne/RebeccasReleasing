@@ -1,10 +1,9 @@
 package com.sunsigne.rebeccasreleasing.game.object.world.puzzler;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.key.clickable.TutoPuzzleKey;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.AXIS;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable.TutoPuzzleKey;
-
-import objects.Facing.AXIS;
 
 public class TutoDoor extends Door {
 

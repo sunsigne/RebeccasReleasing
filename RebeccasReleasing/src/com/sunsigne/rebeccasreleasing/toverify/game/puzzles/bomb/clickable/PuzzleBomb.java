@@ -1,14 +1,13 @@
 
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.clickable;
 
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.PuzzleBombBuilder;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.Bomb;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombForward;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 
-import objects.world.puzzler.IPuzzler;
-
-public class PuzzleBomb extends PuzzleBombBuilder<Bomb> {
+public class PuzzleBomb extends PuzzleBombBuilder<BombForward> {
 
 	public PuzzleBomb(IPuzzler puzzler, DIFFICULTY difficulty) {
 		super(puzzler, difficulty, false);

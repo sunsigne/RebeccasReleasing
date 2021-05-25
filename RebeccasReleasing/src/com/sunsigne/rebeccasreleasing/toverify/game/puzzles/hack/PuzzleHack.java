@@ -9,11 +9,10 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleHack extends Puzzle {
 
@@ -31,7 +30,7 @@ public class PuzzleHack extends Puzzle {
 	}
 
 	@Override
-	public void randomGeneration() {
+	public void randomGenerationTODELETE() {
 
 		cpu[0] = new ProcessorCPU(1, 1, 1);
 		cpu[1] = new ProcessorCPU(2, 1, 2);
@@ -59,7 +58,7 @@ public class PuzzleHack extends Puzzle {
 	}
 
 	@Override
-	public void createPuzzle() {
+	public void createPuzzleTODELETE() {
 		HandlerObject.getInstance().addObject(desktop);
 		virus = new Virus();
 		HandlerObject.getInstance().addObject(virus);
@@ -94,7 +93,7 @@ public class PuzzleHack extends Puzzle {
 
 	@Override
 	public SoundBank getSuccessSound() {
-		if (!isReversed())
+		if (!isForward())
 			return SoundBank.SHORT_CIRCUIT;
 		else
 			return SoundBank.NOPE;

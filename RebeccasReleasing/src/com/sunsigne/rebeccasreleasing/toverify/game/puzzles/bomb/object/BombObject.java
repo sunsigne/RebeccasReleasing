@@ -6,12 +6,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class BombObject extends PuzzleObject implements IAnimation {
 
@@ -28,7 +28,7 @@ public abstract class BombObject extends PuzzleObject implements IAnimation {
 	protected int totalcount, count;
 	
 	public BombObject(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.P_BOMB);
+		super(x, y, OBJECTID.DELETE);
 		
 		this.difficulty = difficulty;
 		w = 2 * Size.TILE_PUZZLE;

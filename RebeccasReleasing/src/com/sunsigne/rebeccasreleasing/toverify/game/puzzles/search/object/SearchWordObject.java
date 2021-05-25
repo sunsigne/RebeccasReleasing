@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class SearchWordObject extends PuzzleObject {
 
@@ -22,7 +22,7 @@ public abstract class SearchWordObject extends PuzzleObject {
 	private String text;
 
 	public SearchWordObject(int wordnumber, int x, int y) {
-		super(x, y, OBJECTID.P_WORD);
+		super(x, y, OBJECTID.DELETE);
 
 		setStable(true);
 		this.wordnumber = wordnumber;

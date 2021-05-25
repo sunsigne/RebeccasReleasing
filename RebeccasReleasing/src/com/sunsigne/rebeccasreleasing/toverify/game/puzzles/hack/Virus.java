@@ -6,15 +6,15 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class Virus extends PuzzleObject implements IAnimation {
 
@@ -25,7 +25,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 	int ymin = Size.Y0 + Size.TILE_PUZZLE, ymax = 32 + 13 * Size.TILE_PUZZLE / 2;
 
 	public Virus() {
-		super(0, 0, OBJECTID.P_VIRUS);
+		super(0, 0, OBJECTID.DELETE);
 
 		w = Size.TILE_PUZZLE / 2;
 		h = Size.TILE_PUZZLE / 2;
@@ -86,7 +86,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 			LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 			for (GameObject tempObject : list) {
 
-				if (tempObject.getId() == OBJECTID.PROCESSOR) {
+				if (tempObject instanceof ProcessorObject) {
 					ProcessorObject processorObject = (ProcessorObject) tempObject;
 
 					switch (processorObject.getProcessorID()) {

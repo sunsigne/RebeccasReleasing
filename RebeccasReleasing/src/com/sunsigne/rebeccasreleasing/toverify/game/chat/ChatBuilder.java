@@ -4,16 +4,16 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.IClick;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 
 public abstract class ChatBuilder extends Clickable implements IClick, ITranslation {
 

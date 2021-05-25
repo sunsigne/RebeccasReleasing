@@ -1,9 +1,8 @@
 package com.sunsigne.rebeccasreleasing.game.object.collision;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.toverify.system.util.GenericListener;
-
-import objects.characters.living.LivingObject;
+import com.sunsigne.rebeccasreleasing.system.util.GenericListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.LivingObject;
 
 public interface ICollisionReaction {
 

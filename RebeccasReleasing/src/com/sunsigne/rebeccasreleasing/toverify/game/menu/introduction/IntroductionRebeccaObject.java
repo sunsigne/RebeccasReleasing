@@ -5,12 +5,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.Facing.DIRECTION;
 
 class IntroductionRebeccaObject extends CommunIntroductionObject implements IAnimation {
 

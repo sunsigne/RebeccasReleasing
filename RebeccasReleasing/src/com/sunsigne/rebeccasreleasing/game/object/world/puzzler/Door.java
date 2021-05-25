@@ -4,22 +4,21 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.puzzles.key.clickable.*;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.AXIS;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.key.clickable.PuzzleKey;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.Facing.AXIS;
-import objects.world.puzzler.IPuzzler;
 
 public class Door extends GameObject implements IPuzzler {
 
 	public Door(int x, int y, AXIS axis, DIFFICULTY difficulty) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DOOR);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
 
 		this.axis = axis;
 		this.difficulty = difficulty;
@@ -41,7 +40,7 @@ public class Door extends GameObject implements IPuzzler {
 
 	@Override
 	public Puzzle getPuzzle() {
-		return new PuzzleKey(this, getDifficulty());
+		return new PuzzleKeyForward(this, getDifficulty());
 	}
 
 	private EventListener eventOnVictory, eventOnDefeat;

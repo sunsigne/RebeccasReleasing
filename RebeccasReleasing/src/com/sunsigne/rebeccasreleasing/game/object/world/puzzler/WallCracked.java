@@ -5,19 +5,18 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.clickable.PuzzleBomb;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.world.puzzler.IPuzzler;
 
 public class WallCracked extends GameObject implements IPuzzler {
 
 	public WallCracked(int x, int y, DIFFICULTY difficulty) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.WALLCRACKED);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
 
 		this.difficulty = difficulty;
 	}

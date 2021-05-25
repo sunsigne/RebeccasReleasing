@@ -15,7 +15,7 @@ import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 
 public abstract class CardObject extends CommunCardObject implements ITranslation {
 
@@ -27,7 +27,7 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 	protected int hiddingTime = 40;
 
 	public CardObject(int x, int y, CARDTYPE cardtype, ChatMap chatMap, ChatMap... chatMaps) {
-		super(x, y, OBJECTID.P_CARD, cardtype);
+		super(x, y, OBJECTID.DELETE, cardtype);
 
 		languageMapping(chatMap, chatMaps);
 		startingX = x;
@@ -61,7 +61,7 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list)
-			if (tempObject.getId() == OBJECTID.P_CARDFOLDER) {
+			if (tempObject instanceof CardFolder) {
 				folder = (CardFolder) tempObject;
 				break;
 			}

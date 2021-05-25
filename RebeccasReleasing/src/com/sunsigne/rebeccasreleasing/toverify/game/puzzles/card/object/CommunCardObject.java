@@ -1,8 +1,8 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object;
 
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class CommunCardObject extends PuzzleObject {
 

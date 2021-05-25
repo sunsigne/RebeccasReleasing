@@ -15,13 +15,12 @@ import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolIndex;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.ILoot;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.LootTool;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.Facing;
-import objects.Facing.DIRECTION;
-import objects.world.loot.ILoot;
-import objects.world.loot.tools.LootTool;
 
 public class MapCreator {
 
@@ -57,17 +56,16 @@ public class MapCreator {
 
 		int w = image.getWidth();
 		int h = image.getHeight();
-		int step = 32;
 
-		for (int xx = 0; xx < h; xx += step) {
-			for (int yy = 0; yy < w; yy += step) {
+		for (int xx = 0; xx < h; xx += Size.STEP) {
+			for (int yy = 0; yy < w; yy += Size.STEP) {
 				int pixel = image.getRGB(xx, yy);
 				int red = (pixel >> 16) & 0xff;
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 
-				int x0 = xx * Size.TILE / step;
-				int y0 = yy * Size.TILE / step;
+				int x0 = xx * Size.TILE / Size.STEP;
+				int y0 = yy * Size.TILE / Size.STEP;
 
 				createWall(red, green, blue, handler_object, x0, y0);
 

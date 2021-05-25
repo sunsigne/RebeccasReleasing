@@ -7,6 +7,7 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchFolder;
@@ -14,8 +15,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.Search
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWordObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWordReversed;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-
-import objects.world.puzzler.IPuzzler;
 
 public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 
@@ -36,13 +35,13 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 	}
 
 	protected SearchWordObject createSearchWord(int wordnumber, int x, int y) {
-		if (!isReversed())
+		if (!isForward())
 			return new SearchWord(wordnumber, x, y);
 		return new SearchWordReversed(wordnumber, x, y);
 	}
 
 	@Override
-	public void randomGeneration() {
+	public void randomGenerationTODELETE() {
 
 		// creation of two different random numbers
 		int r0 = 1 + new Random().nextInt(5);
@@ -82,13 +81,13 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public void createPuzzle() {
+	public void createPuzzleTODELETE() {
 		searchfolder = new SearchFolder();
 
 		HandlerObject.getInstance().addObject(searchfolder);
 
 		for (int i = 0; i < 6; i++) {
-			if (isReversed() && word[i].isGoodWord())
+			if (isForward() && word[i].isGoodWord())
 				continue;
 			HandlerObject.getInstance().addObject(word[i]);
 		}
@@ -104,7 +103,7 @@ public abstract class PuzzleSearchBuilder<T> extends Puzzle {
 	@Override
 	public SoundBank getSuccessSound() {
 
-		if (!isReversed())
+		if (!isForward())
 			return SoundBank.NOPE;
 		else
 			return SoundBank.NOPE;

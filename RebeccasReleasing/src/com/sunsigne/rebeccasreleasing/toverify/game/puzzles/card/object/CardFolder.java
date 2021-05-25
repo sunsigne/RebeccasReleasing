@@ -3,13 +3,12 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.Facing.DIRECTION;
 
 public class CardFolder extends CommunCardObject implements IAnimation {
 
@@ -21,7 +20,7 @@ public class CardFolder extends CommunCardObject implements IAnimation {
 	private int attackTime, defenseTime;
 
 	public CardFolder(DIRECTION facing, CharacterBank characterBank, CARDTYPE cardtype) {
-		super(1300, 250, OBJECTID.P_CARDFOLDER, cardtype);
+		super(1300, 250, OBJECTID.DELETE, cardtype);
 
 		this.facing = facing;
 		this.characterBank = characterBank;

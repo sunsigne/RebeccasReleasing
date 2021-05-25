@@ -8,7 +8,7 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 
 public class Card extends CardObject {
 
@@ -70,14 +70,14 @@ public class Card extends CardObject {
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
-			if (!flag && tempObject.getId() == OBJECTID.P_CARDFOLDER) {
+			if (!flag && tempObject instanceof CardFolder) {
 				CardFolder folder = (CardFolder) tempObject;
 
 				if (getBounds().intersects(folder.getBounds())) {
 					if (folder.getOrderNum() == getOrderNum() || folder.getOrderNum() == 0) {
-						if (folder.getCardtype() == getCardtype() || getCardtype() == CARDTYPE.CRITICAL)
+						if (folder.getCardtype() == getCardtype())
 							setAboveRightFolder(true);
-						else if (folder.getCardtype() != getCardtype() && getCardtype() != CARDTYPE.CRITICAL)
+						else if (folder.getCardtype() != getCardtype())
 							setAboveWrongFolder(true);
 						flag = true;
 					} else {
@@ -101,13 +101,6 @@ public class Card extends CardObject {
 			new SoundTask().playSound(SoundBank.HIT_BIG);
 		if (getCardtype() == CARDTYPE.DEFENSE)
 			new SoundTask().playSound(SoundBank.HIT_LITTLE);
-		if (getCardtype() == CARDTYPE.CRITICAL) {
-			new SoundTask().playSound(SoundBank.HIT_BIG);
-			{
-				HandlerObject.getInstance().getPlayer().puzzle.setWinning(true);
-				HandlerObject.getInstance().getPlayer().puzzle.close();
-			}
-		}
 		HandlerObject.getInstance().removeObject(this);
 	}
 

@@ -3,9 +3,8 @@ package com.sunsigne.rebeccasreleasing.game.world.mapcreator.puzzler;
 import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Door;
 import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.TutoDoor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.AXIS;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-
-import objects.Facing.AXIS;
 
 final class MapCreatorDoor {
 

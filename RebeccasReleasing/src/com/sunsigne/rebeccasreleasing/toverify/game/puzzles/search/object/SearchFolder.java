@@ -3,14 +3,14 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class SearchFolder extends PuzzleObject {
 
 	public SearchFolder() {
-		super(1220, 600, OBJECTID.P_WORDFOLDER);
+		super(1220, 600, OBJECTID.DELETE);
 
 		w = Size.TILE_PUZZLE * 4;
 		h = Size.TILE_PUZZLE * 3;

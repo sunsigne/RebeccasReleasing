@@ -6,13 +6,12 @@ import java.awt.event.KeyEvent;
 import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.title.Title;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.PlayerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.IInteraction;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-
-import objects.Facing.DIRECTION;
-import objects.characters.living.PlayerObject;
-import objects.world.IInteraction;
 
 public class GameKeyboardInput extends KeyAdapter {
 

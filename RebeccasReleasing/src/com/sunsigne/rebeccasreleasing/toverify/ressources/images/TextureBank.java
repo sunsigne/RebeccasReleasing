@@ -4,9 +4,8 @@ import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.ressources.images.ImageTask;
 import com.sunsigne.rebeccasreleasing.ressources.images.SpriteSheet;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
-
-import objects.Facing.DIRECTION;
 
 public class TextureBank {
 

@@ -11,6 +11,7 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEnigmaBank;
@@ -19,11 +20,9 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.ColorEn
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.PliersCursor;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WIRECOLOR;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object.WireObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.world.puzzler.IPuzzler;
 
 public abstract class PuzzleLazerBuilder extends Puzzle {
 
@@ -55,7 +54,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 	}
 
 	@Override
-	public void randomGeneration() {
+	public void randomGenerationTODELETE() {
 
 		int x0 = 450 + Size.TILE_PUZZLE * 4;
 		int y0 = 160 + Size.TILE_PUZZLE * 3;
@@ -166,7 +165,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 	}
 
 	@Override
-	public void createPuzzle() {
+	public void createPuzzleTODELETE() {
 
 		HandlerObject.getInstance().addObject(answer);
 		for (int i = 0; i < NUMBEROFWIRES; i++) {
@@ -185,7 +184,7 @@ public abstract class PuzzleLazerBuilder extends Puzzle {
 	@Override
 	public SoundBank getSuccessSound() {
 
-		if (!isReversed())
+		if (!isForward())
 			return SoundBank.NOPE;
 		else
 			return SoundBank.NOPE;

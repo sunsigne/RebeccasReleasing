@@ -3,15 +3,15 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.lazer.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.common_object.PuzzleObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class PliersCursor extends PuzzleObject {
 
 	public PliersCursor() {
-		super(0, 0, OBJECTID.CURSOR);
+		super(0, 0, OBJECTID.DELETE);
 
 		w = 3 * Size.TILE_PUZZLE / 2;
 		h = 3 * Size.TILE_PUZZLE / 2;

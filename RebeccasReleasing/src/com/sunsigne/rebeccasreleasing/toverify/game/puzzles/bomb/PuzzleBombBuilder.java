@@ -8,15 +8,14 @@ import java.util.Random;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.Bomb;
+import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombForward;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombReversed;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.world.puzzler.IPuzzler;
 
 public abstract class PuzzleBombBuilder<T> extends Puzzle {
 
@@ -33,13 +32,13 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	}
 
 	protected BombObject createBomb(int x, int y) {
-		if (!isReversed())
-			return new Bomb(x, y, getDifficulty());
+		if (!isForward())
+			return new BombForward(x, y, getDifficulty());
 		return new BombReversed(x, y, getDifficulty());
 	}
 
 	@Override
-	public void randomGeneration() {
+	public void randomGenerationTODELETE() {
 
 		bomb[0] = createBomb(setCol(1), setRandomLine());
 		bomb[1] = createBomb(setCol(2), setRandomLine());
@@ -56,7 +55,7 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public void createPuzzle() {
+	public void createPuzzleTODELETE() {
 
 		HandlerObject.getInstance().addObject(bomb[0]);
 		HandlerObject.getInstance().addObject(bomb[1]);
@@ -74,7 +73,7 @@ public abstract class PuzzleBombBuilder<T> extends Puzzle {
 	@Override
 	public SoundBank getSuccessSound() {
 
-		if (!isReversed())
+		if (!isForward())
 			return SoundBank.EXPLOSION_BIG;
 		else
 			return SoundBank.REVERSED_EXPLOSION_BIG;

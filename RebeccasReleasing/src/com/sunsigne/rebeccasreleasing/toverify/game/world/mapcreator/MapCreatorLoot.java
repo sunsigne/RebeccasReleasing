@@ -2,9 +2,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator;
 
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.LootTool;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-
-import objects.world.loot.tools.LootTool;
 
 public class MapCreatorLoot {
 

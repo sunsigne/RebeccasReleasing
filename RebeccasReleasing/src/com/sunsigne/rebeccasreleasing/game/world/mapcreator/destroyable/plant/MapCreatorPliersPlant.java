@@ -2,13 +2,12 @@ package com.sunsigne.rebeccasreleasing.game.world.mapcreator.destroyable.plant;
 
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.destroyable.Plant;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.LootTool;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-
-import objects.Facing;
-import objects.Facing.DIRECTION;
-import objects.world.destroyable.Plant;
-import objects.world.loot.tools.LootTool;
 
 public class MapCreatorPliersPlant {
 

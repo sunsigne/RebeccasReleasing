@@ -11,6 +11,9 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CARDTYPE;
@@ -19,10 +22,6 @@ import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardFold
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object.CardObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-
-import objects.Facing.DIRECTION;
-import objects.characters.living.FoeObject;
-import objects.world.puzzler.IPuzzler;
 
 public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
@@ -49,7 +48,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public void randomGeneration() {
+	public void randomGenerationTODELETE() {
 		CARDTYPE[] randomType = randomTypeGeneration();
 
 		card[0] = createCard(520, 925, randomType[0]);
@@ -98,7 +97,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 	}
 
 	@Override
-	public void createPuzzle() {
+	public void createPuzzleTODELETE() {
 		attackFolder = new CardFolder(DIRECTION.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
 		defenseFolder = new CardFolder(DIRECTION.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
 
@@ -166,7 +165,7 @@ public abstract class PuzzleCardBuilder<T> extends Puzzle {
 	@Override
 	public SoundBank getSuccessSound() {
 
-		if (!isReversed())
+		if (!isForward())
 			return SoundBank.NOPE;
 		else
 			return SoundBank.NOPE;

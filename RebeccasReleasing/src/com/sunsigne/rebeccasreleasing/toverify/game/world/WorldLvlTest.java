@@ -5,15 +5,14 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventContext;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.characters.living.FoeObject;
 
 public class WorldLvlTest implements ILvl {
 
@@ -58,7 +57,7 @@ public class WorldLvlTest implements ILvl {
 		boolean isCameraDependant = true;
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, LAYER.WOLRD_GUI_PUZZLE);
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.FOE) {
+			if (tempObject instanceof FoeObject) {
 				FoeObject tempFoe = (FoeObject) tempObject;
 				tempFoe.setStatue(true);
 			}

@@ -9,17 +9,16 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.Clickable;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.characters.living.FoeObject;
-import objects.world.puzzler.IPuzzler;
 
 public abstract class Puzzle extends Clickable {
 
@@ -30,18 +29,18 @@ public abstract class Puzzle extends Clickable {
 
 	private FoeObject[] multipleFoe = new FoeObject[FoeObject.MAX_ADDITIONAL_FOES_AT_SAME_FIGHT];
 
-	private boolean reversed, winning;
+	private boolean forward, winning;
 
-	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty, boolean reversed) {
-		this(state, puzzler, null, difficulty, reversed);
+	public Puzzle(STATE state, IPuzzler puzzler, DIFFICULTY difficulty, boolean forward) {
+		this(state, puzzler, null, difficulty, forward);
 	}
 
-	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty, boolean reversed) {
+	public Puzzle(STATE state, IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty, boolean forward) {
 		super(state);
 		this.puzzler = puzzler;
 		this.multipleFoe = multipleFoe;
 		this.difficulty = difficulty;
-		this.reversed = reversed;
+		this.forward = forward;		
 		open();
 	}
 
@@ -56,8 +55,8 @@ public abstract class Puzzle extends Clickable {
 		return difficulty;
 	}
 
-	public boolean isReversed() {
-		return reversed;
+	public boolean isForward() {
+		return forward;
 	}
 
 	public boolean isWinning() {
@@ -70,22 +69,20 @@ public abstract class Puzzle extends Clickable {
 
 	// behavior
 
-	public void open() {
-
-		HandlerObject.getInstance().clear(false, LAYER.WOLRD_GUI_PUZZLE);
-		createFrame();
-		randomGeneration();
-		createPuzzle();
+	protected void open() {
+		createFrameTODELETE();
+		randomGenerationTODELETE();
+		createPuzzleTODELETE();
 	}
 
-	protected void createFrame() {
+	protected void createFrameTODELETE() {
 
 //		HandlerObject.getInstance().addObject(getTimer());
 	}
 
-	protected abstract void randomGeneration();
+	protected void randomGenerationTODELETE() {};
 
-	protected abstract void createPuzzle();
+	protected void createPuzzleTODELETE() {};
 
 	protected abstract SoundBank getSuccessSound();
 
@@ -106,7 +103,7 @@ public abstract class Puzzle extends Clickable {
 		HandlerObject.getInstance().getPlayer().loadBasicState();
 
 		if (!winning) {
-			if (!reversed)
+			if (forward)
 				new SoundTask().playSound(SoundBank.PLAYER_FAIL);
 			else
 				new SoundTask().playSound(SoundBank.REVERSED_PLAYER_FAIL);

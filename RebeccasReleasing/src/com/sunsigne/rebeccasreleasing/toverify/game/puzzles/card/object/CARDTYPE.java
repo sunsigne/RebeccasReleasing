@@ -4,7 +4,6 @@ public enum CARDTYPE {
 
 	ATTACK,
 	DEFENSE,
-	CRITICAL, 	
 	REVERSED;
 
 }

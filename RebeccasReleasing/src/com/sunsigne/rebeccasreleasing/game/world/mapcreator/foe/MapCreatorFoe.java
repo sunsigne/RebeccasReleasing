@@ -1,10 +1,9 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.foe;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-
-import objects.characters.living.FoeObject;
 
 public class MapCreatorFoe {
 

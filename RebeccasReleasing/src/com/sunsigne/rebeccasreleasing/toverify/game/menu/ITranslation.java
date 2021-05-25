@@ -5,7 +5,7 @@ import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.Options;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 
 public interface ITranslation {
 

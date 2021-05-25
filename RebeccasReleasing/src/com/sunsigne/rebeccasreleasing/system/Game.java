@@ -13,15 +13,15 @@ import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerTick;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.system.util.Camera;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static final String NAME = "Rebecca's Releasing";
+	public static final String NAME = "Reversed Rebecca";
 	private static final Camera cam = new Camera();
 
 	public static void main(String args[]) {
@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable {
 
 	////////// TICK ////////////
 
-	private void tick() {
+	private void tick() throws Exception {
 		HandlerRender.getInstance().setPlayerRenderingRefreshed(true);
 
 		Point pos = MouseInfo.getPointerInfo().getLocation();
@@ -148,7 +148,7 @@ public class Game extends Canvas implements Runnable {
 
 	////////// RENDER ////////////
 
-	private void render() {
+	private void render() throws Exception {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
 			this.createBufferStrategy(3);

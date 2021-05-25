@@ -1,11 +1,10 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.clickable;
 
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.PuzzleSearchBuilder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.search.object.SearchWordReversed;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleSearchReversed extends PuzzleSearchBuilder<SearchWordReversed> {
 

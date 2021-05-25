@@ -1,12 +1,11 @@
 
 package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.clickable;
 
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.PuzzleBombBuilder;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.bomb.object.BombReversed;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
-
-import objects.world.puzzler.IPuzzler;
 
 public class PuzzleBombReversed extends PuzzleBombBuilder<BombReversed> {
 

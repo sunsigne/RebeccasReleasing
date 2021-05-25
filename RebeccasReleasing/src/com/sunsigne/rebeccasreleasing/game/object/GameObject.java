@@ -7,16 +7,14 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
 import com.sunsigne.rebeccasreleasing.system.handler.ITick;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.PlayerObject;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.TextureBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public abstract class GameObject implements ITick, IRender {
 
-	public GameObject(boolean cameraDependant, LAYER layer, int x, int y, OBJECTID id) {
-		this.id = id;
-
+	public GameObject(boolean cameraDependant, LAYER layer, int x, int y) {
 		this.x = x;
 		this.y = y;
 		initX = x;
@@ -29,14 +27,8 @@ public abstract class GameObject implements ITick, IRender {
 		this.layer = layer;
 	}
 
-	protected OBJECTID id;
-
-	public OBJECTID getId() {
-		return id;
-	}
-
 	public boolean isPlayer() {
-		return getId() == OBJECTID.PLAYER;
+		return (this instanceof PlayerObject);
 	}
 
 	////////// POSITION ////////////

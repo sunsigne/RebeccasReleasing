@@ -8,16 +8,14 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.Facing.DIRECTION;
 
 public class LoadingScreenObject extends GameObject implements ITranslation, IAnimation {
 
@@ -25,7 +23,7 @@ public class LoadingScreenObject extends GameObject implements ITranslation, IAn
 	private boolean running;
 
 	public LoadingScreenObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, LAYER.QUIT_MENU, 0, 0, OBJECTID.LOADING);
+		super(false, LAYER.QUIT_MENU, 0, 0);
 		languageMapping(chatMap, chatMaps);
 	}
 
@@ -74,7 +72,7 @@ public class LoadingScreenObject extends GameObject implements ITranslation, IAn
 			g.fillRect(0, 0, Size.WIDHT, Size.HEIGHT);
 
 			drawTranslatableText(g);
-			drawAnimation(g, 1700, 850, 200, 200, DIRECTION.LEFT.getNum(), 0);
+			drawAnimation(g, 920, 850, 200, 200, DIRECTION.RIGHT.getNum(), 0);
 		}
 	}
 

@@ -3,16 +3,14 @@ package com.sunsigne.rebeccasreleasing.game.object;
 import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.Facing;
 
 public class Wall extends GameObject implements ICollisionReaction {
 
 	public Wall(int x, int y, Facing facing) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.WALL);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		setSize(facing);
 	}

@@ -1,11 +1,10 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.destroyable.desk;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.destroyable.Desk;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
-
-import objects.Facing;
-import objects.Facing.DIRECTION;
-import objects.world.destroyable.Desk;
 
 public class MapCreatorDesk {
 

@@ -1,12 +1,11 @@
 package com.sunsigne.rebeccasreleasing.game.world.mapcreator.puzzler;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.AXIS;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.Lazer;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
-
-import objects.Facing;
-import objects.Facing.AXIS;
-import objects.Facing.DIRECTION;
-import objects.world.puzzler.Lazer;
 
 final class MapCreatorLazer {
 

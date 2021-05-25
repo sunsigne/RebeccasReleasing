@@ -6,21 +6,20 @@ import com.sunsigne.rebeccasreleasing.game.object.world.puzzler.Door;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventContext;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.ImageBank;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-
-import objects.characters.living.FoeObject;
-import objects.world.puzzler.IPuzzler;
 
 public class WorldLvl01 implements ILvl {
 
@@ -118,7 +117,7 @@ public class WorldLvl01 implements ILvl {
 					listener = () -> event.mustOccur(true);
 				World.loadChat(new Chat(2, listener, fr, eng, custom));
 				Event event1 = HandlerEvent.getInstance().getEvent("Door Fail 1");
-				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(LAYER.WOLRD_GUI_PUZZLE, 4608, 2784);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(true, LAYER.WOLRD_GUI_PUZZLE, 4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event1.mustOccur(true), false);
 			}
 		});
@@ -157,7 +156,7 @@ public class WorldLvl01 implements ILvl {
 				moveThePlayerFutherFromDoor();
 				World.loadChat(new Chat(4, null, fr, eng, custom));
 				Event event = HandlerEvent.getInstance().getEvent("Door Fail 2");
-				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(LAYER.WOLRD_GUI_PUZZLE, 4608, 2784);
+				Door door = (Door) HandlerObject.getInstance().getObjectAtPos(true, LAYER.WOLRD_GUI_PUZZLE, 4608, 2784);
 				((IPuzzler) door).setEventOnClose(() -> event.mustOccur(true), false);
 			}
 		});
@@ -246,7 +245,7 @@ public class WorldLvl01 implements ILvl {
 
 				Event event1 = HandlerEvent.getInstance().getEvent("Foe Fail");
 				Event event2 = HandlerEvent.getInstance().getEvent("Foe Success");
-				FoeObject foe = (FoeObject) HandlerObject.getInstance().getObjectAtPos(LAYER.WOLRD_GUI_PUZZLE, 8640, 3264);
+				FoeObject foe = (FoeObject) HandlerObject.getInstance().getObjectAtPos(true, LAYER.WOLRD_GUI_PUZZLE, 8640, 3264);
 				((IPuzzler) foe).setEventOnClose(() -> event1.mustOccur(true), false);
 				((IPuzzler) foe).setEventOnClose(() -> event2.mustOccur(true), true);
 			}

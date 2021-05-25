@@ -8,11 +8,11 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.Event;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
 
 public class ChatObject extends GameObject {
 
@@ -34,7 +34,7 @@ public class ChatObject extends GameObject {
 	private int count, index;
 
 	public ChatObject(CharacterBank characterBank, int facialExpression, String sentence1, String sentence2, Event eventOnDisplay) {
-		super(false, LAYER.DIALOGUE_VENT, Size.X0, 750, OBJECTID.DISPLAYER);
+		super(false, LAYER.DIALOGUE_VENT, Size.X0, 750, OBJECTID.DELETE);
 
 		this.eventOnDisplay = eventOnDisplay;
 		this.characterBank = characterBank;

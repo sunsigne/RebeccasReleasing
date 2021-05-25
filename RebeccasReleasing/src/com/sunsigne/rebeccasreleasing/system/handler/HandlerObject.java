@@ -5,10 +5,8 @@ import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-
-import objects.characters.living.PlayerObject;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.PlayerObject;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 
 public class HandlerObject implements ITick, IRender {
 
@@ -89,8 +87,9 @@ public class HandlerObject implements ITick, IRender {
 		}
 	}
 
-	public GameObject getObjectAtPos(LAYER layer, int x, int y) {
-		for (GameObject tempObject : handler_object_list[1][layer.getNum()]) {
+	public GameObject getObjectAtPos(boolean cameraDependant, LAYER layer, int x, int y) {
+		int cameraDependency = cameraDependant ? 1 : 0;
+		for (GameObject tempObject : handler_object_list[cameraDependency][layer.getNum()]) {
 			if (tempObject.getX() == x && tempObject.getY() == y) {
 				return tempObject;
 			}
@@ -101,7 +100,7 @@ public class HandlerObject implements ITick, IRender {
 	////////// TICK ////////////
 
 	@Override
-	public void tick() {
+	public void tick() throws Exception {
 
 		LinkedList<GameObject> list = null;
 		for (LAYER layer : LAYER.values()) {

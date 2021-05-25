@@ -12,18 +12,16 @@ import com.sunsigne.rebeccasreleasing.system.Game;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.IRender;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.Chat;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator.MapCreator;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
-import com.sunsigne.rebeccasreleasing.toverify.system.conductor.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.controllers.mouse.GameMouseInput;
 import com.sunsigne.rebeccasreleasing.toverify.system.handler.HandlerEvent;
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 import com.sunsigne.rebeccasreleasing.toverify.toclean.GUI;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
-
-import objects.characters.living.FoeObject;
 
 public class World implements IRender {
 
@@ -95,7 +93,7 @@ public class World implements IRender {
 		boolean isCameraDependant = true;
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant, LAYER.WOLRD_GUI_PUZZLE);
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.FOE)
+			if (tempObject instanceof FoeObject)
 				((FoeObject) tempObject).stun();
 		}
 	}

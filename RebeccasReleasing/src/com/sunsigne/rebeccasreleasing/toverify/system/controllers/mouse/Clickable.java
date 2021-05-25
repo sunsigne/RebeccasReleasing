@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
+import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
@@ -16,6 +17,7 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 	public Clickable(STATE state) {
 		super(state);
 		GameMouseInput.clickable[getLayer().getNum()] = this;
+		HandlerObject.getInstance().clear(false, getLayer());
 		HandlerRender.getInstance().addObject(this);
 	}
 
@@ -23,9 +25,9 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 	public boolean isCameraDependant() {
 		return false;
 	}
-	
+
 	public abstract void close();
-	
+
 	protected void colorRender(Graphics g, Color color) {
 		g.setColor(color);
 		int x0 = 64 + Size.TILE_PUZZLE;
@@ -45,9 +47,9 @@ public abstract class Clickable extends GameMouseInput implements IClick {
 		g.setColor(new Color(64, 64, 64, alpha));
 		g.fillRect(0, 0, Size.WIDHT, Size.HEIGHT);
 	}
-	
+
 	protected void clearClickable() {
-		
+
 		HandlerRender.getInstance().removeObject(clickable[getLayer().getNum()]);
 		clickable[getLayer().getNum()] = null;
 		HandlerObject.getInstance().clear(false, getLayer());

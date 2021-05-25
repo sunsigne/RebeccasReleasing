@@ -3,8 +3,6 @@ package com.sunsigne.rebeccasreleasing.system.handler;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-import com.sunsigne.rebeccasreleasing.toverify.system.handler.LAYER;
-
 public class HandlerRender implements IRender {
 
 	public HandlerRender() {

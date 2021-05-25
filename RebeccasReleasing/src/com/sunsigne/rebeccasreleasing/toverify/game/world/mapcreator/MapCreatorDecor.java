@@ -1,10 +1,9 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.world.mapcreator;
 
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.Lamp;
-
-import objects.world.Stairs;
-import objects.world.decor.WC;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.Stairs;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.decor.WC;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.destroyable.Lamp;
 
 public class MapCreatorDecor {
 

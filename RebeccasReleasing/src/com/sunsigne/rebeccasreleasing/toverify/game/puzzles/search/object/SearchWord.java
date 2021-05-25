@@ -6,7 +6,7 @@ import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.toclean.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 
 public class SearchWord extends SearchWordObject {
 
@@ -47,7 +47,7 @@ public class SearchWord extends SearchWordObject {
 
 		LinkedList<GameObject> list = HandlerObject.getInstance().getList(isCameraDependant(), getLayer());
 		for (GameObject tempObject : list) {
-			if (tempObject.getId() == OBJECTID.P_WORDFOLDER) {
+			if (tempObject instanceof SearchFolder) {
 				if (getBounds().intersects(tempObject.getBounds()))
 					setAboveFolder(true);
 				if (!getBounds().intersects(tempObject.getBounds()))
