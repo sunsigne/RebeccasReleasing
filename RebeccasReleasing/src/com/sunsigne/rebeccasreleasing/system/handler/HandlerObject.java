@@ -100,7 +100,7 @@ public class HandlerObject implements ITick, IRender {
 	////////// TICK ////////////
 
 	@Override
-	public void tick() throws Exception {
+	public void tick() {
 
 		LinkedList<GameObject> list = null;
 		for (LAYER layer : LAYER.values()) {

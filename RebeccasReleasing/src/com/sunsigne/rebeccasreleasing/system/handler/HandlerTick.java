@@ -31,7 +31,7 @@ public class HandlerTick implements ITick {
 	////////// TICK ////////////
 
 	@Override
-	public void tick() throws Exception {
+	public void tick() {
 		for (ITick tempTick : handler_tick_list)
 			tempTick.tick();
 	}

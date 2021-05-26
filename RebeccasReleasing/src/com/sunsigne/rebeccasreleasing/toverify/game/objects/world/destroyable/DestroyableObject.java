@@ -4,14 +4,12 @@ import java.awt.Graphics;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.LivingObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.ILoot;
@@ -30,8 +28,8 @@ public abstract class DestroyableObject extends GameObject implements IAnimation
 	private boolean destroyable;
 	private LootObject loot;
 
-	public DestroyableObject(int x, int y, Facing facing, OBJECTID id) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, id);
+	public DestroyableObject(int x, int y, Facing facing) {
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		this.facing = facing;
 		this.destroyable = true;

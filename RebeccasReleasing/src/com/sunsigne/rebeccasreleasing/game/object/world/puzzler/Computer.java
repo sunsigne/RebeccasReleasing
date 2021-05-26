@@ -7,7 +7,6 @@ import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
@@ -17,7 +16,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 public class Computer extends GameObject implements IPuzzler {
 
 	public Computer(int x, int y, DIFFICULTY difficulty) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y + Size.TILE / 64, OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y + Size.TILE / 64);
 
 		this.difficulty = difficulty;
 		setSize();

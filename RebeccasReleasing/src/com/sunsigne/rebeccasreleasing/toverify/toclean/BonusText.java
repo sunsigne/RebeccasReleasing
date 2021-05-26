@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class BonusText extends GameObject {
@@ -17,7 +16,7 @@ public class BonusText extends GameObject {
 	private String text;
 
 	public BonusText(int x, int y, String text) {
-		super(false, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, x, y);
 		
 		this.text = text;
 		time = 40;
@@ -25,7 +24,7 @@ public class BonusText extends GameObject {
 	}
 
 	public BonusText(GameObject object, String text) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, object.getX(), object.getY(), OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, object.getX(), object.getY());
 
 		this.text = text;
 		time = 40;

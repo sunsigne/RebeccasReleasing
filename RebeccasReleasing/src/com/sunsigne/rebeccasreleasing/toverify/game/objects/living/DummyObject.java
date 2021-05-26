@@ -3,7 +3,6 @@ package com.sunsigne.rebeccasreleasing.toverify.game.objects.living;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 
 public class DummyObject extends LivingObject {
@@ -12,7 +11,7 @@ public class DummyObject extends LivingObject {
 	private BufferedImage[][] dummy_walking = new BufferedImage[4][4]; // - facing - state
 
 	public DummyObject(int x, int y, boolean female, int num) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		getDummy(female, num);
 	}

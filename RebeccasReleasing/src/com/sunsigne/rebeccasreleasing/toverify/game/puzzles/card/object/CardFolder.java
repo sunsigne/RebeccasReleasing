@@ -3,14 +3,18 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
+import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.KeyForward;
+import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
-public class CardFolder extends CommunCardObject implements IAnimation {
+public class CardFolder extends PuzzleCardObject implements IAnimation, ICollisionReaction {
 
 	private Animation animation;
 
@@ -20,7 +24,7 @@ public class CardFolder extends CommunCardObject implements IAnimation {
 	private int attackTime, defenseTime;
 
 	public CardFolder(DIRECTION facing, CharacterBank characterBank, CARDTYPE cardtype) {
-		super(1300, 250, OBJECTID.DELETE, cardtype);
+		super(1300, 250, cardtype);
 
 		this.facing = facing;
 		this.characterBank = characterBank;
@@ -131,6 +135,8 @@ public class CardFolder extends CommunCardObject implements IAnimation {
 				drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
 		} else
 			drawAnimation(g, x0, y0, w0, h0, getFacing().getNum());
+		if (Conductor.getDebugMode().getHitboxMode().getState())
+			drawOrderNum(g);
 
 	}
 
@@ -141,4 +147,30 @@ public class CardFolder extends CommunCardObject implements IAnimation {
 		return new Rectangle(x + w / 4, y + h / 4, w, h);
 	}
 
+	////////// COLLISION ////////////
+
+	@Override
+	public void collidingReaction(GameObject collidingObject) {
+		if (collidingObject instanceof Card) {
+			Card card = (Card) collidingObject;
+			collidingReaction(collidingObject, false, this, () -> setAboveFolder(card));
+		}
+	}
+
+	private void setAboveFolder(Card card) {
+
+		if (isGoodOrder(card) && getCardtype() == card.getCardtype())
+			card.setAboveRightFolder(true);
+		else
+			card.setAboveWrongFolder(true);
+	}
+
+	private boolean isGoodOrder(Card card) {
+		if (getOrderNum() == 0)
+			return true;
+		else if (getOrderNum() == card.getOrderNum())
+			return true;
+		else
+			return false;
+	}
 }

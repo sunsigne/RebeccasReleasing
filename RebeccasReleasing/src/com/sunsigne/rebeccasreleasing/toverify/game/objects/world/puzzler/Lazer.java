@@ -9,7 +9,6 @@ import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.DIFFICULTY;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
@@ -19,7 +18,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 public class Lazer extends GameObject implements IPuzzler {
 
 	public Lazer(int x, int y, Facing facing, DIFFICULTY difficulty) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		this.facing = facing;
 		this.difficulty = difficulty;

@@ -8,7 +8,6 @@ import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.event.EventListener;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.ILoot;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.loot.LootObject;
@@ -43,7 +42,7 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot, ICollisi
 	private boolean statue;
 
 	public FoeObject(int x, int y, DIFFICULTY difficulty) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		this.difficulty = difficulty;
 		this.currentDifficulty = difficulty;
@@ -255,16 +254,16 @@ public class FoeObject extends LivingObject implements IPuzzler, ILoot, ICollisi
 	public void collidingReaction(GameObject collidingObject) {
 
 		if (collidingObject.isPlayer()) {
-			if (statue)
-				blockPass(collidingObject, this);
-			else {
+//			if (statue)
+//				blockPass(collidingObject, this);
+//			else {
 				if (!stunned) {
 					if (HandlerObject.getInstance().getPlayer().isPlayerActive()) {
 						if (hasToolLvl(currentDifficulty, ToolBank.SWORD))
 							updatePuzzler(collidingObject);
 						else
 							pushPlayer();
-					}
+//					}
 				}
 			}
 

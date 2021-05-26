@@ -3,10 +3,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.objects.world.destroyable;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -16,7 +14,7 @@ public class Plant extends DestroyableObject {
 	private Animation[] animation = new Animation[2];
 
 	public Plant(int x, int y, Facing facing) {
-		super(x, y, facing, OBJECTID.DELETE);
+		super(x, y, facing);
 
 		if(facing.getDirection() == DIRECTION.UP) facing.setDirection(DIRECTION.LEFT);
 		if(facing.getDirection() == DIRECTION.DOWN) facing.setDirection(DIRECTION.RIGHT);

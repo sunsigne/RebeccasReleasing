@@ -2,15 +2,11 @@ package com.sunsigne.rebeccasreleasing.toverify.game.puzzles.card;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
+import java.awt.image.BufferedImage;
 
-import com.sunsigne.rebeccasreleasing.ressources.GameFile;
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.system.util.RandomOrderGenerator;
-import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
-import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
+import com.sunsigne.rebeccasreleasing.system.util.RandomGenerator;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.FoeObject;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.puzzler.IPuzzler;
@@ -25,146 +21,114 @@ import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 
 public abstract class PuzzleCardBuilder<T> extends Puzzle {
 
-	private static final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/other"));
-	private static final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/other"));
-	private static final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/other"));
-
-	private static CardObject[] card = new CardObject[5];
-	protected static CardFolder attackFolder, defenseFolder;
-
 	public PuzzleCardBuilder(IPuzzler puzzler, FoeObject[] multipleFoe, DIFFICULTY difficulty, boolean reversed) {
 		super(STATE.PUZZLE, puzzler, multipleFoe, difficulty, false);
 	}
+
+	////////// OBJECTS ////////////
+
+	private CardObject[] card;
 
 	@SuppressWarnings("unchecked")
 	protected T getCard(int number) {
 		return (T) card[number];
 	}
 
-	protected CardObject createCard(int x, int y, CARDTYPE type) {
-//		if (!isReversed())
-		return new Card(x, y, type, fr, eng, custom);
+	protected CardObject createCard(int x, int y) {
+//		if (isForward())
+		return new Card(x, y, CARDTYPE.ATTACK);
 //		return new CardReversed(x, y, type);
 	}
 
-	@Override
-	public void randomGenerationTODELETE() {
-		CARDTYPE[] randomType = randomTypeGeneration();
+	protected int getNumOfCards() {
+		return card.length;
+	}
+	
+	private CardFolder folderAttack, folderDefense;
 
-		card[0] = createCard(520, 925, randomType[0]);
-		card[1] = createCard(670, 925, randomType[1]);
-		card[2] = createCard(820, 925, randomType[2]);
-		card[3] = createCard(970, 925, randomType[3]);
-		card[4] = createCard(1120, 925, randomType[4]);
-
-		randomOrderAttribution();
+	protected CardFolder getFolderAttack() {
+		return folderAttack;
 	}
 
-	private void randomOrderAttribution() {
-
-		int[] randomOrder = new RandomOrderGenerator().randomOrderGenerationFromOneTo(5);
-
-		card[0].setOrderNum(randomOrder[0]);
-		card[1].setOrderNum(randomOrder[1]);
-		card[2].setOrderNum(randomOrder[2]);
-		card[3].setOrderNum(randomOrder[3]);
-		card[4].setOrderNum(randomOrder[4]);
+	protected CardFolder getFolderDefense() {
+		return folderDefense;
 	}
 
-	private CARDTYPE[] randomTypeGeneration() {
-
-		CARDTYPE[] type = new CARDTYPE[5];
-		type[0] = CARDTYPE.ATTACK;
-		type[1] = CARDTYPE.ATTACK;
-		type[2] = CARDTYPE.ATTACK;
-		type[3] = CARDTYPE.ATTACK;
-		type[4] = CARDTYPE.ATTACK;
-
-		float defenseChance = 0.4f;
-
-		if (Math.random() < defenseChance)
-			type[0] = CARDTYPE.DEFENSE;
-		if (Math.random() < defenseChance)
-			type[1] = CARDTYPE.DEFENSE;
-		if (Math.random() < defenseChance)
-			type[2] = CARDTYPE.DEFENSE;
-		if (Math.random() < defenseChance)
-			type[3] = CARDTYPE.DEFENSE;
-		if (Math.random() < defenseChance)
-			type[4] = CARDTYPE.DEFENSE;
-
-		return type;
-	}
+	////////// PUZZLE ////////////
 
 	@Override
-	public void createPuzzleTODELETE() {
-		attackFolder = new CardFolder(DIRECTION.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
-		defenseFolder = new CardFolder(DIRECTION.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
+	protected void open() {
+		createPuzzle();
+		difficultyModifications();
+	}
 
-//		attackFolder.add();
-//		defenseFolder.add();
-		HandlerObject.getInstance().addObject(attackFolder);
-		HandlerObject.getInstance().addObject(defenseFolder);
+	private void createPuzzle() {
+		folderAttack = new CardFolder(DIRECTION.LEFT, CharacterBank.gamma, CARDTYPE.ATTACK);
+		folderDefense = new CardFolder(DIRECTION.RIGHT, CharacterBank.rebecca, CARDTYPE.DEFENSE);
 
-		difficultyModification(() -> createThreeCard(), 1);
-		difficultyModification(() -> createFiveCard(), 2, 3, 4, 5);
+		HandlerObject.getInstance().addObject(folderAttack);
+		HandlerObject.getInstance().addObject(folderDefense);
+	}
+
+	private void difficultyModifications() {
+		difficultyModification(() -> randomCardGeneration(3), 1);
+		difficultyModification(() -> randomCardGeneration(5), 2, 3, 4, 5);
 		difficultyModification(() -> imposeOrder(), 3, 4, 5);
-		difficultyModification(() -> hideOneCard(false), 4);
-		difficultyModification(() -> hideOneCard(true), 5);
+		difficultyModification(() -> hideCards(1), 4);
+		difficultyModification(() -> hideCards(2), 5);
 	}
 
-	private void createThreeCard() {
-		card[4].setExist(false);
+	protected void randomCardGeneration(int numOfCards) {
 
-//		card[3].add();
-//		card[2].add();
-//		card[1].add();
-		HandlerObject.getInstance().addObject(card[3]);
-		HandlerObject.getInstance().addObject(card[2]);
-		HandlerObject.getInstance().addObject(card[1]);
-		
-		card[0].setExist(false);
-	}
+		card = new CardObject[numOfCards];
+		HandlerObject handler = HandlerObject.getInstance();
+		int[] randomOrder = new RandomGenerator().randomOrderGenerationFromOneTo(numOfCards);
 
-	private void createFiveCard() {
-		HandlerObject.getInstance().addObject(card[4]);
-		HandlerObject.getInstance().addObject(card[3]);
-		HandlerObject.getInstance().addObject(card[2]);
-		HandlerObject.getInstance().addObject(card[1]);
-		HandlerObject.getInstance().addObject(card[0]);
-//		card[5].add();
-//		card[4].add();
-//		card[3].add();
-//		card[2].add();
-//		card[1].add();
+		for (int index = 0; index < numOfCards; index++) {
+
+			if (numOfCards == 3)
+				card[index] = createCard(670 + index * 150, 925);
+			if (numOfCards == 5)
+				card[index] = createCard(520 + index * 150, 925);
+			
+			card[index].setOrderNum(randomOrder[index]);
+
+			float defenseChance = 0.4f;
+			if (Math.random() < defenseChance)
+				card[index].setCardtype(CARDTYPE.DEFENSE);
+
+			handler.addObject(card[index]);
+		}
 	}
 
 	private void imposeOrder() {
-		attackFolder.setOrderNum(1);
-		defenseFolder.setOrderNum(1);
+		folderAttack.setOrderNum(1);
+		folderDefense.setOrderNum(1);
 	}
 
-	private void hideOneCard(boolean twoInstead) {
-		int random = new Random().nextInt(5);
-		int random2 = new Random().nextInt(5);
-		while (random == random2)
-			random2 = new Random().nextInt(5);
+	private void hideCards(int numOfCards) {
+		int[] randomIndex = new RandomGenerator().randomOrderGenerationFromOneTo(5);
 
-		card[random].willHide();
-		if (twoInstead)
-			card[random2].willHide();
+		for (int index = 0; index < numOfCards; index++) {
+			card[randomIndex[index] - 1].setMustHide(true);
+		}
 	}
+
+	////////// RENDER ////////////
 
 	@Override
 	public void render(Graphics g) {
-		colorRender(g, new Color(70, 70, 10, 240));
-		renderingFakeWall(g, texture.decor_wall[1]);
+		Color yellow = new Color(70, 70, 10, 240);
+		BufferedImage img = texture.decor_wall[1];
+		colorRender(g, yellow);
+		renderingFakeWall(g, img);
 
 	}
 
+	////////// SOUND ////////////
+
 	@Override
 	public SoundBank getSuccessSound() {
-
 		if (!isForward())
 			return SoundBank.NOPE;
 		else

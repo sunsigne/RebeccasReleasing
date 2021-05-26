@@ -1,6 +1,5 @@
 package com.sunsigne.rebeccasreleasing.toverify.game.menu;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -9,12 +8,11 @@ import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
 import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 
 public abstract class MenuObject extends GameObject implements ITranslation {
 
 	public MenuObject(ChatMap chatMap, ChatMap... chatMaps) {
-		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DELETE);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0);
 		languageMapping(chatMap, chatMaps);
 	}
 

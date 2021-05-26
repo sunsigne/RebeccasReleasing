@@ -100,19 +100,19 @@ public abstract class PuzzleKeyBuilder<T> extends Puzzle {
 		difficultyModification(() -> lock.setInverseMouse(true), 5);
 	}
 
-	protected void randomWallGeneration(int numOfWall) {
+	protected void randomWallGeneration(int numOfWalls) {
 
 		BufferedImage img = texture.decor_wall[3];
 		HandlerObject handler = HandlerObject.getInstance();
 
-		for (int wall = 0; wall < numOfWall; wall++) {
+		for (int wall = 0; wall < numOfWalls; wall++) {
 			int col = 2 + new Random().nextInt(10);
 			int row = 1 + new Random().nextInt(6);
 
 			handler.addObject(new WallPuzzle(getCol(col), getRow(row), img));
 		}
 
-		if (numOfWall > 5)
+		if (numOfWalls > 5)
 			createKeyPass();
 	}
 

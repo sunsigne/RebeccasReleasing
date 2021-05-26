@@ -6,8 +6,6 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 // Yes, the whole running of thoses classes between each other
@@ -21,8 +19,7 @@ public abstract class ProcessorObject extends PuzzleObject {
 	public ProcessorBack previousback;
 
 	public ProcessorObject(int col, int row, PROCESSORID processorId) {
-		super(Size.X0 + (col * 2 - 1) * Size.TILE_PUZZLE, Size.Y0 + (row * 2 - 1) * Size.TILE_PUZZLE,
-				OBJECTID.DELETE);
+		super(Size.X0 + (col * 2 - 1) * Size.TILE_PUZZLE, Size.Y0 + (row * 2 - 1) * Size.TILE_PUZZLE);
 		this.processorId = processorId;
 		this.col = col;
 		this.row = row;

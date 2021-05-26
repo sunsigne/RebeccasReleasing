@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
+import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
+import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
 import com.sunsigne.rebeccasreleasing.ressources.GameFile;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontBank;
 import com.sunsigne.rebeccasreleasing.ressources.font.FontTask;
@@ -15,33 +17,31 @@ import com.sunsigne.rebeccasreleasing.toverify.game.chat.ChatMap;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.GameText;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.ITranslation;
 import com.sunsigne.rebeccasreleasing.toverify.game.menu.options.LANGUAGE;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
+import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 
-public abstract class CardObject extends CommunCardObject implements ITranslation {
+public abstract class CardObject extends PuzzleCardObject implements ITranslation, ICollisionDetection {
 
-	private boolean exist, dragged;
+	private boolean played, dragged;
 	protected int startingX, startingY;
 
 	protected int upwardTime = 15;
-	protected boolean shouldHide;
-	protected int hiddingTime = 40;
 
-	public CardObject(int x, int y, CARDTYPE cardtype, ChatMap chatMap, ChatMap... chatMaps) {
-		super(x, y, OBJECTID.DELETE, cardtype);
+	public CardObject(int x, int y, CARDTYPE cardtype) {
+		super(x, y, cardtype);
 
-		languageMapping(chatMap, chatMaps);
+		languageMapping(fr, eng, custom);
 		startingX = x;
 		startingY = y;
 	}
 
 	// state
 
-	public boolean doesExist() {
-		return exist;
+	public boolean isPlayed() {
+		return played;
 	}
 
-	public void setExist(boolean exist) {
-		this.exist = exist;
+	public void setPlayed(boolean played) {
+		this.played = played;
 	}
 
 	public boolean isDragged() {
@@ -52,8 +52,11 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 		this.dragged = dragged;
 	}
 
-	public void willHide() {
-		shouldHide = true;
+	protected boolean mustHide;
+	protected int hiddingTime = 40;
+
+	public void setMustHide(boolean mustHide) {
+		this.mustHide = mustHide;
 	}
 
 	protected boolean hasSameOrderNumThanFolder(boolean oneUnderInstead) {
@@ -77,16 +80,18 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 		y = startingY;
 	}
 
-	// design
+	////////// RENDER ////////////
 
 	@Override
 	public void render(Graphics g) {
 
-		if (hiddingTime > 0 || !shouldHide) {
+		if (hiddingTime > 0 || !mustHide) {
 			drawCard(g);
 			drawOrderLayer(g);
 		} else
 			drawMystery(g);
+		if (Conductor.getDebugMode().getHitboxMode().getState())
+			drawOrderNum(g);
 
 	}
 
@@ -122,14 +127,20 @@ public abstract class CardObject extends CommunCardObject implements ITranslatio
 		g.drawImage(texture.puzzle_card[1], x, y, w, h, null);
 	}
 
-	// collision
+	////////// COLLISION ////////////
+
+	private CollisionDetector collisionDetector = new CollisionDetector(this);
 
 	@Override
-	public Rectangle getBounds() {
-		return new Rectangle(x, y, w, h);
-	}
+	public CollisionDetector getCollisionDetector() {
+		return collisionDetector;
+	}	
 
 	////////// LANGUAGE ////////////
+
+	private final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/other"));
+	private final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/other"));
+	private final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/other"));
 
 	private GameFile[] gamefileFromLang = new GameFile[LANGUAGE.getTotalLanguages() + 1];
 	private Font font = new FontTask().createNewFont(FontBank.FRIZQUADRATATT, 45f);

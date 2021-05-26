@@ -12,7 +12,6 @@ import com.sunsigne.rebeccasreleasing.ressources.tools.BufferedTool;
 import com.sunsigne.rebeccasreleasing.ressources.tools.ToolBank;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -23,7 +22,7 @@ public class GUI extends GameObject implements Characteristics {
 	private boolean isInvulnerable;
 
 	public GUI() {
-		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0, OBJECTID.DELETE);
+		super(false, LAYER.WOLRD_GUI_PUZZLE, 0, 0);
 
 		tools = ToolBank.copyMap();
 

@@ -9,14 +9,13 @@ import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.game.puzzles.key.object.KeyObject;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 
 public class WallPuzzle extends PuzzleObject implements ICollisionReaction {
 
 	private BufferedImage texture;
 
 	public WallPuzzle(int x, int y, BufferedImage texture) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 		this.texture = texture;
 	}
 

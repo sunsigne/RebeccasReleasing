@@ -1,5 +1,4 @@
 
-
 ////////// IMPORTANT ////////////
 
 Computer / à redesigner et resizer ! Mention spécial pour l'abération dans le constructeur
@@ -33,6 +32,7 @@ Computer / l'outils de l'ordinateur n'est pas créé, c'est actuellement la clef q
 
 ////////// FACILE ////////////
 
+FoeObject / comme le tick ne tourne pas pour les statue, dès lors qu'un puzzle est résulo, ils sont infiniment stun ... à régler
 OBJECTID / delete <- effacer cet enum ?
 ToolBank & ToolIndex / faire en sorte de changer le constructeur pour pouvoir instancier
 cette classe et en faire une instance de Ressources (pour le constructeur)
@@ -49,6 +49,7 @@ SoundBank / remplacer les nope par des vrais sons
 
 ///////// A TRIER ////////////
 
+TICK / le message d'erreur de la throw exeption ne marche pas, faut régler ce truc de merde!
 faire en sorte que toutes les choses statics qui n'ont pas besoin de l'être, ne le soit plus ^^
 ToolBank & ToolTask / create saveRessources() and setBufferedToolIntoFile()
 Lazer / la collision avec le lazer de la part d'ennemis ne devrait elle pas les blesser ?

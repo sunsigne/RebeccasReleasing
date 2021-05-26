@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.system.Game;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.world.IInteraction;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.characters.CharacterBank;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
@@ -24,7 +22,7 @@ public class PlayerObject extends LivingObject {
 	private IInteraction interaction;
 
 	public PlayerObject(int x, int y) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		loadBasicState();
 	}

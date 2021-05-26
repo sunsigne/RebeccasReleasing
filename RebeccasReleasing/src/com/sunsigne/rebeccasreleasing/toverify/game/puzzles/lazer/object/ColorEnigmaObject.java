@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class ColorEnigmaObject extends PuzzleObject {
@@ -13,7 +12,7 @@ public class ColorEnigmaObject extends PuzzleObject {
 	private ColorEnigmaMap colorEnigmaMap;
 
 	public ColorEnigmaObject(int x, int y, ColorEnigmaMap colorEnigmaMap) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		this.colorEnigmaMap = colorEnigmaMap;
 

@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class WireObject extends PuzzleObject {
@@ -15,7 +14,7 @@ public class WireObject extends PuzzleObject {
 	private boolean cut;
 
 	public WireObject(int x, int y, WIRECOLOR color) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		this.color = color;
 		setExist(true);

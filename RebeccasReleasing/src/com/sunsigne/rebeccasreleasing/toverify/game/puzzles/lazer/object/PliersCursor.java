@@ -5,13 +5,12 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class PliersCursor extends PuzzleObject {
 
 	public PliersCursor() {
-		super(0, 0, OBJECTID.DELETE);
+		super(0, 0);
 
 		w = 3 * Size.TILE_PUZZLE / 2;
 		h = 3 * Size.TILE_PUZZLE / 2;

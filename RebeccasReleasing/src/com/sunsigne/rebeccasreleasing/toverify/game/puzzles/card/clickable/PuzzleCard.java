@@ -17,8 +17,10 @@ public class PuzzleCard extends PuzzleCardBuilder<Card> {
 	@Override
 	public void mousePressed(int mx, int my) {
 
-		for (int i = 0; i < 5; i++) {
-			if (getCard(i).doesExist() && GameMouseInput.mouseOver(mx, my, getCard(i).getRect())) {
+		int numOfCards = getNumOfCards();
+
+		for (int i = numOfCards - 1; i >= 0; i--) {
+			if (!getCard(i).isPlayed() && GameMouseInput.mouseOver(mx, my, getCard(i).getRect())) {
 				getCard(i).setDragged(true);
 				return;
 			}
@@ -28,48 +30,60 @@ public class PuzzleCard extends PuzzleCardBuilder<Card> {
 	@Override
 	public void mouseReleased(int mx, int my) {
 
-		for (int i = 0; i < 5; i++) {
+		int numOfCards = getNumOfCards();
+
+		for (int i = 0; i < numOfCards; i++) {
 			getCard(i).setDragged(false);
 		}
 
 		boolean winning = true;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < numOfCards; i++) {
 
-			if (getCard(i).doesExist()) {
-				if (!getCard(i).isAboveRightFolder()) {
-					if (!getCard(i).isAboveWrongFolder())
-						getCard(i).resetPos();
-					else
-						close();
+			if (!getCard(i).isPlayed()) {
 
-				} else if (getCard(i).isAboveRightFolder()) {
-					getCard(i).playCard();
-					getCard(i).setX(0);
-					getCard(i).setY(0);
-					updateFolderAnimation(getCard(i));
-					updateFolderNum(getCard(i));
+				if (getCard(i).isAboveWrongFolder()) {
+					close();
 				}
+
+				else if (getCard(i).isAboveRightFolder()) {
+					playCard(getCard(i));
+				}
+
+				else {
+					getCard(i).resetPos();
+				}
+
 			}
-			if (getCard(i).doesExist())
+
+			if (!getCard(i).isPlayed())
 				winning = false;
 		}
+
 		setWinning(winning);
 		if (isWinning())
 			close();
 	}
 
+	private void playCard(Card card) {
+		card.playCard();
+		card.setX(0);
+		card.setY(0);
+		updateFolderAnimation(card);
+		updateFolderNum(card);
+	}
+
 	private void updateFolderAnimation(Card card) {
 		CARDTYPE type = card.getCardtype();
-		attackFolder.playCard(type);
-		defenseFolder.playCard(type);
+		getFolderAttack().playCard(type);
+		getFolderDefense().playCard(type);
 	}
 
 	private void updateFolderNum(Card card) {
 
 		int currentOrderNum = card.getOrderNum();
-		if (currentOrderNum != 0 && attackFolder.getOrderNum() != 0) {
-			attackFolder.setOrderNum(currentOrderNum + 1);
-			defenseFolder.setOrderNum(currentOrderNum + 1);
+		if (currentOrderNum != 0 && getFolderAttack().getOrderNum() != 0) {
+			getFolderAttack().setOrderNum(currentOrderNum + 1);
+			getFolderDefense().setOrderNum(currentOrderNum + 1);
 		}
 
 	}

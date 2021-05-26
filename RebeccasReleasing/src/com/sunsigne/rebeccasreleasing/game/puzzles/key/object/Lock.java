@@ -9,7 +9,6 @@ import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.Conductor;
 import com.sunsigne.rebeccasreleasing.toverify.system.STATE;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -17,7 +16,7 @@ import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 public class Lock extends PuzzleObject implements ICollisionReaction {
 
 	public Lock(int x, int y) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 	}
 
 	private boolean inverseMouse;

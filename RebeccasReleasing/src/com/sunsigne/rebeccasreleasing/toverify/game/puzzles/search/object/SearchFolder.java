@@ -4,13 +4,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class SearchFolder extends PuzzleObject {
 
 	public SearchFolder() {
-		super(1220, 600, OBJECTID.DELETE);
+		super(1220, 600);
 
 		w = Size.TILE_PUZZLE * 4;
 		h = Size.TILE_PUZZLE * 3;

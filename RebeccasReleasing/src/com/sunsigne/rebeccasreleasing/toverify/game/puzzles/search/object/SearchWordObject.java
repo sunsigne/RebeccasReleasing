@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public abstract class SearchWordObject extends PuzzleObject {
@@ -22,7 +21,7 @@ public abstract class SearchWordObject extends PuzzleObject {
 	private String text;
 
 	public SearchWordObject(int wordnumber, int x, int y) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 
 		setStable(true);
 		this.wordnumber = wordnumber;

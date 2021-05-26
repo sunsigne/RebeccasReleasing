@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable {
 
 	////////// TICK ////////////
 
-	private void tick() throws Exception {
+	private void tick() {
 		HandlerRender.getInstance().setPlayerRenderingRefreshed(true);
 
 		Point pos = MouseInfo.getPointerInfo().getLocation();

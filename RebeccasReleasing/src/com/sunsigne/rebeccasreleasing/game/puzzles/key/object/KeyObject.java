@@ -7,13 +7,12 @@ import java.awt.image.BufferedImage;
 import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
 import com.sunsigne.rebeccasreleasing.game.puzzles.PuzzleObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public abstract class KeyObject extends PuzzleObject implements ICollisionDetection {
 
 	public KeyObject(int x, int y) {
-		super(x, y, OBJECTID.DELETE);
+		super(x, y);
 		speed = 8;
 	}
 

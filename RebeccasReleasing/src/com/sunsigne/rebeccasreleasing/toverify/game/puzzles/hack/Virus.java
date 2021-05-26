@@ -11,7 +11,6 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.controllers.mouse.GameCursor;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.IAnimation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
@@ -25,7 +24,7 @@ public class Virus extends PuzzleObject implements IAnimation {
 	int ymin = Size.Y0 + Size.TILE_PUZZLE, ymax = 32 + 13 * Size.TILE_PUZZLE / 2;
 
 	public Virus() {
-		super(0, 0, OBJECTID.DELETE);
+		super(0, 0);
 
 		w = Size.TILE_PUZZLE / 2;
 		h = Size.TILE_PUZZLE / 2;

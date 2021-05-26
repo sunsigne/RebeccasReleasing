@@ -24,7 +24,7 @@ public class MapCreatorFoe {
 		}
 
 		if (red == 255 && green == 255 && blue == 2) {
-			DIFFICULTY difficulty = DIFFICULTY.CYAN;
+			DIFFICULTY difficulty = DIFFICULTY.GREEN;
 			FoeObject foe = new FoeObject(x0, y0, difficulty);
 			handler_object.addObject(foe);
 		}

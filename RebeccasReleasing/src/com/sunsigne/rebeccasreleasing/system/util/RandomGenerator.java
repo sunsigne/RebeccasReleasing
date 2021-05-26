@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
-public final class RandomOrderGenerator {
+public final class RandomGenerator {
 	
 	public int[] randomOrderGenerationFromOneTo(int max) {
 

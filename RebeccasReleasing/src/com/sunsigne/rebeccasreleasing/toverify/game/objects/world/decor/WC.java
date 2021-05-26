@@ -4,16 +4,14 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
-import com.sunsigne.rebeccasreleasing.game.object.collision.CollisionDetector;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class WC extends GameObject implements ICollisionReaction {
 
 	public WC(int x, int y) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		h = Size.TILE / 4;
 		w = Size.TILE / 2;

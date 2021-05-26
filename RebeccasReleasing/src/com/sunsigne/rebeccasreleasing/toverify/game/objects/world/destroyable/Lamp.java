@@ -6,13 +6,11 @@ import java.awt.Rectangle;
 import com.sunsigne.rebeccasreleasing.game.object.GameObject;
 import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionReaction;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.living.LivingObject;
 
 public class Lamp extends GameObject implements ICollisionReaction {
 
 	public Lamp(int x, int y) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 	}
 
 	// behavior

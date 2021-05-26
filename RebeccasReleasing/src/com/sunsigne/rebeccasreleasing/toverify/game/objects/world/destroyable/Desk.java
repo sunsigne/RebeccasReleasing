@@ -3,13 +3,8 @@ package com.sunsigne.rebeccasreleasing.toverify.game.objects.world.destroyable;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.sunsigne.rebeccasreleasing.ressources.sounds.BufferedSound;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
-import com.sunsigne.rebeccasreleasing.system.handler.HandlerRender;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.ressources.images.Animation;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
@@ -18,7 +13,7 @@ public class Desk extends DestroyableObject {
 	private Animation[] animation = new Animation[4];
 
 	public Desk(int x, int y, Facing facing) {
-		super(x, y, facing, OBJECTID.DELETE);
+		super(x, y, facing);
 
 		w = 2 * Size.TILE;
 		h = 2 * Size.TILE;

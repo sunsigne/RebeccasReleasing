@@ -11,7 +11,6 @@ import com.sunsigne.rebeccasreleasing.game.object.collision.ICollisionDetection;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.game.objects.Facing.DIRECTION;
 import com.sunsigne.rebeccasreleasing.toverify.game.puzzles.Puzzle;
 import com.sunsigne.rebeccasreleasing.toverify.game.world.World;
@@ -31,8 +30,8 @@ public abstract class LivingObject extends GameObject implements IAnimation, ICo
 	protected boolean isPushed;
 	protected int pushTime = 10;
 
-	public LivingObject(int x, int y, OBJECTID objectid) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, objectid);
+	public LivingObject(int x, int y) {
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		watching[DIRECTION.DOWN.getNum()] = true;
 		facing = DIRECTION.DOWN;

@@ -11,10 +11,6 @@ public class ToolTask implements ITranslation {
 
 	private final GameFile loc = new GameFile("data/characteristics/tools");
 
-	private final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/tool"));
-	private final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/tool"));
-	private final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/tool"));
-
 	public ToolTask() {
 		languageMapping(fr, eng, custom);
 	}
@@ -36,6 +32,10 @@ public class ToolTask implements ITranslation {
 	}
 
 	////////// LANGUAGE ////////////
+
+	private final ChatMap fr = new ChatMap(LANGUAGE.FRENCH, new GameFile("texts/french/tool"));
+	private final ChatMap eng = new ChatMap(LANGUAGE.ENGLISH, new GameFile("texts/english/tool"));
+	private final ChatMap custom = new ChatMap(LANGUAGE.CUSTOM, new GameFile("texts/custom/tool"));
 
 	private final GameFile[] gamefileFromLang = new GameFile[LANGUAGE.getTotalLanguages() + 1];
 

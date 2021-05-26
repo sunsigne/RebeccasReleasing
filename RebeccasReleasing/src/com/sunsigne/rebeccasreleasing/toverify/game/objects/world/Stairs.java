@@ -13,7 +13,6 @@ import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundBank;
 import com.sunsigne.rebeccasreleasing.ressources.sounds.SoundTask;
 import com.sunsigne.rebeccasreleasing.system.handler.HandlerObject;
 import com.sunsigne.rebeccasreleasing.system.handler.LAYER;
-import com.sunsigne.rebeccasreleasing.toverify.game.objects.OBJECTID;
 import com.sunsigne.rebeccasreleasing.toverify.system.util.Size;
 
 public class Stairs extends GameObject implements ICollisionReaction, IInteraction {
@@ -22,7 +21,7 @@ public class Stairs extends GameObject implements ICollisionReaction, IInteracti
 	private int stairId;
 
 	public Stairs(int x, int y, boolean goesUp, int stairId) {
-		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y, OBJECTID.DELETE);
+		super(true, LAYER.WOLRD_GUI_PUZZLE, x, y);
 
 		this.goesUp = goesUp;
 		this.stairId = stairId;
